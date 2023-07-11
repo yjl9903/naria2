@@ -11,6 +11,9 @@ async function validate() {
   const { platform } = process;
   const binary = path.join(path.dirname(pkg), platform === 'win32' ? 'aria2c.exe' : 'aria2c');
   if (fs.existsSync(binary)) {
+    try {
+      fs.chmodSync(binary, 0o755);
+    } catch {}
     return true;
   } else {
     throw new Error(`${binary} is not found`);
