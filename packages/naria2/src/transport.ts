@@ -23,7 +23,7 @@ export async function createSubprocess(
 ): Promise<SubprocessSocket> {
   const resolvedArgs: string[] = [];
   const resolvedOptions: SubprocessOptions = {
-    rpcListenPort: options.rpcListenPort ?? await getPortPromise({ startPort: 16800 }),
+    rpcListenPort: options.rpcListenPort ?? await getPortPromise(),
     rpcSecret: options.rpcSecret ?? randomUUID(),
     args: resolvedArgs,
     spawn: options.spawn ?? {}
