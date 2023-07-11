@@ -1,9 +1,9 @@
+import type { ChildProcess, SpawnOptions } from 'node:child_process';
+
 import { randomUUID } from 'node:crypto';
 
-import { createHTTP, createWebSocket, Socket } from 'maria2';
-
 import { spawn } from '@naria2/core';
-import { SpawnOptions } from 'node:child_process';
+import { createHTTP, createWebSocket, Socket } from 'maria2';
 
 export { createHTTP, createWebSocket };
 
@@ -14,7 +14,7 @@ export interface SubprocessOptions {
   spawn: SpawnOptions;
 }
 
-export type SubprocessSocket = Socket & { options: SubprocessOptions };
+export type SubprocessSocket = Socket & { options: SubprocessOptions; childProcess: ChildProcess };
 
 export async function createSubprocess(
   options: Partial<SubprocessOptions> = {}
@@ -37,16 +37,25 @@ export async function createSubprocess(
   );
 
   const child = spawn(resolvedArgs, resolvedOptions.spawn);
+  await new Promise((res, rej) => {
+    let spawn = false;
+    child.once('spawn', () => {
+      spawn = true;
+      res(undefined);
+    });
+    child.once('error', (e) => {
+      if (!spawn) {
+        rej(e);
+      }
+    });
+  });
 
   const ws = createWebSocket(`ws://localhost:${resolvedOptions.rpcListenPort}/jsonrpc`);
 
   return new (class extends EventTarget {
-    readonly options: SubprocessOptions;
+    readonly options = resolvedOptions;
 
-    constructor(options: SubprocessOptions) {
-      super();
-      this.options = options;
-    }
+    readonly childProcess = child;
 
     get readyState() {
       return ws.readyState;
@@ -60,5 +69,5 @@ export async function createSubprocess(
     send(data: string): void {
       ws.send(data);
     }
-  })(resolvedOptions) as unknown as SubprocessSocket;
+  })() as unknown as SubprocessSocket;
 }
