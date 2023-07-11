@@ -82,8 +82,8 @@ importers:
         specifier: workspace:*
         version: link:../core
       maria2:
-        specifier: ^0.2.8-beta.2
-        version: 0.2.8-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.0-beta.2
+        version: 0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
     devDependencies:
       '@types/ws':
         specifier: ^8.5.5
@@ -1615,8 +1615,9 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /maria2@0.2.8-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0):
-    resolution: {integrity: sha512-lLWBYrPqUnBqw25sdvrlDPz6zf2NimmbhWtwppAvXNqhZTObsSrkj3itdp+AQH+eepBr6s5t6ADljLjGmjX5KA==}
+  /maria2@0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0):
+    resolution: {integrity: sha512-UKZl94t0vn77N3z+h2DlZjgclcjio1w8I/nNfiYxox1sGBsPi7Q0JQPq47sHlyQavD6TVV/pVkfj1fBUb1nQYQ==}
+    engines: {node: '>= 14.8.0'}
     peerDependencies:
       cross-fetch: '*'
       uuid: '*'
