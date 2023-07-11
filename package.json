@@ -7,6 +7,7 @@
     "dev": "turbo run dev --parallel",
     "format": "turbo run format --parallel",
     "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish --access public",
+    "release:binary": "bumpp packages/binary/*/package.json --commit --push && pnpm -r publish --access public",
     "test:ci": "turbo run test:ci",
     "typecheck": "turbo run typecheck",
     "preversion": "turbo run test:ci",
