@@ -1,6 +1,6 @@
 {
   "name": "@naria2/monorepo",
-  "version": "0.0.4",
+  "version": "0.0.5-beta.0",
   "private": true,
   "scripts": {
     "build": "turbo run build",
