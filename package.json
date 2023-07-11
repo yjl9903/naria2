@@ -18,6 +18,7 @@
     "@types/node": "^18.16.19",
     "@types/ws": "^8.5.5",
     "bumpp": "latest",
+    "naria2": "workspace:*",
     "turbo": "^1.10.7",
     "typescript": "^5.1.6",
     "unbuild": "^1.2.1",

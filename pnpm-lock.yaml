@@ -17,6 +17,9 @@ importers:
       bumpp:
         specifier: latest
         version: 9.1.1
+      naria2:
+        specifier: workspace:*
+        version: link:packages/naria2
       turbo:
         specifier: ^1.10.7
         version: 1.10.7

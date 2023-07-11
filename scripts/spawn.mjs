@@ -1,4 +1,4 @@
-import { createSubprocess } from '../packages/naria2/src';
+import { createSubprocess } from 'naria2';
 
 async function bootstrap() {
   try {
