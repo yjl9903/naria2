@@ -24,8 +24,12 @@
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "bin": {
+    "naria2": "naria2.mjs"
+  },
   "files": [
-    "dist"
+    "dist",
+    "*.mjs"
   ],
   "scripts": {
     "build": "unbuild",

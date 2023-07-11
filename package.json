@@ -6,6 +6,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "format": "turbo run format --parallel",
+    "naria2": "node packages/naria2/naria2.mjs",
     "release": "bumpp package.json packages/*/package.json --commit --push --tag true && pnpm -r publish --access public",
     "release:binary": "bumpp packages/binary/*/package.json --commit --push --tag false && pnpm -r publish --access public",
     "test:ci": "turbo run test:ci",
