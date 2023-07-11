@@ -1,6 +1,6 @@
 {
-  "name": "@naria2/darwin-x64",
-  "version": "0.0.2",
+  "name": "naria2c",
+  "version": "0.0.3",
   "description": "",
   "keywords": [],
   "homepage": "https://github.com/yjl9903/naria2#readme",
@@ -13,10 +13,16 @@
   },
   "license": "MIT",
   "author": "XLor",
-  "os": [
-    "darwin"
+  "bin": {
+    "naria2c": "naria2c.mjs"
+  },
+  "files": [
+    "*.mjs"
   ],
-  "cpu": [
-    "x64"
-  ]
+  "scripts": {
+    "format": "prettier --write *.mjs"
+  },
+  "dependencies": {
+    "@naria2/core": "workspace:*"
+  }
 }
