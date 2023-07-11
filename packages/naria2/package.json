@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "@naria2/core": "workspace:*",
-    "maria2": "^0.3.0-beta.2"
+    "maria2": "^0.3.0-beta.2",
+    "portfinder": "^1.0.32"
   },
   "devDependencies": {
     "@types/ws": "^8.5.5",
