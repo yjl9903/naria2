@@ -13,7 +13,7 @@ importers:
         version: 18.16.19
       bumpp:
         specifier: latest
-        version: 9.1.0
+        version: 9.1.1
       turbo:
         specifier: ^1.10.7
         version: 1.10.7
@@ -73,8 +73,8 @@ importers:
         specifier: workspace:*
         version: link:../core
       maria2:
-        specifier: ^0.1.4
-        version: registry.npmmirror.com/maria2@0.1.4(cross-fetch@4.0.0)(ws@8.13.0)
+        specifier: ^0.2.1
+        version: 0.2.1(ws@8.13.0)
     devDependencies:
       vitest:
         specifier: ^0.33.0
@@ -1000,8 +1000,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /bumpp@9.1.0:
-    resolution: {integrity: sha512-m3+YD8uoa0VttG+RV4oKr3lK60gkUn1yPDaBTFwT7xrdJUsy7Jm0VYgx457HI3VPAOX8szLmy1x2y1QcvB+M8Q==}
+  /bumpp@9.1.1:
+    resolution: {integrity: sha512-T7/2QmRNhHRkH2+HgDs/xk4keom3nlCjwQn6kHdz0I0dQMVrs+YMOH5HyuhV0R3tha/tTYP030RG9uQKpQ9CRg==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -1123,14 +1123,6 @@ packages:
   /convert-source-map@1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
     dev: true
-
-  /cross-fetch@4.0.0:
-    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
-    dependencies:
-      node-fetch: 2.6.12
-    transitivePeerDependencies:
-      - encoding
-    dev: false
 
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -1588,6 +1580,14 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
+  /maria2@0.2.1(ws@8.13.0):
+    resolution: {integrity: sha512-lnpwz+r6B7T27fC2EE2ar1GoCilhhVfLUEcCLs8TatUa/UOO5VQXL/8luB14S+KI8R/6As8klzHPbNo6LU5HTg==}
+    peerDependencies:
+      ws: '*'
+    dependencies:
+      ws: 8.13.0
+    dev: false
+
   /merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
     dev: false
@@ -1693,18 +1693,6 @@ packages:
   /node-fetch-native@1.2.0:
     resolution: {integrity: sha512-5IAMBTl9p6PaAjYCnMv5FmqIF6GcZnawAVnzaCG0rX2aYZJ4CxEkZNtVPuTRug7fL7wyM5BQYTlAzcyMPi6oTQ==}
     dev: true
-
-  /node-fetch@2.6.12:
-    resolution: {integrity: sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-    dependencies:
-      whatwg-url: 5.0.0
-    dev: false
 
   /node-releases@2.0.13:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
@@ -2007,10 +1995,6 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /tr46@0.0.3:
-    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-    dev: false
-
   /turbo-darwin-64@1.10.7:
     resolution: {integrity: sha512-N2MNuhwrl6g7vGuz4y3fFG2aR1oCs0UZ5HKl8KSTn/VC2y2YIuLGedQ3OVbo0TfEvygAlF3QGAAKKtOCmGPNKA==}
     cpu: [x64]
@@ -2275,17 +2259,6 @@ packages:
       - terser
     dev: true
 
-  /webidl-conversions@3.0.1:
-    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-    dev: false
-
-  /whatwg-url@5.0.0:
-    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
-    dependencies:
-      tr46: 0.0.3
-      webidl-conversions: 3.0.1
-    dev: false
-
   /which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
     engines: {node: '>= 8'}
@@ -2390,7 +2363,7 @@ packages:
     dependencies:
       '@vitest/utils': registry.npmmirror.com/@vitest/utils@0.33.0
       p-limit: registry.npmmirror.com/p-limit@4.0.0
-      pathe: registry.npmmirror.com/pathe@1.1.1
+      pathe: 1.1.1
     dev: true
 
   registry.npmmirror.com/@vitest/snapshot@0.33.0:
@@ -2399,7 +2372,7 @@ packages:
     version: 0.33.0
     dependencies:
       magic-string: registry.npmmirror.com/magic-string@0.30.1
-      pathe: registry.npmmirror.com/pathe@1.1.1
+      pathe: 1.1.1
       pretty-format: registry.npmmirror.com/pretty-format@29.6.1
     dev: true
 
@@ -2468,7 +2441,7 @@ packages:
       get-func-name: registry.npmmirror.com/get-func-name@2.0.0
       loupe: registry.npmmirror.com/loupe@2.3.6
       pathval: registry.npmmirror.com/pathval@1.1.1
-      type-detect: registry.npmmirror.com/type-detect@4.0.8
+      type-detect: 4.0.8
     dev: true
 
   registry.npmmirror.com/check-error@1.0.2:
@@ -2497,7 +2470,7 @@ packages:
     version: 4.1.3
     engines: {node: '>=6'}
     dependencies:
-      type-detect: registry.npmmirror.com/type-detect@4.0.8
+      type-detect: 4.0.8
     dev: true
 
   registry.npmmirror.com/diff-sequences@29.4.3:
@@ -2545,12 +2518,6 @@ packages:
     version: 2.0.0
     dev: true
 
-  registry.npmmirror.com/jsonc-parser@3.2.0:
-    resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/jsonc-parser/-/jsonc-parser-3.2.0.tgz}
-    name: jsonc-parser
-    version: 3.2.0
-    dev: true
-
   registry.npmmirror.com/local-pkg@0.4.3:
     resolution: {integrity: sha512-SFppqq5p42fe2qcZQqqEOiVRXl+WCP1MdT6k7BDEW1j++sp5fIY+/fdRQitvKgB5BrBcmrs5m/L0v2FrU5MY1g==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/local-pkg/-/local-pkg-0.4.3.tgz}
     name: local-pkg
@@ -2573,30 +2540,6 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/sourcemap-codec': registry.npmmirror.com/@jridgewell/sourcemap-codec@1.4.15
-    dev: true
-
-  registry.npmmirror.com/maria2@0.1.4(cross-fetch@4.0.0)(ws@8.13.0):
-    resolution: {integrity: sha512-Tyz3bkYGqOIP9uXhmr9290vroB621Hf7SFO6RH39dBBaH20KU+fZ5hOTzchD95vlFNPLJ9DHnem6ozfFP5OwxA==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/maria2/-/maria2-0.1.4.tgz}
-    id: registry.npmmirror.com/maria2/0.1.4
-    name: maria2
-    version: 0.1.4
-    peerDependencies:
-      cross-fetch: '*'
-      ws: '*'
-    dependencies:
-      cross-fetch: 4.0.0
-      ws: 8.13.0
-    dev: false
-
-  registry.npmmirror.com/mlly@1.4.0:
-    resolution: {integrity: sha512-ua8PAThnTwpprIaU47EPeZ/bPUVp2QYBbWMphUQpVdBI3Lgqzm5KZQ45Agm3YJedHXaIHl6pBGabaLSUPPSptg==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/mlly/-/mlly-1.4.0.tgz}
-    name: mlly
-    version: 1.4.0
-    dependencies:
-      acorn: registry.npmmirror.com/acorn@8.10.0
-      pathe: registry.npmmirror.com/pathe@1.1.1
-      pkg-types: registry.npmmirror.com/pkg-types@1.0.3
-      ufo: registry.npmmirror.com/ufo@1.1.2
     dev: true
 
   registry.npmmirror.com/ms@2.1.2:
@@ -2638,16 +2581,6 @@ packages:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/picocolors/-/picocolors-1.0.0.tgz}
     name: picocolors
     version: 1.0.0
-    dev: true
-
-  registry.npmmirror.com/pkg-types@1.0.3:
-    resolution: {integrity: sha512-nN7pYi0AQqJnoLPC9eHFQ8AcyaixBUOwvqc5TDnIKCMEE6I0y8P7OKA7fPexsXGCGxQDl/cmrLAp26LhcwxZ4A==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/pkg-types/-/pkg-types-1.0.3.tgz}
-    name: pkg-types
-    version: 1.0.3
-    dependencies:
-      jsonc-parser: registry.npmmirror.com/jsonc-parser@3.2.0
-      mlly: registry.npmmirror.com/mlly@1.4.0
-      pathe: registry.npmmirror.com/pathe@1.1.1
     dev: true
 
   registry.npmmirror.com/postcss@8.4.25:
@@ -2741,19 +2674,6 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: true
 
-  registry.npmmirror.com/type-detect@4.0.8:
-    resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/type-detect/-/type-detect-4.0.8.tgz}
-    name: type-detect
-    version: 4.0.8
-    engines: {node: '>=4'}
-    dev: true
-
-  registry.npmmirror.com/ufo@1.1.2:
-    resolution: {integrity: sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/ufo/-/ufo-1.1.2.tgz}
-    name: ufo
-    version: 1.1.2
-    dev: true
-
   registry.npmmirror.com/vite-node@0.33.0(@types/node@18.16.19):
     resolution: {integrity: sha512-19FpHYbwWWxDr73ruNahC+vtEdza52kA90Qb3La98yZ0xULqV8A5JLNPUff0f5zID4984tW7l3DH2przTJUZSw==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/vite-node/-/vite-node-0.33.0.tgz}
     id: registry.npmmirror.com/vite-node/0.33.0
@@ -2762,10 +2682,10 @@ packages:
     engines: {node: '>=v14.18.0'}
     hasBin: true
     dependencies:
-      cac: registry.npmmirror.com/cac@6.7.14
-      debug: registry.npmmirror.com/debug@4.3.4
-      mlly: registry.npmmirror.com/mlly@1.4.0
-      pathe: registry.npmmirror.com/pathe@1.1.1
+      cac: 6.7.14
+      debug: 4.3.4
+      mlly: 1.4.0
+      pathe: 1.1.1
       picocolors: registry.npmmirror.com/picocolors@1.0.0
       vite: registry.npmmirror.com/vite@4.4.2(@types/node@18.16.19)
     transitivePeerDependencies:
