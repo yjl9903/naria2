@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { createRequire } from 'node:module';
-import { execa, Options as ExecaOptions } from 'execa';
+import { execa, Options as ExecaOptions, ExecaError } from 'execa';
 
 // @ts-expect-error
 import { BINARY } from './binding.mjs';
@@ -19,3 +19,5 @@ export function run(args: string[], options: ExecaOptions & { binary?: string } 
     return execa(binary, args, options);
   }
 }
+
+export type Naria2Error = ExecaError;

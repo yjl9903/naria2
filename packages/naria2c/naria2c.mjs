@@ -2,4 +2,12 @@
 
 import { run } from '@naria2/core';
 
-await run(process.argv, { stdio: 'inherit' });
+try {
+  const subprocess = await run(process.argv, { stdio: 'inherit' });
+  if (subprocess.exitCode !== 0) {
+    process.exit(subprocess.exitCode);
+  }
+} catch (error) {
+  console.error(error);
+  process.exit(1);
+}
