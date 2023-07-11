@@ -36,6 +36,9 @@
     "test:ci": "vitest --run",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "execa": "^7.1.1"
+  },
   "optionalDependencies": {
     "@naria2/darwin-arm64": "workspace:*",
     "@naria2/darwin-x64": "workspace:*",
@@ -46,8 +49,5 @@
   },
   "engines": {
     "node": ">=v18.16.0"
-  },
-  "dependencies": {
-    "execa": "^7.1.1"
   }
 }
