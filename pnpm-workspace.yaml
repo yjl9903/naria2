@@ -1,4 +1,5 @@
 packages:
   - packages/core
   - packages/naria2
+  - packages/naria2c
   - packages/binary/*
