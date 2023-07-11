@@ -1,18 +1,22 @@
-// import path from 'node:path';
-
 function getPackage() {
   const { platform, arch } = process;
+
   switch (platform) {
     case 'win32':
-      break;
+      if (['x64', 'ia32'].includes(arch)) {
+        return `@naria2/win32-${arch}`;
+      }
     case 'darwin':
-      break;
+      if (['x64', 'arm64'].includes(arch)) {
+        return `@naria2/darwin-${arch}`;
+      }
     case 'linux':
-      break;
-    default:
-      throw new Error('naria2 does not provide aria2 binary of your platform');
+      if (['x64', 'arm64'].includes(arch)) {
+        return `@naria2/linux-${arch}`;
+      }
   }
-  return '@naria2/win32-x64';
+
+  throw new Error('naria2 does not provide aria2 binary of your platform');
 }
 
 export const BINARY = getPackage();
