@@ -36,10 +36,12 @@
   },
   "dependencies": {
     "@naria2/core": "workspace:*",
-    "maria2": "^0.2.1"
+    "maria2": "^0.2.8-beta.2"
   },
   "devDependencies": {
-    "vitest": "^0.33.0"
+    "@types/ws": "^8.5.5",
+    "vitest": "^0.33.0",
+    "ws": "^8.13.0"
   },
   "engines": {
     "node": ">=v18.16.0"

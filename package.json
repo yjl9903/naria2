@@ -16,12 +16,14 @@
   },
   "devDependencies": {
     "@types/node": "^18.16.19",
+    "@types/ws": "^8.5.5",
     "bumpp": "latest",
     "turbo": "^1.10.7",
     "typescript": "^5.1.6",
     "unbuild": "^1.2.1",
     "vite": "^4.4.3",
-    "vitest": "^0.33.0"
+    "vitest": "^0.33.0",
+    "ws": "^8.13.0"
   },
   "packageManager": "pnpm@8.6.7",
   "engines": {
