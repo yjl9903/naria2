@@ -1,5 +1,5 @@
 {
-  "name": "naria2",
+  "name": "@naria2/core",
   "version": "0.0.1",
   "description": "",
   "keywords": [],
@@ -34,12 +34,11 @@
     "test:ci": "vitest --run",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@naria2/core": "workspace:*",
-    "maria2": "^0.1.4"
-  },
-  "devDependencies": {
-    "vitest": "^0.33.0"
+  "optionalDependencies": {
+    "@naria2/darwin-arm64": "workspace:*",
+    "@naria2/darwin-x64": "workspace:*",
+    "@naria2/win32-ia32": "workspace:*",
+    "@naria2/win32-x64": "workspace:*"
   },
   "engines": {
     "node": ">=v18.16.0"

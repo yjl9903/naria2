@@ -1,0 +1,27 @@
+{
+  "name": "@naria2/darwin-x64",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/yjl9903/naria2#readme",
+  "bugs": {
+    "url": "https://github.com/yjl9903/naria2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yjl9903/naria2.git"
+  },
+  "license": "MIT",
+  "author": "XLor",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "engines": {
+    "node": ">=v18.16.0"
+  },
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ]
+}
