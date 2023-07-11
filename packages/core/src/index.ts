@@ -1,1 +1,1 @@
-export const aria2 = 'aria2';
+export const hello = 1;

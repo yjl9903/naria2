@@ -25,11 +25,13 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "**/*.mjs"
   ],
   "scripts": {
     "build": "unbuild",
     "format": "prettier --write src/**/*.ts test/**/*.ts",
+    "postinstall": "node postinstall.mjs",
     "test": "vitest",
     "test:ci": "vitest --run",
     "typecheck": "tsc --noEmit"
@@ -37,6 +39,8 @@
   "optionalDependencies": {
     "@naria2/darwin-arm64": "workspace:*",
     "@naria2/darwin-x64": "workspace:*",
+    "@naria2/linux-arm64": "workspace:*",
+    "@naria2/linux-x64": "workspace:*",
     "@naria2/win32-ia32": "workspace:*",
     "@naria2/win32-x64": "workspace:*"
   },
