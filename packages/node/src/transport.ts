@@ -51,7 +51,7 @@ export async function createSubprocess(
 ): Promise<SubprocessSocket> {
   const resolvedArgs: string[] = [];
   const resolvedOptions: SubprocessOptions = {
-    rpcListenPort: options.rpcListenPort ?? (await getPortPromise({ startPort: 16800 })),
+    rpcListenPort: options.rpcListenPort ?? (await getPortPromise({ port: 16800 })),
     rpcSecret: options.rpcSecret ?? randomUUID(),
     args: resolvedArgs,
     spawn: options.spawn ?? {}
@@ -69,10 +69,19 @@ export async function createSubprocess(
   const child = spawn(resolvedArgs, resolvedOptions.spawn);
   await new Promise((res, rej) => {
     let spawn = false;
-    child.once('spawn', () => {
-      spawn = true;
-      res(undefined);
-    });
+
+    if (child.stdout) {
+      child.stdout.once('data', () => {
+        spawn = true;
+        res(undefined);
+      })
+    } else {
+      child.once('spawn', () => {
+        spawn = true;
+        res(undefined);
+      });
+    }
+
     child.once('error', (e) => {
       if (!spawn) {
         rej(e);
@@ -80,7 +89,11 @@ export async function createSubprocess(
     });
   });
 
-  const ws = createWebSocket(`ws://localhost:${resolvedOptions.rpcListenPort}/jsonrpc`);
+  const ws = createWebSocket(`ws://127.0.0.1:${resolvedOptions.rpcListenPort}/jsonrpc`);
+  // @ts-ignore
+  ws.addEventListener('error', (e: any) => {
+    child.kill();
+  }, { once: true })
 
   return new SubprocessSocket(ws, child, resolvedOptions);
 }

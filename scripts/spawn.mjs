@@ -1,14 +1,18 @@
 import { createSubprocess } from '@naria2/node';
 
-async function bootstrap() {
+async function main() {
+  const socket = await createSubprocess({ spawn: { stdio: 'inherit' } });
   try {
-    const socket = await createSubprocess({ spawn: { stdio: 'inherit' } });
-    await new Promise((r) => socket.addEventListener('open', () => r(undefined)));
+    await new Promise((res, rej) => {
+      socket.addEventListener('open', () => res(undefined));
+      socket.addEventListener('error', (e) => rej(e));
+    });
     console.log('Connect OK');
-    socket.close();
   } catch (err) {
     console.error(err);
+  } finally {
+    socket.close();
   }
 }
 
-bootstrap();
+main();
