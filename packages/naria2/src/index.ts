@@ -1,1 +1,1 @@
-export { createHTTP, createWebSocket } from 'maria2';
+export { open } from 'maria2';
