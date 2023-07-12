@@ -40,7 +40,7 @@ export class SubprocessSocket implements Socket {
     return this.socket.send(data);
   }
 
-  addEventListener(type: 'message' | 'open', listener: (event: any) => void, options?: { once?: boolean }): void {
+  addEventListener(type: 'message' | 'open' | 'error' | 'close', listener: (event: any) => void, options?: { once?: boolean }): void {
     // @ts-ignore
     return this.socket.addEventListener(type, listener, options);
   }
