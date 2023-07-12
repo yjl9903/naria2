@@ -14,7 +14,37 @@ export interface SubprocessOptions {
   spawn: SpawnOptions;
 }
 
-export type SubprocessSocket = Socket & { options: SubprocessOptions; childProcess: ChildProcess };
+class SubprocessSocket implements Socket {
+  readonly socket: Socket;
+
+  readonly childProcess: ChildProcess;
+
+  readonly options: SubprocessOptions;
+
+  constructor(socket: Socket, childProcess: ChildProcess, options: SubprocessOptions) {
+    this.socket = socket;
+    this.childProcess = childProcess;
+    this.options = options;
+  }
+
+  get readyState() {
+    return this.socket.readyState;
+  }
+
+  close(code?: number, reason?: string): void {
+    this.socket.close(code, reason);
+    this.childProcess.kill();
+  }
+
+  send(data: string): void {
+    return this.socket.send(data);
+  }
+
+  addEventListener(type: 'message' | 'open', listener: (event: any) => void, options?: { once?: boolean }): void {
+    // @ts-ignore
+    return this.socket.addEventListener(type, listener, options);
+  }
+}
 
 export async function createSubprocess(
   options: Partial<SubprocessOptions> = {}
@@ -52,22 +82,5 @@ export async function createSubprocess(
 
   const ws = createWebSocket(`ws://localhost:${resolvedOptions.rpcListenPort}/jsonrpc`);
 
-  return new (class extends EventTarget {
-    readonly options = resolvedOptions;
-
-    readonly childProcess = child;
-
-    get readyState() {
-      return ws.readyState;
-    }
-
-    close(code?: number, reason?: string): void {
-      ws.close(code, reason);
-      child.kill();
-    }
-
-    send(data: string): void {
-      ws.send(data);
-    }
-  })() as unknown as SubprocessSocket;
+  return new SubprocessSocket(ws, child, resolvedOptions);
 }

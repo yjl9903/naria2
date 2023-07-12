@@ -1,4 +1,4 @@
-import { run } from '../packages/core/src';
+import { run } from '../packages/node/src';
 
 async function bootstrap() {
   try {

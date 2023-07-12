@@ -3,7 +3,7 @@
 import { run } from '@naria2/node';
 
 try {
-  const subprocess = await run(process.argv, { stdio: 'inherit' });
+  const subprocess = await run(process.argv.slice(2), { stdio: 'inherit' });
 
   if (subprocess.exitCode !== 0) {
     process.exit(subprocess.exitCode);

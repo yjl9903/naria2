@@ -2,6 +2,7 @@
   "name": "@naria2/monorepo",
   "version": "0.0.5-beta.3",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
@@ -15,6 +16,7 @@
     "postversion": "turbo run build"
   },
   "devDependencies": {
+    "@naria2/node": "workspace:*",
     "@types/node": "^18.16.19",
     "@types/ws": "^8.5.5",
     "bumpp": "latest",

@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@naria2/node':
+        specifier: workspace:*
+        version: link:packages/node
       '@types/node':
         specifier: ^18.16.19
         version: 18.16.19
