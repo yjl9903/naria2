@@ -57,8 +57,8 @@ importers:
   packages/naria2:
     dependencies:
       maria2:
-        specifier: ^0.3.0-beta.4
-        version: 0.3.0-beta.4(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.0-beta.9
+        version: 0.3.0-beta.9(uuid@9.0.0)(ws@8.13.0)
     devDependencies:
       '@naria2/node':
         specifier: workspace:*
@@ -85,8 +85,8 @@ importers:
         specifier: ^7.1.1
         version: 7.1.1
       maria2:
-        specifier: ^0.3.0-beta.4
-        version: 0.3.0-beta.4(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.0-beta.9
+        version: 0.3.0-beta.9(uuid@9.0.0)(ws@8.13.0)
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -1169,14 +1169,6 @@ packages:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
     dev: true
 
-  /cross-fetch@4.0.0:
-    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
-    dependencies:
-      node-fetch: 2.6.12
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -1648,15 +1640,13 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /maria2@0.3.0-beta.4(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0):
-    resolution: {integrity: sha512-B66nesaPvRhu7sJnDGYvbMqLJ0BppVymqoA3vvNkQH8ctQw9G4r0kzK+Z8OJpAY7wiztGDkaEplFfoAxeJmjNA==}
+  /maria2@0.3.0-beta.9(uuid@9.0.0)(ws@8.13.0):
+    resolution: {integrity: sha512-x48dRfv0V3c5YchfYUeDG15/iTTQph/dkH347fSbPSV8BbpuP8dkhkVQJ59YUz722Wlxynqc9ypVBOCc3W9NYw==}
     engines: {node: '>= 14.8.0'}
     peerDependencies:
-      cross-fetch: '*'
       uuid: '*'
       ws: '*'
     dependencies:
-      cross-fetch: 4.0.0
       uuid: 9.0.0
       ws: 8.13.0
     dev: false
@@ -1776,18 +1766,6 @@ packages:
   /node-fetch-native@1.2.0:
     resolution: {integrity: sha512-5IAMBTl9p6PaAjYCnMv5FmqIF6GcZnawAVnzaCG0rX2aYZJ4CxEkZNtVPuTRug7fL7wyM5BQYTlAzcyMPi6oTQ==}
     dev: true
-
-  /node-fetch@2.6.12:
-    resolution: {integrity: sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-    dependencies:
-      whatwg-url: 5.0.0
-    dev: false
 
   /node-releases@2.0.13:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
@@ -2101,10 +2079,6 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /tr46@0.0.3:
-    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-    dev: false
-
   /turbo-darwin-64@1.10.7:
     resolution: {integrity: sha512-N2MNuhwrl6g7vGuz4y3fFG2aR1oCs0UZ5HKl8KSTn/VC2y2YIuLGedQ3OVbo0TfEvygAlF3QGAAKKtOCmGPNKA==}
     cpu: [x64]
@@ -2409,17 +2383,6 @@ packages:
       - supports-color
       - terser
     dev: true
-
-  /webidl-conversions@3.0.1:
-    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-    dev: false
-
-  /whatwg-url@5.0.0:
-    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
-    dependencies:
-      tr46: 0.0.3
-      webidl-conversions: 3.0.1
-    dev: false
 
   /which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}

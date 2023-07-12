@@ -3,7 +3,7 @@ import type { ChildProcess, SpawnOptions } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 
 import { getPortPromise } from 'portfinder';
-import { createWebSocket, Socket } from 'maria2';
+import { createWebSocket, Socket } from 'maria2/transport';
 
 import { spawn } from './subprocess';
 
@@ -40,7 +40,11 @@ export class SubprocessSocket implements Socket {
     return this.socket.send(data);
   }
 
-  addEventListener(type: 'message' | 'open' | 'error' | 'close', listener: (event: any) => void, options?: { once?: boolean }): void {
+  addEventListener(
+    type: 'message' | 'open' | 'error' | 'close',
+    listener: (event: any) => void,
+    options?: { once?: boolean }
+  ): void {
     // @ts-ignore
     return this.socket.addEventListener(type, listener, options);
   }
@@ -74,7 +78,7 @@ export async function createSubprocess(
       child.stdout.once('data', () => {
         spawn = true;
         res(undefined);
-      })
+      });
     } else {
       child.once('spawn', () => {
         spawn = true;
@@ -91,9 +95,13 @@ export async function createSubprocess(
 
   const ws = createWebSocket(`ws://127.0.0.1:${resolvedOptions.rpcListenPort}/jsonrpc`);
   // @ts-ignore
-  ws.addEventListener('error', (e: any) => {
-    child.kill();
-  }, { once: true })
+  ws.addEventListener(
+    'error',
+    (e: any) => {
+      child.kill();
+    },
+    { once: true }
+  );
 
   return new SubprocessSocket(ws, child, resolvedOptions);
 }
