@@ -1,1 +1,1 @@
-export { open } from 'maria2';
+export * from './client';
