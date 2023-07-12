@@ -23,7 +23,6 @@ naria2c --help
 + [@hydrati](https://github.com/hydrati) made [maria2](https://github.com/hydrati/maria2)
 + [Motrix](https://github.com/agalwood/Motrix): Build aria2 binaries for different platforms
 
-
 ## License
 
 MIT License © 2023 [XLor](https://github.com/yjl9903)
