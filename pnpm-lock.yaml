@@ -90,6 +90,9 @@ importers:
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
+      ws:
+        specifier: ^8.13.0
+        version: 8.13.0
     optionalDependencies:
       '@naria2/darwin-arm64':
         specifier: workspace:*
