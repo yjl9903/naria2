@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { run } from '@naria2/core';
+import { run } from '@naria2/node';
 
 try {
   const subprocess = await run(process.argv, { stdio: 'inherit' });
