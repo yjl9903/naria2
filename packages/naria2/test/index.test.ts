@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { createSubprocess } from '../src';
+import { createSubprocess } from '@naria2/node';
 
 describe('spawn aria2 subprocess', () => {
   it('should work', async () => {

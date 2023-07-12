@@ -53,16 +53,13 @@ importers:
 
   packages/naria2:
     dependencies:
-      '@naria2/node':
-        specifier: workspace:*
-        version: link:../node
       maria2:
         specifier: ^0.3.0-beta.2
         version: 0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
-      portfinder:
-        specifier: ^1.0.32
-        version: 1.0.32
     devDependencies:
+      '@naria2/node':
+        specifier: workspace:*
+        version: link:../node
       '@types/ws':
         specifier: ^8.5.5
         version: 8.5.5
@@ -84,6 +81,12 @@ importers:
       execa:
         specifier: ^7.1.1
         version: 7.1.1
+      maria2:
+        specifier: ^0.3.0-beta.2
+        version: 0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
+      portfinder:
+        specifier: ^1.0.32
+        version: 1.0.32
     optionalDependencies:
       '@naria2/darwin-arm64':
         specifier: workspace:*

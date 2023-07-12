@@ -2,12 +2,10 @@ import type { ChildProcess, SpawnOptions } from 'node:child_process';
 
 import { randomUUID } from 'node:crypto';
 
-import { spawn } from '@naria2/node';
-import { createHTTP, createWebSocket, Socket } from 'maria2';
+import { getPortPromise } from 'portfinder';
+import { createWebSocket, Socket } from 'maria2';
 
-import { getPortPromise } from 'portfinder'
-
-export { createHTTP, createWebSocket };
+import { spawn } from './subprocess';
 
 export interface SubprocessOptions {
   rpcListenPort: number;
@@ -23,7 +21,7 @@ export async function createSubprocess(
 ): Promise<SubprocessSocket> {
   const resolvedArgs: string[] = [];
   const resolvedOptions: SubprocessOptions = {
-    rpcListenPort: options.rpcListenPort ?? await getPortPromise(),
+    rpcListenPort: options.rpcListenPort ?? (await getPortPromise()),
     rpcSecret: options.rpcSecret ?? randomUUID(),
     args: resolvedArgs,
     spawn: options.spawn ?? {}

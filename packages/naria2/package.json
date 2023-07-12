@@ -35,14 +35,21 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@naria2/node": "workspace:*",
-    "maria2": "^0.3.0-beta.2",
-    "portfinder": "^1.0.32"
+    "maria2": "^0.3.0-beta.2"
   },
   "devDependencies": {
+    "@naria2/node": "workspace:*",
     "@types/ws": "^8.5.5",
     "vitest": "^0.33.0",
     "ws": "^8.13.0"
+  },
+  "peerDependencies": {
+    "@naria2/node": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@naria2/node": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=v18.16.0"
