@@ -57,8 +57,8 @@ importers:
   packages/naria2:
     dependencies:
       maria2:
-        specifier: ^0.3.0-beta.2
-        version: 0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.0-beta.3
+        version: 0.3.0-beta.3(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
     devDependencies:
       '@naria2/node':
         specifier: workspace:*
@@ -85,8 +85,8 @@ importers:
         specifier: ^7.1.1
         version: 7.1.1
       maria2:
-        specifier: ^0.3.0-beta.2
-        version: 0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.0-beta.3
+        version: 0.3.0-beta.3(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -1648,8 +1648,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /maria2@0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0):
-    resolution: {integrity: sha512-UKZl94t0vn77N3z+h2DlZjgclcjio1w8I/nNfiYxox1sGBsPi7Q0JQPq47sHlyQavD6TVV/pVkfj1fBUb1nQYQ==}
+  /maria2@0.3.0-beta.3(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0):
+    resolution: {integrity: sha512-oEOP8qL/nZ2u9vUjnxvW7g9aTE0j3Oq9fy1YAGW1ZvcclnWSbPVWVqqcX6+Dp/wGZRFokODknZXbW7eMfEhpbQ==}
     engines: {node: '>= 14.8.0'}
     peerDependencies:
       cross-fetch: '*'
