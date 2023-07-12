@@ -51,7 +51,35 @@ importers:
 
   packages/binary/win32-x64: {}
 
-  packages/core:
+  packages/naria2:
+    dependencies:
+      '@naria2/node':
+        specifier: workspace:*
+        version: link:../node
+      maria2:
+        specifier: ^0.3.0-beta.2
+        version: 0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
+      portfinder:
+        specifier: ^1.0.32
+        version: 1.0.32
+    devDependencies:
+      '@types/ws':
+        specifier: ^8.5.5
+        version: 8.5.5
+      vitest:
+        specifier: ^0.33.0
+        version: 0.33.0
+      ws:
+        specifier: ^8.13.0
+        version: 8.13.0
+
+  packages/naria2c:
+    dependencies:
+      '@naria2/node':
+        specifier: workspace:*
+        version: link:../node
+
+  packages/node:
     dependencies:
       execa:
         specifier: ^7.1.1
@@ -75,34 +103,6 @@ importers:
       '@naria2/win32-x64':
         specifier: workspace:*
         version: link:../binary/win32-x64
-
-  packages/naria2:
-    dependencies:
-      '@naria2/core':
-        specifier: workspace:*
-        version: link:../core
-      maria2:
-        specifier: ^0.3.0-beta.2
-        version: 0.3.0-beta.2(cross-fetch@4.0.0)(uuid@9.0.0)(ws@8.13.0)
-      portfinder:
-        specifier: ^1.0.32
-        version: 1.0.32
-    devDependencies:
-      '@types/ws':
-        specifier: ^8.5.5
-        version: 8.5.5
-      vitest:
-        specifier: ^0.33.0
-        version: 0.33.0
-      ws:
-        specifier: ^8.13.0
-        version: 8.13.0
-
-  packages/naria2c:
-    dependencies:
-      '@naria2/core':
-        specifier: workspace:*
-        version: link:../core
 
 packages:
 

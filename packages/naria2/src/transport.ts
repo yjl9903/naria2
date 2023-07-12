@@ -2,7 +2,7 @@ import type { ChildProcess, SpawnOptions } from 'node:child_process';
 
 import { randomUUID } from 'node:crypto';
 
-import { spawn } from '@naria2/core';
+import { spawn } from '@naria2/node';
 import { createHTTP, createWebSocket, Socket } from 'maria2';
 
 import { getPortPromise } from 'portfinder'

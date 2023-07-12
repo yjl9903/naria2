@@ -33,6 +33,6 @@
     "format": "prettier --write *.mjs"
   },
   "dependencies": {
-    "@naria2/core": "workspace:*"
+    "@naria2/node": "workspace:*"
   }
 }

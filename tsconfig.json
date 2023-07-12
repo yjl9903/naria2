@@ -17,7 +17,7 @@
       "naria2": [
         "./packages/naria2/src/index.ts"
       ],
-      "@naria2/core": [
+      "@naria2/node": [
         "./packages/core/src/index.ts"
       ]
     }
