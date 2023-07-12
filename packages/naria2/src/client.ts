@@ -1,4 +1,4 @@
-import { type Socket, type Conn, open, OpenOptions } from 'maria2';
+import { type Socket, type Conn, type OpenOptions, open, close } from 'maria2';
 
 export class Aria2Client {
   readonly _conn: Conn;
@@ -16,7 +16,7 @@ export class Aria2Client {
   }
 
   async close() {
-    await this.socket.close();
+    close(this.conn);
   }
 }
 
