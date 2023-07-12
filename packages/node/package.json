@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "execa": "^7.1.1",
-    "maria2": "^0.3.0-beta.9",
+    "maria2": "^0.3.0-beta.10",
     "portfinder": "^1.0.32",
     "ws": "^8.13.0"
   },
