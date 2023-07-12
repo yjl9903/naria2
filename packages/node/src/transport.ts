@@ -14,7 +14,7 @@ export interface SubprocessOptions {
   spawn: SpawnOptions;
 }
 
-class SubprocessSocket implements Socket {
+export class SubprocessSocket implements Socket {
   readonly socket: Socket;
 
   readonly childProcess: ChildProcess;
@@ -51,7 +51,7 @@ export async function createSubprocess(
 ): Promise<SubprocessSocket> {
   const resolvedArgs: string[] = [];
   const resolvedOptions: SubprocessOptions = {
-    rpcListenPort: options.rpcListenPort ?? (await getPortPromise()),
+    rpcListenPort: options.rpcListenPort ?? (await getPortPromise({ startPort: 16800 })),
     rpcSecret: options.rpcSecret ?? randomUUID(),
     args: resolvedArgs,
     spawn: options.spawn ?? {}
