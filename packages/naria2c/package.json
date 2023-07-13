@@ -39,6 +39,6 @@
     "@naria2/node": "workspace:*"
   },
   "engines": {
-    "node": ">=v18.16.0"
+    "node": ">=v20.1.0"
   }
 }
