@@ -3,7 +3,7 @@ import type { ChildProcess, SpawnOptions } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 
 import { getPortPromise } from 'portfinder';
-import { createWebSocket, Socket } from 'maria2/transport';
+import { type Socket, type PreconfiguredSocket, createWebSocket } from 'maria2/transport';
 
 import { spawn } from './subprocess';
 
@@ -14,7 +14,7 @@ export interface SubprocessOptions {
   spawn: SpawnOptions;
 }
 
-export class SubprocessSocket implements Socket {
+export class SubprocessSocket implements PreconfiguredSocket {
   readonly socket: Socket;
 
   readonly childProcess: ChildProcess;
@@ -31,22 +31,31 @@ export class SubprocessSocket implements Socket {
     return this.socket.readyState;
   }
 
-  close(code?: number, reason?: string): void {
+  public getOptions() {
+    return {
+      secret: this.options.rpcSecret
+    }
+  }
+
+  public close(code?: number, reason?: string): void {
     this.socket.close(code, reason);
     this.childProcess.kill();
   }
 
-  send(data: string): void {
+  public send(data: string): void {
     return this.socket.send(data);
   }
 
-  addEventListener(
+  public addEventListener(type: 'message', listener: (event: { data: any; }) => void, options?: { once?: boolean }): void;
+  public addEventListener(type: 'open', listener: () => void, options?: { once?: boolean }): void;
+  public addEventListener(type: 'error', listener: (error: any) => void, options?: { once?: boolean }): void;
+  public addEventListener(type: 'close', listener: () => void, options?: { once?: boolean }): void;
+  public addEventListener(
     type: 'message' | 'open' | 'error' | 'close',
-    listener: (event: any) => void,
+    listener: (...args: any[]) => void,
     options?: { once?: boolean }
   ): void {
-    // @ts-ignore
-    return this.socket.addEventListener(type, listener, options);
+    return this.socket.addEventListener(type as any, listener, options);
   }
 }
 
