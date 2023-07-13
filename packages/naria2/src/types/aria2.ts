@@ -181,8 +181,39 @@ export type Aria2ProxyOptions =
       method: 'get' | 'tunnel';
     };
 
+export interface Aria2BtOptions {
+  // TODO
+}
+
+export interface Aria2FtpOptions {
+  // TODO
+}
+
 export interface Aria2Options {
+  /**
+   * The directory to store the downloaded file.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-d
+   */
   dir: string;
 
+  /**
+   * If true is given, aria2 just checks whether the remote file is available and doesn't download data. This option has effect on HTTP/FTP download. BitTorrent downloads are canceled if true is specified.
+   *
+   * @default false
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dry-run
+   */
+  dryRun: boolean;
+
+  /**
+   * Use a proxy server for all protocols. To override a previously defined proxy, use "". You also can override this setting and specify a proxy server for a particular protocol using --http-proxy, --https-proxy and --ftp-proxy options. This affects all downloads. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT]. See also ENVIRONMENT section.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-all-proxy
+   */
   proxy: Aria2ProxyOptions;
+
+  bt: Aria2BtOptions;
+
+  ftp: Aria2FtpOptions;
 }
