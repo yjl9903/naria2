@@ -23,7 +23,7 @@ export class Aria2Client {
     this._conn = undefined;
   }
 
-  async download() { }
+  async download() {}
 }
 
 export async function createClient(_socket: Socket | Promise<Socket>, options: OpenOptions = {}) {

@@ -34,7 +34,7 @@ export class SubprocessSocket implements PreconfiguredSocket {
   public getOptions() {
     return {
       secret: this.options.rpcSecret
-    }
+    };
   }
 
   public close(code?: number, reason?: string): void {
@@ -46,9 +46,17 @@ export class SubprocessSocket implements PreconfiguredSocket {
     return this.socket.send(data);
   }
 
-  public addEventListener(type: 'message', listener: (event: { data: any; }) => void, options?: { once?: boolean }): void;
+  public addEventListener(
+    type: 'message',
+    listener: (event: { data: any }) => void,
+    options?: { once?: boolean }
+  ): void;
   public addEventListener(type: 'open', listener: () => void, options?: { once?: boolean }): void;
-  public addEventListener(type: 'error', listener: (error: any) => void, options?: { once?: boolean }): void;
+  public addEventListener(
+    type: 'error',
+    listener: (error: any) => void,
+    options?: { once?: boolean }
+  ): void;
   public addEventListener(type: 'close', listener: () => void, options?: { once?: boolean }): void;
   public addEventListener(
     type: 'message' | 'open' | 'error' | 'close',

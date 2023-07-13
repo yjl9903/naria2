@@ -23,6 +23,7 @@
   },
   "license": "MIT",
   "author": "XLor",
+  "type": "module",
   "bin": {
     "naria2c": "naria2c.mjs"
   },
@@ -30,9 +31,14 @@
     "*.mjs"
   ],
   "scripts": {
-    "format": "prettier --write *.mjs"
+    "format": "prettier --write *.mjs test/**/*.ts",
+    "test": "vitest",
+    "test:ci": "vitest --run"
   },
   "dependencies": {
     "@naria2/node": "workspace:*"
+  },
+  "engines": {
+    "node": ">=v18.16.0"
   }
 }
