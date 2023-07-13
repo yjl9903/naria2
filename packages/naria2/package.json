@@ -56,7 +56,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "maria2": "^0.3.0-beta.20"
+    "maria2": "^0.3.0-beta.20",
+    "type-fest": "^3.13.0"
   },
   "devDependencies": {
     "@naria2/node": "workspace:*",
