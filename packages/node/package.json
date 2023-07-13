@@ -1,6 +1,6 @@
 {
   "name": "@naria2/node",
-  "version": "0.0.8",
+  "version": "0.0.9-beta.0",
   "description": "Cross-platform wrapper of aria2",
   "keywords": [
     "aria2",
