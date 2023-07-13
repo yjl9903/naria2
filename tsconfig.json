@@ -19,6 +19,9 @@
       ],
       "@naria2/node": [
         "./packages/node/src/index.ts"
+      ],
+      "@naria2/options": [
+        "./packages/options/src/index.ts"
       ]
     }
   },

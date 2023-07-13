@@ -1,7 +1,7 @@
 import type { PartialDeep } from 'type-fest';
 import { type Socket, type Conn, open, close } from 'maria2';
 
-import type { Aria2Options } from '../types';
+import type { Aria2Options } from '@naria2/options';
 
 import type { ClientOptions } from './types';
 

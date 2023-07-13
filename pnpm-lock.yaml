@@ -59,6 +59,9 @@ importers:
 
   packages/naria2:
     dependencies:
+      '@naria2/options':
+        specifier: workspace:*
+        version: link:../options
       maria2:
         specifier: ^0.3.0-beta.20
         version: 0.3.0-beta.20(uuid@9.0.0)(ws@8.13.0)
@@ -87,6 +90,9 @@ importers:
 
   packages/node:
     dependencies:
+      '@naria2/options':
+        specifier: workspace:*
+        version: link:../options
       execa:
         specifier: ^7.1.1
         version: 7.1.1
@@ -118,6 +124,19 @@ importers:
       '@naria2/win32-x64':
         specifier: workspace:*
         version: link:../binary/win32-x64
+
+  packages/options:
+    dependencies:
+      maria2:
+        specifier: ^0.3.0-beta.20
+        version: 0.3.0-beta.20(uuid@9.0.0)(ws@8.13.0)
+      type-fest:
+        specifier: ^3.13.0
+        version: 3.13.0
+    devDependencies:
+      vitest:
+        specifier: ^0.33.0
+        version: 0.33.0
 
 packages:
 
