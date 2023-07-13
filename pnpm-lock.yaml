@@ -57,8 +57,8 @@ importers:
   packages/naria2:
     dependencies:
       maria2:
-        specifier: ^0.3.0-beta.17
-        version: 0.3.0-beta.17(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.0-beta.20
+        version: 0.3.0-beta.20(uuid@9.0.0)(ws@8.13.0)
     devDependencies:
       '@naria2/node':
         specifier: workspace:*
@@ -85,8 +85,8 @@ importers:
         specifier: ^7.1.1
         version: 7.1.1
       maria2:
-        specifier: ^0.3.0-beta.17
-        version: 0.3.0-beta.17(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.0-beta.20
+        version: 0.3.0-beta.20(uuid@9.0.0)(ws@8.13.0)
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -1640,8 +1640,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /maria2@0.3.0-beta.17(uuid@9.0.0)(ws@8.13.0):
-    resolution: {integrity: sha512-ofqCA6z6xas4tTgvp8uU38AIjLIjTFBFDHwDaGLFuL7r6wcehxntKbjZc8gQVm0t+fb+E5AdTIlcqRguSB3DiA==}
+  /maria2@0.3.0-beta.20(uuid@9.0.0)(ws@8.13.0):
+    resolution: {integrity: sha512-+/Iyrz433L4FVslw7S3GLiSsBkLC9mhGMIUZkETD7HBCkmly6usBZgjwSZBOCXb0kEbN9PoY1s6PrRcPzQebgQ==}
     engines: {node: '>= 14.8.0'}
     peerDependencies:
       uuid: '*'
