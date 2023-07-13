@@ -28,6 +28,11 @@
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     },
+    "./options": {
+      "default": "./dist/options.mjs",
+      "import": "./dist/options.mjs",
+      "types": "./dist/options.d.ts"
+    },
     "./transport": {
       "default": "./dist/transport.mjs",
       "import": "./dist/transport.mjs",
