@@ -1,8 +1,16 @@
 {
   "name": "naria2",
   "version": "0.0.7",
-  "description": "",
-  "keywords": [],
+  "description": "High-level and Convenient BitTorrent Client based on aria2 JSON-RPC",
+  "keywords": [
+    "aria2",
+    "aria2c",
+    "download",
+    "http",
+    "websocket",
+    "bittorrent",
+    "typescript"
+  ],
   "homepage": "https://github.com/yjl9903/naria2#readme",
   "bugs": {
     "url": "https://github.com/yjl9903/naria2/issues"
@@ -19,11 +27,24 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
+    },
+    "./transport": {
+      "default": "./dist/transport.mjs",
+      "import": "./dist/transport.mjs",
+      "types": "./dist/transport.d.ts"
     }
   },
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
