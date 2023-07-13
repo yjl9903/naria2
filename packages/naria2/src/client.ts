@@ -19,11 +19,12 @@ export class Aria2Client {
   }
 
   async close() {
+    this.socket.close();
     close(this.conn);
     this._conn = undefined;
   }
 
-  async download() {}
+  async download() { }
 }
 
 export async function createClient(_socket: Socket | Promise<Socket>, options: OpenOptions = {}) {
