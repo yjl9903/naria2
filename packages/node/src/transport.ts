@@ -1,14 +1,15 @@
+import type { PartialDeep } from 'type-fest';
 import type { ChildProcess, SpawnOptions } from 'node:child_process';
 
 import { randomUUID } from 'node:crypto';
 
-import { isDef } from '@naria2/options';
+import { type Aria2Options, resolveOptions, isDef } from '@naria2/options';
 import { getPortPromise } from 'portfinder';
 import { type Socket, type PreconfiguredSocket, createWebSocket } from 'maria2/transport';
 
 import { spawn } from './child_process';
 
-export interface ChildProcessOptions {
+export type ChildProcessOptions = {
   rpcListenPort: number;
 
   rpcSecret: string;
@@ -41,7 +42,7 @@ export interface ChildProcessOptions {
       }>;
 
   spawn: SpawnOptions;
-}
+};
 
 export type ResolvedChildProcessOptions = Omit<ChildProcessOptions, 'environment'>;
 
@@ -99,7 +100,7 @@ export class ChildProcessSocket implements PreconfiguredSocket {
 }
 
 export async function createChildProcess(
-  options: Partial<ChildProcessOptions> = {}
+  options: Partial<ChildProcessOptions> & PartialDeep<Aria2Options> = {}
 ): Promise<ChildProcessSocket> {
   const resolvedArgs: string[] = [];
 
@@ -112,12 +113,15 @@ export async function createChildProcess(
     spawn: { ...options.spawn, env: { ...environment, ...proxy } }
   };
 
+  const aria2Options = resolveOptions(options);
+
   resolvedArgs.push(
     '--enable-rpc',
     '--rpc-listen-all',
     '--rpc-allow-origin-all',
     `--rpc-listen-port=${resolvedOptions.rpcListenPort}`,
     `--rpc-secret=${resolvedOptions.rpcSecret}`,
+    ...Object.entries(aria2Options).map(([k, v]) => `--${k}=${v}`),
     ...(options.args ?? [])
   );
 
