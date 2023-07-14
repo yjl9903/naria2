@@ -5,6 +5,22 @@
 
 Shared aria2 options type declerations and utils for naria2.
 
+## Installation
+
+```bash
+npm i @naria2/options
+```
+
+## Usage
+
+```ts
+import { resolveOptions } from '@naria2/options'
+
+const aria2Options = resolveOptions({
+  // ...
+})
+```
+
 ## License
 
 MIT License © 2023 [XLor](https://github.com/yjl9903)

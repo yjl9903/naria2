@@ -13,6 +13,8 @@ npm i -g naria2c
 
 ## Usage
 
+It is used in the same way as [aria2](https://aria2.github.io/manual/en/html/index.html).
+
 ```bash
 naria2c --help
 ```

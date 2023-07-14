@@ -1,8 +1,11 @@
 {
   "name": "@naria2/linux-arm64",
   "version": "0.0.4",
-  "description": "",
-  "keywords": [],
+  "description": "Cross-platform wrapper of aria2",
+  "keywords": [
+    "aria2",
+    "aria2c"
+  ],
   "homepage": "https://github.com/yjl9903/naria2#readme",
   "bugs": {
     "url": "https://github.com/yjl9903/naria2/issues"
