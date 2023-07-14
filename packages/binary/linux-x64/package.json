@@ -1,6 +1,6 @@
 {
   "name": "@naria2/linux-x64",
-  "version": "0.0.4",
+  "version": "0.1.0-beta.0",
   "description": "Cross-platform wrapper of aria2",
   "keywords": [
     "aria2",
