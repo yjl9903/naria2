@@ -1,4 +1,82 @@
 /**
+ * @link https://aria2.github.io/manual/en/html/aria2c.html#basic-options
+ */
+export interface Aria2BasicOptions {
+  /**
+   * The directory to store the downloaded file.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-d
+   */
+  dir: string;
+
+  /**
+   * The file name of the log file. If - is specified, log is written to stdout. If empty string("") is specified, or this option is omitted, no log is written to disk at all.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-l
+   */
+  log: string | undefined;
+
+  /**
+   * Set the maximum number of parallel downloads for every queue item. See also the --split option.
+   *
+   * @default 5
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-j
+   */
+  maxConcurrentDownloads: number;
+
+  /**
+   * Check file integrity by validating piece hashes or a hash of entire file. This option has effect only in BitTorrent, Metalink downloads with checksums or HTTP(S)/FTP downloads with --checksum option. If piece hashes are provided, this option can detect damaged portions of a file and re-download them. If a hash of entire file is provided, hash check is only done when file has been already download. This is determined by file length. If hash check fails, file is re-downloaded from scratch. If both piece hashes and a hash of entire file are provided, only piece hashes are used.
+   *
+   * @default false
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-V
+   */
+  checkIntegrity: boolean;
+
+  /**
+   * Continue downloading a partially downloaded file. Use this option to resume a download started by a web browser or another program which downloads files sequentially from the beginning. Currently this option is only applicable to HTTP(S)/FTP downloads.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-c
+   */
+  continue: boolean;
+}
+
+/**
+ * @link https://aria2.github.io/manual/en/html/aria2c.html#http-ftp-sftp-options
+ */
+export interface Aria2HTTPFTPOptions {
+  /**
+   * If true is given, aria2 just checks whether the remote file is available and doesn't download data. This option has effect on HTTP/FTP download. BitTorrent downloads are canceled if true is specified.
+   *
+   * @default false
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dry-run
+   */
+  dryRun: boolean;
+}
+
+/**
+ * @link https://aria2.github.io/manual/en/html/aria2c.html#http-specific-options
+ */
+export interface Aria2HTTPOptions {}
+
+/**
+ * @link https://aria2.github.io/manual/en/html/aria2c.html#ftp-sftp-specific-options
+ */
+export interface Aria2FTPOptions {}
+
+/**
+ * @link https://aria2.github.io/manual/en/html/aria2c.html#bittorrent-metalink-options
+ */
+export interface Aria2BtMetalinkOptions {}
+
+/**
+ * @link https://aria2.github.io/manual/en/html/aria2c.html#bittorrent-specific-options
+ */
+export interface Aria2BtOptions {}
+
+/**
  * Use a proxy server for all protocols. To override a previously defined proxy, use "". You also can override this setting and specify a proxy server for a particular protocol using --http-proxy, --https-proxy and --ftp-proxy options. This affects all downloads. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT]. See also ENVIRONMENT section.
  *
  * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-all-proxy
@@ -181,31 +259,7 @@ export type Aria2ProxyOptions =
       method: 'get' | 'tunnel';
     };
 
-export interface Aria2BtOptions {
-  // TODO
-}
-
-export interface Aria2FtpOptions {
-  // TODO
-}
-
-export interface Aria2Options {
-  /**
-   * The directory to store the downloaded file.
-   *
-   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-d
-   */
-  dir: string;
-
-  /**
-   * If true is given, aria2 just checks whether the remote file is available and doesn't download data. This option has effect on HTTP/FTP download. BitTorrent downloads are canceled if true is specified.
-   *
-   * @default false
-   *
-   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dry-run
-   */
-  dryRun: boolean;
-
+export type Aria2Options = Aria2BasicOptions & {
   /**
    * Use a proxy server for all protocols. To override a previously defined proxy, use "". You also can override this setting and specify a proxy server for a particular protocol using --http-proxy, --https-proxy and --ftp-proxy options. This affects all downloads. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT]. See also ENVIRONMENT section.
    *
@@ -213,7 +267,33 @@ export interface Aria2Options {
    */
   proxy: Aria2ProxyOptions;
 
-  bt: Aria2BtOptions;
+  http: Aria2HTTPFTPOptions & Aria2HTTPOptions;
 
-  ftp: Aria2FtpOptions;
+  ftp: Aria2HTTPFTPOptions & Aria2FTPOptions;
+
+  bt: Aria2BtMetalinkOptions & Aria2BtOptions;
+};
+
+export interface Aria2RPCOptions {
+  pause: boolean;
+
+  pauseMetadata: boolean;
+
+  allowOriginAll: boolean;
+
+  certificate: string;
+
+  listenAll: boolean;
+
+  listenPort: number;
+
+  maxRequestSize: number;
+
+  privateKey: string;
+
+  saveUploadMetadata: boolean;
+
+  secret: string;
+
+  secure: boolean;
 }
