@@ -1,12 +1,12 @@
 import { describe, it, expect, afterAll } from 'vitest';
 
-import { createSubprocess, SubprocessSocket } from '@naria2/node';
+import { createChildProcess, ChildProcessSocket } from '@naria2/node';
 
-describe('spawn aria2 subprocess', () => {
-  let conn: SubprocessSocket;
+describe('spawn aria2 childprocess', () => {
+  let conn: ChildProcessSocket;
 
   it('should work', async () => {
-    conn = await createSubprocess();
+    conn = await createChildProcess();
     const ok = await new Promise<boolean>((r) => {
       conn.addEventListener('open', () => r(true));
       conn.addEventListener('error', () => r(false));

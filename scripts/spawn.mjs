@@ -1,7 +1,7 @@
-import { createSubprocess } from '@naria2/node';
+import { createChildProcess } from '@naria2/node';
 
 async function main() {
-  const socket = await createSubprocess({ spawn: { stdio: 'inherit' } });
+  const socket = await createChildProcess({ spawn: { stdio: 'inherit' } });
   try {
     await new Promise((res, rej) => {
       socket.addEventListener('open', () => res(undefined));

@@ -5,10 +5,10 @@ import { readFile } from 'fs/promises';
 
 try {
   const args = process.argv.slice(2);
-  const subprocess = run(args);
+  const childProcess = run(args);
 
   if (args.includes('-h') || args.includes('--help')) {
-    const result = await subprocess;
+    const result = await childProcess;
     const help = result.stdout.replace(/aria2c/g, 'naria2c');
     const { version } = await getPackage();
 
@@ -18,7 +18,7 @@ try {
     console.log();
     console.log(help);
   } else if (args.includes('-v') || args.includes('--version')) {
-    const result = await subprocess;
+    const result = await childProcess;
     const content = result.stdout;
     const { version } = await getPackage();
 
@@ -26,15 +26,15 @@ try {
     console.log(`--------------------`);
     console.log(content);
   } else {
-    subprocess.pipeStdout(process.stdout);
-    subprocess.pipeStderr(process.stderr);
-    await subprocess;
+    childProcess.pipeStdout(process.stdout);
+    childProcess.pipeStderr(process.stderr);
+    await childProcess;
   }
 
-  if (subprocess.exitCode !== 0) {
-    process.exit(subprocess.exitCode);
-  } else if (subprocess.signal !== undefined) {
-    process.kill(subprocess.signal);
+  if (childProcess.exitCode !== 0) {
+    process.exit(childProcess.exitCode);
+  } else if (childProcess.signal !== undefined) {
+    process.kill(childProcess.signal);
   }
 } catch (error) {
   console.error(error);

@@ -2,13 +2,13 @@ import type { ChildProcess, SpawnOptions } from 'node:child_process';
 
 import { randomUUID } from 'node:crypto';
 
+import { isDef } from '@naria2/options';
 import { getPortPromise } from 'portfinder';
 import { type Socket, type PreconfiguredSocket, createWebSocket } from 'maria2/transport';
 
-import { spawn } from './subprocess';
-import { isDef } from '@naria2/options';
+import { spawn } from './child_process';
 
-export interface SubprocessOptions {
+export interface ChildProcessOptions {
   rpcListenPort: number;
 
   rpcSecret: string;
@@ -43,16 +43,16 @@ export interface SubprocessOptions {
   spawn: SpawnOptions;
 }
 
-export type ResolvedSubprocessOptions = Omit<SubprocessOptions, 'environment'>;
+export type ResolvedChildProcessOptions = Omit<ChildProcessOptions, 'environment'>;
 
-export class SubprocessSocket implements PreconfiguredSocket {
+export class ChildProcessSocket implements PreconfiguredSocket {
   readonly socket: Socket;
 
   readonly childProcess: ChildProcess;
 
-  readonly options: ResolvedSubprocessOptions;
+  readonly options: ResolvedChildProcessOptions;
 
-  constructor(socket: Socket, childProcess: ChildProcess, options: ResolvedSubprocessOptions) {
+  constructor(socket: Socket, childProcess: ChildProcess, options: ResolvedChildProcessOptions) {
     this.socket = socket;
     this.childProcess = childProcess;
     this.options = options;
@@ -98,14 +98,14 @@ export class SubprocessSocket implements PreconfiguredSocket {
   }
 }
 
-export async function createSubprocess(
-  options: Partial<SubprocessOptions> = {}
-): Promise<SubprocessSocket> {
+export async function createChildProcess(
+  options: Partial<ChildProcessOptions> = {}
+): Promise<ChildProcessSocket> {
   const resolvedArgs: string[] = [];
 
   const [environment, proxy] = inferEnv(options.environment);
 
-  const resolvedOptions: ResolvedSubprocessOptions = {
+  const resolvedOptions: ResolvedChildProcessOptions = {
     rpcListenPort: options.rpcListenPort ?? (await getPortPromise({ port: 16800 })),
     rpcSecret: options.rpcSecret ?? randomUUID(),
     args: resolvedArgs,
@@ -154,10 +154,10 @@ export async function createSubprocess(
     { once: true }
   );
 
-  return new SubprocessSocket(ws, child, resolvedOptions);
+  return new ChildProcessSocket(ws, child, resolvedOptions);
 }
 
-function inferEnv(environment?: SubprocessOptions['environment']): [
+function inferEnv(environment?: ChildProcessOptions['environment']): [
   NodeJS.ProcessEnv,
   Partial<{
     http_proxy: string;

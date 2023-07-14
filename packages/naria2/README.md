@@ -46,15 +46,13 @@ If you want to use naria2 in the Node.js standalone, you can install `@naria2/no
 npm i naria2 @naria2/node
 ```
 
-You can use the `createSubprocess` API to spawn an aria2 child process, and connect to it in WebScoket under the hood.
+You can use the `createChildProcess` API to spawn an aria2 child process, and connect to it in WebScoket under the hood.
 
 ```ts
 import { createClient } from 'naria2'
-import { createSubprocess } from '@naria2/node'
+import { createChildProcess } from '@naria2/node'
 
-const client = await createClient(
-  createSubprocess()
-)
+const client = await createClient(createChildProcess())
 ```
 
 > **Warning**
