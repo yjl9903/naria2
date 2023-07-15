@@ -34,6 +34,17 @@ const client = await createClient(createChildProcess())
 >
 > See [my blog post (in Chinese)](https://blog.onekuma.cn/death-of-a-node-process) or [The Death of a Node.js Process (in English)](https://thomashunter.name/posts/2021-03-08-the-death-of-a-nodejs-process) on how to handle the exit of a Node.js process.
 
+## Support platforms
+
+| Pacakge | Platform | Arch |
+| :-----: | :------: | :--: |
+| [![version](https://img.shields.io/npm/v/@naria2/darwin-arm64?label=@naria2/darwin-arm64)](https://www.npmjs.com/package/@naria2/darwin-arm64) | darwin | arm64 |
+| [![version](https://img.shields.io/npm/v/@naria2/darwin-x64?label=@naria2/darwin-x64)](https://www.npmjs.com/package/@naria2/darwin-x64)       | darwin | x64   |
+| [![version](https://img.shields.io/npm/v/@naria2/linux-arm64?label=@naria2/linux-arm64)](https://www.npmjs.com/package/@naria2/linux-arm64)    | linux  | arm64 |
+| [![version](https://img.shields.io/npm/v/@naria2/linux-arm64?label=@naria2/linux-x64)](https://www.npmjs.com/package/@naria2/linux-x64)        | linux  | x64   |
+| [![version](https://img.shields.io/npm/v/@naria2/win32-ia32?label=@naria2/win32-ia32)](https://www.npmjs.com/package/@naria2/win32-ia32)       | win32  | ia32  |
+| [![version](https://img.shields.io/npm/v/@naria2/win32-x64?label=@naria2/win32-x64)](https://www.npmjs.com/package/@naria2/win32-x64)          | win32  | x64   |
+
 ## License
 
 MIT License © 2023 [XLor](https://github.com/yjl9903)
