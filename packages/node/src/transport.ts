@@ -18,8 +18,6 @@ import { spawn } from './child_process';
 export type ChildProcessOptions = {
   rpc: Partial<Aria2RPCOptions>;
 
-  args: string[];
-
   /**
    * 'inherit': inherit the current envrionment variables
    *
@@ -50,6 +48,8 @@ export type ChildProcessOptions = {
 
 export type ResolvedChildProcessOptions = Omit<ChildProcessOptions, 'environment' | 'rpc'> & {
   rpc: Pick<Aria2RPCOptions, 'listenPort' | 'secret'> & Partial<Aria2RPCOptions>;
+
+  args: string[];
 };
 
 export class ChildProcessSocket implements PreconfiguredSocket {
@@ -129,8 +129,7 @@ export async function createChildProcess(
 
   resolvedArgs.push(
     '--enable-rpc',
-    ...Object.entries({ ...aria2Args, ...aria2RpcArgs }).map(([k, v]) => `--${k}=${v}`),
-    ...(options.args ?? [])
+    ...Object.entries({ ...aria2Args, ...aria2RpcArgs }).map(([k, v]) => `--${k}=${v}`)
   );
 
   const child = spawn(resolvedArgs, resolvedOptions.spawn);
