@@ -11,7 +11,7 @@ High-level aria2 abstraction library for Node.
 
 ## Usage
 
-### Browser / Node.js
+### Browser
 
 ```bash
 npm i naria2

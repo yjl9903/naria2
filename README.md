@@ -12,7 +12,7 @@ High-level and Convenient BitTorrent Client based on aria2 JSON-RPC.
 
 ## Usage
 
-### Browser / Node.js
+### Browser
 
 ```bash
 npm i naria2
