@@ -274,26 +274,96 @@ export type Aria2Options = Aria2BasicOptions & {
   bt: Aria2BtMetalinkOptions & Aria2BtOptions;
 };
 
+/**
+ * @link https://aria2.github.io/manual/en/html/aria2c.html#rpc-options
+ */
 export interface Aria2RPCOptions {
+  /**
+   * Pause download after added. This option is effective only when --enable-rpc=true is given.
+   *
+   * @default false
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-pause
+   */
   pause: boolean;
 
+  /**
+   * Pause downloads created as a result of metadata download. There are 3 types of metadata downloads in aria2: (1) downloading .torrent file. (2) downloading torrent metadata using magnet link. (3) downloading metalink file. These metadata downloads will generate downloads using their metadata. This option pauses these subsequent downloads. This option is effective only when --enable-rpc=true is given.
+   *
+   * @default false
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-pause-metadata
+   */
   pauseMetadata: boolean;
 
+  /**
+   * Add Access-Control-Allow-Origin header field with value * to the RPC response.
+   *
+   * @default false
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-allow-origin-all
+   */
   allowOriginAll: boolean;
 
+  /**
+   * Use the certificate in FILE for RPC server. The certificate must be either in PKCS12 (.p12, .pfx) or in PEM format.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-certificate
+   */
   certificate: string;
 
+  /**
+   * Listen incoming JSON-RPC/XML-RPC requests on all network interfaces. If false is given, listen only on local loopback interface.
+   *
+   * @default false
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-listen-all
+   */
   listenAll: boolean;
 
+  /**
+   * Specify a port number for JSON-RPC/XML-RPC server to listen to. Possible Values: 1024 -65535.
+   *
+   * @default 6800
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-listen-port
+   */
   listenPort: number;
 
+  /**
+   * Set max size of JSON-RPC/XML-RPC request. If aria2 detects the request is more than SIZE bytes, it drops connection.
+   *
+   * @default '2M'
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-max-request-size
+   */
   maxRequestSize: number;
 
+  /**
+   * Use the private key in FILE for RPC server. The private key must be decrypted and in PEM format. Use --rpc-secure option to enable encryption. See also --rpc-certificate option.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-private-key
+   */
   privateKey: string;
 
+  /**
+   * Save the uploaded torrent or metalink meta data in the directory specified by --dir option. The file name consists of SHA-1 hash hex string of meta data plus extension. For torrent, the extension is '.torrent'. For metalink, it is '.meta4'. If false is given to this option, the downloads added by aria2.addTorrent() or aria2.addMetalink() will not be saved by --save-session option.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-save-upload-metadata
+   */
   saveUploadMetadata: boolean;
 
+  /**
+   * Set RPC secret authorization token. Read [RPC authorization secret token](https://aria2.github.io/manual/en/html/aria2c.html#rpc-auth) to know how this option value is used.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-secret
+   */
   secret: string;
 
+  /**
+   * RPC transport will be encrypted by SSL/TLS. The RPC clients must use https scheme to access the server. For WebSocket client, use wss scheme. Use --rpc-certificate and --rpc-private-key options to specify the server certificate and private key.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-secure
+   */
   secure: boolean;
 }
