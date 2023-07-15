@@ -274,6 +274,19 @@ export type Aria2Options = Aria2BasicOptions & {
   bt: Aria2BtMetalinkOptions & Aria2BtOptions;
 };
 
+export type Aria2RPCOptionsKey =
+  | 'pause'
+  | 'pause-metadata'
+  | 'rpc-allow-origin-all'
+  | 'rpc-certificate'
+  | 'rpc-listen-all'
+  | 'rpc-listen-port'
+  | 'rpc-max-request-size'
+  | 'rpc-private-key'
+  | 'rpc-save-upload-metadata'
+  | 'rpc-secret'
+  | 'rpc-secure';
+
 /**
  * @link https://aria2.github.io/manual/en/html/aria2c.html#rpc-options
  */
@@ -337,7 +350,7 @@ export interface Aria2RPCOptions {
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-max-request-size
    */
-  maxRequestSize: number;
+  maxRequestSize: string;
 
   /**
    * Use the private key in FILE for RPC server. The private key must be decrypted and in PEM format. Use --rpc-secure option to enable encryption. See also --rpc-certificate option.
