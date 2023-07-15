@@ -5,14 +5,21 @@ export interface Resolver<O extends string, T extends {}, F extends keyof T = ke
 
   option: O;
 
-  resolve: (value: T[F]) => string;
+  resolve: (value: any) => string | undefined;
 }
 
-function defineResolver<O extends string, T extends {}, F extends keyof T>(
+const resolveBoolean = (flag: boolean) =>
+  typeof flag === 'boolean' ? (flag ? 'true' : 'false') : undefined;
+const resolveString = (str: string) => (typeof str === 'string' ? str : undefined);
+const resolveNumber = (num: number) => {
+  return typeof num === 'number' ? '' + num : undefined;
+};
+
+function defineRPC<F extends keyof Aria2RPCOptions>(
   field: F,
-  option: O,
-  resolve: (value: T[F]) => string
-): Resolver<O, T, F> {
+  option: Aria2RPCOptionsKey,
+  resolve: (value: Aria2RPCOptions[F]) => string | undefined
+): Resolver<Aria2RPCOptionsKey, Aria2RPCOptions, F> {
   return {
     field,
     option,
@@ -20,60 +27,22 @@ function defineResolver<O extends string, T extends {}, F extends keyof T>(
   };
 }
 
-const resolveBoolean = (flag: boolean) => (flag ? 'true' : 'false');
-const resolveString = (str: string) => str;
-const resolveNumber = (num: number) => '' + num;
-
-export const RPCResolvers = [
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'pause'>('pause', 'pause', resolveBoolean),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'pauseMetadata'>(
-    'pauseMetadata',
-    'pause-metadata',
-    resolveBoolean
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'allowOriginAll'>(
-    'allowOriginAll',
-    'rpc-allow-origin-all',
-    resolveBoolean
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'certificate'>(
-    'certificate',
-    'rpc-certificate',
-    resolveString
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'listenAll'>(
-    'listenAll',
-    'rpc-listen-all',
-    resolveBoolean
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'listenPort'>(
-    'listenPort',
-    'rpc-listen-port',
-    resolveNumber
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'maxRequestSize'>(
-    'maxRequestSize',
-    'rpc-max-request-size',
-    resolveString
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'privateKey'>(
-    'privateKey',
-    'rpc-private-key',
-    resolveString
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'saveUploadMetadata'>(
-    'saveUploadMetadata',
-    'rpc-save-upload-metadata',
-    resolveBoolean
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'secret'>(
-    'secret',
-    'rpc-secret',
-    resolveString
-  ),
-  defineResolver<Aria2RPCOptionsKey, Aria2RPCOptions, 'secure'>(
-    'secure',
-    'rpc-secure',
-    resolveBoolean
-  )
-];
+export const RPCResolvers = Object.fromEntries(
+  [
+    defineRPC<'pause'>('pause', 'pause', resolveBoolean),
+    defineRPC<'pauseMetadata'>('pauseMetadata', 'pause-metadata', resolveBoolean),
+    defineRPC<'allowOriginAll'>('allowOriginAll', 'rpc-allow-origin-all', resolveBoolean),
+    defineRPC<'certificate'>('certificate', 'rpc-certificate', resolveString),
+    defineRPC<'listenAll'>('listenAll', 'rpc-listen-all', resolveBoolean),
+    defineRPC<'listenPort'>('listenPort', 'rpc-listen-port', resolveNumber),
+    defineRPC<'maxRequestSize'>('maxRequestSize', 'rpc-max-request-size', resolveString),
+    defineRPC<'privateKey'>('privateKey', 'rpc-private-key', resolveString),
+    defineRPC<'saveUploadMetadata'>(
+      'saveUploadMetadata',
+      'rpc-save-upload-metadata',
+      resolveBoolean
+    ),
+    defineRPC<'secret'>('secret', 'rpc-secret', resolveString),
+    defineRPC<'secure'>('secure', 'rpc-secure', resolveBoolean)
+  ].map((r) => [r.field, r])
+);

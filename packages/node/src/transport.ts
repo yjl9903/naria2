@@ -3,16 +3,20 @@ import type { ChildProcess, SpawnOptions } from 'node:child_process';
 
 import { randomUUID } from 'node:crypto';
 
-import { type Aria2Options, resolveOptions, isDef } from '@naria2/options';
+import {
+  type Aria2Options,
+  type Aria2RPCOptions,
+  resolveOptions,
+  isDef,
+  resolveRPCOptions
+} from '@naria2/options';
 import { getPortPromise } from 'portfinder';
 import { type Socket, type PreconfiguredSocket, createWebSocket } from 'maria2/transport';
 
 import { spawn } from './child_process';
 
 export type ChildProcessOptions = {
-  rpcListenPort: number;
-
-  rpcSecret: string;
+  rpc: Partial<Aria2RPCOptions>;
 
   args: string[];
 
@@ -44,7 +48,9 @@ export type ChildProcessOptions = {
   spawn: SpawnOptions;
 };
 
-export type ResolvedChildProcessOptions = Omit<ChildProcessOptions, 'environment'>;
+export type ResolvedChildProcessOptions = Omit<ChildProcessOptions, 'environment' | 'rpc'> & {
+  rpc: Pick<Aria2RPCOptions, 'listenPort' | 'secret'> & Partial<Aria2RPCOptions>;
+};
 
 export class ChildProcessSocket implements PreconfiguredSocket {
   readonly socket: Socket;
@@ -65,7 +71,8 @@ export class ChildProcessSocket implements PreconfiguredSocket {
 
   public getOptions() {
     return {
-      secret: this.options.rpcSecret
+      secret: this.options.rpc.secret,
+      args: this.options.args
     };
   }
 
@@ -106,22 +113,23 @@ export async function createChildProcess(
 
   const [environment, proxy] = inferEnv(options.environment);
 
+  const rpcOptions = {
+    ...options?.rpc,
+    listenPort: options?.rpc?.listenPort ?? (await getPortPromise({ port: 16800 })),
+    secret: options?.rpc?.secret ?? randomUUID()
+  };
   const resolvedOptions: ResolvedChildProcessOptions = {
-    rpcListenPort: options.rpcListenPort ?? (await getPortPromise({ port: 16800 })),
-    rpcSecret: options.rpcSecret ?? randomUUID(),
+    rpc: rpcOptions,
     args: resolvedArgs,
     spawn: { ...options.spawn, env: { ...environment, ...proxy } }
   };
 
-  const aria2Options = resolveOptions(options);
+  const aria2Args = resolveOptions(options);
+  const aria2RpcArgs = resolveRPCOptions(rpcOptions);
 
   resolvedArgs.push(
     '--enable-rpc',
-    '--rpc-listen-all',
-    '--rpc-allow-origin-all',
-    `--rpc-listen-port=${resolvedOptions.rpcListenPort}`,
-    `--rpc-secret=${resolvedOptions.rpcSecret}`,
-    ...Object.entries(aria2Options).map(([k, v]) => `--${k}=${v}`),
+    ...Object.entries({ ...aria2Args, ...aria2RpcArgs }).map(([k, v]) => `--${k}=${v}`),
     ...(options.args ?? [])
   );
 
@@ -148,7 +156,7 @@ export async function createChildProcess(
     });
   });
 
-  const ws = createWebSocket(`ws://127.0.0.1:${resolvedOptions.rpcListenPort}/jsonrpc`);
+  const ws = createWebSocket(`ws://127.0.0.1:${rpcOptions.listenPort}/jsonrpc`);
   // @ts-ignore
   ws.addEventListener(
     'error',

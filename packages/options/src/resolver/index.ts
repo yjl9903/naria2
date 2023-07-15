@@ -9,6 +9,7 @@ import type {
 } from '../types';
 
 import { resolveArray, isDef } from '../utils';
+import { RPCResolvers } from './resolver';
 
 export function resolveProxyOptions(
   options?: PartialDeep<Aria2ProxyOptions>
@@ -83,9 +84,19 @@ export function resolveProxyOptions(
 }
 
 export function resolveRPCOptions(
-  options?: PartialDeep<Aria2RPCOptions>
+  options: PartialDeep<Aria2RPCOptions> = {}
 ): Partial<Record<Aria2RPCOptionsKey, string>> {
-  return {};
+  const result: Partial<Record<Aria2RPCOptionsKey, string>> = {};
+  Object.entries(options).forEach(([k, v]) => {
+    if (k in RPCResolvers) {
+      const resolver = RPCResolvers[k];
+      const resolved = resolver.resolve(v);
+      if (resolved !== undefined) {
+        result[resolver.option] = resolved;
+      }
+    }
+  });
+  return result;
 }
 
 export function resolveOptions(
