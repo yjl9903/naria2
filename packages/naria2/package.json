@@ -63,7 +63,7 @@
   "dependencies": {
     "@naria2/options": "workspace:*",
     "maria2": "^0.3.0",
-    "type-fest": "^3.13.0"
+    "type-fest": "^3.13.1"
   },
   "devDependencies": {
     "@naria2/node": "workspace:*",
