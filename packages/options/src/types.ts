@@ -1,3 +1,5 @@
+export type StrSize = `${number}${'' | 'K' | 'M'}`;
+
 /**
  * @link https://aria2.github.io/manual/en/html/aria2c.html#basic-options
  */
@@ -74,7 +76,134 @@ export interface Aria2BtMetalinkOptions {}
 /**
  * @link https://aria2.github.io/manual/en/html/aria2c.html#bittorrent-specific-options
  */
-export interface Aria2BtOptions {}
+export interface Aria2BtOptions {
+  /**
+   * Exclude seed only downloads when counting concurrent active downloads (See `-j` option). This means that if `-j3` is given and this option is turned on and 3 downloads are active and one of those enters seed mode, then it is excluded from active download count (thus it becomes 2), and the next download waiting in queue gets started. But be aware that seeding item is still recognized as active download in RPC method.
+   *
+   * @default false
+   *
+   * @link http://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-detach-seed-only
+   */
+  detachSeedOnly: boolean;
+
+  /**
+   * Enable Local Peer Discovery. If a private flag is set in a torrent, aria2 doesn't use this feature for that download even if `true` is given.
+   *
+   * @default false
+   *
+   * @link http://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-enable-lpd
+   */
+  enableLpd: boolean;
+
+  /**
+   * Comma separated list of BitTorrent tracker's announce URI to remove. You can use special value `*` which matches all URIs, thus removes all announce URIs. When specifying `*` in shell command-line, don't forget to escape or quote it. See also `--bt-tracker` option.
+   *
+   * @link http://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-exclude-tracker
+   */
+  excludeTracker: string[];
+
+  /**
+   * Specify the external IP address to use in BitTorrent download and DHT. It may be sent to BitTorrent tracker. For DHT, this option should be set to report that local node is downloading a particular torrent. This is critical to use DHT in a private network. Although this function is named `external`, it can accept any kind of IP addresses.
+   *
+   * @link http://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-external-ip
+   */
+  externalIp: string;
+
+  /**
+   * Requires BitTorrent message payload encryption with arc4. This is a shorthand of `--bt-require-crypto` `--bt-min-crypto-level=arc4`. This option does not change the option value of those options. If `true` is given, deny legacy BitTorrent handshake and only use Obfuscation handshake and always encrypt message payload.
+   *
+   * @default false
+   *
+   * @link http://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-force-encryption
+   */
+  forceEncryption: boolean;
+
+  /**
+   * If `true` is given, after hash check using `--check-integrity` option and file is complete, continue to seed file. If you want to check file and download it only when it is damaged or incomplete, set this option to `false`. This option has effect only on BitTorrent download.
+   *
+   * @default true
+   *
+   * @link http://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-hash-check-seed
+   */
+  hashCheckSeed: boolean;
+
+  loadSavedMetadata: boolean;
+
+  lpdInterface: string;
+
+  maxOpenFiles: number;
+
+  maxPeers: number;
+
+  metadataOnly: string;
+
+  minCryptoLevel: 'plain' | 'arc4';
+
+  prioritizePiece: {
+    head: StrSize;
+    tail: StrSize;
+  };
+
+  removeUnselectedFile: boolean;
+
+  requireCrypto: boolean;
+
+  requestPeerSpeedLimit: StrSize;
+
+  saveMetadata: boolean;
+
+  seedUnverified: boolean;
+
+  stopTimeout: number;
+
+  tracker: string[];
+
+  trackerConnectTimeout: number;
+
+  trackerInterval: number;
+
+  trackerTimeout: number;
+
+  enablePeerExchange: boolean;
+
+  followTorrent: boolean | 'mem';
+
+  indexOut: Record<string, string>;
+
+  listenPort: number[];
+
+  maxOverallUploadLimit: StrSize;
+
+  maxUploadLimit: StrSize;
+
+  peerIdPrefix: string;
+
+  peerAgent: string;
+
+  seedRatio: string;
+
+  seedTime: string;
+}
+
+export interface Aria2DhtOptions {
+  enable: boolean;
+
+  enable6: boolean;
+
+  entryPoint: string;
+
+  entryPoint6: string;
+
+  filePath: string;
+
+  filePath6: string;
+
+  listenAddr6: string;
+
+  listenPort: number[];
+
+  messageTimeout: number;
+}
 
 /**
  * Use a proxy server for all protocols. To override a previously defined proxy, use "". You also can override this setting and specify a proxy server for a particular protocol using --http-proxy, --https-proxy and --ftp-proxy options. This affects all downloads. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT]. See also ENVIRONMENT section.
@@ -271,7 +400,7 @@ export type Aria2Options = Aria2BasicOptions & {
 
   ftp: Aria2HTTPFTPOptions & Aria2FTPOptions;
 
-  bt: Aria2BtMetalinkOptions & Aria2BtOptions;
+  bt: Aria2BtMetalinkOptions & Aria2BtOptions & Aria2DhtOptions;
 };
 
 export type Aria2RPCOptionsKey =
