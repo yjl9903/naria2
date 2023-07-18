@@ -30,7 +30,7 @@ export interface Aria2BasicInputOptions {
   continue: boolean;
 }
 
-export interface Aria2BasicCliOptions {
+export interface Aria2BasicGlobalOptions {
   /**
    * The file name of the log file. If - is specified, log is written to stdout. If empty string("") is specified, or this option is omitted, no log is written to disk at all.
    *
@@ -272,7 +272,7 @@ export interface Aria2BtInputOptions {
 /**
  * @link https://aria2.github.io/manual/en/html/aria2c.html#bittorrent-specific-options
  */
-export interface Aria2BtCliOptions {
+export interface Aria2BtGlobalOptions {
   /**
    * Exclude seed only downloads when counting concurrent active downloads (See `-j` option). This means that if `-j3` is given and this option is turned on and 3 downloads are active and one of those enters seed mode, then it is excluded from active download count (thus it becomes 2), and the next download waiting in queue gets started. But be aware that seeding item is still recognized as active download in RPC method.
    *
@@ -333,7 +333,7 @@ export interface Aria2BtCliOptions {
 
 export interface Aria2DhtInputOptions {}
 
-export interface Aria2DhtCliOptions {
+export interface Aria2DhtGlobalOptions {
   /**
    * Enable IPv4 DHT functionality. It also enables UDP tracker support. If a private flag is set in a torrent, aria2 doesn't use DHT for that download even if `true` is given.
    *
@@ -563,11 +563,11 @@ export type Aria2InputOptions = Aria2BasicInputOptions & {
   bt: Aria2BtMetalinkOptions & Aria2BtInputOptions & Aria2DhtInputOptions;
 };
 
-export type Aria2CliOptions = MergeDeep<
-  Aria2InputOptions & Aria2BasicCliOptions,
+export type Aria2GlobalOptions = MergeDeep<
+  Aria2InputOptions & Aria2BasicGlobalOptions,
   {
     rpc: Aria2RPCOptions;
-    bt: Aria2BtCliOptions & Aria2DhtCliOptions;
+    bt: Aria2BtGlobalOptions & Aria2DhtGlobalOptions;
   }
 >;
 

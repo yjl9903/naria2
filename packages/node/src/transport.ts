@@ -5,8 +5,8 @@ import { randomUUID } from 'node:crypto';
 
 import {
   type Aria2RPCOptions,
-  type Aria2CliOptions,
-  resolveCliOptions,
+  type Aria2GlobalOptions,
+  resolveGlobalOptions,
   isDef,
   resolveRPCOptions
 } from '@naria2/options';
@@ -107,7 +107,7 @@ export class ChildProcessSocket implements PreconfiguredSocket {
 }
 
 export async function createChildProcess(
-  options: Partial<ChildProcessOptions> & PartialDeep<Aria2CliOptions> = {}
+  options: Partial<ChildProcessOptions> & PartialDeep<Aria2GlobalOptions> = {}
 ): Promise<ChildProcessSocket> {
   const resolvedArgs: string[] = [];
 
@@ -124,7 +124,7 @@ export async function createChildProcess(
     spawn: { ...options.spawn, env: { ...environment, ...proxy } }
   };
 
-  const aria2Args = resolveCliOptions(options);
+  const aria2Args = resolveGlobalOptions(options);
   const aria2RpcArgs = resolveRPCOptions(rpcOptions);
 
   resolvedArgs.push(
