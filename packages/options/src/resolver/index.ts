@@ -1,11 +1,12 @@
 import type { PartialDeep } from 'type-fest';
-import type { Aria2ClientInputOptionKey } from 'maria2';
+import type { Aria2ClientGlobalOptionKey, Aria2ClientInputOptionKey } from 'maria2';
 
 import type {
-  Aria2Options,
+  Aria2CliOptions,
+  Aria2RPCOptions,
+  Aria2InputOptions,
   Aria2ProxyOptions,
-  Aria2RPCOptionsKey,
-  Aria2RPCOptions
+  Aria2RPCOptionsKey
 } from '../types';
 
 import { resolveArray, isDef } from '../utils';
@@ -99,9 +100,17 @@ export function resolveRPCOptions(
   return result;
 }
 
-export function resolveOptions(
-  options: PartialDeep<Aria2Options>
+export function resolveInputOptions(
+  options: PartialDeep<Aria2InputOptions>
 ): Partial<Record<Aria2ClientInputOptionKey, string>> {
+  return {
+    ...('proxy' in options ? resolveProxyOptions(options.proxy) : {})
+  };
+}
+
+export function resolveCliOptions(
+  options: PartialDeep<Aria2CliOptions>
+): Partial<Record<Aria2ClientInputOptionKey & Aria2ClientGlobalOptionKey, string>> {
   return {
     ...('proxy' in options ? resolveProxyOptions(options.proxy) : {})
   };

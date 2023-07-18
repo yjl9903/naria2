@@ -563,7 +563,7 @@ export type Aria2InputOptions = Aria2BasicInputOptions & {
   bt: Aria2BtMetalinkOptions & Aria2BtInputOptions & Aria2DhtInputOptions;
 };
 
-export type Arai2CliOptions = MergeDeep<
+export type Aria2CliOptions = MergeDeep<
   Aria2InputOptions & Aria2BasicCliOptions,
   {
     rpc: Aria2RPCOptions;

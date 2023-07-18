@@ -1,7 +1,7 @@
 import type { PartialDeep } from 'type-fest';
 import { type Socket, type Conn, open, close, aria2, Aria2ServerVersion } from 'maria2';
 
-import type { Aria2Options } from '@naria2/options';
+import type { Aria2InputOptions } from '@naria2/options';
 
 import type { ClientOptions } from './types';
 
@@ -32,12 +32,12 @@ export class Aria2Client {
     return await aria2.getVersion(this.conn);
   }
 
-  async downloadMagnet(magnet: string, options: PartialDeep<Aria2Options> = {}) {}
+  async downloadMagnet(magnet: string, options: PartialDeep<Aria2InputOptions> = {}) {}
 
-  async downloadTorrent(torrent: string, options: PartialDeep<Aria2Options> = {}) {}
+  async downloadTorrent(torrent: string, options: PartialDeep<Aria2InputOptions> = {}) {}
 
-  async downloadUri(uris: string | string[], options: PartialDeep<Aria2Options> = {}) {
-    aria2.addUri(this.conn, Array.isArray(uris) ? uris : [uris], {});
+  async downloadUri(uris: string | string[], options: PartialDeep<Aria2InputOptions> = {}) {
+    await aria2.addUri(this.conn, Array.isArray(uris) ? uris : [uris], {});
   }
 }
 
