@@ -307,7 +307,9 @@ export interface Aria2BtCliOptions {
   maxOpenFiles: number;
 }
 
-export interface Aria2DhtInputOptions {
+export interface Aria2DhtInputOptions {}
+
+export interface Aria2DhtCliOptions {
   /**
    * Enable IPv4 DHT functionality. It also enables UDP tracker support. If a private flag is set in a torrent, aria2 doesn't use DHT for that download even if `true` is given.
    *
@@ -338,8 +340,6 @@ export interface Aria2DhtInputOptions {
 
   messageTimeout: number;
 }
-
-export interface Aria2DhtCliOptions {}
 
 /**
  * Use a proxy server for all protocols. To override a previously defined proxy, use "". You also can override this setting and specify a proxy server for a particular protocol using --http-proxy, --https-proxy and --ftp-proxy options. This affects all downloads. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT]. See also ENVIRONMENT section.
