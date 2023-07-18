@@ -262,15 +262,7 @@ export interface Aria2BtInputOptions {
 
   indexOut: Record<string, string>;
 
-  listenPort: number[];
-
-  maxOverallUploadLimit: StrSize;
-
   maxUploadLimit: StrSize;
-
-  peerIdPrefix: string;
-
-  peerAgent: string;
 
   seedRatio: string;
 
@@ -305,6 +297,38 @@ export interface Aria2BtCliOptions {
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-max-open-files
    */
   maxOpenFiles: number;
+
+  /**
+   * Set TCP port number for BitTorrent downloads. Multiple ports can be specified by using ,, for example: 6881,6885. You can also use - to specify a range: `6881-6999`. , and `-` can be used together: `6881-6889,6999`. Default: `6881-6999`
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-listen-port
+   */
+  listenPort: number[];
+
+  /**
+   * Set max overall upload speed in bytes/sec. `0` means unrestricted. You can append `K` or `M` (1K = 1024, 1M = 1024K). To limit the upload speed per torrent, use [--max-upload-limit](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-0) option.
+   *
+   * @default 0
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-max-overall-upload-limit
+   */
+  maxOverallUploadLimit: StrSize;
+
+  /**
+   * Specify the prefix of peer ID. The peer ID in BitTorrent is 20 byte length. If more than 20 bytes are specified, only first 20 bytes are used. If less than 20 bytes are specified, random byte data are added to make its length 20 bytes.
+   * Default: A2-$MAJOR-$MINOR-$PATCH-, $MAJOR, $MINOR and $PATCH are replaced by major, minor and patch version number respectively. For instance, aria2 version 1.18.8 has prefix ID A2-1-18-8-.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-peer-id-prefix
+   */
+  peerIdPrefix: string;
+
+  /**
+   * Specify the string used during the bitorrent extended handshake for the peer's client version.
+   * Default: aria2/$MAJOR.$MINOR.$PATCH, $MAJOR, $MINOR and $PATCH are replaced by major, minor and patch version number respectively. For instance, aria2 version 1.18.8 has peer agent aria2/1.18.8.
+   *
+   * https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-peer-agent
+   */
+  peerAgent: string;
 }
 
 export interface Aria2DhtInputOptions {}
