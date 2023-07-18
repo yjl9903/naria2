@@ -7,6 +7,8 @@ describe('spawn aria2 childprocess', () => {
 
   it('should work', async () => {
     conn = await createChildProcess({
+      dir: '.',
+      checkIntegrity: false,
       rpc: { secret: '12345678', listenPort: 16800, listenAll: true, allowOriginAll: true }
     });
 
@@ -14,6 +16,8 @@ describe('spawn aria2 childprocess', () => {
     expect(conn.getOptions().args).toMatchInlineSnapshot(`
       [
         "--enable-rpc",
+        "--dir=.",
+        "--check-integrity=false",
         "--rpc-secret=12345678",
         "--rpc-listen-port=16800",
         "--rpc-listen-all=true",

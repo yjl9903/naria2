@@ -6,11 +6,13 @@ import type {
   Aria2RPCOptions,
   Aria2InputOptions,
   Aria2ProxyOptions,
-  Aria2RPCOptionsKey
+  Aria2RPCOptionsKey,
+  Aria2BasicInputOptions,
+  Aria2BasicGlobalOptions
 } from '../types';
 
 import { resolveArray, isDef } from '../utils';
-import { RPCResolvers } from './resolver';
+import { BasicGlobalResolvers, BasicInputResolvers, RPCResolvers, Resolver } from './resolver';
 
 export function resolveProxyOptions(
   options?: PartialDeep<Aria2ProxyOptions>
@@ -84,27 +86,42 @@ export function resolveProxyOptions(
   }
 }
 
-export function resolveRPCOptions(
-  options: PartialDeep<Aria2RPCOptions> = {}
-): Partial<Record<Aria2RPCOptionsKey, string>> {
-  const result: Partial<Record<Aria2RPCOptionsKey, string>> = {};
-  Object.entries(options).forEach(([k, v]) => {
-    if (k in RPCResolvers) {
-      const resolver = RPCResolvers[k];
-      const resolved = resolver.resolve(v);
-      if (resolved !== undefined) {
-        result[resolver.option] = resolved;
+function useResolver<T extends {}, K extends string>(
+  resolvers: Record<string, Resolver<K, T, keyof T>>
+) {
+  return (options?: PartialDeep<T>): Partial<Record<K, string>> => {
+    const result: Partial<Record<K, string>> = {};
+    Object.entries(options ?? {}).forEach(([k, v]) => {
+      if (k in resolvers) {
+        const resolver = resolvers[k];
+        const resolved = resolver.resolve(v);
+        if (resolved !== undefined && resolved !== null) {
+          result[resolver.option] = resolved;
+        }
       }
-    }
-  });
-  return result;
+    });
+    return result;
+  };
 }
+
+export const resolveRPCOptions: (
+  options?: PartialDeep<Aria2RPCOptions>
+) => Partial<Record<Aria2RPCOptionsKey, string>> = useResolver(RPCResolvers);
+
+const resolveBasicInputOptions: (
+  options?: PartialDeep<Aria2BasicInputOptions>
+) => Partial<Record<Aria2ClientInputOptionKey, string>> = useResolver(BasicInputResolvers);
+
+const resolveBasicGlobalOptions: (
+  options?: PartialDeep<Aria2BasicGlobalOptions>
+) => Partial<Record<Aria2ClientInputOptionKey, string>> = useResolver(BasicGlobalResolvers);
 
 export function resolveInputOptions(
   options: PartialDeep<Aria2InputOptions>
 ): Partial<Record<Aria2ClientInputOptionKey, string>> {
   return {
-    ...('proxy' in options ? resolveProxyOptions(options.proxy) : {})
+    ...('proxy' in options ? resolveProxyOptions(options.proxy) : {}),
+    ...resolveBasicInputOptions(options)
   };
 }
 
@@ -112,6 +129,8 @@ export function resolveGlobalOptions(
   options: PartialDeep<Aria2GlobalOptions>
 ): Partial<Record<Aria2ClientInputOptionKey & Aria2ClientGlobalOptionKey, string>> {
   return {
-    ...('proxy' in options ? resolveProxyOptions(options.proxy) : {})
+    ...('proxy' in options ? resolveProxyOptions(options.proxy) : {}),
+    ...resolveBasicInputOptions(options),
+    ...resolveBasicGlobalOptions(options)
   };
 }

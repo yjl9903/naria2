@@ -7,6 +7,8 @@ export type StrSize = `${number}${'' | 'K' | 'M'}`;
  */
 export interface Aria2BasicInputOptions {
   /**
+   * -d, --dir=<DIR>
+   *
    * The directory to store the downloaded file.
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-d
@@ -14,7 +16,9 @@ export interface Aria2BasicInputOptions {
   dir: string;
 
   /**
-   * Check file integrity by validating piece hashes or a hash of entire file. This option has effect only in BitTorrent, Metalink downloads with checksums or HTTP(S)/FTP downloads with --checksum option. If piece hashes are provided, this option can detect damaged portions of a file and re-download them. If a hash of entire file is provided, hash check is only done when file has been already download. This is determined by file length. If hash check fails, file is re-downloaded from scratch. If both piece hashes and a hash of entire file are provided, only piece hashes are used.
+   * -V, --check-integrity [true|false]
+   *
+   * Check file integrity by validating piece hashes or a hash of entire file. This option has effect only in BitTorrent, Metalink downloads with checksums or HTTP(S)/FTP downloads with [--checksum](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-checksum) option. If piece hashes are provided, this option can detect damaged portions of a file and re-download them. If a hash of entire file is provided, hash check is only done when file has been already download. This is determined by file length. If hash check fails, file is re-downloaded from scratch. If both piece hashes and a hash of entire file are provided, only piece hashes are used.
    *
    * @default false
    *
@@ -23,6 +27,8 @@ export interface Aria2BasicInputOptions {
   checkIntegrity: boolean;
 
   /**
+   * -c, --continue
+   *
    * Continue downloading a partially downloaded file. Use this option to resume a download started by a web browser or another program which downloads files sequentially from the beginning. Currently this option is only applicable to HTTP(S)/FTP downloads.
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-c
@@ -32,14 +38,14 @@ export interface Aria2BasicInputOptions {
 
 export interface Aria2BasicGlobalOptions {
   /**
-   * The file name of the log file. If - is specified, log is written to stdout. If empty string("") is specified, or this option is omitted, no log is written to disk at all.
+   * The file name of the log file. If - is specified, log is written to `stdout`. If empty string("") is specified, or this option is omitted, no log is written to disk at all.
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-l
    */
   log: string | undefined;
 
   /**
-   * Set the maximum number of parallel downloads for every queue item. See also the --split option.
+   * Set the maximum number of parallel downloads for every queue item. See also the [--split](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-s) option.
    *
    * @default 5
    *
