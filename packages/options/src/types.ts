@@ -256,16 +256,54 @@ export interface Aria2BtInputOptions {
    */
   trackerTimeout: number;
 
+  /**
+   * Enable Peer Exchange extension. If a private flag is set in a torrent, this feature is disabled for that download even if `true` is given.
+   *
+   * @default true
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-enable-peer-exchange
+   */
   enablePeerExchange: boolean;
 
+  /**
+   * If `true` or `mem` is specified, when a file whose suffix is `.torrent` or content type is `application/x-bittorrent` is downloaded, aria2 parses it as a torrent file and downloads files mentioned in it. If `mem` is specified, a torrent file is not written to the disk, but is just kept in memory. If `false` is specified, the `.torrent` file is downloaded to the disk, but is not parsed as a torrent and its contents are not downloaded.
+   *
+   * @default true
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-follow-torrent
+   */
   followTorrent: boolean | 'mem';
 
+  /**
+   * Set file path for file with index=INDEX. You can find the file index using the [--show-files](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-S) option. PATH is a relative path to the path specified in [--dir](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-d) option. You can use this option multiple times. Using this option, you can specify the output file names of BitTorrent downloads.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-O
+   */
   indexOut: Record<string, string>;
 
+  /**
+   * Set max upload speed per each torrent in bytes/sec. `0` means unrestricted. You can append `K` or `M` (1K = 1024, 1M = 1024K). To limit the overall upload speed, use [--max-overall-upload-limit](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-max-overall-upload-limit) option.
+   *
+   * @default 0
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-0
+   */
   maxUploadLimit: StrSize;
 
+  /**
+   * Specify share ratio. Seed completed torrents until share ratio reaches RATIO. You are strongly encouraged to specify equals or more than `1.0` here. Specify `0.0` if you intend to do seeding regardless of share ratio. If [--seed-time](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-seed-time) option is specified along with this option, seeding ends when at least one of the conditions is satisfied.
+   *
+   * @default '1.0'
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-seed-ratio
+   */
   seedRatio: string;
 
+  /**
+   * Specify seeding time in (fractional) minutes. Also see the [--seed-ratio](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-seed-ratio) option.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-seed-time
+   */
   seedTime: string;
 }
 
@@ -299,7 +337,7 @@ export interface Aria2BtGlobalOptions {
   maxOpenFiles: number;
 
   /**
-   * Set TCP port number for BitTorrent downloads. Multiple ports can be specified by using ,, for example: 6881,6885. You can also use - to specify a range: `6881-6999`. , and `-` can be used together: `6881-6889,6999`. Default: `6881-6999`
+   * Set TCP port number for BitTorrent downloads. Multiple ports can be specified by using `,`, for example: 6881,6885. You can also use `-` to specify a range: `6881-6999`. `,` and `-` can be used together: `6881-6889,6999`. Default: `6881-6999`
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-listen-port
    */
@@ -350,18 +388,59 @@ export interface Aria2DhtGlobalOptions {
    */
   enable6: boolean;
 
+  /**
+   * --dht-entry-point=<HOST>:<PORT>
+   *
+   * Set host and port as an entry point to IPv4 DHT network.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-entry-point
+   */
   entryPoint: string;
 
+  /**
+   * --dht-entry-point=<HOST>:<PORT>
+   *
+   * Set host and port as an entry point to IPv6 DHT network.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-entry-point6
+   */
   entryPoint6: string;
 
+  /**
+   * Change the IPv4 DHT routing table file to PATH. Default: `$HOME/.aria2/dht.dat` if present, otherwise `$XDG_CACHE_HOME/aria2/dht.dat`.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-file-path
+   */
   filePath: string;
 
+  /**
+   * Change the IPv6 DHT routing table file to PATH. Default: `$HOME/.aria2/dht6.dat` if present, otherwise `$XDG_CACHE_HOME/aria2/dht6.dat`.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-file-path6
+   */
   filePath6: string;
 
+  /**
+   * https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-listen-addr6
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-listen-addr6
+   */
   listenAddr6: string;
 
+  /**
+   * Set UDP listening port used by DHT(IPv4, IPv6) and UDP tracker. Multiple ports can be specified by using `,`, for example: `6881,6885`. You can also use `-` to specify a range: `6881-6999`. `,` and `-` can be used together. Default: `6881-6999`
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-listen-port
+   */
   listenPort: number[];
 
+  /**
+   * Set timeout in seconds.
+   *
+   * @default 10
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-message-timeout
+   */
   messageTimeout: number;
 }
 
