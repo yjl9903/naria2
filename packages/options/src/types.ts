@@ -307,9 +307,21 @@ export interface Aria2BtCliOptions {
   maxOpenFiles: number;
 }
 
-export interface Aria2DhtOptions {
+export interface Aria2DhtInputOptions {
+  /**
+   * Enable IPv4 DHT functionality. It also enables UDP tracker support. If a private flag is set in a torrent, aria2 doesn't use DHT for that download even if `true` is given.
+   *
+   * @default true
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-enable-dht
+   */
   enable: boolean;
 
+  /**
+   * Enable IPv6 DHT functionality. If a private flag is set in a torrent, aria2 doesn't use DHT for that download even if `true` is given. Use [--dht-listen-port](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-listen-port) option to specify port number to listen on. See also [--dht-listen-addr6](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-listen-addr6) option.
+   *
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-enable-dht6
+   */
   enable6: boolean;
 
   entryPoint: string;
@@ -326,6 +338,8 @@ export interface Aria2DhtOptions {
 
   messageTimeout: number;
 }
+
+export interface Aria2DhtCliOptions {}
 
 /**
  * Use a proxy server for all protocols. To override a previously defined proxy, use "". You also can override this setting and specify a proxy server for a particular protocol using --http-proxy, --https-proxy and --ftp-proxy options. This affects all downloads. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT]. See also ENVIRONMENT section.
@@ -522,14 +536,14 @@ export type Aria2InputOptions = Aria2BasicInputOptions & {
 
   ftp: Aria2HTTPFTPOptions & Aria2FTPOptions;
 
-  bt: Aria2BtMetalinkOptions & Aria2BtInputOptions & Aria2DhtOptions;
+  bt: Aria2BtMetalinkOptions & Aria2BtInputOptions & Aria2DhtInputOptions;
 };
 
 export type Arai2CliOptions = MergeDeep<
   Aria2InputOptions & Aria2BasicCliOptions,
   {
     rpc: Aria2RPCOptions;
-    bt: Aria2BtCliOptions;
+    bt: Aria2BtCliOptions & Aria2DhtCliOptions;
   }
 >;
 
