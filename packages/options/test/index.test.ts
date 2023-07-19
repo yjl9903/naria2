@@ -1,7 +1,35 @@
 import { describe, it, expect } from 'vitest';
 
+import { resolveRPCOptions } from '../src';
+
 describe('aria2 options', () => {
-  it('should work', async () => {
-    expect(1 + 1).toBe(2);
+  it('resolve RPC options', async () => {
+    expect(
+      resolveRPCOptions({
+        pause: false,
+        pauseMetadata: true,
+        allowOriginAll: false,
+        certificate: 'file',
+        listenAll: true,
+        listenPort: 6800,
+        maxRequestSize: '4M',
+        saveUploadMetadata: false,
+        secret: '666666',
+        secure: false
+      })
+    ).toMatchInlineSnapshot(`
+      {
+        "pause": "false",
+        "pause-metadata": "true",
+        "rpc-allow-origin-all": "false",
+        "rpc-certificate": "file",
+        "rpc-listen-all": "true",
+        "rpc-listen-port": "6800",
+        "rpc-max-request-size": "4M",
+        "rpc-save-upload-metadata": "false",
+        "rpc-secret": "666666",
+        "rpc-secure": "false",
+      }
+    `);
   });
 });

@@ -717,7 +717,7 @@ export interface Aria2RPCOptions {
   listenAll: boolean;
 
   /**
-   * Specify a port number for JSON-RPC/XML-RPC server to listen to. Possible Values: 1024 -65535.
+   * Specify a port number for JSON-RPC/XML-RPC server to listen to. Possible Values: `1024` - `65535`.
    *
    * @default 6800
    *
@@ -732,17 +732,19 @@ export interface Aria2RPCOptions {
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-max-request-size
    */
-  maxRequestSize: string;
+  maxRequestSize: StrSize;
 
   /**
-   * Use the private key in FILE for RPC server. The private key must be decrypted and in PEM format. Use --rpc-secure option to enable encryption. See also --rpc-certificate option.
+   * Use the private key in FILE for RPC server. The private key must be decrypted and in PEM format. Use [--rpc-secure](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-secure) option to enable encryption. See also [--rpc-certificate](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-certificate) option.
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-private-key
    */
   privateKey: string;
 
   /**
-   * Save the uploaded torrent or metalink meta data in the directory specified by --dir option. The file name consists of SHA-1 hash hex string of meta data plus extension. For torrent, the extension is '.torrent'. For metalink, it is '.meta4'. If false is given to this option, the downloads added by aria2.addTorrent() or aria2.addMetalink() will not be saved by --save-session option.
+   * Save the uploaded torrent or metalink meta data in the directory specified by [--dir](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-d) option. The file name consists of SHA-1 hash hex string of meta data plus extension. For torrent, the extension is '.torrent'. For metalink, it is '.meta4'. If false is given to this option, the downloads added by [aria2.addTorrent()](https://aria2.github.io/manual/en/html/aria2c.html#aria2.addTorrent) or [aria2.addMetalink()](https://aria2.github.io/manual/en/html/aria2c.html#aria2.addMetalink) will not be saved by [--save-session](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-save-session) option.
+   *
+   * @default true
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-rpc-save-upload-metadata
    */
