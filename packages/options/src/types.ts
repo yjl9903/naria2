@@ -153,7 +153,7 @@ export interface Aria2BtInputOptions {
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-metadata-only
    */
-  metadataOnly: string;
+  metadataOnly: boolean;
 
   /**
    * Set minimum level of encryption method. If several encryption methods are provided by a peer, aria2 chooses the lowest one which satisfies the given level.

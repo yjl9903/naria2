@@ -1,4 +1,4 @@
-import { defineBasicGlobal, defineBasicInput, defineRPC } from './types';
+import { defineBasicGlobal, defineBasicInput, defineBtInput, defineRPC } from './types';
 
 export type { Resolver } from './types';
 
@@ -7,6 +7,9 @@ const resolveBoolean = (flag: boolean | undefined) =>
 const resolveString = (str: string | undefined) => (typeof str === 'string' ? str : undefined);
 const resolveNumber = (num: number | undefined) => {
   return typeof num === 'number' ? '' + num : undefined;
+};
+const resolveStringArray = (arr: string[] | undefined, split = ',') => {
+  return Array.isArray(arr) ? arr.join(split) : undefined;
 };
 
 export const RPCResolvers = Object.fromEntries(
@@ -45,5 +48,23 @@ export const BasicGlobalResolvers = Object.fromEntries(
       'max-concurrent-downloads',
       resolveNumber
     )
+  ].map((r) => [r.field, r])
+);
+
+export const BtInputResolvers = Object.fromEntries(
+  [
+    defineBtInput<'enableLpd'>('enableLpd', 'bt-enable-lpd', resolveBoolean),
+    defineBtInput<'excludeTracker'>('excludeTracker', 'bt-exclude-tracker', resolveStringArray),
+    defineBtInput<'externalIp'>('externalIp', 'bt-external-ip', resolveString),
+    defineBtInput<'forceEncryption'>('forceEncryption', 'bt-force-encryption', resolveBoolean),
+    defineBtInput<'hashCheckSeed'>('hashCheckSeed', 'bt-hash-check-seed', resolveBoolean),
+    defineBtInput<'loadSavedMetadata'>(
+      'loadSavedMetadata',
+      'bt-load-saved-metadata',
+      resolveBoolean
+    ),
+    defineBtInput<'maxPeers'>('maxPeers', 'bt-max-peers', resolveNumber),
+    defineBtInput<'metadataOnly'>('metadataOnly', 'bt-metadata-only', resolveBoolean),
+    defineBtInput<'minCryptoLevel'>('minCryptoLevel', 'bt-min-crypto-level', resolveString) // TODO: enum
   ].map((r) => [r.field, r])
 );

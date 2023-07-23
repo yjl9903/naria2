@@ -4,7 +4,8 @@ import type {
   Aria2RPCOptionsKey,
   Aria2RPCOptions,
   Aria2BasicInputOptions,
-  Aria2BasicGlobalOptions
+  Aria2BasicGlobalOptions,
+  Aria2BtInputOptions
 } from '../types';
 
 export interface Resolver<O extends string, T extends {}, F extends keyof T = keyof T> {
@@ -44,6 +45,18 @@ export function defineBasicGlobal<F extends keyof Aria2BasicGlobalOptions>(
   option: Aria2ClientGlobalOptionKey,
   resolve: (value: Aria2BasicGlobalOptions[F]) => string | undefined
 ): Resolver<Aria2ClientGlobalOptionKey, Aria2BasicGlobalOptions, F> {
+  return {
+    field,
+    option,
+    resolve
+  };
+}
+
+export function defineBtInput<F extends keyof Aria2BtInputOptions>(
+  field: F,
+  option: Aria2ClientInputOptionKey,
+  resolve: (value: Aria2BtInputOptions[F]) => string | undefined
+): Resolver<Aria2ClientInputOptionKey, Aria2BtInputOptions, F> {
   return {
     field,
     option,
