@@ -165,13 +165,15 @@ export interface Aria2BtInputOptions {
   minCryptoLevel: 'plain' | 'arc4';
 
   /**
+   * --bt-prioritize-piece=head[=<SIZE>],tail[=<SIZE>]
+   *
    * Try to download first and last pieces of each file first. This is useful for previewing files. The argument can contain 2 keywords: `head` and `tail`. To include both keywords, they must be separated by comma. These keywords can take one parameter, SIZE. For example, if `head=<SIZE>` is specified, pieces in the range of first SIZE bytes of each file get higher priority. `tail=<SIZE>` means the range of last SIZE bytes of each file. SIZE can include `K` or `M` (1K = 1024, 1M = 1024K). If SIZE is omitted, SIZE=1M is used.
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-prioritize-piece
    */
   prioritizePiece: {
-    head: StrSize;
-    tail: StrSize;
+    head: '' | StrSize;
+    tail: '' | StrSize;
   };
 
   /**
@@ -215,7 +217,7 @@ export interface Aria2BtInputOptions {
    *
    * @default false
    *
-   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-save-metadata
+   * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-bt-seed-unverified
    */
   seedUnverified: boolean;
 
