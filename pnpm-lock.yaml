@@ -63,8 +63,8 @@ importers:
         specifier: workspace:*
         version: link:../options
       maria2:
-        specifier: ^0.3.0
-        version: 0.3.0(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.1
+        version: 0.3.1(uuid@9.0.0)(ws@8.13.0)
       type-fest:
         specifier: ^4.0.0
         version: 4.0.0
@@ -97,8 +97,8 @@ importers:
         specifier: ^7.1.1
         version: 7.1.1
       maria2:
-        specifier: ^0.3.0
-        version: 0.3.0(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.1
+        version: 0.3.1(uuid@9.0.0)(ws@8.13.0)
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -131,8 +131,8 @@ importers:
   packages/options:
     dependencies:
       maria2:
-        specifier: ^0.3.0
-        version: 0.3.0(uuid@9.0.0)(ws@8.13.0)
+        specifier: ^0.3.1
+        version: 0.3.1(uuid@9.0.0)(ws@8.13.0)
       type-fest:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1671,8 +1671,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /maria2@0.3.0(uuid@9.0.0)(ws@8.13.0):
-    resolution: {integrity: sha512-Pida55TrTVfHyc5o19zpinmFebyyOEZ8CMH1vDhgtwNeXsIOTxwMzCbloPELSsM8KllHuPP/tBvhUf+Xbej63g==}
+  /maria2@0.3.1(uuid@9.0.0)(ws@8.13.0):
+    resolution: {integrity: sha512-5PwXVotWHFYk3NBRvGI/K4sPGWEgmpLI/aE5sSWcj38SLkq3YWfYT9wGE42t6o9tUmpUheH4uziyyTy+1aqegw==}
     engines: {node: '>= 14.8.0'}
     peerDependencies:
       uuid: '*'
