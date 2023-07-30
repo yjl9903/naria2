@@ -45,8 +45,8 @@ export async function createClient(_socket: Socket | Promise<Socket>, options: C
   const socket = await _socket;
   const conn = await open(socket, {
     secret: options.secret,
-    timeout: options.timeout,
-    openTimeout: options.openTimeout
+    timeout: options.timeout ?? 5000,
+    openTimeout: options.openTimeout ?? 5000
   });
 
   return new Aria2Client(conn);

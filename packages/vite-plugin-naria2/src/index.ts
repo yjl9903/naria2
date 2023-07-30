@@ -38,6 +38,7 @@ export function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
           childProcessRuntime.url = `ws://127.0.0.1:${
             childProcess.getOptions().listenPort
           }/jsonrpc`;
+          childProcessRuntime.secret = childProcess.getOptions().secret;
         }
 
         // Overwrite server.printUrls

@@ -9,6 +9,7 @@ export default defineConfig({
     BuildInfo(),
     Naria2({
       childProcess: {
+        log: './aria2.log',
         rpc: {
           secret: '123456'
         }
