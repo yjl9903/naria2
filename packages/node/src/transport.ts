@@ -71,6 +71,7 @@ export class ChildProcessSocket implements PreconfiguredSocket {
 
   public getOptions() {
     return {
+      listenPort: this.options.rpc.listenPort,
       secret: this.options.rpc.secret,
       args: this.options.args
     };

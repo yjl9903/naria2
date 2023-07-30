@@ -143,12 +143,18 @@ importers:
 
   packages/vite-plugin-naria2:
     dependencies:
+      '@breadc/death':
+        specifier: ^0.9.6
+        version: 0.9.6
       '@naria2/node':
         specifier: workspace:*
         version: link:../node
       naria2:
         specifier: workspace:*
         version: link:../naria2
+      type-fest:
+        specifier: ^4.1.0
+        version: 4.1.0
     devDependencies:
       vite:
         specifier: ^4.4.7
@@ -365,6 +371,10 @@ packages:
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
     dev: true
+
+  /@breadc/death@0.9.6:
+    resolution: {integrity: sha512-08dVA+sEzXiVVfWZ4lohnc0XUzLNi/roLezQ6+L6qEpPkbwHdArDXtMcj6lbFE73Ix4v1xArrkjkwfhHGbkolQ==}
+    dev: false
 
   /@esbuild/android-arm64@0.17.19:
     resolution: {integrity: sha512-KBMWvEZooR7+kzY0BtbTQn0OAYY7CsiydT63pVEaPtVYF0hXbUaOyZog37DKxK7NF3XacBJOpYT4adIJh+avxA==}
