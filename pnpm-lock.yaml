@@ -141,6 +141,22 @@ importers:
         specifier: ^0.33.0
         version: 0.33.0
 
+  packages/vite-plugin-naria2:
+    dependencies:
+      '@naria2/node':
+        specifier: workspace:*
+        version: link:../node
+      naria2:
+        specifier: workspace:*
+        version: link:../naria2
+    devDependencies:
+      vite:
+        specifier: ^4.4.7
+        version: 4.4.7(@types/node@18.17.1)
+      vitest:
+        specifier: ^0.33.0
+        version: 0.33.0
+
 packages:
 
   /@ampproject/remapping@2.2.1:

@@ -1,6 +1,3 @@
 packages:
-  - packages/node
-  - packages/naria2
-  - packages/naria2c
-  - packages/options
+  - packages/*
   - packages/binary/*
