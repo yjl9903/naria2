@@ -9,6 +9,29 @@
 npm i vite-plugin-naria2
 ```
 
+## Usage
+
+```ts
+import { defineConfig } from 'vite';
+
+import Naria2 from 'vite-plugin-naria2';
+import TopLevelAwait from 'vite-plugin-top-level-await';
+
+export default defineConfig({
+  plugins: [
+    TopLevelAwait(),
+    Naria2({
+      childProcess: {
+        log: './aria2.log', // Used for debug
+        rpc: {
+          secret: '123456' // Use the fixed secret, or generate under the hood
+        }
+      }
+    })
+  ]
+});
+```
+
 ## License
 
 MIT License © 2023 [XLor](https://github.com/yjl9903)

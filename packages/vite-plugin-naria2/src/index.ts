@@ -2,8 +2,8 @@ import type { Plugin } from 'vite';
 import type { PartialDeep } from 'type-fest';
 
 import { onDeath } from '@breadc/death';
+import { createLogger } from 'vite';
 import { bold, cyan, green } from '@breadc/color';
-import { createLogger, defineConfig } from 'vite';
 
 import { Aria2GlobalOptions } from 'naria2';
 import { type ChildProcessOptions, createChildProcess } from '@naria2/node';
@@ -12,7 +12,7 @@ export interface Naria2PluginOptions {
   childProcess?: Partial<ChildProcessOptions> & PartialDeep<Aria2GlobalOptions>;
 }
 
-export function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
+export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
   const logger = createLogger();
 
   const childProcessRuntime = {

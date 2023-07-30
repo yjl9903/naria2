@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite';
 
+import Naria2 from 'vite-plugin-naria2';
 import BuildInfo from 'vite-plugin-info';
-import { Naria2 } from 'vite-plugin-naria2';
 import TopLevelAwait from 'vite-plugin-top-level-await';
 
 export default defineConfig({
   plugins: [
     BuildInfo(),
+    TopLevelAwait(),
     Naria2({
       childProcess: {
         log: './aria2.log',
@@ -14,7 +15,6 @@ export default defineConfig({
           secret: '123456'
         }
       }
-    }),
-    TopLevelAwait()
+    })
   ]
 });
