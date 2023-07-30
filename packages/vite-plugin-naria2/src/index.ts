@@ -27,11 +27,18 @@ export function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
       async configureServer(server) {
         const _printUrls = server.printUrls;
 
-        const childProcess = await createChildProcess(options.childProcess);
-        onDeath(() => {
-          childProcess.close();
-        });
-        childProcessRuntime.url = `ws://127.0.0.1:${childProcess.getOptions().listenPort}/jsonrpc`;
+        if (!childProcessRuntime.url) {
+          const childProcess = await createChildProcess(options.childProcess);
+          onDeath(() => {
+            childProcess.close?.();
+            childProcessRuntime.url = undefined;
+            childProcessRuntime.secret = undefined;
+          });
+
+          childProcessRuntime.url = `ws://127.0.0.1:${
+            childProcess.getOptions().listenPort
+          }/jsonrpc`;
+        }
 
         // Overwrite server.printUrls
         // https://github.com/kinfuy/vite-plugin-shortcuts/issues/1
