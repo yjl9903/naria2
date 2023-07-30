@@ -2,11 +2,13 @@
 
 [![version](https://img.shields.io/npm/v/naria2?label=naria2)](https://www.npmjs.com/package/naria2)
 [![version](https://img.shields.io/npm/v/naria2c?label=naria2c)](https://www.npmjs.com/package/naria2c)
+[![version](https://img.shields.io/npm/v/vite-plugin-naria2?label=vite-plugin-naria2)](https://www.npmjs.com/package/vite-plugin-naria2)
 [![CI](https://github.com/yjl9903/naria2/actions/workflows/ci.yml/badge.svg)](https://github.com/yjl9903/naria2/actions/workflows/ci.yml)
 
 High-level and Convenient BitTorrent Client based on aria2 JSON-RPC.
 
 + [x] Download aria2 for your platform
++ [x] Vite plugin which helps you develop aria2 client application
 + [ ] Simple BitTorrent downloading API
 + [ ] Event bus for progress, state change, and so on
 
