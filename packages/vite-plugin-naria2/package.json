@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-naria2",
   "version": "0.0.9-beta.3",
-  "description": "Vite naria2 intergration",
+  "description": "Vite naria2 integration",
   "keywords": [
     "aria2",
     "aria2c",
@@ -10,7 +10,8 @@
     "websocket",
     "bittorrent",
     "typescript",
-    "vite"
+    "vite",
+    "vite-plugin"
   ],
   "homepage": "https://github.com/yjl9903/naria2#readme",
   "bugs": {
