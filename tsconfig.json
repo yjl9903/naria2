@@ -22,6 +22,9 @@
       ],
       "@naria2/options": [
         "./packages/options/src/index.ts"
+      ],
+      "vite-plugin-naria2": [
+        "./packages/vite-plugin-naria2/src/index.ts"
       ]
     }
   },

@@ -1,0 +1,31 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ESNext",
+    "types": [
+      "vite-plugin-info/client",
+      "vite-plugin-naria2/client"
+    ],
+    "useDefineForClassFields": true
+  },
+  "exclude": [
+    "**/dist/**"
+  ],
+  "include": [
+    "./*.d.ts",
+    "./*.ts"
+  ]
+}
