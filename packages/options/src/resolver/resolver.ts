@@ -115,9 +115,12 @@ export const BtInputResolvers = Object.fromEntries(
     defineBtInput<'followTorrent'>('followTorrent', 'follow-torrent', (str) => {
       if (str === 'mem') return 'mem';
       else return typeof str === 'boolean' ? (str ? 'true' : 'false') : undefined;
+    }),
+    defineBtInput<'indexOut'>('indexOut', 'index-out', (obj) => {
+      const map = Object.entries(obj)
+        .filter(([k, v]) => typeof k === 'string' && typeof v === 'string')
+        .map(([k, v]) => `${k}=${v}`);
+      return map.length > 0 ? map : undefined;
     })
-    // defineBtInput<'indexOut'>('indexOut', 'index-out', (obj) => {
-    //   return undefined;
-    // })
   ].map((r) => [r.field, r])
 );

@@ -8,7 +8,8 @@ import {
   type Aria2GlobalOptions,
   resolveGlobalOptions,
   isDef,
-  resolveRPCOptions
+  resolveRPCOptions,
+  stringifyCliOptions
 } from '@naria2/options';
 import { getPortPromise } from 'portfinder';
 import { type Socket, type PreconfiguredSocket, createWebSocket } from 'maria2/transport';
@@ -128,10 +129,7 @@ export async function createChildProcess(
   const aria2Args = resolveGlobalOptions(options);
   const aria2RpcArgs = resolveRPCOptions(rpcOptions);
 
-  resolvedArgs.push(
-    '--enable-rpc',
-    ...Object.entries({ ...aria2Args, ...aria2RpcArgs }).map(([k, v]) => `--${k}=${v}`)
-  );
+  resolvedArgs.push('--enable-rpc', ...stringifyCliOptions({ ...aria2Args, ...aria2RpcArgs }));
 
   const child = spawn(resolvedArgs, resolvedOptions.spawn);
   await new Promise((res, rej) => {
