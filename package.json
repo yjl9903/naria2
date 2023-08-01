@@ -27,7 +27,7 @@
     "typescript": "^5.1.6",
     "unbuild": "^1.2.1",
     "vite": "^4.4.7",
-    "vitest": "^0.33.0",
+    "vitest": "^0.34.1",
     "ws": "^8.13.0"
   },
   "packageManager": "pnpm@8.6.11",
