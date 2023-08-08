@@ -48,7 +48,7 @@
     "execa": "^7.2.0",
     "maria2": "^0.3.2",
     "portfinder": "^1.0.32",
-    "type-fest": "^4.1.0",
+    "type-fest": "^4.2.0",
     "ws": "^8.13.0"
   },
   "optionalDependencies": {
