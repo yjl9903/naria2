@@ -57,11 +57,11 @@
     "type-fest": "^4.2.0"
   },
   "devDependencies": {
-    "vite": "^4.4.8",
+    "vite": "^4.4.9",
     "vitest": "^0.34.1"
   },
   "peerDependencies": {
-    "vite": "^4.4.8"
+    "vite": "^4.4.9"
   },
   "engines": {
     "node": ">=v20.1.0"
