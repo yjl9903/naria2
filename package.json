@@ -21,7 +21,7 @@
     "@types/node": "^18.17.6",
     "@types/ws": "^8.5.5",
     "bumpp": "latest",
-    "execa": "^7.2.0",
+    "execa": "^8.0.1",
     "naria2": "workspace:*",
     "turbo": "^1.10.12",
     "typescript": "^5.1.6",
