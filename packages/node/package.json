@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@naria2/options": "workspace:*",
-    "execa": "^7.2.0",
+    "execa": "^8.0.1",
     "maria2": "^0.3.2",
     "portfinder": "^1.0.32",
     "type-fest": "^4.2.0",
