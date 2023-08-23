@@ -23,7 +23,7 @@
     "bumpp": "latest",
     "execa": "^8.0.1",
     "naria2": "workspace:*",
-    "turbo": "^1.10.12",
+    "turbo": "^1.10.13",
     "typescript": "^5.1.6",
     "unbuild": "^2.0.0",
     "vite": "^4.4.9",
