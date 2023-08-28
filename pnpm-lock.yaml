@@ -171,6 +171,9 @@ importers:
       date-fns:
         specifier: ^2.30.0
         version: 2.30.0
+      naria2:
+        specifier: workspace:*
+        version: link:../packages/naria2
     devDependencies:
       vite:
         specifier: ^4.4.9
