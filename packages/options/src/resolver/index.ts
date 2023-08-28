@@ -8,11 +8,21 @@ import type {
   Aria2ProxyOptions,
   Aria2RPCOptionsKey,
   Aria2BasicInputOptions,
-  Aria2BasicGlobalOptions
+  Aria2BasicGlobalOptions,
+  Aria2BtInputOptions,
+  Aria2BtGlobalOptions,
+  Aria2BtGlobalOptionsKey
 } from '../types';
 
 import { resolveArray, isDef } from '../utils';
-import { BasicGlobalResolvers, BasicInputResolvers, RPCResolvers, Resolver } from './resolver';
+import {
+  BasicGlobalResolvers,
+  BasicInputResolvers,
+  BtGlobalResolvers,
+  BtInputResolvers,
+  RPCResolvers,
+  Resolver
+} from './resolver';
 
 export function resolveProxyOptions(
   options?: PartialDeep<Aria2ProxyOptions>
@@ -112,25 +122,35 @@ const resolveBasicInputOptions: (
   options?: PartialDeep<Aria2BasicInputOptions>
 ) => Partial<Record<Aria2ClientInputOptionKey, string>> = useResolver(BasicInputResolvers);
 
+const resolveBtInputOptions: (
+  options?: PartialDeep<Aria2BtInputOptions>
+) => Partial<Record<Aria2ClientInputOptionKey, string | string[]>> = useResolver(BtInputResolvers);
+
 const resolveBasicGlobalOptions: (
   options?: PartialDeep<Aria2BasicGlobalOptions>
 ) => Partial<Record<Aria2ClientInputOptionKey, string>> = useResolver(BasicGlobalResolvers);
 
+const resolveBtGlobalOptions: (
+  options?: PartialDeep<Aria2BtGlobalOptions>
+) => Partial<Record<Aria2BtGlobalOptionsKey, string | string[]>> = useResolver(BtGlobalResolvers);
+
 export function resolveInputOptions(
   options: PartialDeep<Aria2InputOptions>
-): Partial<Record<Aria2ClientInputOptionKey, string>> {
+): Partial<Record<Aria2ClientInputOptionKey, string | string[]>> {
   return {
     ...('proxy' in options ? resolveProxyOptions(options.proxy) : {}),
-    ...resolveBasicInputOptions(options)
+    ...resolveBasicInputOptions(options),
+    ...resolveBtInputOptions(options.bt)
   };
 }
 
 export function resolveGlobalOptions(
   options: PartialDeep<Aria2GlobalOptions>
-): Partial<Record<Aria2ClientInputOptionKey & Aria2ClientGlobalOptionKey, string>> {
+): Partial<Record<Aria2ClientInputOptionKey & Aria2ClientGlobalOptionKey, string | string[]>> {
   return {
     ...('proxy' in options ? resolveProxyOptions(options.proxy) : {}),
     ...resolveBasicInputOptions(options),
-    ...resolveBasicGlobalOptions(options)
+    ...resolveBasicGlobalOptions(options),
+    ...resolveBtGlobalOptions(options.bt)
   };
 }

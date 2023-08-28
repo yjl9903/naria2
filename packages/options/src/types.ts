@@ -2,6 +2,8 @@ import { MergeDeep } from 'type-fest';
 
 export type StrSize = `${number}${'' | 'K' | 'M'}`;
 
+export type ListenPorts = number | `${number}` | [number, number] | `${number}-${number}`;
+
 /**
  * @link https://aria2.github.io/manual/en/html/aria2c.html#basic-options
  */
@@ -349,7 +351,7 @@ export interface Aria2BtGlobalOptions {
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-listen-port
    */
-  listenPort: number[];
+  listenPort: ListenPorts[];
 
   /**
    * Set max overall upload speed in bytes/sec. `0` means unrestricted. You can append `K` or `M` (1K = 1024, 1M = 1024K). To limit the upload speed per torrent, use [--max-upload-limit](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-0) option.
@@ -440,7 +442,7 @@ export interface Aria2DhtGlobalOptions {
    *
    * @link https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-dht-listen-port
    */
-  listenPort: number[];
+  listenPort: ListenPorts[];
 
   /**
    * Set timeout in seconds.
@@ -670,6 +672,15 @@ export type Aria2RPCOptionsKey =
   | 'rpc-save-upload-metadata'
   | 'rpc-secret'
   | 'rpc-secure';
+
+export type Aria2BtGlobalOptionsKey =
+  | 'bt-detach-seed-only'
+  | 'bt-lpd-interface'
+  | 'bt-max-open-files'
+  | 'listen-port'
+  | 'max-overall-upload-limit'
+  | 'peer-id-prefix'
+  | 'peer-agent';
 
 /**
  * @link https://aria2.github.io/manual/en/html/aria2c.html#rpc-options

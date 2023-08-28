@@ -1,4 +1,12 @@
-import { defineBasicGlobal, defineBasicInput, defineBtInput, defineRPC } from './types';
+import type { ListenPorts } from '../types';
+
+import {
+  defineBasicGlobal,
+  defineBasicInput,
+  defineBtGlobal,
+  defineBtInput,
+  defineRPC
+} from './types';
 
 export type { Resolver } from './types';
 
@@ -15,8 +23,25 @@ const resolveEnums =
   <T extends string>(enums: T[]) =>
   (str: string | undefined): T | undefined =>
     typeof str === 'string' && enums.includes(str as T) ? (str as T) : undefined;
+
 const resolveSize = (str: string | undefined) => {
   return typeof str === 'string' && /^(\d+)[KM]?$/.test(str) ? str : undefined;
+};
+
+const resolveListenPorts = (strs: ListenPorts[] | undefined) => {
+  if (!Array.isArray(strs)) return undefined;
+  return strs
+    .map((str) => {
+      if (typeof str === 'number') {
+        return '' + str;
+      } else if (typeof str === 'string') {
+        return str;
+      } else if (Array.isArray(str) && str.length === 2) {
+        return `${str[0]},${str[1]}`;
+      }
+    })
+    .filter(Boolean)
+    .join(',');
 };
 
 export const RPCResolvers = Object.fromEntries(
@@ -121,6 +146,25 @@ export const BtInputResolvers = Object.fromEntries(
         .filter(([k, v]) => typeof k === 'string' && typeof v === 'string')
         .map(([k, v]) => `${k}=${v}`);
       return map.length > 0 ? map : undefined;
-    })
+    }),
+    defineBtInput<'maxUploadLimit'>('maxUploadLimit', 'max-upload-limit', resolveSize),
+    defineBtInput<'seedRatio'>('seedRatio', 'seed-ratio', resolveString),
+    defineBtInput<'seedTime'>('seedTime', 'seed-time', resolveString)
+  ].map((r) => [r.field, r])
+);
+
+export const BtGlobalResolvers = Object.fromEntries(
+  [
+    defineBtGlobal<'detachSeedOnly'>('detachSeedOnly', 'bt-detach-seed-only', resolveBoolean),
+    defineBtGlobal<'lpdInterface'>('lpdInterface', 'bt-lpd-interface', resolveString),
+    defineBtGlobal<'maxOpenFiles'>('maxOpenFiles', 'bt-max-open-files', resolveNumber),
+    defineBtGlobal<'listenPort'>('listenPort', 'listen-port', resolveListenPorts),
+    defineBtGlobal<'maxOverallUploadLimit'>(
+      'maxOverallUploadLimit',
+      'max-overall-upload-limit',
+      resolveSize
+    ),
+    defineBtGlobal<'peerIdPrefix'>('peerIdPrefix', 'peer-id-prefix', resolveString),
+    defineBtGlobal<'peerAgent'>('peerAgent', 'peer-agent', resolveString)
   ].map((r) => [r.field, r])
 );

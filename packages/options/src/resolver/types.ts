@@ -5,7 +5,9 @@ import type {
   Aria2RPCOptions,
   Aria2BasicInputOptions,
   Aria2BasicGlobalOptions,
-  Aria2BtInputOptions
+  Aria2BtInputOptions,
+  Aria2BtGlobalOptions,
+  Aria2BtGlobalOptionsKey
 } from '../types';
 
 type OptionValueType<O extends string> = O extends 'header' | 'index-out' | 'indexOut'
@@ -61,6 +63,18 @@ export function defineBtInput<F extends keyof Aria2BtInputOptions>(
   option: Aria2ClientInputOptionKey,
   resolve: (value: Aria2BtInputOptions[F]) => OptionValueType<F> | undefined
 ): Resolver<Aria2ClientInputOptionKey, Aria2BtInputOptions, F> {
+  return {
+    field,
+    option,
+    resolve
+  };
+}
+
+export function defineBtGlobal<F extends keyof Aria2BtGlobalOptions>(
+  field: F,
+  option: Aria2BtGlobalOptionsKey,
+  resolve: (value: Aria2BtGlobalOptions[F]) => OptionValueType<F> | undefined
+): Resolver<Aria2BtGlobalOptionsKey, Aria2BtGlobalOptions, F> {
   return {
     field,
     option,
