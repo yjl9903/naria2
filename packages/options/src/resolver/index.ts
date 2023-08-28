@@ -151,6 +151,7 @@ export function resolveGlobalOptions(
     ...('proxy' in options ? resolveProxyOptions(options.proxy) : {}),
     ...resolveBasicInputOptions(options),
     ...resolveBasicGlobalOptions(options),
+    ...resolveBtInputOptions(options.bt),
     ...resolveBtGlobalOptions(options.bt)
   };
 }

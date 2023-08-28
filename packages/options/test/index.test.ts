@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { resolveRPCOptions } from '../src';
+import { resolveGlobalOptions, resolveRPCOptions, stringifyCliOptions } from '../src';
 
 describe('aria2 options', () => {
   it('resolve RPC options', async () => {
@@ -30,6 +30,26 @@ describe('aria2 options', () => {
         "rpc-secret": "666666",
         "rpc-secure": "false",
       }
+    `);
+  });
+
+  it('resolve global options', () => {
+    expect(
+      stringifyCliOptions(
+        resolveGlobalOptions({
+          bt: {
+            indexOut: {
+              a: 'b',
+              c: 'd'
+            }
+          }
+        })
+      )
+    ).toMatchInlineSnapshot(`
+      [
+        "--index-out=a=b",
+        "--index-out=c=d",
+      ]
     `);
   });
 });
