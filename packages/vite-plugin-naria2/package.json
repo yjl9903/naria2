@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "vite": "^4.4.9",
-    "vitest": "^0.34.3"
+    "vitest": "^0.34.4"
   },
   "peerDependencies": {
     "vite": "^4.4.9"
