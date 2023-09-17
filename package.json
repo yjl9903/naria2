@@ -30,7 +30,7 @@
     "vitest": "^0.34.4",
     "ws": "^8.13.0"
   },
-  "packageManager": "pnpm@8.7.5",
+  "packageManager": "pnpm@8.7.6",
   "engines": {
     "node": ">=v20.1.0"
   }
