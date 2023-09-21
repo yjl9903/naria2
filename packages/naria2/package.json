@@ -68,7 +68,7 @@
   "devDependencies": {
     "@naria2/node": "workspace:*",
     "@types/ws": "^8.5.5",
-    "vitest": "^0.34.4",
+    "vitest": "^0.34.5",
     "ws": "^8.13.0"
   },
   "peerDependencies": {
