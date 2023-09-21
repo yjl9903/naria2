@@ -49,7 +49,7 @@
     "maria2": "^0.3.2",
     "portfinder": "^1.0.32",
     "type-fest": "^4.3.1",
-    "ws": "^8.13.0"
+    "ws": "^8.14.2"
   },
   "optionalDependencies": {
     "@naria2/darwin-arm64": "workspace:*",
