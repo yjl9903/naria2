@@ -22,8 +22,9 @@ try {
     const content = result.stdout;
     const { version } = await getPackage();
 
-    console.log(`naria2c/${version}`);
-    console.log(`--------------------`);
+    const banner = `naria2c/${version}`;
+    console.log(banner);
+    console.log('-'.repeat(banner.length));
     console.log(content);
   } else {
     childProcess.pipeStdout(process.stdout);

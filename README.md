@@ -66,9 +66,40 @@ const client = await createClient(createChildProcess())
 
 ## Cross-platform aria2c
 
+It is used in the same way as [aria2](https://aria2.github.io/manual/en/html/index.html).
+
 ```bash
-npm i -g naria2c
-naria2c --help
+$ npm i -g naria2c
+
+$ naria2c --version
+naria2c/0.0.9-beta.4
+--------------------
+aria2 version 1.36.0
+Copyright (C) 2006, 2019 Tatsuhiro Tsujikawa
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+** Configuration **
+Enabled Features: Async DNS, BitTorrent, Firefox3 Cookie, GZip, HTTPS, Message Digest, Metalink, XML-RPC, SFTP
+Hash Algorithms: sha-1, sha-224, sha-256, sha-384, sha-512, md5, adler32
+Libraries: zlib/1.2.13 expat/2.2.8 sqlite3/3.30.0 AppleTLS c-ares/1.15.0 libssh2/1.10.0
+Compiler: Apple LLVM 14.0.3 (clang-1403.0.22.14.1)
+  built by  aarch64-apple-darwin22.4.0
+  on        Apr 28 2023 15:20:19
+System: Darwin 23.0.0 Darwin Kernel Version 23.0.0: Fri Sep 15 14:41:34 PDT 2023; root:xnu-10002.1.13~1/RELEASE_ARM64_T8103 arm64
+
+Report bugs to https://github.com/aria2/aria2/issues
+Visit https://aria2.github.io/
+
+$ naria2c --help
 ```
 
 ## Credits
