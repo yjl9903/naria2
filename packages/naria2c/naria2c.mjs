@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 
-import { run } from '@naria2/node';
 import { readFile } from 'fs/promises';
+
+import { run } from '@naria2/node';
+import { onDeath } from '@breadc/death';
 
 try {
   const args = process.argv.slice(2);
   const childProcess = run(args);
+
+  onDeath((signal) => {
+    childProcess.kill(signal);
+  });
 
   if (args.includes('-h') || args.includes('--help')) {
     const result = await childProcess;

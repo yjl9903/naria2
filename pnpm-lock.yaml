@@ -84,6 +84,9 @@ importers:
 
   packages/naria2c:
     dependencies:
+      '@breadc/death':
+        specifier: ^0.9.6
+        version: 0.9.6
       '@naria2/node':
         specifier: workspace:*
         version: link:../node
