@@ -44,8 +44,13 @@ try {
     process.kill(childProcess.signal);
   }
 } catch (error) {
-  console.error(error);
-  process.exit(1);
+  if (error.message) {
+    console.log(error.message);
+  }
+  if (process.env.DEBUG === 'naria2' || process.env.DEBUG === 'naria2c') {
+    console.error(error);
+  }
+  process.exit(process.exitCode ?? 1);
 }
 
 async function getPackage() {
