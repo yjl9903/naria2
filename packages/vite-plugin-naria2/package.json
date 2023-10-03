@@ -57,7 +57,7 @@
     "type-fest": "^4.3.3"
   },
   "devDependencies": {
-    "vite": "^4.4.9",
+    "vite": "^4.4.10",
     "vitest": "^0.34.6"
   },
   "peerDependencies": {
