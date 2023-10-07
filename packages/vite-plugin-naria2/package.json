@@ -54,7 +54,7 @@
     "@breadc/death": "^0.9.6",
     "@naria2/node": "workspace:*",
     "naria2": "workspace:*",
-    "type-fest": "^4.3.3"
+    "type-fest": "^4.4.0"
   },
   "devDependencies": {
     "vite": "^4.4.11",
