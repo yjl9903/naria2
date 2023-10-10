@@ -15,8 +15,8 @@ importers:
         specifier: ^18.18.4
         version: 18.18.4
       '@types/ws':
-        specifier: ^8.5.6
-        version: 8.5.6
+        specifier: ^8.5.7
+        version: 8.5.7
       bumpp:
         specifier: latest
         version: 9.2.0
@@ -73,8 +73,8 @@ importers:
         specifier: workspace:*
         version: link:../node
       '@types/ws':
-        specifier: ^8.5.6
-        version: 8.5.6
+        specifier: ^8.5.7
+        version: 8.5.7
       vitest:
         specifier: ^0.34.6
         version: 0.34.6
@@ -1121,10 +1121,6 @@ packages:
     resolution: {integrity: sha512-VeiPZ9MMwXjO32/Xu7+OwflfmeoRwkE/qzndw42gGtgJwZopBnzy2gD//NN1+go1mADzkDcqf/KnFRSjTJ8xJA==}
     dev: true
 
-  /@types/node@18.17.19:
-    resolution: {integrity: sha512-+pMhShR3Or5GR0/sp4Da7FnhVmTalWm81M6MkEldbwjETSaPalw138Z4KdpQaistvqQxLB7Cy4xwYdxpbSOs9Q==}
-    dev: true
-
   /@types/node@18.18.1:
     resolution: {integrity: sha512-3G42sxmm0fF2+Vtb9TJQpnjmP+uKlWvFa8KoEGquh4gqRmoUG/N0ufuhikw6HEsdG2G2oIKhog1GCTfz9v5NdQ==}
     dev: true
@@ -1137,10 +1133,10 @@ packages:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
     dev: true
 
-  /@types/ws@8.5.6:
-    resolution: {integrity: sha512-8B5EO9jLVCy+B58PLHvLDuOD8DRVMgQzq8d55SjLCOn9kqGyqOvy27exVaTio1q1nX5zLu8/6N0n2ThSxOM6tg==}
+  /@types/ws@8.5.7:
+    resolution: {integrity: sha512-6UrLjiDUvn40CMrAubXuIVtj2PEfKDffJS7ychvnPU44j+KVeXmdHHTgqcM/dxLUTHxlXHiFM8Skmb8ozGdTnQ==}
     dependencies:
-      '@types/node': 18.17.19
+      '@types/node': 18.18.4
     dev: true
 
   /@vitest/expect@0.34.6:
