@@ -11,7 +11,7 @@
     "naria2": "workspace:*"
   },
   "devDependencies": {
-    "vite": "^4.4.11",
+    "vite": "^4.5.0",
     "vite-plugin-info": "^0.4.1",
     "vite-plugin-naria2": "workspace:*",
     "vite-plugin-top-level-await": "^1.3.1"
