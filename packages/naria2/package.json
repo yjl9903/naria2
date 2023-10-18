@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@naria2/node": "workspace:*",
-    "@types/ws": "^8.5.7",
+    "@types/ws": "^8.5.8",
     "vitest": "^0.34.6",
     "ws": "^8.14.2"
   },
