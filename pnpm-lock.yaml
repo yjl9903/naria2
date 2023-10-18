@@ -85,8 +85,8 @@ importers:
   packages/naria2c:
     dependencies:
       '@breadc/death':
-        specifier: ^0.9.6
-        version: 0.9.6
+        specifier: ^0.9.7
+        version: 0.9.7
       '@naria2/node':
         specifier: workspace:*
         version: link:../node
@@ -147,11 +147,11 @@ importers:
   packages/vite-plugin-naria2:
     dependencies:
       '@breadc/color':
-        specifier: ^0.9.6
-        version: 0.9.6
+        specifier: ^0.9.7
+        version: 0.9.7
       '@breadc/death':
-        specifier: ^0.9.6
-        version: 0.9.6
+        specifier: ^0.9.7
+        version: 0.9.7
       '@naria2/node':
         specifier: workspace:*
         version: link:../node
@@ -405,12 +405,12 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@breadc/color@0.9.6:
-    resolution: {integrity: sha512-a2/ANjnrg7zGw+RF4GLQMCw/umI+T8us79Qha/l9NdEUzqEEk+STZHCA9fYjLsnBh7jfDGaW72a7HkmSIr3h4Q==}
+  /@breadc/color@0.9.7:
+    resolution: {integrity: sha512-kO795IASRzZrlr4XOkyAS11MLeJOmKDVFSuetsim5VLrUPaFz+R01c1uYB4ggxIPaveRSIOfVEoPLwF+9dZm9g==}
     dev: false
 
-  /@breadc/death@0.9.6:
-    resolution: {integrity: sha512-08dVA+sEzXiVVfWZ4lohnc0XUzLNi/roLezQ6+L6qEpPkbwHdArDXtMcj6lbFE73Ix4v1xArrkjkwfhHGbkolQ==}
+  /@breadc/death@0.9.7:
+    resolution: {integrity: sha512-eIWHb5Hrnd5j/RLSgbY1mtRPECMSjRbqlxZmlG+mgNi0h0YNieaS86EYsIHxnPT+J682N/OE7LoHSVDTRmp6jw==}
     dev: false
 
   /@esbuild/android-arm64@0.18.20:
