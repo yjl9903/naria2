@@ -44,7 +44,20 @@ try {
     console.log();
     console.log(`naria2c is a cross-platform wrapper of aria2c.`);
     console.log();
-    console.log(help);
+
+    const idx = help.indexOf('\n -l, --log=LOG');
+    console.log(help.slice(0, idx));
+    console.log(' --ui                         Launch the naria2c Web UI.');
+    console.log(
+      '                              Note: This is provided by naria2c instead of the original aria2c'
+    );
+    console.log();
+    console.log(' --port=PORT                  Specify the listen port of Web UI.');
+    console.log('                              Default: 6801');
+    console.log(
+      '                              Note: This is provided by naria2c instead of the original aria2c'
+    );
+    console.log(help.slice(idx));
   } else if (args.includes('-v') || args.includes('--version')) {
     const result = await childProcess;
     const content = result.stdout;
