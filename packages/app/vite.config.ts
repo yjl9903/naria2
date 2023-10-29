@@ -3,9 +3,11 @@ import { fileURLToPath } from 'node:url';
 
 import { defineConfig } from 'vite';
 
-import Naria2 from 'vite-plugin-naria2';
 import BuildInfo from 'vite-plugin-info';
+import react from '@vitejs/plugin-react-swc';
 import TopLevelAwait from 'vite-plugin-top-level-await';
+
+import Naria2 from '../vite-plugin-naria2/src';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -17,6 +19,7 @@ export default defineConfig({
     }
   },
   plugins: [
+    react(),
     BuildInfo(),
     TopLevelAwait(),
     Naria2({

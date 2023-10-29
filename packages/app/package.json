@@ -8,9 +8,16 @@
   },
   "dependencies": {
     "date-fns": "^2.30.0",
-    "naria2": "workspace:*"
+    "naria2": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "zustand": "^4.4.4"
   },
   "devDependencies": {
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "@vitejs/plugin-react-swc": "^3.4.0",
     "vite": "^4.5.0",
     "vite-plugin-info": "^0.4.1",
     "vite-plugin-naria2": "workspace:*",

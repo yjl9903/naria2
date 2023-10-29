@@ -50,7 +50,7 @@ export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
             const colorUrl = (url: string) =>
               cyan(url.replace(/:(\d+)\//, (_, port) => `:${bold(port)}/`));
             logger.info(
-              `  ${green('➜')}  ${bold('Pages')}:   ${colorUrl(childProcessRuntime.url)}\n`
+              `  ${green('➜')}  ${bold('Naria2')}:  ${colorUrl(childProcessRuntime.url)}\n`
             );
           }
         };
