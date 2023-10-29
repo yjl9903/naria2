@@ -12,17 +12,30 @@ function Layout(props: { children: React.ReactElement }) {
   });
 
   return (
-    <>
-      <main>{props.children}</main>
-      <footer>
+    <div className="h-screen flex flex-col">
+      <header className="relative z-40 border-b text-primary px-3 sm:px-12">
+        <div className="mx-auto">
+          <div className="flex items-center pb-2 pt-3 md:pb-3 md:pt-4">
+            <div className="hidden items-center rounded px-1 py-2 text-2xl font-medium leading-none text-primary transition hover:bg-secondary sm:flex select-none">
+              naria2
+            </div>
+            <div className="flex-grow"></div>
+          </div>
+          <div></div>
+        </div>
+      </header>
+
+      <main className="px-3 sm:px-12 flex-grow">{props.children}</main>
+
+      <footer className="px-3 sm:px-12 mt-12 pb-4 text-gray-500">
         <p>
-          <span>Aria2 version = {data?.version}</span>
+          <span>aria2 version = {data?.version}</span>
         </p>
         <p>
-          <span>Enabled features = {JSON.stringify(data?.enabledFeatures ?? 'null')}</span>
+          <span>Features = {JSON.stringify(data?.enabledFeatures ?? 'null')}</span>
         </p>
       </footer>
-    </>
+    </div>
   );
 }
 
