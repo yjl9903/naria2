@@ -9,7 +9,6 @@ import { onDeath } from '@breadc/death';
 import { bold, green } from '@breadc/color';
 
 const { aria2: args, webui, debug: DEBUG } = resolveCliArgs(process.argv.slice(2));
-console.log(args);
 
 /**
  * @type {import('http').Server}
