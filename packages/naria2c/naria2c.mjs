@@ -2,19 +2,24 @@
 
 import { Transform } from 'stream';
 import { readFile } from 'fs/promises';
+import { fileURLToPath } from 'url';
 
 import { run } from '@naria2/node';
 import { onDeath } from '@breadc/death';
+import { bold, green } from '@breadc/color';
+
+const { aria2: args, webui, debug: DEBUG } = resolveCliArgs(process.argv.slice(2));
+
+/**
+ * @type {import('http').Server}
+ */
+let server;
 
 try {
-  const { aria2: args, webui, debug: DEBUG } = resolveCliArgs(process.argv.slice(2));
-  if (DEBUG) {
-    console.log(`Args: ${args.join(' ')}`);
-  }
-
   const childProcess = run(args, { detached: true });
 
   const cancelDeath = onDeath(async (signal) => {
+    server?.close();
     childProcess.kill(signal);
 
     await Promise.race([
@@ -72,7 +77,12 @@ try {
 
     childProcess.stdout.pipe(process.stdout);
     childProcess.stderr.pipe(transformStderr()).pipe(process.stderr);
+    childProcess.once('spawn', async () => {
+      server = await attachWebUI(webui);
+    });
+
     await childProcess;
+    server?.close();
 
     cancelDeath();
   }
@@ -86,6 +96,8 @@ try {
   if (DEBUG) {
     console.error(error);
   }
+
+  server?.close();
   process.exit(process.exitCode ?? 1);
 }
 
@@ -143,17 +155,34 @@ async function attachWebUI(options) {
     return undefined;
   }
 
-  const serveStatic = await import('serve-static');
-  const finalhandler = await import('finalhandler');
+  const serveStatic = (await import('serve-static')).default;
+  const finalhandler = (await import('finalhandler')).default;
   const http = await import('http');
 
-  const clientDir = new URL('./client', import.meta.url);
+  const clientDir = fileURLToPath(new URL('./client', import.meta.url));
   const serve = serveStatic(clientDir, { index: ['index.html'] });
   const server = http.createServer((req, res) => {
     serve(req, res, finalhandler(req, res));
   });
 
   server.listen(options.port);
+
+  {
+    const now = new Date();
+    const date = `${padStart(now.getMonth() + 1)}/${padStart(now.getDate())}`;
+    const time = `${padStart(now.getHours())}:${padStart(now.getMinutes())}:${padStart(
+      now.getSeconds()
+    )}`;
+    console.log(
+      `${date} ${time} [${bold(green('NOTICE'))}] WebUI is listening on the http://127.0.0.1:${
+        options.port
+      }`
+    );
+
+    function padStart(str) {
+      return String(str).padStart(2, '0');
+    }
+  }
 
   return server;
 }

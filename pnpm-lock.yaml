@@ -163,6 +163,9 @@ importers:
 
   packages/naria2c:
     dependencies:
+      '@breadc/color':
+        specifier: ^0.9.7
+        version: 0.9.7
       '@breadc/death':
         specifier: ^0.9.7
         version: 0.9.7
