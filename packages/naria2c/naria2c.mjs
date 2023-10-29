@@ -9,6 +9,7 @@ import { onDeath } from '@breadc/death';
 import { bold, green } from '@breadc/color';
 
 const { aria2: args, webui, debug: DEBUG } = resolveCliArgs(process.argv.slice(2));
+console.log(args);
 
 /**
  * @type {import('http').Server}
@@ -135,14 +136,23 @@ function resolveCliArgs(args) {
   const aria2 = [];
   const webui = {
     enable: false,
-    port: 6801
+    open: false,
+    port: 6801,
+    rpc: undefined
   };
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    if (arg.startsWith('--ui')) {
+
+    const resolveBoolean = () => {
       const enable = (arg.split('=').at(1) ?? 'true').toLowerCase();
-      webui.enable = ['true', 'yes', 'on', 't', 'y'].includes(enable);
+      return ['true', 'yes', 'on', 't', 'y'].includes(enable);
+    };
+
+    if (arg.startsWith('--ui')) {
+      webui.enable = resolveBoolean();
+    } else if (arg.startsWith('--open')) {
+      webui.open = resolveBoolean();
     } else if (arg.startsWith('--port')) {
       let port = arg.split('=').at(1);
       if (port === undefined && i + 1 < args.length && /^\d+$/.test(args[i + 1])) {
@@ -153,6 +163,69 @@ function resolveCliArgs(args) {
       }
     } else {
       aria2.push(arg);
+    }
+  }
+
+  if (webui.enable) {
+    const rpc = {
+      port: 6800,
+      secret: '123456'
+    };
+    const missing = {
+      enable: true,
+      cors: true,
+      port: true,
+      secret: true
+    };
+
+    for (let i = 0; i < aria2.length; i++) {
+      const arg = aria2[i];
+
+      const fixBoolean = (opt) => {
+        const enable = arg.split('=').at(1);
+        if (enable !== undefined) {
+          if (enable.toLowerCase() !== 'true') {
+            aria2[i] = opt;
+          }
+        } else {
+          if (i + 1 < aria2.length && aria2[i + 1].toLowerCase() === 'false') {
+            aria2[i + 1] = 'true';
+          }
+        }
+      };
+
+      const readString = () => {
+        const text = arg.split('=').slice(1).join('=');
+        if (text) {
+          return text;
+        }
+        return aria2[i + 1] ?? '';
+      };
+
+      if (arg.startsWith('--enable-rpc')) {
+        missing.enable = false;
+        fixBoolean(`--enable-rpc=true`);
+      } else if (arg.startsWith('--rpc-allow-origin-all')) {
+        missing.cors = false;
+        fixBoolean(`--rpc-allow-origin-all=true`);
+      } else if (arg.startsWith('--rpc-listen-port')) {
+        missing.port = false;
+        rpc.port = +readString();
+      } else if (arg.startsWith('--rpc-secret')) {
+        missing.secret = false;
+        rpc.secret = readString();
+      }
+    }
+
+    webui.rpc = rpc;
+    if (missing.enable) {
+      aria2.push('--enable-rpc');
+    }
+    if (missing.cors) {
+      aria2.push('--rpc-allow-origin-all');
+    }
+    if (missing.secret) {
+      aria2.push(`--rpc-secret=${rpc.secret}`);
     }
   }
 
@@ -180,21 +253,24 @@ async function attachWebUI(options) {
 
   server.listen(options.port);
 
+  const link = `http://127.0.0.1:${options.port}?port=${options.rpc.port}&secret=${options.rpc.secret}`;
   {
     const now = new Date();
     const date = `${padStart(now.getMonth() + 1)}/${padStart(now.getDate())}`;
     const time = `${padStart(now.getHours())}:${padStart(now.getMinutes())}:${padStart(
       now.getSeconds()
     )}`;
-    console.log(
-      `${date} ${time} [${bold(green('NOTICE'))}] WebUI is listening on the http://127.0.0.1:${
-        options.port
-      }`
-    );
+
+    console.log(`${date} ${time} [${bold(green('NOTICE'))}] Web UI is running on the ${link}`);
 
     function padStart(str) {
       return String(str).padStart(2, '0');
     }
+  }
+
+  if (options.open) {
+    const open = (await import('open')).default;
+    await open(link);
   }
 
   return server;
