@@ -16,7 +16,7 @@
     "naria2": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-query": "^3.39.3",
+    "@tanstack/react-query": "^4.0.5",
     "tailwind-merge": "^1.14.0",
     "zustand": "^4.4.4"
   },
