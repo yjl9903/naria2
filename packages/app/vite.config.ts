@@ -1,7 +1,8 @@
+import fs from 'fs-extra';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { defineConfig } from 'vite';
+import { defineConfig, Plugin } from 'vite';
 
 import BuildInfo from 'vite-plugin-info';
 import react from '@vitejs/plugin-react-swc';
@@ -30,6 +31,25 @@ export default defineConfig({
           secret: '123456'
         }
       }
-    })
+    }),
+    Copy()
   ]
 });
+
+function Copy() {
+  let outDir = './dist';
+
+  return <Plugin>{
+    name: 'naria2c-copy',
+    apply: 'build',
+    configResolved(config) {
+      outDir = config.build.outDir;
+    },
+    async closeBundle() {
+      const clientDir = path.resolve(__dirname, '../naria2c/client');
+      await fs.rmdir(clientDir, { recursive: true }).catch(() => undefined);
+      await fs.mkdir(clientDir);
+      await fs.copy(outDir, clientDir);
+    }
+  };
+}

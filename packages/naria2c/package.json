@@ -28,6 +28,7 @@
     "naria2c": "naria2c.mjs"
   },
   "files": [
+    "client",
     "*.mjs"
   ],
   "scripts": {
