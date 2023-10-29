@@ -1,5 +1,5 @@
 {
-  "name": "playground",
+  "name": "@naria2/app",
   "private": true,
   "type": "module",
   "scripts": {
