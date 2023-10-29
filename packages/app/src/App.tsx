@@ -1,12 +1,15 @@
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { client } from '~naria2/jsonrpc';
 
 import Home from './pages/Home';
 
 function Layout(props: { children: React.ReactElement }) {
-  const { data } = useQuery('naria2/version', async () => client!.version());
+  const { data } = useQuery({
+    queryKey: ['naria2/version'],
+    queryFn: async () => await client!.version()
+  });
 
   return (
     <>
