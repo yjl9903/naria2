@@ -1,14 +1,14 @@
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { client } from '~naria2/jsonrpc';
-
 import Home from './pages/Home';
+import { useAria2 } from './aria2';
 
 function Layout(props: { children: React.ReactElement }) {
+  const { client } = useAria2();
   const { data } = useQuery({
     queryKey: ['naria2/version'],
-    queryFn: async () => await client!.version()
+    queryFn: async () => await client?.version()
   });
 
   return (
@@ -29,14 +29,12 @@ function Layout(props: { children: React.ReactElement }) {
 const queryClient = new QueryClient();
 
 export default function App() {
-  if (client) {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <Layout>
-          <Home></Home>
-        </Layout>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    );
-  }
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <Home></Home>
+      </Layout>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 }
