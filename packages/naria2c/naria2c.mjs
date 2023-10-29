@@ -14,8 +14,20 @@ try {
 
   const childProcess = run(args, { detached: true });
 
-  const cancelDeath = onDeath((signal) => {
+  const cancelDeath = onDeath(async (signal) => {
     childProcess.kill(signal);
+
+    await Promise.race([
+      new Promise((res) => {
+        if (childProcess.exitCode !== null) {
+          res();
+        }
+        childProcess.once('exit', () => {
+          res();
+        });
+      }),
+      sleep(5000)
+    ]);
   });
 
   if (args.includes('-h') || args.includes('--help')) {
@@ -79,6 +91,12 @@ try {
 
 async function getPackage() {
   return JSON.parse(await readFile(new URL('./package.json', import.meta.url)));
+}
+
+function sleep(time = 1000) {
+  return new Promise((res) => {
+    setTimeout(() => res(), time);
+  });
 }
 
 /**
