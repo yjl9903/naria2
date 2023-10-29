@@ -4,20 +4,31 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "shadcn": "shadcn-ui"
   },
   "dependencies": {
+    "@radix-ui/react-scroll-area": "^1.0.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
+    "lucide-react": "^0.290.0",
     "naria2": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
+    "tailwind-merge": "^1.14.0",
     "zustand": "^4.4.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "@vitejs/plugin-react-swc": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "shadcn-ui": "^0.4.1",
+    "tailwindcss": "^3.3.5",
+    "tailwindcss-animate": "^1.0.7",
     "vite": "^4.5.0",
     "vite-plugin-info": "^0.4.1",
     "vite-plugin-naria2": "workspace:*",

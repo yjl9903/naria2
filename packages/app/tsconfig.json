@@ -23,6 +23,11 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     /* Types */
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "types": [
       "vite-plugin-info/client",
       "vite-plugin-naria2/client"

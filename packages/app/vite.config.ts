@@ -15,7 +15,8 @@ export default defineConfig({
   resolve: {
     alias: {
       naria2: path.resolve(__dirname, '../naria2/src/index.ts'),
-      '@naria2/options': path.resolve(__dirname, '../options/src/index.ts')
+      '@naria2/options': path.resolve(__dirname, '../options/src/index.ts'),
+      '@': path.resolve(__dirname, './src')
     }
   },
   plugins: [
