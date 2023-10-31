@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@naria2/node": "workspace:*",
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.8.10",
     "@types/ws": "^8.5.8",
     "bumpp": "latest",
     "execa": "^8.0.1",
