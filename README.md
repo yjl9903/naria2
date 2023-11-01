@@ -1,4 +1,4 @@
-# naria2 (WIP)
+# naria2
 
 [![version](https://img.shields.io/npm/v/naria2?label=naria2)](https://www.npmjs.com/package/naria2)
 [![version](https://img.shields.io/npm/v/naria2c?label=naria2c)](https://www.npmjs.com/package/naria2c)
@@ -7,11 +7,11 @@
 
 High-level and Convenient BitTorrent Client based on aria2 JSON-RPC.
 
-+ [ ] Simple BitTorrent downloading API
-+ [ ] Event bus for progress, state change, and so on
-+ [x] Download aria2 for your platform
-+ [x] Vite plugin which helps you develop aria2 client application
-+ [x] Web UI for aria2c (more features is working in progress)
++ Download aria2 for your platform
++ Simple BitTorrent downloading API
++ Event bus for progress, state change, and so on
++ Vite plugin which helps you develop aria2 client application
++ Web UI for aria2c (more features is working in progress)
 
 ![home](./assets/home.png)
 
@@ -23,8 +23,8 @@ It is used in the same way as [aria2](https://aria2.github.io/manual/en/html/ind
 $ npm i -g naria2c
 
 $ naria2c --version
-naria2c/0.0.9-beta.4
---------------------
+naria2c/0.0.15
+--------------
 ...
 
 $ naria2c --help
@@ -33,7 +33,7 @@ $ naria2c --help
 You can also launch a Web UI to manage aria2 using the `--ui` option. This feature is provided by this package, not the original aria2.
 
 ```bash
-$ naria2c --ui --open
+$ naria2c --ui
 ...
 10/29 21:22:46 [NOTICE] WebUI is listening on the http://127.0.0.1:6801?port=6800&secret=123456
 ...
