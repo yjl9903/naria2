@@ -88,9 +88,6 @@ importers:
       naria2:
         specifier: workspace:*
         version: link:../naria2
-      open:
-        specifier: ^9.1.0
-        version: 9.1.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -201,34 +198,36 @@ importers:
       '@naria2/node':
         specifier: workspace:*
         version: link:../node
-      finalhandler:
-        specifier: ^1.2.0
-        version: 1.2.0
-      serve-static:
-        specifier: ^1.15.0
-        version: 1.15.0
-    devDependencies:
-      '@types/finalhandler':
-        specifier: ^1.2.2
-        version: 1.2.2
-      '@types/serve-static':
-        specifier: ^1.15.4
-        version: 1.15.4
 
   packages/node:
     dependencies:
+      '@breadc/color':
+        specifier: ^0.9.7
+        version: 0.9.7
+      '@breadc/death':
+        specifier: ^0.9.7
+        version: 0.9.7
       '@naria2/options':
         specifier: workspace:*
         version: link:../options
       execa:
         specifier: ^8.0.1
         version: 8.0.1
+      finalhandler:
+        specifier: ^1.2.0
+        version: 1.2.0
       maria2:
         specifier: ^0.3.2
         version: 0.3.2(patch_hash=6ndtw25y66hyse7mrvsx7vrna4)(uuid@9.0.1)(ws@8.14.2)
+      open:
+        specifier: ^9.1.0
+        version: 9.1.0
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
+      serve-static:
+        specifier: ^1.15.0
+        version: 1.15.0
       type-fest:
         specifier: ^4.6.0
         version: 4.6.0
@@ -254,6 +253,13 @@ importers:
       '@naria2/win32-x64':
         specifier: workspace:*
         version: link:../binary/win32-x64
+    devDependencies:
+      '@types/finalhandler':
+        specifier: ^1.2.2
+        version: 1.2.2
+      '@types/serve-static':
+        specifier: ^1.15.4
+        version: 1.15.4
 
   packages/options:
     dependencies:
@@ -2050,7 +2056,7 @@ packages:
   /@types/finalhandler@1.2.2:
     resolution: {integrity: sha512-6xrlIlsCvJF6DRIgWVhj9507GG5bY/ditl4UdB2azkh0sITM3CyvqmmqdoFpSpMGZZ5aDNoKUQjcBGLnAvKZlA==}
     dependencies:
-      '@types/node': 20.8.9
+      '@types/node': 20.8.10
     dev: true
 
   /@types/fs-extra@11.0.3:
@@ -2113,7 +2119,7 @@ packages:
     dependencies:
       '@types/http-errors': 2.0.3
       '@types/mime': 3.0.3
-      '@types/node': 20.8.9
+      '@types/node': 20.8.10
     dev: true
 
   /@types/ws@8.5.8:
