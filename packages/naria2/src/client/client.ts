@@ -89,7 +89,7 @@ export class Aria2Client {
       });
     if (!gid) throw new Error();
 
-    this.monitor.watchStatus(gid);
+    return this.monitor.watchStatus(gid);
   }
 
   public async downloadUri(
@@ -104,7 +104,7 @@ export class Aria2Client {
       });
     if (!gid) throw new Error();
 
-    this.monitor.watchStatus(gid);
+    return this.monitor.watchStatus(gid);
   }
 }
 

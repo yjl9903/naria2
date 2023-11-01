@@ -1,13 +1,29 @@
 import { aria2, type Conn } from 'maria2';
+import mitt, { Handler, type Emitter, WildcardHandler } from 'mitt';
 
 interface Disposable<T = void> {
   dispose(): T;
 }
 
-export class Aria2Monitor {
+type Aria2MonitorEvents = {
+  'download.start': string;
+  'download.pause': string;
+  'download.stop': string;
+  'download.complete': string;
+  'bt.download.complete': string;
+  'download.error': string;
+};
+
+type GenericEventHandler =
+  | Handler<Aria2MonitorEvents[keyof Aria2MonitorEvents]>
+  | WildcardHandler<Aria2MonitorEvents>;
+
+export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'off'> {
   private _conn: Conn;
 
   private disposables: Set<Disposable<void>> = new Set();
+
+  private emitter = mitt<Aria2MonitorEvents>();
 
   public constructor(conn: Conn) {
     this._conn = conn;
@@ -40,7 +56,21 @@ export class Aria2Monitor {
     this.disposables.forEach((dis) => dis.dispose());
   }
 
-  public watchStatus(gid: string) {}
+  public watchStatus(gid: string): Promise<void> {
+    return new Promise((res, rej) => {});
+  }
+
+  // --- emitter ---
+  public on<Key extends keyof Aria2MonitorEvents>(key: Key, handler: GenericEventHandler) {
+    // @ts-expect-error
+    this.emitter.on(key, handler);
+  }
+
+  public off<Key extends keyof Aria2MonitorEvents>(key: Key, handler?: GenericEventHandler) {
+    // @ts-expect-error
+    this.emitter.off(key, handler);
+  }
+  // ---------------
 
   // --- internal ---
   private async onDownloadStart(gid: string) {}

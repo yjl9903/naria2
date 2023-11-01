@@ -150,6 +150,9 @@ importers:
       maria2:
         specifier: ^0.3.2
         version: 0.3.2(uuid@9.0.1)(ws@8.14.2)
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
       type-fest:
         specifier: ^4.6.0
         version: 4.6.0
@@ -3046,6 +3049,10 @@ packages:
       minipass: 3.3.6
       yallist: 4.0.0
     dev: true
+
+  /mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+    dev: false
 
   /mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
