@@ -171,10 +171,24 @@ function GlobalStat() {
   return (
     <div className="w-full px-2 py-1 bg-gray-200/20 border-t flex">
       <div className="w-1/2"></div>
-      <div className="w-1/4 pl-2 border-l">下载 {+(data?.downloadSpeed ?? 0) / 1024} KB/s</div>
-      <div className="w-1/4 pl-2 border-l">上传 {+(data?.uploadSpeed ?? 0) / 1024} KB/s</div>
+      <div className="w-1/4 pl-2 border-l">下载 {formatByteSize(data?.downloadSpeed)}/s</div>
+      <div className="w-1/4 pl-2 border-l">上传 {formatByteSize(data?.uploadSpeed)}/s</div>
     </div>
   );
+}
+
+function formatByteSize(str: string | undefined) {
+  const num = +(str ?? 0);
+  const kb = num / 1024;
+  if (kb < 1024) {
+    return `${kb.toFixed(1)} KB`;
+  }
+  const mb = kb / 1024;
+  if (mb < 1024) {
+    return `${kb.toFixed(1)} MB`;
+  }
+  const gb = mb / 1024;
+  return `${gb.toFixed(1)} GB`;
 }
 
 function Layout(props: { children: React.ReactElement }) {
