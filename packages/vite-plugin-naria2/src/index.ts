@@ -1,12 +1,15 @@
 import type { Plugin } from 'vite';
 import type { PartialDeep } from 'type-fest';
 
-import { onDeath } from '@breadc/death';
 import { createLogger } from 'vite';
 import { bold, cyan, green } from '@breadc/color';
 
 import { Aria2GlobalOptions } from 'naria2';
-import { type ChildProcessOptions, createChildProcess } from '@naria2/node';
+import {
+  type ChildProcessOptions,
+  type ChildProcessSocket,
+  createChildProcess
+} from '@naria2/node';
 
 export interface Naria2PluginOptions {
   childProcess?: Partial<ChildProcessOptions> & PartialDeep<Aria2GlobalOptions>;
@@ -16,6 +19,7 @@ export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
   const logger = createLogger();
 
   const childProcessRuntime = {
+    process: undefined as ChildProcessSocket | undefined,
     url: undefined as string | undefined,
     secret: undefined as string | undefined
   };
@@ -29,12 +33,8 @@ export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
 
         if (!childProcessRuntime.url) {
           const childProcess = await createChildProcess(options.childProcess);
-          onDeath(() => {
-            childProcess.close?.();
-            childProcessRuntime.url = undefined;
-            childProcessRuntime.secret = undefined;
-          });
 
+          childProcessRuntime.process = childProcess;
           childProcessRuntime.url = `ws://127.0.0.1:${
             childProcess.getOptions().listenPort
           }/jsonrpc`;
@@ -54,6 +54,11 @@ export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
             );
           }
         };
+      },
+      closeBundle() {
+        childProcessRuntime.process?.close?.();
+        childProcessRuntime.url = undefined;
+        childProcessRuntime.secret = undefined;
       }
     },
     {

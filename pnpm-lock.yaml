@@ -279,9 +279,6 @@ importers:
       '@breadc/color':
         specifier: ^0.9.7
         version: 0.9.7
-      '@breadc/death':
-        specifier: ^0.9.7
-        version: 0.9.7
       '@naria2/node':
         specifier: workspace:*
         version: link:../node
