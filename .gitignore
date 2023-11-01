@@ -3,6 +3,8 @@ node_modules
 
 # Build output
 dist
+*.mp4
+*.mkv
 .turbo
 packages/naria2c/client
 

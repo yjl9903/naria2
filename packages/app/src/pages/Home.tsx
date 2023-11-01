@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { useAria2 } from '@/aria2';
+import { Progress } from '@/components/ui/progress';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 export default function Home() {
@@ -28,9 +29,13 @@ export default function Home() {
 }
 
 function DownloadItem(props: { item: any }) {
+  const item = props.item;
+  const completed = Math.ceil((100.0 * +item.completedLength) / +item.totalLength);
+
   return (
-    <div className="px-4 py-2 rounded-md bg-gray-200/10 hover:bg-gray-300/10">
-      {props.item.bittorrent?.info?.name ?? '[METADATA]'}
+    <div className="px-4 py-3 space-y-2 rounded-md bg-gray-200/10 hover:bg-gray-300/10">
+      <h4>{props.item.bittorrent?.info?.name ?? '[METADATA]'}</h4>
+      <Progress value={completed}></Progress>
     </div>
   );
 }
