@@ -2,7 +2,6 @@
 
 import { Transform } from 'stream';
 import { readFile } from 'fs/promises';
-import { fileURLToPath } from 'url';
 
 import { run } from '@naria2/node';
 import { onDeath } from '@breadc/death';
@@ -240,17 +239,8 @@ async function attachWebUI(options) {
     return undefined;
   }
 
-  const serveStatic = (await import('serve-static')).default;
-  const finalhandler = (await import('finalhandler')).default;
-  const http = await import('http');
-
-  const clientDir = fileURLToPath(new URL('./client', import.meta.url));
-  const serve = serveStatic(clientDir, { index: ['index.html'] });
-  const server = http.createServer((req, res) => {
-    serve(req, res, finalhandler(req, res));
-  });
-
-  server.listen(options.port);
+  const { attachWebUI } = await import('@naria2/node/ui');
+  const server = await attachWebUI(options);
 
   const link = `http://127.0.0.1:${options.port}?port=${options.rpc.port}&secret=${options.rpc.secret}`;
   {

@@ -26,6 +26,11 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
+    },
+    "./ui": {
+      "require": "./dist/ui.cjs",
+      "import": "./dist/ui.mjs",
+      "types": "./dist/ui.d.ts"
     }
   },
   "main": "dist/index.cjs",
@@ -33,6 +38,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
+    "client",
     "**/*.mjs"
   ],
   "scripts": {
@@ -44,12 +50,21 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@breadc/color": "^0.9.7",
+    "@breadc/death": "^0.9.7",
     "@naria2/options": "workspace:*",
     "execa": "^8.0.1",
+    "finalhandler": "^1.2.0",
     "maria2": "^0.3.2",
+    "open": "^9.1.0",
     "portfinder": "^1.0.32",
+    "serve-static": "^1.15.0",
     "type-fest": "^4.6.0",
     "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "@types/finalhandler": "^1.2.2",
+    "@types/serve-static": "^1.15.4"
   },
   "optionalDependencies": {
     "@naria2/darwin-arm64": "workspace:*",

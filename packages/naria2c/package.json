@@ -28,7 +28,6 @@
     "naria2c": "naria2c.mjs"
   },
   "files": [
-    "client",
     "*.mjs"
   ],
   "scripts": {
@@ -39,13 +38,7 @@
   "dependencies": {
     "@breadc/color": "^0.9.7",
     "@breadc/death": "^0.9.7",
-    "@naria2/node": "workspace:*",
-    "finalhandler": "^1.2.0",
-    "serve-static": "^1.15.0"
-  },
-  "devDependencies": {
-    "@types/finalhandler": "^1.2.2",
-    "@types/serve-static": "^1.15.4"
+    "@naria2/node": "workspace:*"
   },
   "engines": {
     "node": ">=v20.1.0"

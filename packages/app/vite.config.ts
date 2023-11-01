@@ -46,7 +46,7 @@ function Copy() {
       outDir = config.build.outDir;
     },
     async closeBundle() {
-      const clientDir = path.resolve(__dirname, '../naria2c/client');
+      const clientDir = path.resolve(__dirname, '../node/client');
       await fs.rm(clientDir, { recursive: true }).catch(() => undefined);
       await fs.mkdir(clientDir);
       await fs.copy(outDir, clientDir);

@@ -6,7 +6,7 @@ dist
 *.mp4
 *.mkv
 .turbo
-packages/naria2c/client
+packages/node/client
 
 # Rest pulled from https://github.com/github/gitignore/blob/master/Node.gitignore
 # Logs
