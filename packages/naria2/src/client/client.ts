@@ -1,5 +1,13 @@
 import type { PartialDeep } from 'type-fest';
-import { type Socket, type Conn, open, close, aria2, Aria2ServerVersion } from 'maria2';
+import {
+  type Socket,
+  type Conn,
+  open,
+  close,
+  aria2,
+  type Aria2ServerVersion,
+  type Aria2ServerGlobalStat
+} from 'maria2';
 
 import { type Aria2InputOptions, resolveInputOptions } from '@naria2/options';
 
@@ -60,6 +68,13 @@ export class Aria2Client {
    */
   public async version(): Promise<Aria2ServerVersion> {
     return await aria2.getVersion(this.conn);
+  }
+
+  /**
+   * This method returns global statistics such as the overall download and upload speeds. The response is a struct and contains the following keys. Values are strings.
+   */
+  public async globalStat(): Promise<Aria2ServerGlobalStat> {
+    return await aria2.getGlobalStat(this.conn);
   }
 
   public async downloadTorrent(
