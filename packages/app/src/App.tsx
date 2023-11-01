@@ -35,8 +35,12 @@ function DownloadAlert() {
     if (!client) return;
     if (!text) return;
     const uris = text.split('\n');
-    await client.downloadUri(uris, {});
-  }, [aria2]);
+    try {
+      await client.downloadUri(uris, {});
+    } catch (error) {
+      console.error(error);
+    }
+  }, [text, aria2]);
 
   return (
     <AlertDialog>

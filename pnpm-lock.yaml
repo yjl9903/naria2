@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  maria2@0.3.2:
+    hash: 6ndtw25y66hyse7mrvsx7vrna4
+    path: patches/maria2@0.3.2.patch
+
 importers:
 
   .:
@@ -161,7 +166,7 @@ importers:
         version: link:../options
       maria2:
         specifier: ^0.3.2
-        version: 0.3.2(uuid@9.0.1)(ws@8.14.2)
+        version: 0.3.2(patch_hash=6ndtw25y66hyse7mrvsx7vrna4)(uuid@9.0.1)(ws@8.14.2)
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
@@ -217,7 +222,7 @@ importers:
         version: 8.0.1
       maria2:
         specifier: ^0.3.2
-        version: 0.3.2(uuid@9.0.1)(ws@8.14.2)
+        version: 0.3.2(patch_hash=6ndtw25y66hyse7mrvsx7vrna4)(uuid@9.0.1)(ws@8.14.2)
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -251,7 +256,7 @@ importers:
     dependencies:
       maria2:
         specifier: ^0.3.2
-        version: 0.3.2(uuid@9.0.1)(ws@8.14.2)
+        version: 0.3.2(patch_hash=6ndtw25y66hyse7mrvsx7vrna4)(uuid@9.0.1)(ws@8.14.2)
       type-fest:
         specifier: ^4.6.0
         version: 4.6.0
@@ -3493,7 +3498,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /maria2@0.3.2(uuid@9.0.1)(ws@8.14.2):
+  /maria2@0.3.2(patch_hash=6ndtw25y66hyse7mrvsx7vrna4)(uuid@9.0.1)(ws@8.14.2):
     resolution: {integrity: sha512-PspS1gxdZeRLBmelwC78dsUxM8bb7pHCairIOzfVAIPrpJw0u0dYAx7X+4Ahm+QE9p7YDZ8TuOGA4ewXcVTvTw==}
     engines: {node: '>= 14.8.0'}
     peerDependencies:
@@ -3503,6 +3508,7 @@ packages:
       uuid: 9.0.1
       ws: 8.14.2
     dev: false
+    patched: true
 
   /merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}

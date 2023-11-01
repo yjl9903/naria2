@@ -82,8 +82,9 @@ export class Aria2Client {
     options: PartialDeep<Aria2InputOptions> & DownloadOptions = {}
   ) {
     const inputOptions = resolveInputOptions(options);
+    const position = options.position ? [options.position] : [];
     const gid = await aria2
-      .addTorrent(this.conn, torrent, undefined, { ...inputOptions }, options.position)
+      .addTorrent(this.conn, torrent, undefined, { ...inputOptions }, ...position)
       .catch((error) => {
         return { error };
       });
@@ -93,18 +94,33 @@ export class Aria2Client {
   }
 
   public async downloadUri(
-    uris: string | string[],
+    uri: string | string[],
     options: PartialDeep<Aria2InputOptions> & DownloadOptions = {}
   ) {
+    const uris = Array.isArray(uri) ? uri : [uri];
     const inputOptions = resolveInputOptions(options);
+    const position = options.position ? [options.position] : [];
     const gid = await aria2
-      .addUri(this.conn, Array.isArray(uris) ? uris : [uris], { ...inputOptions }, options.position)
+      .addUri(this.conn, uris, { ...inputOptions }, ...position)
       .catch((error) => {
         return { error };
       });
     if (typeof gid !== 'string') throw gid.error;
 
     return this.monitor.watchStatus(gid);
+  }
+
+  // --- List ---
+  public async listActive() {
+    return aria2.tellActive(this.conn);
+  }
+
+  public async listWaiting(offset: number, num: number) {
+    return aria2.tellWaiting(this.conn, offset, num);
+  }
+
+  public async listStopped(offset: number, num: number) {
+    return aria2.tellStopped(this.conn, offset, num);
   }
 }
 

@@ -1,0 +1,12 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 0dd0a9763b8f4e3d48695bd2a1b13dbb8fe01b5a..be7c1922bf730ab0dc10cc411acca9d8f71c4115 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -133,7 +133,6 @@ const close = (conn, code, reason) => conn.getSocket().close(code, reason), open
+       "aria2.addUri"
+     ].reduce((obj, methodName) => (obj[methodName.slice(6)] = (conn, ...args) => conn.sendRequest(
+       { method: methodName, secret: !0 },
+-      methodName,
+       ...args
+     ), obj), {}),
+     [
