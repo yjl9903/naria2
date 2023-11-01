@@ -16,6 +16,7 @@ export default function Home() {
     queryFn: async () => {
       return await client.listActive();
     },
+    structuralSharing: false,
     refetchInterval: 1000
   });
 

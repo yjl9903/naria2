@@ -5,6 +5,7 @@ node_modules
 dist
 *.mp4
 *.mkv
+*.aria2
 .turbo
 packages/node/client
 
