@@ -9,7 +9,7 @@ High-level aria2 abstraction library for Node.
 + [ ] Simple BitTorrent downloading API
 + [ ] Event bus for progress, state change, and so on
 
-## Usage
+## Installation
 
 ### Browser
 

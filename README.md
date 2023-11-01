@@ -37,7 +37,7 @@ $ naria2c --ui --open
 ...
 ```
 
-## Usage
+## Installation
 
 ### Browser
 
