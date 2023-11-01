@@ -51,6 +51,9 @@ try {
       '                              Note: This is provided by naria2c instead of the original aria2c'
     );
     console.log();
+    console.log(' --open                       Open the Web UI after launching.');
+    console.log('                              Default: true');
+    console.log();
     console.log(' --port=PORT                  Specify the listen port of Web UI.');
     console.log('                              Default: 6801');
     console.log(
@@ -134,7 +137,7 @@ function resolveCliArgs(args) {
   const aria2 = [];
   const webui = {
     enable: false,
-    open: false,
+    open: true,
     port: 6801,
     rpc: undefined
   };
@@ -151,6 +154,8 @@ function resolveCliArgs(args) {
       webui.enable = resolveBoolean();
     } else if (arg.startsWith('--open')) {
       webui.open = resolveBoolean();
+    } else if (arg.startsWith('--no-open')) {
+      webui.open = !resolveBoolean();
     } else if (arg.startsWith('--port')) {
       let port = arg.split('=').at(1);
       if (port === undefined && i + 1 < args.length && /^\d+$/.test(args[i + 1])) {

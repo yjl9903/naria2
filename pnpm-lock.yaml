@@ -198,6 +198,9 @@ importers:
       '@naria2/node':
         specifier: workspace:*
         version: link:../node
+      open:
+        specifier: ^9.1.0
+        version: 9.1.0
 
   packages/node:
     dependencies:
@@ -219,9 +222,6 @@ importers:
       maria2:
         specifier: ^0.3.2
         version: 0.3.2(patch_hash=6ndtw25y66hyse7mrvsx7vrna4)(uuid@9.0.1)(ws@8.14.2)
-      open:
-        specifier: ^9.1.0
-        version: 9.1.0
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
