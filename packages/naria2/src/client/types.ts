@@ -16,6 +16,10 @@ export interface ClientOptions {
   openTimeout?: number;
 }
 
+export interface DownloadOptions {
+  position?: number;
+}
+
 export interface TorrentFile {}
 
 export interface TorrentPiece {
