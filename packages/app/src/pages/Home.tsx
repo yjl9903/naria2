@@ -30,7 +30,9 @@ export default function Home() {
 
 function DownloadItem(props: { item: any }) {
   const item = props.item;
-  const completed = Math.ceil((100.0 * +item.completedLength) / +item.totalLength);
+  const completed = +(
+    Math.ceil((10000.0 * +item.completedLength) / +item.totalLength) / 100.0
+  ).toFixed(2);
 
   return (
     <div className="px-4 py-3 space-y-2 rounded-md bg-gray-200/10 hover:bg-gray-300/10">
