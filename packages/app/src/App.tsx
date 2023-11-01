@@ -169,7 +169,7 @@ function GlobalStat() {
   });
 
   return (
-    <div className="w-full px-2 py-1 bg-gray-200/20 border-t flex">
+    <div className="w-full px-2 py-1 bg-gray-200/20 border-t flex select-none">
       <div className="w-1/2"></div>
       <div className="w-1/4 pl-2 border-l">下载 {formatByteSize(data?.downloadSpeed)}/s</div>
       <div className="w-1/4 pl-2 border-l">上传 {formatByteSize(data?.uploadSpeed)}/s</div>

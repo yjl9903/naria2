@@ -26,7 +26,10 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ]
+      ],
+      "naria2": [
+        "../naria2/src/index.ts"
+      ],
     },
     "types": [
       "vite-plugin-info/client",
