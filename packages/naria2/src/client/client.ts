@@ -84,10 +84,10 @@ export class Aria2Client {
     const inputOptions = resolveInputOptions(options);
     const gid = await aria2
       .addTorrent(this.conn, torrent, undefined, { ...inputOptions }, options.position)
-      .catch(() => {
-        return undefined;
+      .catch((error) => {
+        return { error };
       });
-    if (!gid) throw new Error();
+    if (typeof gid !== 'string') throw gid.error;
 
     return this.monitor.watchStatus(gid);
   }
@@ -99,10 +99,10 @@ export class Aria2Client {
     const inputOptions = resolveInputOptions(options);
     const gid = await aria2
       .addUri(this.conn, Array.isArray(uris) ? uris : [uris], { ...inputOptions }, options.position)
-      .catch((err) => {
-        return undefined;
+      .catch((error) => {
+        return { error };
       });
-    if (!gid) throw new Error();
+    if (typeof gid !== 'string') throw gid.error;
 
     return this.monitor.watchStatus(gid);
   }
