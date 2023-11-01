@@ -244,8 +244,8 @@ async function attachWebUI(options) {
     return undefined;
   }
 
-  const { attachWebUI } = await import('@naria2/node/ui');
-  const server = await attachWebUI(options);
+  const { launchWebUI } = await import('@naria2/node/ui');
+  const server = await launchWebUI(options);
 
   const link = `http://127.0.0.1:${options.port}?port=${options.rpc.port}&secret=${options.rpc.secret}`;
   {

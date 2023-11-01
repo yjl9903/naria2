@@ -1,9 +1,9 @@
 import { fileURLToPath } from 'node:url';
 
-export interface WebUIOptions {
-  port: number;
+import type { ChildProcessSocket } from './transport';
 
-  open: boolean;
+export interface WebUIOptions {
+  port?: number;
 
   rpc: {
     port: number;
@@ -12,7 +12,7 @@ export interface WebUIOptions {
   };
 }
 
-export async function attachWebUI(options: WebUIOptions) {
+export async function launchWebUI(options: WebUIOptions) {
   const serveStatic = (await import('serve-static')).default;
   const finalhandler = (await import('finalhandler')).default;
   const http = await import('http');
@@ -23,7 +23,20 @@ export async function attachWebUI(options: WebUIOptions) {
     serve(req, res, finalhandler(req, res));
   });
 
-  server.listen(options.port);
+  server.listen(options.port ?? 6801);
 
   return server;
+}
+
+export async function attachWebUI(
+  process: ChildProcessSocket,
+  options: Pick<WebUIOptions, 'port'> = {}
+) {
+  return await launchWebUI({
+    port: options?.port ?? 6801,
+    rpc: {
+      port: process.getOptions().listenPort,
+      secret: process.getOptions().secret
+    }
+  });
 }
