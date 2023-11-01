@@ -5,6 +5,8 @@
 
 Cross-platform wrapper of aria2c.
 
+![home](./assets/home.png)
+
 ## Installation
 
 ```bash
@@ -17,6 +19,15 @@ It is used in the same way as [aria2](https://aria2.github.io/manual/en/html/ind
 
 ```bash
 naria2c --help
+```
+
+You can also launch a Web UI to manage aria2 using the `--ui` option. This feature is provided by this package, not the original aria2.
+
+```bash
+$ naria2c --ui --open
+...
+10/29 21:22:46 [NOTICE] WebUI is listening on the http://127.0.0.1:6801?port=6800&secret=123456
+...
 ```
 
 ## Credits

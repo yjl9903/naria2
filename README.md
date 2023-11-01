@@ -11,7 +11,9 @@ High-level and Convenient BitTorrent Client based on aria2 JSON-RPC.
 + [ ] Event bus for progress, state change, and so on
 + [x] Download aria2 for your platform
 + [x] Vite plugin which helps you develop aria2 client application
-+ [ ] Web UI for aria2c
++ [x] Web UI for aria2c (more features is working in progress)
+
+![home](./assets/home.png)
 
 ## Cross-platform aria2c
 
