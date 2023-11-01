@@ -77,7 +77,7 @@ module.exports = {
   plugins: [
     require('tailwindcss-animate'),
     iconsPlugin({
-      collections: getIconCollections(['mdi', 'carbon', 'solar', 'fluent']),
+      collections: getIconCollections(['mdi', 'carbon', 'solar', 'fluent', 'material-symbols']),
       scale: '1.1',
       extraProperties: {}
     })

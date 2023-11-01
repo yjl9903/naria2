@@ -54,10 +54,14 @@ function DownloadItem(props: { task: Task }) {
         </div>
         <div className="flex-auto"></div>
         <div className="text-sm select-none text-gray-500 flex items-center">
+          <span className="i-material-symbols-network-node text-base mr-1"></span>
+          <span>{task.status.connections}</span>
+        </div>
+        <div className="ml-4 text-sm select-none text-gray-500 flex items-center min-w-[80px]">
           <span className="i-fluent-arrow-download-24-filled text-base mr-1"></span>
           <span>{formatByteSize(task.status.downloadSpeed)}/s</span>
         </div>
-        <div className="ml-4 text-sm select-none text-gray-500 flex items-center">
+        <div className="ml-4 text-sm select-none text-gray-500 flex items-center min-w-[80px]">
           <span className="i-fluent-arrow-upload-24-filled text-base mr-1"></span>
           <span>{formatByteSize(task.status.uploadSpeed)}/s</span>
         </div>
