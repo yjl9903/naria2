@@ -160,6 +160,23 @@ function Menu() {
   );
 }
 
+function GlobalStat() {
+  const { client } = useAria2();
+  const { data } = useQuery({
+    queryKey: ['naria2/globalStat'],
+    queryFn: async () => await client?.globalStat(),
+    refetchInterval: 1000
+  });
+
+  return (
+    <div className="w-full px-2 py-1 bg-gray-200/20 border-t flex">
+      <div className="w-1/2"></div>
+      <div className="w-1/4 pl-2 border-l">下载 {+(data?.downloadSpeed ?? 0) / 1024} KB/s</div>
+      <div className="w-1/4 pl-2 border-l">上传 {+(data?.uploadSpeed ?? 0) / 1024} KB/s</div>
+    </div>
+  );
+}
+
 function Layout(props: { children: React.ReactElement }) {
   const { client } = useAria2();
   const { data } = useQuery({
@@ -184,7 +201,9 @@ function Layout(props: { children: React.ReactElement }) {
 
       <main className="px-3 sm:px-12 flex-grow">{props.children}</main>
 
-      <footer className="px-3 sm:px-12 mt-12 pb-4 text-gray-500"></footer>
+      <footer className="mt-12 text-gray-500">
+        <GlobalStat></GlobalStat>
+      </footer>
     </div>
   );
 }
