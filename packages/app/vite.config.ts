@@ -27,6 +27,7 @@ export default defineConfig({
     Naria2({
       childProcess: {
         log: './aria2.log',
+        environment: 'ignore',
         rpc: {
           secret: '123456'
         }
