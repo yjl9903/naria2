@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const { iconsPlugin, getIconCollections } = require('@egoist/tailwindcss-icons');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -73,5 +74,12 @@ module.exports = {
       }
     }
   },
-  plugins: [require('tailwindcss-animate')]
+  plugins: [
+    require('tailwindcss-animate'),
+    iconsPlugin({
+      collections: getIconCollections(['mdi', 'carbon', 'solar']),
+      scale: '1.1',
+      extraProperties: {}
+    })
+  ]
 };

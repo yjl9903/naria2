@@ -26,6 +26,10 @@
     "zustand": "^4.4.5"
   },
   "devDependencies": {
+    "@egoist/tailwindcss-icons": "^1.4.0",
+    "@iconify-json/carbon": "^1.1.21",
+    "@iconify-json/mdi": "^1.1.55",
+    "@iconify-json/solar": "^1.1.5",
     "@tanstack/react-query-devtools": "^5.4.3",
     "@types/fs-extra": "^11.0.3",
     "@types/react": "^18.2.33",
