@@ -27,12 +27,12 @@ const getDefaultConnection = () => {
   try {
     const options = JSON.parse(window.localStorage.getItem('naria2/connection') ?? 'null') as {
       port?: number;
-      secrect?: string;
+      secret?: string;
     } | null;
     return {
       host: `${location.protocol}//${location.hostname}`,
       port: +`${options?.port ?? location.port}`,
-      secret: options?.secrect ?? ''
+      secret: options?.secret ?? ''
     };
   } catch {
     return {
