@@ -100,7 +100,12 @@ export default function Connect() {
                   <FormItem>
                     <FormLabel>Port</FormLabel>
                     <FormControl>
-                      <Input placeholder="6800" {...field} />
+                      <Input
+                        placeholder="6800"
+                        autoComplete="false"
+                        autoCorrect="false"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>This is aria2 RPC server port.</FormDescription>
                     <FormMessage />

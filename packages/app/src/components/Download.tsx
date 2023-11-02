@@ -23,7 +23,12 @@ export function DownloadAlert(props: { children: React.ReactElement }) {
     const client = aria2.client;
     if (!client) return;
     if (!text) return;
-    const uris = text.split('\n');
+
+    const uris = text
+      .split('\n')
+      .map((t) => t.trim())
+      .filter(Boolean);
+
     try {
       const torrent = await client.downloadUri(uris, {});
       torrent.on('progress', (torrent) => {
@@ -43,6 +48,9 @@ export function DownloadAlert(props: { children: React.ReactElement }) {
           <AlertDialogDescription>
             <Textarea
               placeholder="输入 Torrent 链接"
+              autoFocus={true}
+              autoComplete="false"
+              autoCorrect="false"
               onChange={(ev) => setText(ev.target.value)}
             ></Textarea>
           </AlertDialogDescription>
