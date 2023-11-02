@@ -64,7 +64,7 @@ async function inferClient() {
       } catch {}
     }
 
-    for (const opt of tries) {
+    for (const opt of tries.reverse()) {
       const url = opt.port ? `ws://127.0.0.1:${opt.port}/jsonrpc` : `ws://${location.host}/jsonrpc`;
       const client = await createClient(new WebSocket(url), {
         secret: opt.secret ?? undefined
