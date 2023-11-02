@@ -17,13 +17,37 @@ export async function launchWebUI(options: WebUIOptions) {
   const finalhandler = (await import('finalhandler')).default;
   const http = await import('http');
 
+  const port = options.port ?? 6801;
   const clientDir = fileURLToPath(new URL('../client', import.meta.url));
   const serve = serveStatic(clientDir, { index: ['index.html'] });
-  const server = http.createServer((req, res) => {
+  const server = http.createServer(async (req, res) => {
+    if (req.url) {
+      try {
+        const url = new URL(req.url, `http://${req.headers.host}`);
+        if (url.pathname === '/jsonrpc') {
+          return;
+        } else if (url.pathname === '/_/open') {
+          const auth = req.headers.authorization;
+          if (!options.rpc.secret || options.rpc.secret === auth) {
+            res.statusCode = 400;
+          } else {
+            const dir = url.searchParams.get('dir');
+            if (dir) {
+              const open = (await import('open')).default;
+              await open(decodeURIComponent(dir)).catch(() => {});
+            }
+          }
+          res.end();
+          return;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
     serve(req, res, finalhandler(req, res));
   });
 
-  server.listen(options.port ?? 6801);
+  server.listen(port);
 
   return server;
 }
