@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-naria2",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Vite naria2 integration",
   "keywords": [
     "aria2",
