@@ -33,6 +33,7 @@ export const useAria2 = create<Aria2State>()((set, get) => ({
         const oldClient = get().client;
         if (oldClient) {
           oldClient.close();
+          set({ client: undefined });
         }
       }
 
@@ -41,8 +42,8 @@ export const useAria2 = create<Aria2State>()((set, get) => ({
       }/jsonrpc`;
       const client = await createClient(new WebSocket(url), {
         secret: options.secret
-      });
-      if (await client.version()) {
+      }).catch(() => undefined);
+      if (client && (await client.version())) {
         window.localStorage.setItem(
           'naria2/connection',
           JSON.stringify({ port: options.port, secret: options.secret })
