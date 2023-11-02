@@ -1,6 +1,6 @@
 {
   "name": "naria2c",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Cross-platform wrapper of aria2c",
   "keywords": [
     "aria2",
