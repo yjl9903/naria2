@@ -7,7 +7,7 @@ import { run } from '@naria2/node';
 import { onDeath } from '@breadc/death';
 import { bold, green } from '@breadc/color';
 
-const { aria2: args, webui, debug: DEBUG } = resolveCliArgs(process.argv.slice(2));
+const { aria2: args, extra, webui, debug: DEBUG } = resolveCliArgs(process.argv.slice(2));
 
 /**
  * @type {import('http').Server}
@@ -15,7 +15,23 @@ const { aria2: args, webui, debug: DEBUG } = resolveCliArgs(process.argv.slice(2
 let server;
 
 try {
-  const childProcess = run(args, { detached: true });
+  const env = extra.ignoreProxy
+    ? {
+        ...process.env,
+        HTTP_PROXY: undefined,
+        HTTPS_PROXY: undefined,
+        ALL_PROXY: undefined,
+        http_proxy: undefined,
+        https_proxy: undefined,
+        all_proxy: undefined,
+        no_proxy: undefined
+      }
+    : process.env;
+
+  const childProcess = run(args, {
+    detached: true,
+    env
+  });
 
   const cancelDeath = onDeath(async (signal) => {
     server?.close();
@@ -45,7 +61,7 @@ try {
     ]);
   });
 
-  if (args.includes('-h') || args.includes('--help')) {
+  if (args.some((arg) => arg.startsWith('-h') || arg.startsWith('--help'))) {
     const result = await childProcess;
     const help = result.stdout.replace(/aria2c/g, 'naria2c');
     const { version } = await getPackage();
@@ -55,22 +71,33 @@ try {
     console.log(`naria2c is a cross-platform wrapper of aria2c.`);
     console.log();
 
-    const idx = help.indexOf('\n -l, --log=LOG');
-    console.log(help.slice(0, idx));
-    console.log(' --ui                         Launch the naria2c Web UI.');
-    console.log(
-      '                              Note: This is provided by naria2c instead of the original aria2c'
-    );
-    console.log();
-    console.log(' --open                       Open the Web UI after launching.');
-    console.log('                              Default: true');
-    console.log();
-    console.log(' --port=PORT                  Specify the listen port of Web UI.');
-    console.log('                              Default: 6801');
-    console.log(
-      '                              Note: This is provided by naria2c instead of the original aria2c'
-    );
-    console.log(help.slice(idx));
+    const isFullHelp = args.includes('-h') || args.includes('--help');
+
+    if (isFullHelp) {
+      const idx = help.indexOf('\n -l, --log=LOG');
+      console.log(help.slice(0, idx));
+
+      console.log(' --ui                         Launch the naria2c Web UI.');
+      console.log(
+        '                              Note: This is provided by naria2c instead of the original aria2c.'
+      );
+      console.log();
+      console.log(' --open                       Open the Web UI after launching.');
+      console.log('                              Default: true');
+      console.log();
+      console.log(' --port=PORT                  Specify the listen port of Web UI.');
+      console.log('                              Default: 6801');
+      console.log();
+      console.log(' -I, --ignore-proxy           Prevent use the environment proxy settings.');
+      console.log(
+        '                              Note: This is provided by naria2c instead of the original aria2c.'
+      );
+      console.log('                              Default: false');
+
+      console.log(help.slice(idx));
+    } else {
+      console.log(help);
+    }
   } else if (args.includes('-v') || args.includes('--version')) {
     const result = await childProcess;
     const content = result.stdout;
@@ -146,6 +173,9 @@ function resolveCliArgs(args) {
   }
 
   const aria2 = [];
+  const extra = {
+    ignoreProxy: false
+  };
   const webui = {
     enable: false,
     open: true,
@@ -175,6 +205,8 @@ function resolveCliArgs(args) {
       if (port) {
         webui.port = +port;
       }
+    } else if (arg.startsWith('--ignore-proxy') || arg.startsWith('-I')) {
+      extra.ignoreProxy = resolveBoolean();
     } else {
       aria2.push(arg);
     }
@@ -245,6 +277,7 @@ function resolveCliArgs(args) {
 
   return {
     aria2,
+    extra,
     webui,
     debug: process.env.DEBUG === 'naria2' || process.env.DEBUG === 'naria2c'
   };
