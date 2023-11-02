@@ -107,6 +107,7 @@ function DownloadItem(props: { task: Task }) {
     const secret = client?.conn.getSecret();
     const headers = secret ? { Authorization: secret } : undefined;
     await fetch(`/_/open?dir=${encodeURIComponent(task.status.dir)}`, {
+      method: 'POST',
       headers: { ...headers }
     }).catch(() => undefined);
   };

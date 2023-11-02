@@ -1,9 +1,6 @@
 import type { Plugin } from 'vite';
 import type { PartialDeep } from 'type-fest';
 
-import path from 'node:path';
-import { promises as fs } from 'node:fs';
-
 import { createLogger } from 'vite';
 import { bold, cyan, green } from '@breadc/color';
 
@@ -13,6 +10,7 @@ import {
   type ChildProcessSocket,
   createChildProcess
 } from '@naria2/node';
+import { handleWebUIOpenRequest } from '@naria2/node/ui';
 
 export interface Naria2PluginOptions {
   childProcess?: Partial<ChildProcessOptions> & PartialDeep<Aria2GlobalOptions>;
@@ -32,24 +30,20 @@ export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
       name: 'vite-plugin-naria2:runtime',
       apply: 'serve',
       async configureServer(server) {
-        server.middlewares.use('/jsonrpc', () => {});
         server.middlewares.use('/_/open', async (req, res, next) => {
-          if (req.url) {
-            const url = new URL(req.url, `http://${req.headers.host}`);
-            const dir = url.searchParams.get('dir');
-            if (dir) {
-              const open = (await import('open')).default;
-              const p = decodeURIComponent(dir);
-              const stat = await fs.stat(p);
-              if (stat.isDirectory()) {
-                await open(p).catch(() => {});
-              } else {
-                await open(path.dirname(p)).catch(() => {});
-              }
+          try {
+            if (
+              await handleWebUIOpenRequest(new URL(req.url!), req, res, {
+                rpc: {
+                  port: childProcessRuntime.process?.getOptions().listenPort ?? 6800,
+                  secret: childProcessRuntime.secret
+                }
+              })
+            ) {
+              return;
             }
-            res.end();
-            return;
-          }
+          } catch {}
+
           next();
         });
 
