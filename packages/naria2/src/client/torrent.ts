@@ -65,6 +65,27 @@ export class Task {
     }
   }
 
+  // --- Control ---
+  public async pause(force = false) {
+    if (!force) {
+      await aria2.pause(this.conn, this.gid);
+    } else {
+      await aria2.forcePause(this.conn, this.gid);
+    }
+  }
+
+  public async unpause() {
+    await aria2.unpause(this.conn, this.gid);
+  }
+
+  public async remove(force = false) {
+    if (!force) {
+      await aria2.remove(this.conn, this.gid);
+    } else {
+      await aria2.forceRemove(this.conn, this.gid);
+    }
+  }
+
   // --- Event emitter ---
   public on<Key extends keyof Aria2TaskEvents>(
     key: Key,

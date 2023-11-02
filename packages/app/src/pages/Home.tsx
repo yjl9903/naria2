@@ -39,14 +39,36 @@ function DownloadItem(props: { task: Task }) {
       ? task.status.bittorrent?.info?.name
       : task.status.bittorrent?.info?.name?.['utf-8'] ?? '[METADATA]';
 
+  const pause = () => {
+    task.pause();
+  };
+  const unpause = () => {
+    task.unpause();
+  };
+  const remove = () => {
+    task.remove();
+  };
+
   return (
     <div className="px-4 py-3 space-y-2 rounded-md border bg-gray-200/10 hover:bg-gray-300/10">
       <div className="flex gap-2 items-center justify-between">
         <div className="flex-grow truncate max-w-[calc(100vw-240px)] text-ellipsis">{name}</div>
         <div className="min-w-[30px] border rounded-full py-1 px-2 gap-2 flex items-center text-gray-500">
-          <span className="block text-lg i-ic-outline-pause hover:text-gray-700"></span>
-          <span className="block text-lg i-material-symbols-stop-circle-outline-rounded hover:text-gray-700"></span>
-          <span className="block text-lg i-material-symbols-delete-outline text-red-600 hover:text-red-700"></span>
+          {task.state === 'paused' ? (
+            <span
+              className="block text-lg i-carbon-continue hover:text-gray-700"
+              onClick={unpause}
+            ></span>
+          ) : (
+            <span
+              className="block text-lg i-ic-outline-pause hover:text-gray-700"
+              onClick={pause}
+            ></span>
+          )}
+          <span
+            className="block text-lg i-material-symbols-stop-circle-outline-rounded hover:text-gray-700"
+            onClick={remove}
+          ></span>
         </div>
       </div>
       <Progress value={task.progress}></Progress>
