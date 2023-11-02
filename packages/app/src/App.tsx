@@ -8,6 +8,7 @@ import {
   MenubarContent,
   MenubarItem,
   MenubarMenu,
+  MenubarSeparator,
   MenubarTrigger
 } from '@/components/ui/menubar';
 
@@ -32,7 +33,14 @@ function Menu() {
       <MenubarMenu>
         <MenubarTrigger>Settings</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>About</MenubarItem>
+          <MenubarItem disabled>Settings</MenubarItem>
+          <MenubarSeparator />
+          <a href="https://github.com/aria2/aria2" target="_blank">
+            <MenubarItem>Document</MenubarItem>
+          </a>
+          <a href="https://github.com/yjl9903/naria2" target="_blank">
+            <MenubarItem>GitHub</MenubarItem>
+          </a>
           {/* <MenubarItem>
             New Tab <MenubarShortcut>⌘T</MenubarShortcut>
           </MenubarItem>
