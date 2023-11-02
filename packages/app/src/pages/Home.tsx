@@ -7,6 +7,8 @@ import { useAria2 } from '@/aria2';
 import { clsx, formatByteSize } from '@/utils';
 import { Progress } from '@/components/ui/progress';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { DownloadAlert } from '@/components/Download';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   const aria2 = useAria2();
@@ -20,13 +22,49 @@ export default function Home() {
     structuralSharing: false,
     refetchInterval: 1000
   });
+
   const [parent] = useAutoAnimate();
 
   return (
     <div className="h-full w-full mt-2">
       <ScrollArea>
         <div ref={parent} className="space-y-2 w-full">
-          {data && data.map((t) => <DownloadItem key={t.gid} task={t}></DownloadItem>)}
+          {data && data.length > 0 ? (
+            data.map((t) => <DownloadItem key={t.gid} task={t}></DownloadItem>)
+          ) : (
+            <div className="mt-12 h-60 w-full select-none">
+              <div className="w-[400px] mx-auto items-end rounded px-2 py-3 font-bold text-4xl font-medium leading-none text-primary transition sm:flex select-none">
+                <span>Welcome to naria2</span>
+              </div>
+              <div className="w-[400px] mx-auto">
+                <DownloadAlert>
+                  <Button variant="link" className="h-8 px-2 py-1">
+                    Download ...
+                  </Button>
+                </DownloadAlert>
+              </div>
+              <div className="w-[400px] mx-auto">
+                <a href="https://aria2.github.io/manual/en/html/index.html" target="_blank">
+                  <Button variant="link" className="h-8 px-2 py-1">
+                    View Document
+                  </Button>
+                </a>
+              </div>
+              <div className="w-[400px] mx-auto px-2">
+                <span className="text-sm font-medium">GitHub: </span>
+                <a href="https://github.com/yjl9903/naria2" target="_blank">
+                  <Button variant="link" className="h-8 px-0 px-1 py-1">
+                    yjl9903/naria2
+                  </Button>
+                </a>
+                <a href="https://github.com/aria2/aria2" target="_blank">
+                  <Button variant="link" className="h-8 px-0 px-1 py-1">
+                    aria2/aria2
+                  </Button>
+                </a>
+              </div>
+            </div>
+          )}
         </div>
         <ScrollBar forceMount={true}></ScrollBar>
       </ScrollArea>

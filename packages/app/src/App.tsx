@@ -13,69 +13,17 @@ import {
   MenubarMenu,
   MenubarTrigger
 } from '@/components/ui/menubar';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger
-} from '@/components/ui/alert-dialog';
-import { Textarea } from '@/components/ui/textarea';
 
 import { formatByteSize } from './utils';
-
-function DownloadAlert() {
-  const aria2 = useAria2();
-  const [text, setText] = React.useState('');
-
-  const download = React.useCallback(async () => {
-    const client = aria2.client;
-    if (!client) return;
-    if (!text) return;
-    const uris = text.split('\n');
-    try {
-      const torrent = await client.downloadUri(uris, {});
-      torrent.on('progress', (torrent) => {
-        console.log(torrent);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }, [text, aria2]);
-
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <span className="select-none">Download</span>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>添加 Torrent 链接</AlertDialogTitle>
-          <AlertDialogDescription>
-            <Textarea
-              placeholder="输入 Torrent 链接"
-              onChange={(ev) => setText(ev.target.value)}
-            ></Textarea>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>取消</AlertDialogCancel>
-          <AlertDialogAction onClick={download}>下载</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  );
-}
+import { DownloadAlert } from './components/Download';
 
 function Menu() {
   return (
     <Menubar>
       <MenubarButton>
-        <DownloadAlert></DownloadAlert>
+        <DownloadAlert>
+          <span className="select-none">Download</span>
+        </DownloadAlert>
       </MenubarButton>
       <MenubarMenu>
         <MenubarTrigger>Settings</MenubarTrigger>
