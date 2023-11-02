@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div className="h-full w-full mt-2">
       <ScrollArea>
-        <div className="space-y-2">
+        <div className="space-y-2 w-full">
           {data && data.map((t) => <DownloadItem key={t.gid} task={t}></DownloadItem>)}
         </div>
         <ScrollBar forceMount={true}></ScrollBar>
@@ -41,9 +41,13 @@ function DownloadItem(props: { task: Task }) {
 
   return (
     <div className="px-4 py-3 space-y-2 rounded-md border bg-gray-200/10 hover:bg-gray-300/10">
-      <div className="flex">
-        <span className="block">{name}</span>
-        <div></div>
+      <div className="flex gap-2 items-center justify-between">
+        <div className="flex-grow truncate max-w-[calc(100vw-240px)] text-ellipsis">{name}</div>
+        <div className="min-w-[30px] border rounded-full py-1 px-2 gap-2 flex items-center text-gray-500">
+          <span className="block text-lg i-ic-outline-pause hover:text-gray-700"></span>
+          <span className="block text-lg i-material-symbols-stop-circle-outline-rounded hover:text-gray-700"></span>
+          <span className="block text-lg i-material-symbols-delete-outline text-red-600 hover:text-red-700"></span>
+        </div>
       </div>
       <Progress value={task.progress}></Progress>
       <div className="flex">

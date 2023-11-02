@@ -110,6 +110,9 @@ importers:
       '@iconify-json/fluent':
         specifier: ^1.1.39
         version: 1.1.39
+      '@iconify-json/ic':
+        specifier: ^1.1.14
+        version: 1.1.14
       '@iconify-json/material-symbols':
         specifier: ^1.1.61
         version: 1.1.61
@@ -1085,6 +1088,12 @@ packages:
 
   /@iconify-json/fluent@1.1.39:
     resolution: {integrity: sha512-fGpstFAoAzyXMKlbNIJADr+MAZOZL8edlmzlfD/tT2cMW8xxPN2pEO8lc87n8c3tNV0fWuiW+nleVN79sZ490Q==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/ic@1.1.14:
+    resolution: {integrity: sha512-vbATa9uwb9pIsRWQ+iXObQCgLTePk/0vo4shBr3Td0GnTjsAU/7VUGTkrZFVf5vpgiG6OsXkcKMPzBPvt966sg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

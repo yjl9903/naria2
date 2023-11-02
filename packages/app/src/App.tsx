@@ -212,7 +212,7 @@ function Layout(props: { children: React.ReactElement }) {
 
       <main className="px-3 sm:px-12 flex-grow">{props.children}</main>
 
-      <footer className="mt-12 text-gray-500">
+      <footer className="mt-4 text-gray-500">
         <GlobalStat></GlobalStat>
       </footer>
     </div>
