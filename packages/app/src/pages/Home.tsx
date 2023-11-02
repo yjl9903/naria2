@@ -17,7 +17,7 @@ function Welcome() {
       <div className="w-[400px] mx-auto items-end rounded px-2 py-3 font-bold text-4xl font-medium leading-none text-primary transition sm:flex select-none">
         <span>Welcome to naria2</span>
       </div>
-      <div className="w-[400px] mx-auto">
+      <div className="w-[400px] mt-6 mx-auto">
         <DownloadAlert>
           <Button variant="link" className="h-8 px-2 py-1">
             Download ...
