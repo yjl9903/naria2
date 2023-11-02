@@ -138,12 +138,12 @@ function GlobalStat() {
     <div className="w-full px-2 py-1 bg-gray-200/20 border-t flex select-none">
       <div className="md:w-1/2"></div>
       <div className="w-1/2 md:w-1/4 pl-2 md:border-l flex items-center gap-1">
-        <span className="i-solar-download-minimalistic-bold text-xl font-bold text-green-500"></span>
-        <span className="text-sm">下载 {formatByteSize(data?.downloadSpeed)}/s</span>
+        <span className="i-solar-download-minimalistic-bold text-lg font-bold text-green-500"></span>
+        <span className="text-sm">Download {formatByteSize(data?.downloadSpeed)}/s</span>
       </div>
       <div className="w-1/2 md:w-1/4 pl-2 border-l flex items-center gap-1">
-        <span className="i-solar-upload-minimalistic-bold text-xl font-bold text-blue-500"></span>
-        <span className="text-sm">上传 {formatByteSize(data?.uploadSpeed)}/s</span>
+        <span className="i-solar-upload-minimalistic-bold text-lg font-bold text-blue-500"></span>
+        <span className="text-sm">Upload {formatByteSize(data?.uploadSpeed)}/s</span>
       </div>
     </div>
   );
