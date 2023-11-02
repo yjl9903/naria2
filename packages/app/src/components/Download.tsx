@@ -16,6 +16,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 export function DownloadAlert(props: { children: React.ReactElement }) {
   const aria2 = useAria2();
+  const [open, setOpen] = React.useState(false);
   const [text, setText] = React.useState('');
 
   const download = React.useCallback(async () => {
@@ -34,9 +35,9 @@ export function DownloadAlert(props: { children: React.ReactElement }) {
   }, [text, aria2]);
 
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>{props.children}</AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent onClickOverlay={() => open && setOpen(false)}>
         <AlertDialogHeader>
           <AlertDialogTitle>添加 Torrent 链接</AlertDialogTitle>
           <AlertDialogDescription>
