@@ -1,4 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { Task } from 'naria2';
 
@@ -19,11 +20,12 @@ export default function Home() {
     structuralSharing: false,
     refetchInterval: 1000
   });
+  const [parent] = useAutoAnimate();
 
   return (
     <div className="h-full w-full mt-2">
       <ScrollArea>
-        <div className="space-y-2 w-full">
+        <div ref={parent} className="space-y-2 w-full">
           {data && data.map((t) => <DownloadItem key={t.gid} task={t}></DownloadItem>)}
         </div>
         <ScrollBar forceMount={true}></ScrollBar>
@@ -33,6 +35,8 @@ export default function Home() {
 }
 
 function DownloadItem(props: { task: Task }) {
+  const queryClient = useQueryClient();
+
   const task = props.task;
   const name =
     typeof task.status.bittorrent?.info?.name === 'string'
@@ -48,14 +52,17 @@ function DownloadItem(props: { task: Task }) {
     removed: 'i-material-symbols-delete-outline'
   }[task.state];
 
-  const pause = () => {
-    task.pause();
+  const pause = async () => {
+    await task.pause().catch(() => {});
+    queryClient.invalidateQueries({ queryKey: ['naria2/active'] });
   };
-  const unpause = () => {
-    task.unpause();
+  const unpause = async () => {
+    await task.unpause().catch(() => {});
+    queryClient.invalidateQueries({ queryKey: ['naria2/active'] });
   };
-  const remove = () => {
-    task.remove();
+  const remove = async () => {
+    await task.remove().catch(() => {});
+    queryClient.invalidateQueries({ queryKey: ['naria2/active'] });
   };
 
   return (
