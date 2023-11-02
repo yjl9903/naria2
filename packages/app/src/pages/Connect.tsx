@@ -86,7 +86,12 @@ export default function Connect() {
                   <FormItem>
                     <FormLabel>Host</FormLabel>
                     <FormControl>
-                      <Input placeholder="http://127.0.0.1" {...field} />
+                      <Input
+                        placeholder="http://127.0.0.1"
+                        autoComplete="false"
+                        autoCorrect="false"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>This is aria2 RPC server host.</FormDescription>
                     <FormMessage />
@@ -119,7 +124,13 @@ export default function Connect() {
                   <FormItem>
                     <FormLabel>Secret</FormLabel>
                     <FormControl>
-                      <Input placeholder="" {...field} />
+                      <Input
+                        placeholder=""
+                        autoFocus={true}
+                        autoComplete="false"
+                        autoCorrect="false"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>This is aria2 RPC auth secret.</FormDescription>
                     <FormMessage />
