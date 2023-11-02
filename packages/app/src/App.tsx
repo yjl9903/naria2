@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import Home from './pages/Home';
 import { useAria2 } from './aria2';
@@ -16,6 +15,7 @@ import {
 
 import { formatByteSize } from './utils';
 import { DownloadAlert } from './components/Download';
+import { useNavigate } from 'react-router-dom';
 
 function Menu() {
   return (
@@ -167,15 +167,18 @@ function Layout(props: { children: React.ReactElement }) {
   );
 }
 
-const queryClient = new QueryClient();
-
 export default function App() {
+  const navigate = useNavigate();
+  const { client } = useAria2();
+  React.useEffect(() => {
+    if (!client) {
+      navigate('/connect');
+    }
+  }, [client]);
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Home></Home>
-      </Layout>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <Layout>
+      <Home></Home>
+    </Layout>
   );
 }

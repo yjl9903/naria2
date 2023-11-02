@@ -4,9 +4,11 @@ import { client as debugClient } from '~naria2/jsonrpc';
 import { type Aria2Client, createClient } from 'naria2';
 
 interface ConnectionOptions {
-  port: string | number;
+  host?: string;
 
-  secret: string;
+  port?: string | number;
+
+  secret?: string;
 }
 
 interface Aria2State {
@@ -21,10 +23,18 @@ export const useAria2 = create<Aria2State>()((set) => ({
   client,
   connect: async (options: ConnectionOptions) => {
     try {
-      const client = await createClient(new WebSocket(`ws://127.0.0.1:${options.port}/jsonrpc`), {
+      const url = `ws://${options.host ?? '127.0.0.1'}${
+        options.port ? ':' + options.port : ''
+      }/jsonrpc`;
+      const client = await createClient(new WebSocket(url), {
         secret: options.secret
       });
+      window.localStorage.setItem(
+        'naria2/connection',
+        JSON.stringify({ port: options.port, secret: options.secret })
+      );
       set({ client });
+
       return client;
     } catch (error) {
       return undefined;

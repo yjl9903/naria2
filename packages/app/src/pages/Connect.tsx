@@ -1,3 +1,107 @@
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useAria2 } from '@/aria2';
+import { useNavigate } from 'react-router-dom';
+
+const ConnectSchema = z.object({
+  host: z.string().optional(),
+  port: z.coerce.number().min(0).optional(),
+  secret: z.string().optional()
+});
+
 export default function Connect() {
-  return <div></div>;
+  const aria2 = useAria2();
+  const navigate = useNavigate();
+
+  const form = useForm<z.infer<typeof ConnectSchema>>({
+    resolver: zodResolver(ConnectSchema),
+    defaultValues: {
+      host: `${location.protocol}//${location.hostname}`,
+      port: +`${location.port}`,
+      secret: ''
+    }
+  });
+
+  async function onSubmit(values: z.infer<typeof ConnectSchema>) {
+    try {
+      await aria2.connect({
+        port: values.port,
+        secret: values.secret ? values.secret : undefined
+      });
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  return (
+    <div className="flex h-screen w-screen">
+      <div className="w-full sm:w-2/3 sm:border-r h-full flex items-center justify-center">
+        <div className="w-[60%]">
+          <h1 className="text-2xl font-bold mb-4">Connect naria2</h1>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="host"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Host</FormLabel>
+                    <FormControl>
+                      <Input placeholder="http://127.0.0.1" {...field} />
+                    </FormControl>
+                    <FormDescription>This is aria2 RPC server host.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="port"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Port</FormLabel>
+                    <FormControl>
+                      <Input placeholder="6800" {...field} />
+                    </FormControl>
+                    <FormDescription>This is aria2 RPC server port.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="secret"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Secret</FormLabel>
+                    <FormControl>
+                      <Input placeholder="" {...field} />
+                    </FormControl>
+                    <FormDescription>This is aria2 RPC auth secret.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit">Connect</Button>
+            </form>
+          </Form>
+        </div>
+      </div>
+      <div className="flex-grow"></div>
+    </div>
+  );
 }
