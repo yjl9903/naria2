@@ -22,17 +22,33 @@ const ConnectSchema = z.object({
   secret: z.string().optional()
 });
 
+const getDefaultConnection = () => {
+  try {
+    const options = JSON.parse(window.localStorage.getItem('naria2/connection') ?? 'null') as {
+      port?: number;
+      secrect?: string;
+    } | null;
+    return {
+      host: `${location.protocol}//${location.hostname}`,
+      port: +`${options?.port ?? location.port}`,
+      secret: options?.secrect ?? ''
+    };
+  } catch {
+    return {
+      host: `${location.protocol}//${location.hostname}`,
+      port: +`${location.port}`,
+      secret: ''
+    };
+  }
+};
+
 export default function Connect() {
   const aria2 = useAria2();
   const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof ConnectSchema>>({
     resolver: zodResolver(ConnectSchema),
-    defaultValues: {
-      host: `${location.protocol}//${location.hostname}`,
-      port: +`${location.port}`,
-      secret: ''
-    }
+    defaultValues: getDefaultConnection()
   });
 
   async function onSubmit(values: z.infer<typeof ConnectSchema>) {
