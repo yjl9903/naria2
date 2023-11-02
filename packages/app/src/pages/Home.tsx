@@ -64,6 +64,9 @@ function DownloadItem(props: { task: Task }) {
     await task.remove().catch(() => {});
     queryClient.invalidateQueries({ queryKey: ['naria2/active'] });
   };
+  const openDir = async () => {
+    await fetch(`/_/open?dir=${encodeURIComponent(task.status.dir)}`).catch(() => undefined);
+  };
 
   return (
     <div className="px-4 py-3 space-y-2 rounded-md border bg-gray-200/10 hover:bg-gray-300/10">
@@ -72,7 +75,7 @@ function DownloadItem(props: { task: Task }) {
           <span className={clsx(icon, 'text-xl')}></span>
           <span>{name}</span>
         </div>
-        <div className="min-w-[30px] border rounded-full py-1 px-2 gap-2 flex items-center text-gray-500">
+        <div className="min-w-[30px] border rounded-full py-1 px-2 flex items-center text-gray-500">
           {task.state === 'paused' ? (
             <span
               className="block text-lg i-material-symbols-play-arrow-rounded hover:text-gray-700"
@@ -85,8 +88,12 @@ function DownloadItem(props: { task: Task }) {
             ></span>
           )}
           <span
-            className="block text-lg i-material-symbols-stop-circle-outline-rounded hover:text-gray-700"
+            className="ml-1 block text-lg i-material-symbols-stop-circle-outline-rounded hover:text-gray-700"
             onClick={remove}
+          ></span>
+          <span
+            className="ml-2 block text-lg i-material-symbols-folder-copy-outline hover:text-gray-700"
+            onClick={openDir}
           ></span>
         </div>
       </div>
