@@ -91,6 +91,31 @@ const client = await createClient(createChildProcess())
 >
 > See [my blog post (in Chinese)](https://blog.onekuma.cn/death-of-a-node-process) or [The Death of a Node.js Process (in English)](https://thomashunter.name/posts/2021-03-08-the-death-of-a-nodejs-process) on how to handle the exit of a Node.js process.
 
+## Usage
+
+```ts
+import { createClient } from 'naria2'
+
+// Initialize a client
+const client = await createClient(
+  new WebSocket('ws://localhost:6800/jsonrpc')
+)
+
+// Start downloading a magnet
+const torrent = client.downloadUri('...')
+
+// Watch its progress
+torrent.on('progress', () => {
+  // ...
+})
+
+// Wait for its completion
+await torrent.waitComplete()
+
+// Close client
+client.close()
+```
+
 ## Credits
 
 + [aria2](https://github.com/aria2/aria2): A lightweight multi-protocol & multi-source, cross platform download utility operated in command-line
