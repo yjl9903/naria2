@@ -312,6 +312,9 @@ importers:
       naria2:
         specifier: workspace:*
         version: link:../naria2
+      open:
+        specifier: ^9.1.0
+        version: 9.1.0
       type-fest:
         specifier: ^4.6.0
         version: 4.6.0
