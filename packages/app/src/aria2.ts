@@ -37,27 +37,34 @@ async function inferClient() {
     return debugClient;
   } else {
     const search = new URLSearchParams(location.search);
-    const rpcPort = search.get('port') ?? '6800';
-    const rpcSecret = search.get('secret');
-    if (rpcPort && rpcSecret) {
-      const client = await createClient(new WebSocket(`ws://127.0.0.1:${rpcPort}/jsonrpc`), {
-        secret: rpcSecret
-      });
-      window.localStorage.setItem(
-        'naria2/connection',
-        JSON.stringify({ port: rpcPort, secret: rpcSecret })
-      );
-      return client;
+    const tries = [
+      {
+        port: search.get('port'),
+        secret: search.get('secret')
+      }
+    ];
+    if (window.localStorage.getItem('naria2/connection')) {
+      try {
+        const options = JSON.parse(
+          window.localStorage.getItem('naria2/connection') ?? 'null'
+        ) as ConnectionOptions | null;
+        if (options) {
+          tries.push(options as any);
+        }
+      } catch {}
     }
 
-    {
-      const options = JSON.parse(
-        window.localStorage.getItem('naria2/connection') ?? 'null'
-      ) as ConnectionOptions | null;
-      if (options?.port && options.secret) {
-        const client = await createClient(new WebSocket(`ws://127.0.0.1:${options.port}/jsonrpc`), {
-          secret: options.secret
-        });
+    for (const opt of tries) {
+      const url = opt.port ? `ws://127.0.0.1:${opt.port}/jsonrpc` : `ws://${location.host}/jsonrpc`;
+      const client = await createClient(new WebSocket(url), {
+        secret: opt.secret ?? undefined
+      }).catch(() => undefined);
+
+      if (client) {
+        window.localStorage.setItem(
+          'naria2/connection',
+          JSON.stringify({ port: opt.port, secret: opt.secret })
+        );
         return client;
       }
     }

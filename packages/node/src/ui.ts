@@ -24,8 +24,9 @@ export async function launchWebUI(options: WebUIOptions) {
   const port = options.port ?? 6801;
   const clientDir = fileURLToPath(new URL('../client', import.meta.url));
   const serve = serveStatic(clientDir, { index: ['index.html'] });
+  const handler = await createWebUIHandler(options);
   const server = http.createServer(async (req, res) => {
-    if (await handleWebUIRequest(req, res, options)) {
+    if (await handler(req, res)) {
       return;
     }
     serve(req, res, finalhandler(req, res));
@@ -49,25 +50,31 @@ export async function attachWebUI(
   });
 }
 
-export async function handleWebUIRequest(
-  req: IncomingMessage,
-  res: ServerResponse<IncomingMessage>,
-  options: Pick<WebUIOptions, 'rpc'>
-) {
-  if (!req.url) return false;
+export async function createWebUIHandler(options: Pick<WebUIOptions, 'rpc'>) {
+  const { createProxyMiddleware } = await import('http-proxy-middleware');
+  const proxyMiddleware = createProxyMiddleware({
+    target: `http://127.0.0.1:${options.rpc.port}`,
+    changeOrigin: false,
+    ws: true,
+    logLevel: 'silent'
+  });
 
-  try {
-    const url = new URL(req.url, `http://${req.headers.host}`);
-    if (url.pathname === '/jsonrpc') {
-      res.end();
-      return true;
-    } else if (url.pathname === '/_/open') {
-      return await handleWebUIOpenRequest(url, req, res, options);
+  return async (req: IncomingMessage, res: ServerResponse<IncomingMessage>) => {
+    if (!req.url) return false;
+
+    try {
+      const url = new URL(req.url, `http://${req.headers.host}`);
+      if (url.pathname === '/jsonrpc') {
+        proxyMiddleware(req as any, res as any, () => {});
+        return true;
+      } else if (url.pathname === '/_/open') {
+        return await handleWebUIOpenRequest(url, req, res, options);
+      }
+      return false;
+    } catch (error) {
+      return false;
     }
-    return false;
-  } catch (error) {
-    return false;
-  }
+  };
 }
 
 export async function handleWebUIOpenRequest(
