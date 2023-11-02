@@ -38,7 +38,10 @@ function DownloadAlert() {
     if (!text) return;
     const uris = text.split('\n');
     try {
-      await client.downloadUri(uris, {});
+      const torrent = await client.downloadUri(uris, {});
+      torrent.on('progress', (torrent) => {
+        console.log(torrent);
+      });
     } catch (error) {
       console.error(error);
     }

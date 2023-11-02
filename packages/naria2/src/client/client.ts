@@ -20,9 +20,16 @@ export class Aria2Client {
 
   private _monitor: Aria2Monitor | undefined;
 
-  public constructor(conn: Conn) {
+  private _options: Required<Omit<ClientOptions, 'secret' | 'timeout' | 'openTimeout'>>;
+
+  public constructor(conn: Conn, options: ClientOptions = {}) {
     this._conn = conn;
-    this._monitor = new Aria2Monitor(conn);
+    this._monitor = new Aria2Monitor(this);
+
+    this._options = { progressInterval: 1000, ...options };
+    Reflect.deleteProperty(this._options, 'secret');
+    Reflect.deleteProperty(this._options, 'timeout');
+    Reflect.deleteProperty(this._options, 'openTimeout');
   }
 
   public get conn(): Conn {
@@ -30,6 +37,10 @@ export class Aria2Client {
       throw new Error('Connection has been closed');
     }
     return this._conn;
+  }
+
+  public get options() {
+    return this._options;
   }
 
   public get socket(): Socket {

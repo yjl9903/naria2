@@ -14,6 +14,13 @@ export interface ClientOptions {
    * @public
    */
   openTimeout?: number;
+
+  /**
+   * Time interval for polling download status (ms).
+   *
+   * @default 1000
+   */
+  progressInterval?: number;
 }
 
 export interface DownloadOptions {

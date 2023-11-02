@@ -1,5 +1,7 @@
-import { aria2, type Conn } from 'maria2';
-import mitt, { Handler, type Emitter, WildcardHandler } from 'mitt';
+import { aria2, system } from 'maria2';
+import mitt, { type Emitter } from 'mitt';
+
+import type { Aria2Client } from './client';
 
 import { Task, Torrent } from './torrent';
 
@@ -9,6 +11,7 @@ interface Disposable<T = void> {
 
 type Aria2MonitorEvents = Record<
   | `start:${string}`
+  | `progress:${string}`
   | `pause:${string}`
   | `stop:${string}`
   | `complete:${string}`
@@ -17,21 +20,23 @@ type Aria2MonitorEvents = Record<
 > &
   Record<`bt-complete:${string}`, Torrent>;
 
-type GenericEventHandler =
-  | Handler<Aria2MonitorEvents[keyof Aria2MonitorEvents]>
-  | WildcardHandler<Aria2MonitorEvents>;
-
 export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'off'> {
-  private conn: Conn;
+  private readonly client: Aria2Client;
 
-  private disposables: Set<Disposable<void>> = new Set();
+  private readonly disposables: Set<Disposable<void>> = new Set();
 
-  private emitter = mitt<Aria2MonitorEvents>();
+  private readonly emitter = mitt<Aria2MonitorEvents>();
 
-  private map: Map<string, Task> = new Map();
+  private readonly map: Map<string, Task> = new Map();
 
-  public constructor(conn: Conn) {
-    this.conn = conn;
+  private readonly progressIds: Set<string> = new Set();
+
+  public constructor(client: Aria2Client) {
+    this.client = client;
+  }
+
+  private get conn() {
+    return this.client.conn;
   }
 
   public async start() {
@@ -55,6 +60,15 @@ export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'o
         this.onDownloadError(ev.gid);
       })
     ].forEach((dis) => this.disposables.add(dis));
+
+    const timeout = setInterval(async () => {
+      await this.onDownloadProgress();
+    }, this.client.options.progressInterval);
+    this.disposables.add({
+      dispose() {
+        clearInterval(timeout);
+      }
+    });
   }
 
   public close() {
@@ -76,15 +90,25 @@ export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'o
     );
   }
 
-  public async getTask(gid: string) {
+  public async getTask(gid: string): Promise<Task> {
     if (this.map.has(gid)) {
       return this.map.get(gid)!;
     } else {
       const status = await aria2.tellStatus(this.conn, gid);
-      const task = status.bittorrent ? new Torrent(this.conn, gid) : new Task(this.conn, gid);
+      // Concurrent
+      if (this.map.has(gid)) {
+        return this.map.get(gid)!;
+      }
+
+      const following = status.following ? await this.getTask(status.following) : undefined;
+      const task = status.bittorrent
+        ? new Torrent(this.client, gid, following as Torrent | undefined)
+        : new Task(this.client, gid);
+
       this.map.set(gid, task);
       Reflect.set(task, '_status', status);
       Reflect.set(task, '_timestamp', new Date());
+
       return task;
     }
   }
@@ -95,18 +119,47 @@ export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'o
   }
 
   // --- emitter ---
-  public on<Key extends keyof Aria2MonitorEvents>(key: Key, handler: GenericEventHandler) {
-    // @ts-expect-error
+  public on<Key extends keyof Aria2MonitorEvents>(key: Key, handler: any) {
+    if (key.startsWith('progress:')) {
+      const id = key.slice('progress:'.length);
+      this.progressIds.add(id);
+    }
     this.emitter.on(key, handler);
   }
 
-  public off<Key extends keyof Aria2MonitorEvents>(key: Key, handler?: GenericEventHandler) {
-    // @ts-expect-error
+  public off<Key extends keyof Aria2MonitorEvents>(key: Key, handler?: any) {
     this.emitter.off(key, handler);
   }
   // ---------------
 
   // --- internal ---
+  private async onDownloadProgress() {
+    if (this.progressIds.size === 0) return;
+
+    const statues = await system.multicall(
+      this.conn,
+      ...[...this.progressIds].map(
+        (id) =>
+          ({
+            methodName: 'aria2.tellStatus',
+            params: [id] as [string]
+          } as const)
+      )
+    );
+    for (const status of statues) {
+      if (!status.gid) continue;
+
+      const gid = status.gid!;
+      const freshTask = !this.map.has(gid);
+      const task = await this.getTask(gid);
+      if (!freshTask) {
+        Reflect.set(task, '_status', status);
+        Reflect.set(task, '_timestamp', new Date());
+      }
+      this.emitter.emit(`progress:${gid}`, task);
+    }
+  }
+
   private async onDownloadStart(gid: string) {
     this.emitter.emit(`start:${gid}`, await this.getTask(gid));
   }
@@ -124,8 +177,10 @@ export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'o
   }
 
   private async onBtDownloadComplete(gid: string) {
-    this.emitter.emit(`bt-complete:${gid}`, await this.getTask(gid));
+    const task = (await this.getTask(gid)) as Torrent;
+    this.emitter.emit(`bt-complete:${gid}`, task);
   }
+
   private async onDownloadError(gid: string) {
     this.emitter.emit(`error:${gid}`, await this.getTask(gid));
   }
