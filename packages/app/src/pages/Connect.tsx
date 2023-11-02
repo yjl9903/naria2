@@ -1,6 +1,7 @@
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
   Form,
@@ -14,7 +15,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useAria2 } from '@/aria2';
-import { useNavigate } from 'react-router-dom';
 
 const ConnectSchema = z.object({
   host: z.string().optional(),
@@ -69,9 +69,9 @@ export default function Connect() {
         <div className="w-[60%]">
           <h1 className="text-2xl font-bold mb-4 select-none">
             Connect{' '}
-            <a href="/" className="hover:underline decoration-dotted">
+            <Link to="/" className="hover:underline decoration-dotted">
               naria2
-            </a>
+            </Link>
           </h1>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

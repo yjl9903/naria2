@@ -29,6 +29,10 @@ export async function launchWebUI(options: WebUIOptions) {
     if (await handler(req, res)) {
       return;
     }
+    // Hack: replace /connect to /
+    if (req.url?.startsWith('/connect')) {
+      req.url = req.url.replace('/connect', '/');
+    }
     serve(req, res, finalhandler(req, res));
   });
 

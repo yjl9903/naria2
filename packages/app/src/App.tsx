@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useQuery } from '@tanstack/react-query';
-
-import Home from './pages/Home';
-import { useAria2 } from './aria2';
+import { useNavigate, Link } from 'react-router-dom';
 
 import {
   Menubar,
@@ -13,9 +11,10 @@ import {
   MenubarTrigger
 } from '@/components/ui/menubar';
 
-import { formatByteSize } from './utils';
+import Home from './pages/Home';
+import { useAria2 } from './aria2';
 import { DownloadAlert } from './components/Download';
-import { useNavigate } from 'react-router-dom';
+import { formatByteSize } from './utils';
 
 function Menu() {
   return (
@@ -26,9 +25,9 @@ function Menu() {
         </DownloadAlert>
       </MenubarButton>
       <MenubarButton>
-        <a href="/connect" className="select-none cursor-default">
+        <Link to="/connect" className="select-none cursor-default">
           Connect
-        </a>
+        </Link>
       </MenubarButton>
       <MenubarMenu>
         <MenubarTrigger>Settings</MenubarTrigger>
