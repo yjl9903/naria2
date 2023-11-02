@@ -9,7 +9,6 @@ import { Progress } from '@/components/ui/progress';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { DownloadAlert } from '@/components/Download';
 import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
 
 function Welcome() {
   return (
@@ -68,13 +67,7 @@ export default function Home() {
       <ScrollArea>
         <div ref={parent} className="space-y-2 w-full">
           {isLoading ? (
-            <>
-              <Skeleton className="mt-4 h-8 w-full"></Skeleton>
-              <Skeleton className="mt-4 h-8 w-full"></Skeleton>
-              <Skeleton className="mt-4 h-8 w-full"></Skeleton>
-              <Skeleton className="mt-4 h-8 w-full"></Skeleton>
-              <Skeleton className="mt-4 h-8 w-[80%]"></Skeleton>
-            </>
+            <div></div>
           ) : data && data.length > 0 ? (
             data.map((t) => <DownloadItem key={t.gid} task={t}></DownloadItem>)
           ) : (

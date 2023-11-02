@@ -53,11 +53,15 @@ export default function Connect() {
 
   async function onSubmit(values: z.infer<typeof ConnectSchema>) {
     try {
-      await aria2.connect({
+      const client = await aria2.connect({
         port: values.port,
         secret: values.secret ? values.secret : undefined
       });
-      navigate('/');
+      if (client) {
+        navigate('/');
+      } else {
+        form.reset();
+      }
     } catch (error) {
       console.log(error);
     }

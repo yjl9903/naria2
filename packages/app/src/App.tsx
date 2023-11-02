@@ -118,12 +118,21 @@ function Menu() {
 }
 
 function GlobalStat() {
-  const { client } = useAria2();
-  const { data } = useQuery({
+  const navigate = useNavigate();
+  const { client, clear } = useAria2();
+  const { data, isError } = useQuery({
     queryKey: ['naria2/globalStat'],
-    queryFn: async () => await client?.globalStat(),
+    queryFn: async () => {
+      const resp = await client?.globalStat();
+      if (!resp) throw new Error('Can not get global stat');
+      return resp;
+    },
     refetchInterval: 1000
   });
+  if (isError) {
+    clear();
+    navigate('/connect');
+  }
 
   return (
     <div className="w-full px-2 py-1 bg-gray-200/20 border-t flex select-none">
