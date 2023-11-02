@@ -1,6 +1,9 @@
 import type { Plugin } from 'vite';
 import type { PartialDeep } from 'type-fest';
 
+import path from 'node:path';
+import { promises as fs } from 'node:fs';
+
 import { createLogger } from 'vite';
 import { bold, cyan, green } from '@breadc/color';
 
@@ -29,6 +32,27 @@ export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
       name: 'vite-plugin-naria2:runtime',
       apply: 'serve',
       async configureServer(server) {
+        server.middlewares.use('/jsonrpc', () => {});
+        server.middlewares.use('/_/open', async (req, res, next) => {
+          if (req.url) {
+            const url = new URL(req.url, `http://${req.headers.host}`);
+            const dir = url.searchParams.get('dir');
+            if (dir) {
+              const open = (await import('open')).default;
+              const p = decodeURIComponent(dir);
+              const stat = await fs.stat(p);
+              if (stat.isDirectory()) {
+                await open(p).catch(() => {});
+              } else {
+                await open(path.dirname(p)).catch(() => {});
+              }
+            }
+            res.end();
+            return;
+          }
+          next();
+        });
+
         const _printUrls = server.printUrls;
 
         if (!childProcessRuntime.url) {

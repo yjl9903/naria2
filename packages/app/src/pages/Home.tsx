@@ -74,6 +74,7 @@ export default function Home() {
 
 function DownloadItem(props: { task: Task }) {
   const queryClient = useQueryClient();
+  const { client } = useAria2();
 
   const task = props.task;
   const name =
@@ -103,7 +104,11 @@ function DownloadItem(props: { task: Task }) {
     queryClient.invalidateQueries({ queryKey: ['naria2/active'] });
   };
   const openDir = async () => {
-    await fetch(`/_/open?dir=${encodeURIComponent(task.status.dir)}`).catch(() => undefined);
+    const secret = client?.conn.getSecret();
+    const headers = secret ? { Authorization: secret } : undefined;
+    await fetch(`/_/open?dir=${encodeURIComponent(task.status.dir)}`, {
+      headers: { ...headers }
+    }).catch(() => undefined);
   };
 
   return (
