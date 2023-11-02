@@ -19,18 +19,29 @@ try {
 
   const cancelDeath = onDeath(async (signal) => {
     server?.close();
-    childProcess.kill(signal);
+
+    const killChildProcess = () => {
+      childProcess.kill(signal);
+      return new Promise((res) => {
+        if (childProcess.exitCode !== null || childProcess.killed) {
+          res();
+        } else {
+          childProcess.once('exit', () => {
+            res();
+          });
+        }
+      });
+    };
 
     await Promise.race([
-      new Promise((res) => {
-        if (childProcess.exitCode !== null) {
-          res();
+      killChildProcess(),
+      new Promise(async (res) => {
+        for (let i = 1; i <= 4; i++) {
+          await sleep(1000 * (5 - i));
+          childProcess.kill(signal);
         }
-        childProcess.once('exit', () => {
-          res();
-        });
-      }),
-      sleep(5000)
+        res();
+      })
     ]);
   });
 
