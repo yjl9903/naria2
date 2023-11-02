@@ -12,9 +12,10 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
+import { useAria2 } from '@/aria2';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useAria2 } from '@/aria2';
+import { useToast } from '@/components/ui/use-toast';
 
 const ConnectSchema = z.object({
   host: z.string().optional(),
@@ -44,6 +45,7 @@ const getDefaultConnection = () => {
 
 export default function Connect() {
   const aria2 = useAria2();
+  const { toast } = useToast();
   const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof ConnectSchema>>({
@@ -60,6 +62,7 @@ export default function Connect() {
       if (client) {
         navigate('/');
       } else {
+        toast({ title: 'Connect to aria2 RPC server failed', variant: 'destructive' });
         form.reset();
       }
     } catch (error) {
