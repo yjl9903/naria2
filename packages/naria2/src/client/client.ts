@@ -126,8 +126,12 @@ export class Aria2Client {
     return this.monitor.listActive();
   }
 
-  public async listWaiting(offset: number, num: number) {
-    return aria2.tellWaiting(this.conn, offset, num);
+  public async listWaiting() {
+    return this.monitor.listWaiting();
+  }
+
+  public async listPaused() {
+    return this.monitor.listPaused();
   }
 
   public async listStopped(offset: number, num: number) {

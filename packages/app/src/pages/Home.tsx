@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Task } from 'naria2';
 
 import { useAria2 } from '@/aria2';
-import { formatByteSize } from '@/utils';
+import { clsx, formatByteSize } from '@/utils';
 import { Progress } from '@/components/ui/progress';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
@@ -14,7 +14,7 @@ export default function Home() {
   const { data } = useQuery({
     queryKey: ['naria2/active'],
     queryFn: async () => {
-      return await client.listActive();
+      return (await Promise.all([client.listActive(), client.listWaiting()])).flat();
     },
     structuralSharing: false,
     refetchInterval: 1000
@@ -39,6 +39,15 @@ function DownloadItem(props: { task: Task }) {
       ? task.status.bittorrent?.info?.name
       : task.status.bittorrent?.info?.name?.['utf-8'] ?? '[METADATA]';
 
+  const icon = {
+    active: 'i-material-symbols-play-arrow-rounded',
+    waiting: 'i-material-symbols-refresh',
+    paused: 'i-ic-outline-pause',
+    error: 'i-material-symbols-error-circle-rounded-outline-sharp',
+    complete: 'i-ic-baseline-check text-green-500',
+    removed: 'i-material-symbols-delete-outline'
+  }[task.state];
+
   const pause = () => {
     task.pause();
   };
@@ -52,11 +61,14 @@ function DownloadItem(props: { task: Task }) {
   return (
     <div className="px-4 py-3 space-y-2 rounded-md border bg-gray-200/10 hover:bg-gray-300/10">
       <div className="flex gap-2 items-center justify-between">
-        <div className="flex-grow truncate max-w-[calc(100vw-240px)] text-ellipsis">{name}</div>
+        <div className="flex-grow truncate max-w-[calc(100vw-240px)] text-ellipsis flex gap-1 items-end">
+          <span className={clsx(icon, 'text-xl')}></span>
+          <span>{name}</span>
+        </div>
         <div className="min-w-[30px] border rounded-full py-1 px-2 gap-2 flex items-center text-gray-500">
           {task.state === 'paused' ? (
             <span
-              className="block text-lg i-carbon-continue hover:text-gray-700"
+              className="block text-lg i-material-symbols-play-arrow-rounded hover:text-gray-700"
               onClick={unpause}
             ></span>
           ) : (

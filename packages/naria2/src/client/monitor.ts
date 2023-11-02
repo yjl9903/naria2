@@ -1,4 +1,4 @@
-import { aria2, system } from 'maria2';
+import { Aria2DownloadStatus, aria2, system } from 'maria2';
 import mitt, { type Emitter } from 'mitt';
 
 import type { Aria2Client } from './client';
@@ -75,18 +75,32 @@ export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'o
     this.disposables.forEach((dis) => dis.dispose());
   }
 
+  private async updateStatus(status: Aria2DownloadStatus) {
+    const freshTask = !this.map.has(status.gid);
+    const task = await this.getTask(status.gid);
+    if (!freshTask) {
+      Reflect.set(task, '_status', status);
+      Reflect.set(task, '_timestamp', new Date());
+    }
+    return task;
+  }
+
   public async listActive() {
     const result = await aria2.tellActive(this.conn);
+    return await Promise.all(result.map((status) => this.updateStatus(status)));
+  }
+
+  public async listWaiting() {
+    // TODO: not hard code this
+    const result = await aria2.tellWaiting(this.conn, 0, 1000);
+    return await Promise.all(result.map((status) => this.updateStatus(status)));
+  }
+
+  public async listPaused() {
+    // TODO: not hard code this
+    const result = await aria2.tellWaiting(this.conn, 0, 1000);
     return await Promise.all(
-      result.map(async (status) => {
-        const freshTask = !this.map.has(status.gid);
-        const task = await this.getTask(status.gid);
-        if (!freshTask) {
-          Reflect.set(task, '_status', status);
-          Reflect.set(task, '_timestamp', new Date());
-        }
-        return task;
-      })
+      result.filter((s) => s.status === 'paused').map((status) => this.updateStatus(status))
     );
   }
 
