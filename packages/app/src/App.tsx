@@ -35,7 +35,7 @@ function Menu() {
         <MenubarContent>
           <MenubarItem disabled>Settings</MenubarItem>
           <MenubarSeparator />
-          <a href="https://github.com/aria2/aria2" target="_blank">
+          <a href="https://aria2.github.io/manual/en/html/index.html" target="_blank">
             <MenubarItem>Document</MenubarItem>
           </a>
           <a href="https://github.com/yjl9903/naria2" target="_blank">
