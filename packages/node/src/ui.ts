@@ -1,4 +1,6 @@
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { promises as fs } from 'node:fs';
 
 import type { ChildProcessSocket } from './transport';
 
@@ -34,7 +36,13 @@ export async function launchWebUI(options: WebUIOptions) {
             const dir = url.searchParams.get('dir');
             if (dir) {
               const open = (await import('open')).default;
-              await open(decodeURIComponent(dir)).catch(() => {});
+              const p = decodeURIComponent(dir);
+              const stat = await fs.stat(p);
+              if (stat.isDirectory()) {
+                await open(p).catch(() => {});
+              } else {
+                await open(path.dirname(p)).catch(() => {});
+              }
             }
           }
           res.end();
