@@ -70,7 +70,7 @@ async function inferClient() {
         secret: opt.secret ?? undefined
       }).catch(() => undefined);
 
-      if (client) {
+      if (client && (await client.version().catch(() => undefined))) {
         window.localStorage.setItem(
           'naria2/connection',
           JSON.stringify({ port: opt.port, secret: opt.secret })
