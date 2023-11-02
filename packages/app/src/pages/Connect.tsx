@@ -51,7 +51,12 @@ export default function Connect() {
     <div className="flex h-screen w-screen">
       <div className="w-full sm:w-2/3 sm:border-r h-full flex items-center justify-center">
         <div className="w-[60%]">
-          <h1 className="text-2xl font-bold mb-4">Connect naria2</h1>
+          <h1 className="text-2xl font-bold mb-4 select-none">
+            Connect{' '}
+            <a href="/" className="hover:underline decoration-dotted">
+              naria2
+            </a>
+          </h1>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -96,7 +101,9 @@ export default function Connect() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Connect</Button>
+              <Button type="submit" className="select-none">
+                Connect
+              </Button>
             </form>
           </Form>
         </div>

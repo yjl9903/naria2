@@ -25,6 +25,11 @@ function Menu() {
           <span className="select-none">Download</span>
         </DownloadAlert>
       </MenubarButton>
+      <MenubarButton>
+        <a href="/connect" className="select-none cursor-default">
+          Connect
+        </a>
+      </MenubarButton>
       <MenubarMenu>
         <MenubarTrigger>Settings</MenubarTrigger>
         <MenubarContent>
