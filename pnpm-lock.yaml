@@ -252,6 +252,9 @@ importers:
       open:
         specifier: ^9.1.0
         version: 9.1.0
+      portfinder:
+        specifier: ^1.0.32
+        version: 1.0.32
 
   packages/node:
     dependencies:
