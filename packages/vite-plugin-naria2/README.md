@@ -8,7 +8,7 @@ Make it easy to debug a aria2 client application.
 ## Installation
 
 ```bash
-npm i vite-plugin-naria2
+npm i naria2 @naria2/node vite-plugin-naria2
 ```
 
 ## Usage
@@ -26,9 +26,10 @@ export default defineConfig({
     TopLevelAwait(), // Used for transforming the top-level await syntax
     Naria2({
       childProcess: {
-        log: './aria2.log', // Used for debug
+        log: './aria2.log',     // Used for debug
+        environment: 'ignore',  // Ignore proxy environment variables
         rpc: {
-          secret: '123456' // Use the fixed secret, or generate under the hood
+          secret: '123456'      // Use the fixed secret, or generate under the hood
         }
       }
     })

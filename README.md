@@ -7,9 +7,9 @@
 
 High-level and Convenient BitTorrent Client based on [aria2 JSON RPC Interface](https://aria2.github.io/manual/en/html/aria2c.html#rpc-interface).
 
-+ Download aria2 for your platform
-+ Simple BitTorrent downloading API
-+ Event bus for progress, state change, and so on
++ Download aria2 according to your platform
++ Convenient BitTorrent downloading API
++ Event bus used for watching progress, state change
 + Vite plugin which helps you develop aria2 client application
 + Web UI for aria2c (more features is working in progress)
 
@@ -23,7 +23,7 @@ It is used in the same way as [aria2c](https://aria2.github.io/manual/en/html/ar
 $ npm i -g naria2c
 
 $ naria2c --version
-naria2c/0.0.15
+naria2c/0.0.23
 --------------
 ...
 

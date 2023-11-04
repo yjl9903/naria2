@@ -51,8 +51,6 @@
   },
   "dependencies": {
     "@breadc/color": "^0.9.7",
-    "@naria2/node": "workspace:*",
-    "naria2": "workspace:*",
     "type-fest": "^4.6.0"
   },
   "devDependencies": {
@@ -60,6 +58,8 @@
     "vitest": "^0.34.6"
   },
   "peerDependencies": {
+    "@naria2/node": "workspace:*",
+    "naria2": "workspace:*",
     "vite": "^4.4.9"
   },
   "engines": {

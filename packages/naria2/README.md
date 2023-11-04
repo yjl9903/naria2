@@ -1,12 +1,43 @@
 # naria2
 
 [![version](https://img.shields.io/npm/v/naria2?label=naria2)](https://www.npmjs.com/package/naria2)
+[![version](https://img.shields.io/npm/v/naria2c?label=naria2c)](https://www.npmjs.com/package/naria2c)
+[![version](https://img.shields.io/npm/v/vite-plugin-naria2?label=vite-plugin-naria2)](https://www.npmjs.com/package/vite-plugin-naria2)
 [![CI](https://github.com/yjl9903/naria2/actions/workflows/ci.yml/badge.svg)](https://github.com/yjl9903/naria2/actions/workflows/ci.yml)
 
-High-level aria2 abstraction library for Node.
+High-level and Convenient BitTorrent Client based on [aria2 JSON RPC Interface](https://aria2.github.io/manual/en/html/aria2c.html#rpc-interface).
 
-+ Simple BitTorrent downloading API
-+ Event bus for progress, state change, and so on
++ Download aria2 according to your platform
++ Convenient BitTorrent downloading API
++ Event bus used for watching progress, state change
++ Vite plugin which helps you develop aria2 client application
++ Web UI for aria2c (more features is working in progress)
+
+![home](./assets/home.png)
+
+## Cross-platform aria2c
+
+It is used in the same way as [aria2c](https://aria2.github.io/manual/en/html/aria2c.html#aria2c-1).
+
+```bash
+$ npm i -g naria2c
+
+$ naria2c --version
+naria2c/0.0.23
+--------------
+...
+
+$ naria2c --help
+```
+
+You can also launch a Web UI to manage aria2 using the `--ui` option. This feature is provided by this package, not the original aria2.
+
+```bash
+$ naria2c --ui
+...
+10/29 21:22:46 [NOTICE] WebUI is listening on the http://127.0.0.1:6801?port=6800&secret=123456
+...
+```
 
 ## Installation
 
@@ -82,8 +113,8 @@ await torrent.watchFollowedBy((torrent) => {
   console.log(`Downloading ${torrent.name}`)
 })
 
-// Close client
-client.close()
+// Shutdown client
+await client.shutdown()
 ```
 
 Due to the implementation of [aria2](https://aria2.github.io/manual/en/html/index.html), the downloading progress of a magnet uri includes **two steps**:

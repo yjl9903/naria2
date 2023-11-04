@@ -15,10 +15,17 @@ npm i -g naria2c
 
 ## Usage
 
-It is used in the same way as [aria2](https://aria2.github.io/manual/en/html/index.html).
+It is used in the same way as [aria2c](https://aria2.github.io/manual/en/html/aria2c.html#aria2c-1).
 
 ```bash
-naria2c --help
+$ npm i -g naria2c
+
+$ naria2c --version
+naria2c/0.0.23
+--------------
+...
+
+$ naria2c --help
 ```
 
 You can also launch a Web UI to manage aria2 using the `--ui` option. This feature is provided by this package, not the original aria2.

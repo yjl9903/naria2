@@ -3,7 +3,10 @@
 [![version](https://img.shields.io/npm/v/@naria2/node?label=@naria2/node)](https://www.npmjs.com/package/@naria2/node)
 [![CI](https://github.com/yjl9903/naria2/actions/workflows/ci.yml/badge.svg)](https://github.com/yjl9903/naria2/actions/workflows/ci.yml)
 
-Cross-platform wrapper of aria2
+Cross-platform wrapper of aria2.
+
++ Download aria2 according to your platform
++ Web UI for aria2c (more features is working in progress)
 
 ## Installation
 
@@ -40,8 +43,8 @@ await torrent.watchFollowedBy((torrent) => {
   console.log(`Downloading ${torrent.name}`)
 })
 
-// Close client
-client.close()
+// Shutdown client
+await client.shutdown()
 ```
 
 Due to the implementation of [aria2](https://aria2.github.io/manual/en/html/index.html), the downloading progress of a magnet uri includes **two steps**:
