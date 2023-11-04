@@ -27,6 +27,7 @@ interface Aria2State {
 const client = await inferClient();
 // @ts-ignore
 window.__client = client;
+removeStartupLoading();
 
 export const useAria2 = create<Aria2State>()((set, get) => ({
   client,
@@ -88,8 +89,10 @@ export const useAria2 = create<Aria2State>()((set, get) => ({
 
 async function inferClient() {
   if (debugClient) {
+    removeStartupLoading();
     return debugClient;
   } else {
+    addStartupLoading();
     const search = new URLSearchParams(location.search);
     const tries = [
       {
@@ -119,8 +122,23 @@ async function inferClient() {
           'naria2/connection',
           JSON.stringify({ port: opt.port, secret: opt.secret })
         );
+        removeStartupLoading();
         return client;
       }
     }
+  }
+}
+
+function addStartupLoading() {
+  const dom = document.getElementById('startup-loading');
+  if (dom) {
+    dom.style.display = 'block';
+  }
+}
+
+function removeStartupLoading() {
+  const dom = document.getElementById('startup-loading');
+  if (dom) {
+    dom.style.display = 'none';
   }
 }

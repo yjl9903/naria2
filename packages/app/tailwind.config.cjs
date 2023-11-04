@@ -4,7 +4,7 @@ const { iconsPlugin, getIconCollections } = require('@egoist/tailwindcss-icons')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
-  content: ['./src/**/*.{ts,tsx}'],
+  content: ['./src/**/*.{ts,tsx}', './index.html'],
   theme: {
     container: {
       center: true,
