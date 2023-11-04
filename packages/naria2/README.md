@@ -82,6 +82,8 @@ await torrent.watch(() => {
 client.close()
 ```
 
+You can find an example using Node.js [here](https://github.com/yjl9903/naria2/blob/main/scripts/download.mjs).
+
 ## Credits
 
 + [aria2](https://github.com/aria2/aria2): A lightweight multi-protocol & multi-source, cross platform download utility operated in command-line

@@ -40,6 +40,8 @@ await torrent.watch(() => {
 client.close()
 ```
 
+You can find an example using Node.js [here](https://github.com/yjl9903/naria2/blob/main/scripts/download.mjs).
+
 > **Warning**
 >
 > You should **close the client on your own**, otherwise the aria2 process **may not be killed** even if your program finished or crashed.
