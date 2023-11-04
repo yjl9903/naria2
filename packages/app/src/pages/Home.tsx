@@ -9,8 +9,19 @@ import { Progress } from '@/components/ui/progress';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { DownloadAlert } from '@/components/Download';
 import { Button } from '@/components/ui/button';
+import React from 'react';
 
 function Welcome() {
+  const aria2 = useAria2();
+  const downloadClipboard = React.useCallback(async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      await aria2.downloadUri(text, {});
+    } catch (error) {
+      console.error(error);
+    }
+  }, [aria2]);
+
   return (
     <div className="mt-12 h-60 w-full select-none">
       <div className="w-[400px] mx-auto items-end rounded px-2 py-3 font-bold text-4xl font-medium leading-none text-primary transition sm:flex select-none">
@@ -22,6 +33,11 @@ function Welcome() {
             Download ...
           </Button>
         </DownloadAlert>
+      </div>
+      <div className="w-[400px] mx-auto">
+        <Button variant="link" className="h-8 px-2 py-1" onClick={downloadClipboard}>
+          Download URI from clipboard ...
+        </Button>
       </div>
       <div className="w-[400px] mx-auto">
         <a href="https://aria2.github.io/manual/en/html/index.html" target="_blank">

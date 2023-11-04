@@ -20,20 +20,8 @@ export function DownloadAlert(props: { children: React.ReactElement }) {
   const [text, setText] = React.useState('');
 
   const download = React.useCallback(async () => {
-    const client = aria2.client;
-    if (!client) return;
-    if (!text) return;
-
-    const uris = text
-      .split('\n')
-      .map((t) => t.trim())
-      .filter(Boolean);
-
     try {
-      const torrent = await client.downloadUri(uris, {});
-      torrent.on('progress', (torrent) => {
-        console.log(torrent);
-      });
+      await aria2.downloadUri(text, {});
     } catch (error) {
       console.error(error);
     }

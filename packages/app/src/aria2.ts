@@ -1,7 +1,8 @@
 import { create } from 'zustand';
-import { client as debugClient } from '~naria2/jsonrpc';
 
-import { type Aria2Client, createClient } from 'naria2';
+import { type Aria2Client, createClient, Task } from 'naria2';
+
+import { client as debugClient } from '~naria2/jsonrpc';
 
 interface ConnectionOptions {
   host?: string;
@@ -17,13 +18,15 @@ interface Aria2State {
   connect: (conn: ConnectionOptions) => Promise<Aria2Client | undefined>;
 
   clear: () => void;
+
+  downloadUri: (uris: string, options?: Parameters<Aria2Client['downloadUri']>[1]) => Promise<Task>;
 }
 
 const client = await inferClient();
 // @ts-ignore
 window.__client = client;
 
-export const useAria2 = create<Aria2State>()((set) => ({
+export const useAria2 = create<Aria2State>()((set, get) => ({
   client,
   clear: () => {
     set({ client: undefined });
@@ -60,6 +63,24 @@ export const useAria2 = create<Aria2State>()((set) => ({
     } catch (error) {
       return undefined;
     }
+  },
+  async downloadUri(text: string, options) {
+    const client = get().client;
+    if (!client) throw new Error('client is not connected');
+
+    const isSupport = (text: string) => {
+      return /^magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i.test(text);
+    };
+    const uris = text
+      .split('\n')
+      .map((t) => t.trim())
+      .filter(Boolean)
+      .filter(isSupport);
+    if (uris.length === 0) {
+      throw new Error('No input');
+    }
+
+    return await client.downloadUri(uris, options);
   }
 }));
 
