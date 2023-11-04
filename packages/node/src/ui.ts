@@ -45,13 +45,19 @@ export async function attachWebUI(
   process: ChildProcessSocket,
   options: Pick<WebUIOptions, 'port'> = {}
 ) {
-  return await launchWebUI({
+  const server = await launchWebUI({
     port: options?.port ?? 6801,
     rpc: {
       port: process.getOptions().listenPort,
       secret: process.getOptions().secret
     }
   });
+
+  process.onClose(() => {
+    server.close();
+  });
+
+  return server;
 }
 
 export async function createWebUIHandler(options: Pick<WebUIOptions, 'rpc'>) {

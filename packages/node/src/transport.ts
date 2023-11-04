@@ -58,6 +58,8 @@ export class ChildProcessSocket implements PreconfiguredSocket {
 
   readonly childProcess: ChildProcess;
 
+  readonly disposables: Set<() => void> = new Set();
+
   readonly options: ResolvedChildProcessOptions;
 
   constructor(socket: Socket, childProcess: ChildProcess, options: ResolvedChildProcessOptions) {
@@ -78,7 +80,20 @@ export class ChildProcessSocket implements PreconfiguredSocket {
     };
   }
 
+  public onClose(fn: () => void) {
+    this.disposables.add(fn);
+    return () => {
+      this.disposables.delete(fn);
+    };
+  }
+
   public close(code?: number, reason?: string): void {
+    for (const dp of [...this.disposables].reverse()) {
+      try {
+        dp();
+      } catch (error) {}
+    }
+
     this.socket.close(code, reason);
     this.childProcess.kill();
   }
