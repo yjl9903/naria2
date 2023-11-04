@@ -252,9 +252,8 @@ export class Aria2Monitor {
             } as const)
         )
       );
-      for (const status of statuses) {
-        if (!status.gid) continue;
-
+      for (const [status] of statuses) {
+        if (!status || !status.gid) continue;
         try {
           const gid = status.gid!;
           const freshTask = !this.map.has(gid);

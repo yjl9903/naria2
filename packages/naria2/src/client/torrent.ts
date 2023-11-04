@@ -224,7 +224,7 @@ export class Torrent extends Task {
       const task = await this.client.monitor.watchStatus(this.followedBy.gid, handler, target);
       return task as Torrent;
     } else {
-      throw new Error(`This is not a METADATA torrent`);
+      throw new Error(`This is not a [METADATA] torrent`);
     }
   }
 
@@ -251,7 +251,7 @@ export class Torrent extends Task {
     } else {
       // Hack: pass undefined handler
       // @ts-expect-error
-      return this.watchFollowedBy(undefined, target);
+      return await this.watchFollowedBy(undefined, target);
     }
   }
 }

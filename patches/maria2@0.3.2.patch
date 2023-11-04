@@ -1,3 +1,16 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 406f30d78aef8c84f3960336052aebca39cb3b4e..5ac87d3352f431915152ee9ae62f519684804ff2 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -101,7 +101,7 @@ type Aria2SystemMulticallParams = [Aria2SystemMulticallParamItem] | Array<Aria2S
+ type Aria2SystemMulticallCall = RpcCall<'system.multicall', Aria2SystemMulticallParams>;
+ type Aria2SystemMulticallResult = RpcResult<unknown[]>;
+ type Aria2SystemMulticallParamsToResult<T extends Aria2SystemMulticallParams> = RpcResult<{
+-    [P in keyof T]: NonNullable<Aria2RpcMethodResultMap[T[P]['methodName']]['result']>;
++    [P in keyof T]: NonNullable<[Aria2RpcMethodResultMap[T[P]['methodName']]['result']]>;
+ }>;
+ 
+ type Aria2RpcMethodCallMap = Aria2ClientMethodCallMap & Aria2SystemMethodCallMap;
 diff --git a/dist/index.mjs b/dist/index.mjs
 index 0dd0a9763b8f4e3d48695bd2a1b13dbb8fe01b5a..be7c1922bf730ab0dc10cc411acca9d8f71c4115 100644
 --- a/dist/index.mjs
