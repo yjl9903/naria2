@@ -132,7 +132,7 @@ async function inferClient() {
 function addStartupLoading() {
   const dom = document.getElementById('startup-loading');
   if (dom) {
-    dom.style.display = 'block';
+    dom.style.display = 'flex';
   }
 }
 
