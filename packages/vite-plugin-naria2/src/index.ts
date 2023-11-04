@@ -1,6 +1,8 @@
 import type { Plugin } from 'vite';
 import type { PartialDeep } from 'type-fest';
 
+import path from 'node:path';
+import { promises as fs } from 'node:fs';
 import { createLogger } from 'vite';
 import { bold, cyan, green } from '@breadc/color';
 
@@ -17,9 +19,11 @@ export interface Naria2PluginOptions {
 }
 
 export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
+  let root: string;
   const logger = createLogger();
 
   const childProcessRuntime = {
+    dir: path.join(process.cwd(), '.aria2'),
     process: undefined as ChildProcessSocket | undefined,
     url: undefined as string | undefined,
     secret: undefined as string | undefined
@@ -29,6 +33,9 @@ export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
     {
       name: 'vite-plugin-naria2:runtime',
       apply: 'serve',
+      configResolved(config) {
+        root = config.root;
+      },
       async configureServer(server) {
         server.middlewares.use('/_/open', async (req, res, next) => {
           try {
@@ -49,8 +56,14 @@ export default function Naria2(options: Naria2PluginOptions = {}): Plugin[] {
 
         const _printUrls = server.printUrls;
 
-        if (!childProcessRuntime.url) {
-          const childProcess = await createChildProcess(options.childProcess);
+        if (!childProcessRuntime.process) {
+          childProcessRuntime.dir = path.join(root, '.aria2');
+          await fs.mkdir(childProcessRuntime.dir, { recursive: true }).catch(() => {});
+
+          const childProcess = await createChildProcess({
+            dir: childProcessRuntime.dir,
+            ...options.childProcess
+          });
 
           childProcessRuntime.process = childProcess;
           childProcessRuntime.url = `ws://127.0.0.1:${
