@@ -144,11 +144,11 @@ const resolveDhtGlobalOptions: (
 export function resolveInputOptions(
   options: PartialDeep<Aria2InputOptions>
 ): Partial<Record<Aria2ClientInputOptionKey, string | string[]>> {
-  return {
+  return filterEmptyKey({
     ...('proxy' in options ? resolveProxyOptions(options.proxy) : {}),
     ...resolveBasicInputOptions(options),
     ...resolveBtInputOptions(options.bt)
-  };
+  });
 }
 
 export function resolveGlobalOptions(
@@ -163,4 +163,10 @@ export function resolveGlobalOptions(
     ...resolveDhtGlobalOptions(options.dht),
     ...resolveRPCOptions(options.rpc)
   };
+}
+
+function filterEmptyKey<T extends Record<string, string | string[]>>(input: T): T {
+  return Object.fromEntries(
+    Object.entries(input).filter(([_, value]) => value !== undefined && value !== null)
+  ) as T;
 }

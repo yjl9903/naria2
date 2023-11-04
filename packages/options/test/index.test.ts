@@ -107,8 +107,6 @@ describe('aria2 options', () => {
         "bt-save-metadata": "true",
         "bt-tracker": "123,456",
         "dir": "./download",
-        "no-proxy": undefined,
-        "proxy-method": undefined,
       }
     `);
   });
