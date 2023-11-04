@@ -1,6 +1,11 @@
 import { describe, it, expect } from 'vitest';
 
-import { resolveGlobalOptions, resolveRPCOptions, stringifyCliOptions } from '../src';
+import {
+  resolveGlobalOptions,
+  resolveInputOptions,
+  resolveRPCOptions,
+  stringifyCliOptions
+} from '../src';
 
 describe('aria2 options', () => {
   it('resolve RPC options', async () => {
@@ -79,6 +84,31 @@ describe('aria2 options', () => {
         "rpc-listen-all": "true",
         "rpc-listen-port": "16800",
         "rpc-secret": "123456",
+      }
+    `);
+  });
+
+  it('resolve input options', () => {
+    expect(
+      resolveInputOptions({
+        dir: './download',
+        bt: {
+          saveMetadata: true,
+          tracker: ['123', '456']
+        },
+        proxy: {
+          no: undefined,
+          all: 'http://127.0.0.1:1080'
+        }
+      })
+    ).toMatchInlineSnapshot(`
+      {
+        "all-proxy": "http://127.0.0.1:1080",
+        "bt-save-metadata": "true",
+        "bt-tracker": "123,456",
+        "dir": "./download",
+        "no-proxy": undefined,
+        "proxy-method": undefined,
       }
     `);
   });
