@@ -130,7 +130,7 @@ export class Aria2Client {
       });
     if (typeof gid !== 'string') throw gid.error;
 
-    return this.monitor.watchStatus(gid);
+    return this.monitor.getTask(gid);
   }
 
   // --- List ---
@@ -146,8 +146,8 @@ export class Aria2Client {
     return this.monitor.listPaused();
   }
 
-  public async listStopped(offset: number, num: number) {
-    return aria2.tellStopped(this.conn, offset, num);
+  public async listStopped() {
+    return this.monitor.listStopped();
   }
 }
 

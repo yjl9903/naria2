@@ -71,15 +71,12 @@ const client = await createClient(
 )
 
 // Start downloading a magnet
-const torrent = client.downloadUri('...')
+const torrent = await client.downloadUri('...')
 
-// Watch its progress
-torrent.on('progress', () => {
-  // ...
+// Watch its progress, and await for its completion
+await torrent.watch(() => {
+  console.log('Downloading...')
 })
-
-// Wait for its completion
-await torrent.waitComplete()
 
 // Close client
 client.close()

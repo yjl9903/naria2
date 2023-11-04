@@ -100,15 +100,12 @@ export class Task {
     this.client.monitor.off(`${key}:${this.gid}`, handler);
   }
 
-  public async waitComplete(): Promise<Task> {
-    if (this.state === 'complete') {
-      return this;
-    } else {
-      return new Promise((res, rej) => {
-        this.on('complete', (task: Task) => res(task));
-        this.on('error', (err: any) => rej(err));
-      });
-    }
+  public async watch(handler: (param: Task) => void | Promise<void>) {
+    return await this.client.monitor.watchStatus(this.gid, handler, 'complete');
+  }
+
+  public async waitForCompletion(): Promise<Task> {
+    return await this.client.monitor.watchStatus(this.gid, undefined, 'complete');
   }
 }
 
@@ -169,7 +166,7 @@ export class Torrent extends Task {
   }
 
   public get isMetadata() {
-    return this._following === undefined;
+    return !!this.status.files.find((f) => f.path === '[METADATA]');
   }
 
   public get bittorrent() {
@@ -193,49 +190,43 @@ export class Torrent extends Task {
     this.client.monitor.off(`${key}:${this.gid}`, handler);
   }
 
-  public async waitComplete(): Promise<Torrent> {
-    if (this.following) {
-      const following = this.following;
-      if (this.state === 'complete') {
-        return this;
-      } else {
-        return new Promise((res, rej) => {
-          this.on('complete', () => res(following));
-          this.on('error', (err: any) => rej(err));
-        });
-      }
+  public async watch(
+    handler: (param: Torrent) => void | Promise<void>,
+    target: `complete` | `bt-complete` = `complete`
+  ) {
+    return await this.client.monitor.watchStatus(this.gid, handler, target);
+  }
+
+  /**
+   * Wait for the full torrent download completion
+   *
+   * If this is a metadata torrent (used for downloading metadata), it has two steps:
+   *
+   * 1. Downloading the metadata
+   * 2. Downloading the actual data
+   *
+   * If this is a actual data torrent, it will just wait for the download compeltion
+   *
+   * @param target
+   * @returns
+   */
+  public async waitForCompletion(
+    target: `complete` | `bt-complete` = `complete`
+  ): Promise<Torrent> {
+    if (!this.isMetadata) {
+      const task = await this.client.monitor.watchStatus(this.gid, undefined, target);
+      return task as Torrent;
     } else {
-      if (this.followedBy) {
-        return this.followedBy.waitComplete();
-      } else {
-        return new Promise((res, rej) => {
-          this.client.monitor.on(`complete:${this.gid}`, async () => {
-            if (!this.followedBy) {
-              await this.updateStatus();
-              await this.setFollowedBy();
-            }
-            if (!this.followedBy) {
-              await sleep(1000);
-              await this.updateStatus();
-              await this.setFollowedBy();
-            }
-
-            if (!this.followedBy) {
-              rej(new Error(`Can not find followed download task`));
-            } else {
-              try {
-                res(await this.followedBy.waitComplete());
-              } catch (err: any) {
-                rej(err);
-              }
-            }
-          });
-
-          this.client.monitor.on(`error:${this.gid}`, (err: any) => {
-            rej(err);
-          });
-        });
+      await this.client.monitor.watchStatus(this.gid, undefined, 'complete');
+      while (true) {
+        if (this.followedBy) {
+          break;
+        }
+        await this.updateStatus();
+        await this.setFollowedBy();
       }
+      const task = await this.client.monitor.watchStatus(this.followedBy.gid, undefined, target);
+      return task as Torrent;
     }
   }
 }

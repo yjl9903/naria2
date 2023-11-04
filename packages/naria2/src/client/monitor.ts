@@ -22,7 +22,7 @@ export class Aria2Monitor {
 
   private readonly map: Map<string, Task> = new Map();
 
-  private readonly progressIds: Set<string> = new Set();
+  private readonly watchingIds: Map<string, number> = new Map();
 
   public constructor(client: Aria2Client) {
     this.client = client;
@@ -65,7 +65,9 @@ export class Aria2Monitor {
   }
 
   public close() {
-    this.disposables.forEach((dis) => dis.dispose());
+    [...this.disposables].reverse().forEach((dis) => dis.dispose());
+    this.disposables.clear();
+    this.emitter.all.clear();
   }
 
   private async updateStatus(status: Aria2DownloadStatus) {
@@ -97,6 +99,14 @@ export class Aria2Monitor {
     );
   }
 
+  public async listStopped() {
+    // TODO: not hard code this
+    const result = await aria2.tellStopped(this.conn, 0, 1000);
+    return await Promise.all(
+      result.filter((s) => s.status === 'paused').map((status) => this.updateStatus(status))
+    );
+  }
+
   public async getTask(gid: string): Promise<Task> {
     if (this.map.has(gid)) {
       return this.map.get(gid)!;
@@ -120,9 +130,95 @@ export class Aria2Monitor {
     }
   }
 
-  public async watchStatus(gid: string): Promise<Task> {
+  public async watchStatus<T extends Task = Task>(
+    gid: string,
+    fn?: (task: T) => void | Promise<void>,
+    target: `complete` | `bt-complete` = `complete`
+  ): Promise<Task> {
+    const checkTerminate = (task: Task) => {
+      if (task.status.errorCode !== null && task.status.errorCode !== undefined) {
+        throw new Error(task.status.errorMessage ?? task.status.errorCode);
+      }
+      if (task.status.status === 'complete') {
+        return task;
+      }
+      if (
+        task.status.status === 'active' &&
+        target === 'bt-complete' &&
+        countBit(task.status.bitfield).toString() === task.status.numPieces
+      ) {
+        return task;
+      }
+    };
+
     const task = await this.getTask(gid);
-    return task;
+    if (checkTerminate(task)) {
+      return task;
+    }
+
+    return new Promise<Task>((res, rej) => {
+      if (fn) {
+        this.watchingIds.set(gid, (this.watchingIds.get(gid) ?? 0) + 1);
+      }
+
+      const disposables: Array<() => void> = [
+        () => {
+          if (!fn) return;
+          const rc = this.watchingIds.get(gid);
+          if (rc) {
+            if (rc > 1) {
+              this.watchingIds.set(gid, rc - 1);
+            } else if (rc === 1) {
+              this.watchingIds.delete(gid);
+            }
+          } else {
+            // Is this OK?
+            onError(new Error(`Internal Error`));
+          }
+        }
+      ];
+      const dispose = () => {
+        disposables.forEach((d) => d());
+      };
+
+      const onError = (err: any) => {
+        dispose();
+        rej(err);
+      };
+      const onTarget = (task: Task | Torrent) => {
+        dispose();
+        res(task);
+      };
+
+      let count = 0;
+      const onProgress = async (task: Task) => {
+        try {
+          // Double check whether this watching task is terminated
+          if (count < 5) {
+            count += 1;
+            if (checkTerminate(task)) {
+              onTarget(task);
+              return;
+            }
+          }
+
+          if (fn) {
+            // @ts-ignore
+            await fn(task);
+          }
+        } catch (err) {
+          onError(err);
+        }
+      };
+
+      this.emitter.on(`error:${gid}`, onError);
+      this.emitter.on(`${target}:${gid}`, onTarget);
+      fn && this.emitter.on(`progress:${gid}`, onProgress);
+
+      disposables.push(() => this.emitter.off(`error:${gid}`, onError));
+      disposables.push(() => this.emitter.off(`${target}:${gid}`, onTarget));
+      fn && disposables.push(() => this.emitter.off(`progress:${gid}`, onProgress));
+    });
   }
 
   // --- emitter ---
@@ -143,11 +239,11 @@ export class Aria2Monitor {
 
   // --- internal ---
   private async onDownloadProgress() {
-    if (this.progressIds.size === 0) return;
+    if (this.watchingIds.size === 0) return;
 
     const statues = await system.multicall(
       this.conn,
-      ...[...this.progressIds].map(
+      ...[...this.watchingIds.keys()].map(
         (id) =>
           ({
             methodName: 'aria2.tellStatus',
@@ -193,4 +289,31 @@ export class Aria2Monitor {
   private async onDownloadError(gid: string) {
     this.emitter.emit(`error:${gid}`, await this.getTask(gid));
   }
+}
+
+function countBit(hex: string | undefined) {
+  if (!hex) return 0;
+  let sum = 0;
+  const table: Record<string, number> = {
+    '0': 0,
+    '1': 1,
+    '2': 1,
+    '3': 2,
+    '4': 1,
+    '5': 2,
+    '6': 2,
+    '7': 3,
+    '8': 1,
+    '9': 2,
+    a: 2,
+    b: 3,
+    c: 2,
+    d: 3,
+    e: 3,
+    f: 4
+  };
+  for (const c of hex) {
+    hex += table[c] ?? 0;
+  }
+  return sum;
 }

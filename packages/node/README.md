@@ -25,7 +25,19 @@ You can use the `createChildProcess` API to spawn an aria2 child process, and co
 import { createClient } from 'naria2'
 import { createChildProcess } from '@naria2/node'
 
+// Create a aria2 child process and initialize a client
 const client = await createClient(createChildProcess())
+
+// Start downloading a magnet
+const torrent = await client.downloadUri('...')
+
+// Watch its progress, and await for its completion
+await torrent.watch(() => {
+  console.log('Downloading...')
+})
+
+// Close client
+client.close()
 ```
 
 > **Warning**

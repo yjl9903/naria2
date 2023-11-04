@@ -3,7 +3,7 @@
 [![version](https://img.shields.io/npm/v/naria2c?label=naria2c)](https://www.npmjs.com/package/naria2c)
 [![CI](https://github.com/yjl9903/naria2/actions/workflows/ci.yml/badge.svg)](https://github.com/yjl9903/naria2/actions/workflows/ci.yml)
 
-Cross-platform wrapper of aria2c.
+Cross-platform wrapper of aria2c with an embedded Web UI.
 
 ![home](./assets/home.png)
 
