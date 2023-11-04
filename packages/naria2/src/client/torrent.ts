@@ -207,6 +207,27 @@ export class Torrent extends Task {
     return await this.client.monitor.watchStatus(this.gid, handler, target);
   }
 
+  public async watchFollowedBy(
+    handler: (param: Torrent) => void | Promise<void>,
+    target: `complete` | `bt-complete` = `complete`
+  ) {
+    await this.updateStatus();
+    if (this.isMetadata) {
+      await this.client.monitor.watchStatus(this.gid, undefined, 'complete');
+      while (true) {
+        if (this.followedBy) {
+          break;
+        }
+        await this.updateStatus();
+        await sleep(1000);
+      }
+      const task = await this.client.monitor.watchStatus(this.followedBy.gid, handler, target);
+      return task as Torrent;
+    } else {
+      throw new Error(`This is not a METADATA torrent`);
+    }
+  }
+
   /**
    * Wait for the full torrent download completion
    *
@@ -223,19 +244,14 @@ export class Torrent extends Task {
   public async waitForCompletion(
     target: `complete` | `bt-complete` = `complete`
   ): Promise<Torrent> {
+    await this.updateStatus();
     if (!this.isMetadata) {
       const task = await this.client.monitor.watchStatus(this.gid, undefined, target);
       return task as Torrent;
     } else {
-      await this.client.monitor.watchStatus(this.gid, undefined, 'complete');
-      while (true) {
-        if (this.followedBy) {
-          break;
-        }
-        await this.updateStatus();
-      }
-      const task = await this.client.monitor.watchStatus(this.followedBy.gid, undefined, target);
-      return task as Torrent;
+      // Hack: pass undefined handler
+      // @ts-expect-error
+      return this.watchFollowedBy(undefined, target);
     }
   }
 }

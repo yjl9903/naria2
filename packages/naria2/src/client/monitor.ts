@@ -241,27 +241,35 @@ export class Aria2Monitor {
   private async onDownloadProgress() {
     if (this.watchingIds.size === 0) return;
 
-    const statues = await system.multicall(
-      this.conn,
-      ...[...this.watchingIds.keys()].map(
-        (id) =>
-          ({
-            methodName: 'aria2.tellStatus',
-            params: [id] as [string]
-          } as const)
-      )
-    );
-    for (const status of statues) {
-      if (!status.gid) continue;
+    try {
+      const statuses = await system.multicall(
+        this.conn,
+        ...[...this.watchingIds.keys()].map(
+          (id) =>
+            ({
+              methodName: 'aria2.tellStatus',
+              params: [id] as [string]
+            } as const)
+        )
+      );
+      for (const status of statuses) {
+        if (!status.gid) continue;
 
-      const gid = status.gid!;
-      const freshTask = !this.map.has(gid);
-      const task = await this.getTask(gid);
-      if (!freshTask) {
-        Reflect.set(task, '_status', status);
-        Reflect.set(task, '_timestamp', new Date());
+        try {
+          const gid = status.gid!;
+          const freshTask = !this.map.has(gid);
+          const task = await this.getTask(gid);
+          if (!freshTask) {
+            Reflect.set(task, '_status', status);
+            Reflect.set(task, '_timestamp', new Date());
+          }
+          this.emitter.emit(`progress:${gid}`, task);
+        } catch (error) {
+          // TODO: store the errors
+        }
       }
-      this.emitter.emit(`progress:${gid}`, task);
+    } catch (error) {
+      // TODO: Handle this
     }
   }
 

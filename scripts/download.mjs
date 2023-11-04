@@ -14,7 +14,9 @@ const childprocess = await createChildProcess({ rpc: { listenPort: 6800 }, envir
 const client = await createClient(childprocess);
 await attachWebUI(childprocess, { port: 6801 });
 
-console.log('Web UI: http://127.0.0.1:6801?port=6801&secret=' + childprocess.getOptions().secret);
+console.log(
+  'Web UI: http://127.0.0.1:6801?port=6800&secret=' + childprocess.getOptions().secret + '\n'
+);
 
 // Start downloading a magnet
 const torrent = await client.downloadUri(magnet);
@@ -22,7 +24,7 @@ const torrent = await client.downloadUri(magnet);
 // Watch its progress, and await for its completion
 const bar = new SingleBar({});
 bar.start(100, 0);
-await torrent.watch((task) => {
+await torrent.watchFollowedBy((task) => {
   bar.update(task.progress);
 });
 bar.stop();

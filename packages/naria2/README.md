@@ -73,14 +73,20 @@ const client = await createClient(
 // Start downloading a magnet
 const torrent = await client.downloadUri('...')
 
-// Watch its progress, and await for its completion
-await torrent.watch(() => {
-  console.log('Downloading...')
+// Watch metadata progress
+await torrent.watch((torrent) => {
+  console.log(`Downloading [MEATADATA]`)
+})
+// Watch torrent progress
+await torrent.watchFollowedBy((torrent) => {
+  console.log(`Downloading ${torrent.name}`)
 })
 
 // Close client
 client.close()
 ```
+
+Due to the implementation of [aria2](https://aria2.github.io/manual/en/html/index.html), the downloading progress of a magnet uri includes **two steps**: the first is to download torrent metadata and the second is to download the torrent itself. So that, in the above code, you should first wait for downloading metadata, and then wait for downloading the followed by task which is the torrent content itself.
 
 You can find an example using Node.js [here](https://github.com/yjl9903/naria2/blob/main/scripts/download.mjs).
 
