@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useNavigate } from 'react-router-dom';
@@ -140,8 +141,16 @@ export default function Connect() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="select-none">
-                Connect
+
+              <Button type="submit" className="select-none" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Connecting
+                  </>
+                ) : (
+                  <>Connect</>
+                )}
               </Button>
             </form>
           </Form>
