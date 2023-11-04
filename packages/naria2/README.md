@@ -5,7 +5,7 @@
 [![version](https://img.shields.io/npm/v/vite-plugin-naria2?label=vite-plugin-naria2)](https://www.npmjs.com/package/vite-plugin-naria2)
 [![CI](https://github.com/yjl9903/naria2/actions/workflows/ci.yml/badge.svg)](https://github.com/yjl9903/naria2/actions/workflows/ci.yml)
 
-High-level and Convenient BitTorrent Client based on [aria2 JSON RPC Interface](https://aria2.github.io/manual/en/html/aria2c.html#rpc-interface).
+Convenient BitTorrent Client based on the [aria2 JSON RPC Interface](https://aria2.github.io/manual/en/html/aria2c.html#rpc-interface) and [aria2c](https://aria2.github.io/manual/en/html/aria2c.html#aria2c-1) CLI application with Web UI.
 
 + Download aria2 according to your platform
 + Convenient BitTorrent downloading API
