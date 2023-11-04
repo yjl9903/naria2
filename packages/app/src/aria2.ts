@@ -4,6 +4,8 @@ import { type Aria2Client, createClient, Task } from 'naria2';
 
 import { client as debugClient } from '~naria2/jsonrpc';
 
+import { isMagnetURI } from './utils';
+
 interface ConnectionOptions {
   host?: string;
 
@@ -69,7 +71,7 @@ export const useAria2 = create<Aria2State>()((set, get) => ({
     if (!client) throw new Error('client is not connected');
 
     const isSupport = (text: string) => {
-      return /^magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i.test(text);
+      return isMagnetURI(text);
     };
     const uris = text
       .split('\n')

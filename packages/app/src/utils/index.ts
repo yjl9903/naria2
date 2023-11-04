@@ -20,3 +20,7 @@ export function formatByteSize(str: string | undefined) {
   const gb = mb / 1024;
   return `${gb.toFixed(1)} GB`;
 }
+
+export function isMagnetURI(text: string) {
+  return /^magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i.test(text);
+}
