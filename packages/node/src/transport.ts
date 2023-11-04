@@ -132,7 +132,7 @@ export async function createChildProcess(
 
   const rpcOptions = {
     ...options?.rpc,
-    listenPort: options?.rpc?.listenPort ?? (await getPortPromise({ port: 16800 })),
+    listenPort: options?.rpc?.listenPort ?? (await getPortPromise({ port: 6800 })),
     secret: options?.rpc?.secret ?? randomUUID()
   };
   const resolvedOptions: ResolvedChildProcessOptions = {
