@@ -1,7 +1,8 @@
 import type { PartialDeep } from 'type-fest';
 import {
-  type Socket,
   type Conn,
+  type Socket,
+  type PreconfiguredSocket,
   open,
   close,
   aria2,
@@ -71,7 +72,6 @@ export class Aria2Client {
     const shudown = force
       ? aria2.forceShutdown(this.conn).catch(() => undefined)
       : aria2.shutdown(this.conn).catch(() => undefined);
-    this.close();
 
     const resp = await shudown;
     if (resp !== 'OK') {
@@ -84,6 +84,8 @@ export class Aria2Client {
         }
       }
     }
+
+    this.close();
   }
 
   /**
@@ -151,8 +153,19 @@ export class Aria2Client {
   }
 }
 
-export async function createClient(_socket: Socket | Promise<Socket>, options: ClientOptions = {}) {
+type MaybePromise<T> = T | Promise<T>;
+
+export async function createClient(
+  _socket: MaybePromise<Socket | PreconfiguredSocket>,
+  _options: ClientOptions = {}
+) {
   const socket = await _socket;
+  // Use preconfigured options
+  const options = {
+    ...('getOptions' in socket ? socket.getOptions() : {}),
+    ..._options
+  };
+
   const conn = await open(socket, {
     secret: options.secret,
     timeout: options.timeout ?? 5000,

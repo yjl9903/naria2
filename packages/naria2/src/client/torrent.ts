@@ -122,7 +122,6 @@ export class Torrent extends Task {
     } else {
       this.client.monitor.on(`complete:${this.gid}`, async () => {
         await this.updateStatus();
-        await this.setFollowedBy();
       });
     }
   }
@@ -138,6 +137,17 @@ export class Torrent extends Task {
     } else {
       return super.progress;
     }
+  }
+
+  public async updateStatus() {
+    // Cache 500ms
+    const status = await super.updateStatus();
+    if (status.followedBy && status.followedBy.length > 0) {
+      if (this._followedBy.length === 0 && this.isMetadata) {
+        await this.setFollowedBy();
+      }
+    }
+    return status;
   }
 
   public get followedBy(): Torrent | undefined {
@@ -223,7 +233,6 @@ export class Torrent extends Task {
           break;
         }
         await this.updateStatus();
-        await this.setFollowedBy();
       }
       const task = await this.client.monitor.watchStatus(this.followedBy.gid, undefined, target);
       return task as Torrent;
