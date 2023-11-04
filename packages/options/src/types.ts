@@ -656,7 +656,8 @@ export type Aria2GlobalOptions = MergeDeep<
   Aria2InputOptions & Aria2BasicGlobalOptions,
   {
     rpc: Aria2RPCOptions;
-    bt: Aria2BtGlobalOptions & Aria2DhtGlobalOptions;
+    bt: Aria2BtGlobalOptions;
+    dht: Aria2DhtGlobalOptions;
   }
 >;
 
@@ -681,6 +682,17 @@ export type Aria2BtGlobalOptionsKey =
   | 'max-overall-upload-limit'
   | 'peer-id-prefix'
   | 'peer-agent';
+
+export type Aria2DhtGlobalOptionsKey =
+  | 'enable-dht'
+  | 'enable-dht6'
+  | 'dht-entry-point'
+  | 'dht-entry-point6'
+  | 'dht-file-path'
+  | 'dht-file-path6'
+  | 'dht-listen-addr6'
+  | 'dht-listen-port'
+  | 'dht-message-timeout';
 
 /**
  * @link https://aria2.github.io/manual/en/html/aria2c.html#rpc-options

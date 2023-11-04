@@ -11,7 +11,9 @@ import type {
   Aria2BasicGlobalOptions,
   Aria2BtInputOptions,
   Aria2BtGlobalOptions,
-  Aria2BtGlobalOptionsKey
+  Aria2BtGlobalOptionsKey,
+  Aria2DhtGlobalOptions,
+  Aria2DhtGlobalOptionsKey
 } from '../types';
 
 import { resolveArray, isDef } from '../utils';
@@ -20,6 +22,7 @@ import {
   BasicInputResolvers,
   BtGlobalResolvers,
   BtInputResolvers,
+  DhtGlobalResolvers,
   RPCResolvers,
   Resolver
 } from './resolver';
@@ -134,6 +137,10 @@ const resolveBtGlobalOptions: (
   options?: PartialDeep<Aria2BtGlobalOptions>
 ) => Partial<Record<Aria2BtGlobalOptionsKey, string | string[]>> = useResolver(BtGlobalResolvers);
 
+const resolveDhtGlobalOptions: (
+  options?: PartialDeep<Aria2DhtGlobalOptions>
+) => Partial<Record<Aria2DhtGlobalOptionsKey, string | string[]>> = useResolver(DhtGlobalResolvers);
+
 export function resolveInputOptions(
   options: PartialDeep<Aria2InputOptions>
 ): Partial<Record<Aria2ClientInputOptionKey, string | string[]>> {
@@ -152,6 +159,8 @@ export function resolveGlobalOptions(
     ...resolveBasicInputOptions(options),
     ...resolveBasicGlobalOptions(options),
     ...resolveBtInputOptions(options.bt),
-    ...resolveBtGlobalOptions(options.bt)
+    ...resolveBtGlobalOptions(options.bt),
+    ...resolveDhtGlobalOptions(options.dht),
+    ...resolveRPCOptions(options.rpc)
   };
 }

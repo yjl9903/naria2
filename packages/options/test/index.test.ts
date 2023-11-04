@@ -51,5 +51,35 @@ describe('aria2 options', () => {
         "--index-out=c=d",
       ]
     `);
+
+    expect(
+      resolveGlobalOptions({
+        log: './log.txt',
+        bt: {
+          detachSeedOnly: true,
+          listenPort: ['10000-10100']
+        },
+        dht: {
+          listenPort: ['20000-20200']
+        },
+        rpc: {
+          listenAll: true,
+          listenPort: 16800,
+          allowOriginAll: true,
+          secret: '123456'
+        }
+      })
+    ).toMatchInlineSnapshot(`
+      {
+        "bt-detach-seed-only": "true",
+        "dht-listen-port": "20000-20200",
+        "listen-port": "10000-10100",
+        "log": "./log.txt",
+        "rpc-allow-origin-all": "true",
+        "rpc-listen-all": "true",
+        "rpc-listen-port": "16800",
+        "rpc-secret": "123456",
+      }
+    `);
   });
 });

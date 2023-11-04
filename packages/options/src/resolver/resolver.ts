@@ -5,6 +5,7 @@ import {
   defineBasicInput,
   defineBtGlobal,
   defineBtInput,
+  defineDhtGlobal,
   defineRPC
 } from './types';
 
@@ -166,5 +167,19 @@ export const BtGlobalResolvers = Object.fromEntries(
     ),
     defineBtGlobal<'peerIdPrefix'>('peerIdPrefix', 'peer-id-prefix', resolveString),
     defineBtGlobal<'peerAgent'>('peerAgent', 'peer-agent', resolveString)
+  ].map((r) => [r.field, r])
+);
+
+export const DhtGlobalResolvers = Object.fromEntries(
+  [
+    defineDhtGlobal<'enable'>('enable', 'enable-dht', resolveBoolean),
+    defineDhtGlobal<'enable6'>('enable6', 'enable-dht6', resolveBoolean),
+    defineDhtGlobal<'entryPoint'>('entryPoint', 'dht-entry-point', resolveString),
+    defineDhtGlobal<'entryPoint6'>('entryPoint6', 'dht-entry-point6', resolveString),
+    defineDhtGlobal<'filePath'>('filePath', 'dht-file-path', resolveString),
+    defineDhtGlobal<'filePath6'>('filePath6', 'dht-file-path6', resolveString),
+    defineDhtGlobal<'listenAddr6'>('listenAddr6', 'dht-listen-addr6', resolveString),
+    defineDhtGlobal<'listenPort'>('listenPort', 'dht-listen-port', resolveListenPorts),
+    defineDhtGlobal<'messageTimeout'>('messageTimeout', 'dht-message-timeout', resolveNumber)
   ].map((r) => [r.field, r])
 );
