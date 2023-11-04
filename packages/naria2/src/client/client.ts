@@ -14,6 +14,7 @@ import { type Aria2InputOptions, resolveInputOptions } from '@naria2/options';
 import type { ClientOptions, DownloadOptions } from './types';
 
 import { Aria2Monitor } from './monitor';
+import { sleep } from './utils';
 
 export class Aria2Client {
   private _conn: Conn | undefined;
@@ -71,7 +72,18 @@ export class Aria2Client {
       ? aria2.forceShutdown(this.conn).catch(() => undefined)
       : aria2.shutdown(this.conn).catch(() => undefined);
     this.close();
-    await shudown;
+
+    const resp = await shudown;
+    if (resp !== 'OK') {
+      // Force shutdown when failed
+      for (let i = 1; i <= 5; i++) {
+        await sleep(i * 100);
+        const resp = await aria2.forceShutdown(this.conn).catch(() => undefined);
+        if (resp === 'OK') {
+          break;
+        }
+      }
+    }
   }
 
   /**
@@ -101,7 +113,7 @@ export class Aria2Client {
       });
     if (typeof gid !== 'string') throw gid.error;
 
-    return this.monitor.watchStatus(gid);
+    return await this.monitor.getTask(gid);
   }
 
   public async downloadUri(

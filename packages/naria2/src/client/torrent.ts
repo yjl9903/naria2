@@ -1,13 +1,12 @@
 import { aria2 } from 'maria2';
 
 import type { Aria2Client } from './client';
+import type { Aria2EventKeyPrefix } from './types';
+import { sleep } from './utils';
 
-type Aria2TaskEvents = Record<`start` | `progress` | `pause` | `stop` | `complete` | `error`, Task>;
+type Aria2TaskEvents = Record<Exclude<Aria2EventKeyPrefix, 'bt-complete'>, Task>;
 
-type Aria2TorrentEvents = Record<
-  `start` | `progress` | `pause` | `stop` | `complete` | `bt-complete` | `error`,
-  Torrent
->;
+type Aria2TorrentEvents = Record<Aria2EventKeyPrefix, Torrent>;
 
 export class Task {
   protected readonly client: Aria2Client;
@@ -131,8 +130,9 @@ export class Torrent extends Task {
     }
   }
 
-  public get state() {
-    return this.status.status;
+  public get name() {
+    const name = this.status?.bittorrent?.info?.name;
+    return (typeof name === 'string' ? name : name?.['utf-8']) ?? '[METADATA]';
   }
 
   public get progress() {
@@ -181,63 +181,16 @@ export class Torrent extends Task {
     key: Key,
     handler: (param: Aria2TorrentEvents[Key]) => void | Promise<void>
   ) {
-    if (this.isMetadata) {
-      switch (key) {
-        case 'start':
-          this.client.monitor.on(`${key}:${this.gid}`, handler);
-          break;
-        case 'complete':
-          if (this.followedBy) {
-            this.client.monitor.on(`${key}:${this.followedBy.gid}`, handler);
-          }
-          break;
-        case 'progress':
-        case 'pause':
-        case 'stop':
-        case 'bt-complete':
-        case 'error':
-          this.client.monitor.on(`${key}:${this.gid}`, handler);
-          if (this.followedBy) {
-            this.client.monitor.on(`${key}:${this.followedBy.gid}`, handler);
-          }
-          break;
-        default:
-          break;
-      }
-    } else {
-      this.client.monitor.on(`${key}:${this.gid}`, handler);
-    }
+    // @ts-expect-error
+    this.client.monitor.on(`${key}:${this.gid}`, handler);
   }
 
   public off<Key extends keyof Aria2TorrentEvents>(
     key: Key,
     handler?: (param: Aria2TorrentEvents[Key]) => void | Promise<void>
   ) {
-    if (this.isMetadata) {
-      switch (key) {
-        case 'start':
-          this.client.monitor.off(`${key}:${this.gid}`, handler);
-          break;
-        case 'complete':
-          if (this.followedBy) {
-            this.client.monitor.off(`${key}:${this.followedBy.gid}`, handler);
-          }
-          break;
-        case 'pause':
-        case 'stop':
-        case 'bt-complete':
-        case 'error':
-          this.client.monitor.off(`${key}:${this.gid}`, handler);
-          if (this.followedBy) {
-            this.client.monitor.off(`${key}:${this.followedBy.gid}`, handler);
-          }
-          break;
-        default:
-          break;
-      }
-    } else {
-      this.client.monitor.off(`${key}:${this.gid}`, handler);
-    }
+    // @ts-expect-error
+    this.client.monitor.off(`${key}:${this.gid}`, handler);
   }
 
   public async waitComplete(): Promise<Torrent> {
@@ -285,10 +238,4 @@ export class Torrent extends Task {
       }
     }
   }
-}
-
-function sleep(time: number): Promise<void> {
-  return new Promise((res) => {
-    setTimeout(() => res(), time);
-  });
 }

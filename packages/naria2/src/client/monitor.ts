@@ -1,31 +1,24 @@
+import mitt from 'mitt';
 import { Aria2DownloadStatus, aria2, system } from 'maria2';
-import mitt, { type Emitter } from 'mitt';
 
 import type { Aria2Client } from './client';
 
 import { Task, Torrent } from './torrent';
+import { Aria2EventKeyPrefix } from './types';
 
 interface Disposable<T = void> {
   dispose(): T;
 }
 
-type Aria2MonitorEvents = Record<
-  | `start:${string}`
-  | `progress:${string}`
-  | `pause:${string}`
-  | `stop:${string}`
-  | `complete:${string}`
-  | `error:${string}`,
-  Task
-> &
+type Aria2MonitorEvents = Record<`${Exclude<Aria2EventKeyPrefix, 'bt-complete'>}:${string}`, Task> &
   Record<`bt-complete:${string}`, Torrent>;
 
-export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'off'> {
+export class Aria2Monitor {
   private readonly client: Aria2Client;
 
   private readonly disposables: Set<Disposable<void>> = new Set();
 
-  private readonly emitter = mitt<Aria2MonitorEvents>();
+  private readonly emitter = mitt<Aria2MonitorEvents & Record<`progress:${string}`, Task>>();
 
   private readonly map: Map<string, Task> = new Map();
 
@@ -133,15 +126,17 @@ export class Aria2Monitor implements Pick<Emitter<Aria2MonitorEvents>, 'on' | 'o
   }
 
   // --- emitter ---
-  public on<Key extends keyof Aria2MonitorEvents>(key: Key, handler: any) {
-    if (key.startsWith('progress:')) {
-      const id = key.slice('progress:'.length);
-      this.progressIds.add(id);
-    }
+  public on<Key extends keyof Aria2MonitorEvents>(
+    key: Key,
+    handler: (param: Aria2MonitorEvents[Key]) => void | Promise<void>
+  ) {
     this.emitter.on(key, handler);
   }
 
-  public off<Key extends keyof Aria2MonitorEvents>(key: Key, handler?: any) {
+  public off<Key extends keyof Aria2MonitorEvents>(
+    key: Key,
+    handler?: (param: Aria2MonitorEvents[Key]) => void | Promise<void>
+  ) {
     this.emitter.off(key, handler);
   }
   // ---------------

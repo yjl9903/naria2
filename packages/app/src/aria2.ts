@@ -20,35 +20,39 @@ interface Aria2State {
 }
 
 const client = await inferClient();
+// @ts-ignore
+window.__client = client;
 
-export const useAria2 = create<Aria2State>()((set, get) => ({
+export const useAria2 = create<Aria2State>()((set) => ({
   client,
   clear: () => {
     set({ client: undefined });
   },
   connect: async (options: ConnectionOptions) => {
     try {
-      {
-        // Close old client
-        const oldClient = get().client;
-        if (oldClient) {
-          oldClient.close();
-          set({ client: undefined });
-        }
-      }
-
       const url = `ws://${options.host ?? '127.0.0.1'}${
         options.port ? ':' + options.port : ''
       }/jsonrpc`;
       const client = await createClient(new WebSocket(url), {
         secret: options.secret
       }).catch(() => undefined);
+
       if (client && (await client.version())) {
         window.localStorage.setItem(
           'naria2/connection',
           JSON.stringify({ port: options.port, secret: options.secret })
         );
-        set({ client });
+        set((state) => {
+          // Close old client
+          if (state.client) {
+            state.client.close();
+          }
+
+          // @ts-ignore
+          window.__client = client;
+
+          return { client };
+        });
 
         return client;
       }

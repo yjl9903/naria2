@@ -1,3 +1,5 @@
+export type Aria2EventKeyPrefix = `start` | `pause` | `stop` | `complete` | `bt-complete` | `error`;
+
 export interface ClientOptions {
   secret?: string;
 
