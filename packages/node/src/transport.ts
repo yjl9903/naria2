@@ -144,7 +144,7 @@ export async function createChildProcess(
   const aria2Args = resolveGlobalOptions(options);
   const aria2RpcArgs = resolveRPCOptions(rpcOptions);
 
-  resolvedArgs.push('--enable-rpc', ...stringifyCliOptions({ ...aria2Args, ...aria2RpcArgs }));
+  resolvedArgs.push(...stringifyCliOptions({ ...aria2Args, ...aria2RpcArgs }));
 
   const child = spawn(resolvedArgs, resolvedOptions.spawn);
   await new Promise((res, rej) => {

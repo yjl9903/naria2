@@ -13,9 +13,9 @@ describe('spawn aria2 childprocess', () => {
     expect(conn.getOptions().secret).toBe('12345678');
     expect(conn.getOptions().args).toMatchInlineSnapshot(`
       [
-        "--enable-rpc",
         "--dir=.",
         "--check-integrity=false",
+        "--enable-rpc=true",
         "--rpc-secret=12345678",
         "--rpc-listen-port=16800",
         "--rpc-listen-all=true",

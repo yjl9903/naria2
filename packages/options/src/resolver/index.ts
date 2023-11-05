@@ -122,7 +122,7 @@ export const resolveRPCOptions: (
 ) => Partial<Record<Aria2RPCOptionsKey, string>> = (options) => {
   if (!options) return {};
   const resolved = useResolver(RPCResolvers)(options);
-  return { ...resolved, 'enable-rpc': true };
+  return { 'enable-rpc': true, ...resolved };
 };
 
 const resolveBasicInputOptions: (
