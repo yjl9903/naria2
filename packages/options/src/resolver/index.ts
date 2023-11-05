@@ -119,7 +119,11 @@ function useResolver<T extends {}, K extends string>(
 
 export const resolveRPCOptions: (
   options?: PartialDeep<Aria2RPCOptions>
-) => Partial<Record<Aria2RPCOptionsKey, string>> = useResolver(RPCResolvers);
+) => Partial<Record<Aria2RPCOptionsKey, string>> = (options) => {
+  if (!options) return {};
+  const resolved = useResolver(RPCResolvers)(options);
+  return { ...resolved, 'enable-rpc': true };
+};
 
 const resolveBasicInputOptions: (
   options?: PartialDeep<Aria2BasicInputOptions>

@@ -24,6 +24,7 @@ describe('aria2 options', () => {
       })
     ).toMatchInlineSnapshot(`
       {
+        "enable-rpc": true,
         "pause": "false",
         "pause-metadata": "true",
         "rpc-allow-origin-all": "false",
@@ -78,6 +79,7 @@ describe('aria2 options', () => {
       {
         "bt-detach-seed-only": "true",
         "dht-listen-port": "20000-20200",
+        "enable-rpc": true,
         "listen-port": "10000-10100",
         "log": "./log.txt",
         "rpc-allow-origin-all": "true",
