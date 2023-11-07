@@ -324,8 +324,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       '@types/finalhandler':
-        specifier: ^1.2.2
-        version: 1.2.2
+        specifier: ^1.2.3
+        version: 1.2.3
       '@types/serve-static':
         specifier: ^1.15.4
         version: 1.15.4
@@ -2300,8 +2300,8 @@ packages:
       '@types/qs': 6.9.9
       '@types/serve-static': 1.15.4
 
-  /@types/finalhandler@1.2.2:
-    resolution: {integrity: sha512-6xrlIlsCvJF6DRIgWVhj9507GG5bY/ditl4UdB2azkh0sITM3CyvqmmqdoFpSpMGZZ5aDNoKUQjcBGLnAvKZlA==}
+  /@types/finalhandler@1.2.3:
+    resolution: {integrity: sha512-I+Ba0JZEiuSr8LLjVmBhvLBEN8KG9GSITNXWwPCLeAvZj/k5pXEdOBEvnEEIgA038eeaauJ3BPxbuxeFBsqqUw==}
     dependencies:
       '@types/node': 20.8.10
     dev: true
