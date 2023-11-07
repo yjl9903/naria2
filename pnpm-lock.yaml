@@ -327,8 +327,8 @@ importers:
         specifier: ^1.2.3
         version: 1.2.3
       '@types/serve-static':
-        specifier: ^1.15.4
-        version: 1.15.4
+        specifier: ^1.15.5
+        version: 1.15.5
       express:
         specifier: ^4.18.2
         version: 4.18.2
@@ -2298,7 +2298,7 @@ packages:
       '@types/body-parser': 1.19.4
       '@types/express-serve-static-core': 4.17.39
       '@types/qs': 6.9.9
-      '@types/serve-static': 1.15.4
+      '@types/serve-static': 1.15.5
 
   /@types/finalhandler@1.2.3:
     resolution: {integrity: sha512-I+Ba0JZEiuSr8LLjVmBhvLBEN8KG9GSITNXWwPCLeAvZj/k5pXEdOBEvnEEIgA038eeaauJ3BPxbuxeFBsqqUw==}
@@ -2373,8 +2373,8 @@ packages:
       '@types/mime': 1.3.4
       '@types/node': 20.8.10
 
-  /@types/serve-static@1.15.4:
-    resolution: {integrity: sha512-aqqNfs1XTF0HDrFdlY//+SGUxmdSUbjeRXb5iaZc3x0/vMbYmdw9qvOgHWOyyLFxSSRnUuP5+724zBgfw8/WAw==}
+  /@types/serve-static@1.15.5:
+    resolution: {integrity: sha512-PDRk21MnK70hja/YF8AHfC7yIsiQHn1rcXx7ijCFBX/k+XQJhQT/gw3xekXKJvx+5SXaMMS8oqQy09Mzvz2TuQ==}
     dependencies:
       '@types/http-errors': 2.0.3
       '@types/mime': 3.0.3
