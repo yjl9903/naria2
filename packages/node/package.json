@@ -68,7 +68,7 @@
     "open": "^9.1.0",
     "portfinder": "^1.0.32",
     "serve-static": "^1.15.0",
-    "type-fest": "^4.6.0",
+    "type-fest": "^4.7.0",
     "ws": "^8.14.2"
   },
   "devDependencies": {
