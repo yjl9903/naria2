@@ -156,8 +156,8 @@ importers:
         specifier: ^1.1.55
         version: 1.1.55
       '@iconify-json/solar':
-        specifier: ^1.1.5
-        version: 1.1.5
+        specifier: ^1.1.6
+        version: 1.1.6
       '@tanstack/react-query-devtools':
         specifier: ^5.8.1
         version: 5.8.1(@tanstack/react-query@5.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -1173,8 +1173,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/solar@1.1.5:
-    resolution: {integrity: sha512-IeYbRYu0Y3GFXspGwUT876ok1n3Hkqw/CViP+zaDrGp+uLphjddLlL9hu8vkp5UOq+WnNWb5EG1vM1yro79Fzg==}
+  /@iconify-json/solar@1.1.6:
+    resolution: {integrity: sha512-QkEeQ07BLyASt+/i1vXhndBFVxng2dCMJVA+ghNGJCPPpVBGMz/fANQaPQA5dHZusSh05uFmAJPaBmT9RSW9wg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
