@@ -46,7 +46,7 @@
     "@tanstack/react-query-devtools": "^5.8.4",
     "@types/fs-extra": "^11.0.4",
     "@types/react": "^18.2.38",
-    "@types/react-dom": "^18.2.16",
+    "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.16",
     "fs-extra": "^11.1.1",
