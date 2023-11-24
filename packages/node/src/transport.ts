@@ -44,7 +44,10 @@ export type ChildProcessOptions = {
         no_proxy: string[];
       }>;
 
-  spawn: SpawnOptions;
+  /**
+   * Options passed to spawn aria2c process
+   */
+  spawn: SpawnOptions & { binary?: string };
 };
 
 export type ResolvedChildProcessOptions = Omit<ChildProcessOptions, 'environment' | 'rpc'> & {
