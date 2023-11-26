@@ -153,8 +153,8 @@ importers:
         specifier: ^1.1.64
         version: 1.1.64
       '@iconify-json/mdi':
-        specifier: ^1.1.55
-        version: 1.1.55
+        specifier: ^1.1.56
+        version: 1.1.56
       '@iconify-json/solar':
         specifier: ^1.1.6
         version: 1.1.6
@@ -969,8 +969,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/mdi@1.1.55:
-    resolution: {integrity: sha512-ycnFub+EQx+3D/aDCg6iC7sjexOUa5GzxUNIZFFl0Pq7aDxbmhIludoyYnguEO3REyWf9FcOOmvVcQkdtwKHTw==}
+  /@iconify-json/mdi@1.1.56:
+    resolution: {integrity: sha512-a06ZCKGLa8DMcb95QbVfnL2qdhADB2laYwd//auU6unwl77t2ncxpxdCa62scAYk9IMzRR7SAXi3H64QsgRsGw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
