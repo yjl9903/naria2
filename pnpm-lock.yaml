@@ -147,8 +147,8 @@ importers:
         specifier: ^1.1.42
         version: 1.1.42
       '@iconify-json/ic':
-        specifier: ^1.1.15
-        version: 1.1.15
+        specifier: ^1.1.16
+        version: 1.1.16
       '@iconify-json/material-symbols':
         specifier: ^1.1.64
         version: 1.1.64
@@ -957,8 +957,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/ic@1.1.15:
-    resolution: {integrity: sha512-/L7Yq5i+cao42RlDKArMKWgJ64f/M3PnNhBwJnutkRabvOKVk3p4Vli55bJywjA79c8S5yyXfemsHt+1C3hRZg==}
+  /@iconify-json/ic@1.1.16:
+    resolution: {integrity: sha512-bsscCY0Zn2e08eML/1trQlmwudlgd5X/YN2kFmvCuNSzI42TEEEezHPypjxl0RjEZXk2vXw3dH8vN6OwcvKXpg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
