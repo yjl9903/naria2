@@ -144,8 +144,8 @@ importers:
         specifier: ^1.1.23
         version: 1.1.23
       '@iconify-json/fluent':
-        specifier: ^1.1.42
-        version: 1.1.42
+        specifier: ^1.1.43
+        version: 1.1.43
       '@iconify-json/ic':
         specifier: ^1.1.16
         version: 1.1.16
@@ -951,8 +951,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/fluent@1.1.42:
-    resolution: {integrity: sha512-QftfNi1Q0bNclT+MRSutRAlo1qQROnVqNEsc4w+G3xwmnOHai2zlbAxfrHKXCoP8LBOVxJ1nbfZEgep0IGnKuw==}
+  /@iconify-json/fluent@1.1.43:
+    resolution: {integrity: sha512-HrEHb2cuCmQ1XoNScALDpyzkuwJMlHjxgdnS/tri2tH02jl/CZGHgzLEpkSPBuIbgPhhCnBap0nP2aK6P4A5Hw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
