@@ -150,8 +150,8 @@ importers:
         specifier: ^1.1.16
         version: 1.1.16
       '@iconify-json/material-symbols':
-        specifier: ^1.1.64
-        version: 1.1.64
+        specifier: ^1.1.65
+        version: 1.1.65
       '@iconify-json/mdi':
         specifier: ^1.1.56
         version: 1.1.56
@@ -963,8 +963,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/material-symbols@1.1.64:
-    resolution: {integrity: sha512-he6VUP4mXtcS7ypTE10irRr0RbIdak0KDpPvi3ol+UKqVj+e7xBaoBqutTEBq1YjJIcccfqoIz49BHJbC2Wb6g==}
+  /@iconify-json/material-symbols@1.1.65:
+    resolution: {integrity: sha512-QcJ7EcQsfgz3OEEXlUuLgnegqkXEhUKY6lfsxsPwPbhQHnKMRdeKwFrTZaQng1XIO5U+6rnwdW1vJBDIUQrfiA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
