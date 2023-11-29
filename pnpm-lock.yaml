@@ -89,8 +89,8 @@ importers:
         specifier: ^1.1.5
         version: 1.1.5(@types/react-dom@18.2.17)(@types/react@18.2.39)(react-dom@18.2.0)(react@18.2.0)
       '@tanstack/react-query':
-        specifier: ^5.8.9
-        version: 5.8.9(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.9.0
+        version: 5.9.0(react-dom@18.2.0)(react@18.2.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -159,8 +159,8 @@ importers:
         specifier: ^1.1.8
         version: 1.1.8
       '@tanstack/react-query-devtools':
-        specifier: ^5.8.9
-        version: 5.8.9(@tanstack/react-query@5.8.9)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.9.0
+        version: 5.9.0(@tanstack/react-query@5.9.0)(react-dom@18.2.0)(react@18.2.0)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -2113,21 +2113,21 @@ packages:
     resolution: {integrity: sha512-JbmXB0+aSYDLd5PtUijD82YqS1xodtgeuaAixuopmcdp4CpEO3DF35Soa88PEpM8Dgrt+piwAhHlbNvrY+4CnA==}
     dev: true
 
-  /@tanstack/react-query-devtools@5.8.9(@tanstack/react-query@5.8.9)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-TxTmQCxWP9vmWz44XuE09uzQ5ggcsdLFlm/kfYJ7Lq8ZXyYlw4pQqmJvrhHmVuzDFYjp+XNBZLNioAklUlMVow==}
+  /@tanstack/react-query-devtools@5.9.0(@tanstack/react-query@5.9.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-nf35K2aA7+cSS5Vnx5+EItbs0mGVFu4EwqIV/RF8XPipm8mtHQ8loXHcYpBPKE6ha1qsrPSvOSodcRxbrpaf2g==}
     peerDependencies:
-      '@tanstack/react-query': ^5.8.9
+      '@tanstack/react-query': ^5.9.0
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
       '@tanstack/query-devtools': 5.8.8
-      '@tanstack/react-query': 5.8.9(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/react-query': 5.9.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /@tanstack/react-query@5.8.9(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-AmrvpXv7Vo9HlvIFd1ChyphUUskVAq60bpQFPxZmephHf2H2LZHqPIiLl8IEij0dvORpqp6BoUH8IS/HSWkn0w==}
+  /@tanstack/react-query@5.9.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-VlHzMgCISme1DIPrsIQ15Fw/Ou4mTs2pZs8rbHI45ZHkHmwQGBLcUzAgIGDGoneEjRSgXZNd/k3dNSqmtkA20A==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
