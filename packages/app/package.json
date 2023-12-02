@@ -50,7 +50,7 @@
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.16",
     "fs-extra": "^11.2.0",
-    "postcss": "^8.4.31",
+    "postcss": "^8.4.32",
     "shadcn-ui": "^0.4.1",
     "tailwindcss": "^3.3.5",
     "tailwindcss-animate": "^1.0.7",
