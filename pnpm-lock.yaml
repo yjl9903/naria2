@@ -89,8 +89,8 @@ importers:
         specifier: ^1.1.5
         version: 1.1.5(@types/react-dom@18.2.17)(@types/react@18.2.40)(react-dom@18.2.0)(react@18.2.0)
       '@tanstack/react-query':
-        specifier: ^5.12.1
-        version: 5.12.1(react@18.2.0)
+        specifier: ^5.12.2
+        version: 5.12.2(react@18.2.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -159,8 +159,8 @@ importers:
         specifier: ^1.1.8
         version: 1.1.8
       '@tanstack/react-query-devtools':
-        specifier: ^5.12.1
-        version: 5.12.1(@tanstack/react-query@5.12.1)(react@18.2.0)
+        specifier: ^5.12.2
+        version: 5.12.2(@tanstack/react-query@5.12.2)(react@18.2.0)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -2113,19 +2113,19 @@ packages:
     resolution: {integrity: sha512-AUWLgdZEYq/ckMZrtKpofOwqxuFiEIdy3gZOh/ouIBVra9ijXVTxYt5cZFSjXJT4q/o0DMii6xMZuIJx2qXZ6g==}
     dev: true
 
-  /@tanstack/react-query-devtools@5.12.1(@tanstack/react-query@5.12.1)(react@18.2.0):
-    resolution: {integrity: sha512-imHdhA2KGDPAPbBEyztjYDhwn2HioTk6uPc7g6W0xORKTmHETQnAuWttqUHg8VHI3CHi5ACHPUAckoHg/PllMQ==}
+  /@tanstack/react-query-devtools@5.12.2(@tanstack/react-query@5.12.2)(react@18.2.0):
+    resolution: {integrity: sha512-EpjYxwUBj+CuzAiB++FMeHzNey4TynuudfWVMsZg0uzLrnR5I0j1CWHJkNsTutb/Db9TNG1Ae66n8ywVvPd1gQ==}
     peerDependencies:
-      '@tanstack/react-query': ^5.12.1
+      '@tanstack/react-query': ^5.12.2
       react: ^18.0.0
     dependencies:
       '@tanstack/query-devtools': 5.12.1
-      '@tanstack/react-query': 5.12.1(react@18.2.0)
+      '@tanstack/react-query': 5.12.2(react@18.2.0)
       react: 18.2.0
     dev: true
 
-  /@tanstack/react-query@5.12.1(react@18.2.0):
-    resolution: {integrity: sha512-pEqa0VENgw/0DunBAlnL7mruouCudclK/GecpgE5ayMAnLFW+FjBgMjNpMPeoSORzJKBsYgkgM7DYb3LQhXQxA==}
+  /@tanstack/react-query@5.12.2(react@18.2.0):
+    resolution: {integrity: sha512-BeWZu8zVFH20oRc+S/K9ADPgWjEzP/XQCGBNz5IbApUwPQAdwkQYbXODVL5AyAlWiSxhx+P2xlARPBApj2Yrog==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
