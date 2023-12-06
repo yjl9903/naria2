@@ -43,7 +43,7 @@
     "@iconify-json/material-symbols": "^1.1.65",
     "@iconify-json/mdi": "^1.1.58",
     "@iconify-json/solar": "^1.1.8",
-    "@tanstack/react-query-devtools": "^5.12.2",
+    "@tanstack/react-query-devtools": "^5.13.3",
     "@types/fs-extra": "^11.0.4",
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
