@@ -150,11 +150,11 @@ importers:
         specifier: ^1.1.16
         version: 1.1.16
       '@iconify-json/material-symbols':
-        specifier: ^1.1.65
-        version: 1.1.65
+        specifier: ^1.1.66
+        version: 1.1.66
       '@iconify-json/mdi':
-        specifier: ^1.1.59
-        version: 1.1.59
+        specifier: ^1.1.60
+        version: 1.1.60
       '@iconify-json/solar':
         specifier: ^1.1.8
         version: 1.1.8
@@ -970,14 +970,14 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/material-symbols@1.1.65:
-    resolution: {integrity: sha512-QcJ7EcQsfgz3OEEXlUuLgnegqkXEhUKY6lfsxsPwPbhQHnKMRdeKwFrTZaQng1XIO5U+6rnwdW1vJBDIUQrfiA==}
+  /@iconify-json/material-symbols@1.1.66:
+    resolution: {integrity: sha512-+GNuyusf7Lmw8DtLKA4UMdnrQcw1i7+LGskpxq6YIkl4gpfWywXiKrIYWr2GnRgW7PCVuC+kxzrZ06vyCVoM9Q==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/mdi@1.1.59:
-    resolution: {integrity: sha512-p1Lbo5QE+k7YqFtPIUoaeNJfrWoTR4IxMzlgg+K3w/Wy5YPsUh+M9D0L8+m69DX1da4z+e9AfRpG/N4BIxGU9Q==}
+  /@iconify-json/mdi@1.1.60:
+    resolution: {integrity: sha512-oDb+ilwHIccaX/iHEQxcsd9ULRXi14T8gVrx1XivTkMAmVLGzPD/u9GIFNngvF1P/D0xBx68l2COWwsLlker5Q==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
