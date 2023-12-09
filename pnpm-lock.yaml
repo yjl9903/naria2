@@ -141,8 +141,8 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(tailwindcss@3.3.6)
       '@iconify-json/carbon':
-        specifier: ^1.1.24
-        version: 1.1.24
+        specifier: ^1.1.25
+        version: 1.1.25
       '@iconify-json/fluent':
         specifier: ^1.1.43
         version: 1.1.43
@@ -952,8 +952,8 @@ packages:
       react-hook-form: 7.48.2(react@18.2.0)
     dev: false
 
-  /@iconify-json/carbon@1.1.24:
-    resolution: {integrity: sha512-Sx4vj3HfQj3yP6a4QzWc1BymDO5uTOGTHeb5it/xaMa196C6+RegNUv1F+Y1h8AJ2Sv93GMI+PyMH0HyqTHEmg==}
+  /@iconify-json/carbon@1.1.25:
+    resolution: {integrity: sha512-0fKlVoqAkVIpnwYAp36Q8fok2/VVnenremJJwJJsfRecAPhPiRUp9V98aQKkinvN9s3nqKXvKXrypOvqAlS00w==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
