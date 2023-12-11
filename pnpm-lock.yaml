@@ -141,23 +141,23 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(tailwindcss@3.3.6)
       '@iconify-json/carbon':
-        specifier: ^1.1.25
-        version: 1.1.25
+        specifier: ^1.1.26
+        version: 1.1.26
       '@iconify-json/fluent':
-        specifier: ^1.1.44
-        version: 1.1.44
+        specifier: ^1.1.45
+        version: 1.1.45
       '@iconify-json/ic':
-        specifier: ^1.1.16
-        version: 1.1.16
+        specifier: ^1.1.17
+        version: 1.1.17
       '@iconify-json/material-symbols':
-        specifier: ^1.1.66
-        version: 1.1.66
+        specifier: ^1.1.67
+        version: 1.1.67
       '@iconify-json/mdi':
-        specifier: ^1.1.60
-        version: 1.1.60
+        specifier: ^1.1.61
+        version: 1.1.61
       '@iconify-json/solar':
-        specifier: ^1.1.8
-        version: 1.1.8
+        specifier: ^1.1.9
+        version: 1.1.9
       '@tanstack/react-query-devtools':
         specifier: ^5.13.5
         version: 5.13.5(@tanstack/react-query@5.13.4)(react@18.2.0)
@@ -952,38 +952,38 @@ packages:
       react-hook-form: 7.49.0(react@18.2.0)
     dev: false
 
-  /@iconify-json/carbon@1.1.25:
-    resolution: {integrity: sha512-0fKlVoqAkVIpnwYAp36Q8fok2/VVnenremJJwJJsfRecAPhPiRUp9V98aQKkinvN9s3nqKXvKXrypOvqAlS00w==}
+  /@iconify-json/carbon@1.1.26:
+    resolution: {integrity: sha512-0y6JstqPCsjEiUuyTTdHE7Wd9gGlxzH2dEfvKUJe5E741qRgLlIipVdBoCkOtbyAT92WEcU8BNfDaC585OCC8w==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/fluent@1.1.44:
-    resolution: {integrity: sha512-lep+0IKxXWionTmr5BlfFD4/vuur1NST4wczIsXd3TQ5FGEoX0yn/M4gDZu7vSqGrzPbDwSWWkcCx6hPV3CEWA==}
+  /@iconify-json/fluent@1.1.45:
+    resolution: {integrity: sha512-0WylssZXAHxaKDGVVINeQxJz9+smsFKYDOCb7l4tLe3jy1htuAGVDbzZFon2BvOEZlXiYYYqmA4DqExqOcKWxg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/ic@1.1.16:
-    resolution: {integrity: sha512-bsscCY0Zn2e08eML/1trQlmwudlgd5X/YN2kFmvCuNSzI42TEEEezHPypjxl0RjEZXk2vXw3dH8vN6OwcvKXpg==}
+  /@iconify-json/ic@1.1.17:
+    resolution: {integrity: sha512-EvAjZzVESmN36zlyefylePUNaU2BQ3eRKVZ6KQSQ2bG01ppoZaiFZRri74VTyvp5Mlv2yn68ux1fgCoT+etGmA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/material-symbols@1.1.66:
-    resolution: {integrity: sha512-+GNuyusf7Lmw8DtLKA4UMdnrQcw1i7+LGskpxq6YIkl4gpfWywXiKrIYWr2GnRgW7PCVuC+kxzrZ06vyCVoM9Q==}
+  /@iconify-json/material-symbols@1.1.67:
+    resolution: {integrity: sha512-wGvPLGMfunJL0sGzRVjZ7TUng86d5JMKBlRnOhHU+lBYaeeJmbKWQOQ6aJPK0oxl0PJBnNctHDitXTDTobe4Ng==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/mdi@1.1.60:
-    resolution: {integrity: sha512-oDb+ilwHIccaX/iHEQxcsd9ULRXi14T8gVrx1XivTkMAmVLGzPD/u9GIFNngvF1P/D0xBx68l2COWwsLlker5Q==}
+  /@iconify-json/mdi@1.1.61:
+    resolution: {integrity: sha512-WCDcJFm4VpE7a5fwesOM5DCLXrMrbYw1isoCtR2XzlJc2CvkrEx1JkfnINtA1Of4cyryfg7KrxKfvoSS0Bn7bQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/solar@1.1.8:
-    resolution: {integrity: sha512-w9khWcUWSydMci7V4wTsHof8tz/S2hJeXj+PbnI/Ic/47BpQKGrLYV7W5+oMKIONUmj5VrBBtctpy8o1rL9JHw==}
+  /@iconify-json/solar@1.1.9:
+    resolution: {integrity: sha512-BcWzZqA02BiQduYizqU/J4v4RNs0MkjZUGpMbejpozH8YQSt3+S/LfV6zfVRonx/2DhXTVSqiLa1abDRAZtojQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
