@@ -138,8 +138,8 @@ importers:
         version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     devDependencies:
       '@egoist/tailwindcss-icons':
-        specifier: ^1.5.0
-        version: 1.5.0(tailwindcss@3.3.6)
+        specifier: ^1.6.0
+        version: 1.6.0(tailwindcss@3.3.6)
       '@iconify-json/carbon':
         specifier: ^1.1.26
         version: 1.1.26
@@ -703,12 +703,12 @@ packages:
     resolution: {integrity: sha512-eIWHb5Hrnd5j/RLSgbY1mtRPECMSjRbqlxZmlG+mgNi0h0YNieaS86EYsIHxnPT+J682N/OE7LoHSVDTRmp6jw==}
     dev: false
 
-  /@egoist/tailwindcss-icons@1.5.0(tailwindcss@3.3.6):
-    resolution: {integrity: sha512-gmoBwCzahfKihFCKOndd/vQxinRKM/57JBgRyUVfYMh6t5tKu8T9SQDL2pXBTOBJF6QE4lOcyEDSk3pf0Vz0tA==}
+  /@egoist/tailwindcss-icons@1.6.0(tailwindcss@3.3.6):
+    resolution: {integrity: sha512-Y1vAmNt/Lx4RBXHZbMUg2aOHf1sw5Pds/GLZqtbQ2akcEfNbUZlqcwY7lZt1M6OYro4kRjQCvgAG3HMFV+eYUA==}
     peerDependencies:
       tailwindcss: '*'
     dependencies:
-      '@iconify/utils': 2.1.11
+      '@iconify/utils': 2.1.12
       tailwindcss: 3.3.6
     transitivePeerDependencies:
       - supports-color
@@ -992,8 +992,8 @@ packages:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
     dev: true
 
-  /@iconify/utils@2.1.11:
-    resolution: {integrity: sha512-M/w3PkN8zQYXi8N6qK/KhnYMfEbbb6Sk8RZVn8g+Pmmu5ybw177RpsaGwpziyHeUsu4etrexYSWq3rwnIqzYCg==}
+  /@iconify/utils@2.1.12:
+    resolution: {integrity: sha512-7vf3Uk6H7TKX4QMs2gbg5KR1X9J0NJzKSRNWhMZ+PWN92l0t6Q3tj2ZxLDG07rC3ppWBtTtA4FPmkQphuEmdsg==}
     dependencies:
       '@antfu/install-pkg': 0.1.1
       '@antfu/utils': 0.7.6
