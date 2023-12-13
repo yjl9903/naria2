@@ -201,8 +201,8 @@ importers:
         specifier: workspace:*
         version: link:../vite-plugin-naria2
       vite-plugin-top-level-await:
-        specifier: ^1.4.0
-        version: 1.4.0(rollup@3.29.4)(vite@5.0.8)
+        specifier: ^1.4.1
+        version: 1.4.1(rollup@3.29.4)(vite@5.0.8)
 
   packages/binary/darwin-arm64: {}
 
@@ -5475,8 +5475,8 @@ packages:
       vite: 5.0.8(@types/node@20.10.4)
     dev: true
 
-  /vite-plugin-top-level-await@1.4.0(rollup@3.29.4)(vite@5.0.8):
-    resolution: {integrity: sha512-t2hMdZDBuPpcHpqVrTElGv8NqlePrk6z2uok1alPu6ndT5JmMM/kFeMGkwtspYwblJMfzwzdDMmBSMvpLLgmSA==}
+  /vite-plugin-top-level-await@1.4.1(rollup@3.29.4)(vite@5.0.8):
+    resolution: {integrity: sha512-hogbZ6yT7+AqBaV6lK9JRNvJDn4/IJvHLu6ET06arNfo0t2IsyCaon7el9Xa8OumH+ESuq//SDf8xscZFE0rWw==}
     peerDependencies:
       vite: '>=2.8'
     dependencies:
