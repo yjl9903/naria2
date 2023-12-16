@@ -138,8 +138,8 @@ importers:
         version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     devDependencies:
       '@egoist/tailwindcss-icons':
-        specifier: ^1.6.0
-        version: 1.6.0(tailwindcss@3.3.6)
+        specifier: ^1.7.0
+        version: 1.7.0(tailwindcss@3.3.6)
       '@iconify-json/carbon':
         specifier: ^1.1.26
         version: 1.1.26
@@ -703,8 +703,8 @@ packages:
     resolution: {integrity: sha512-eIWHb5Hrnd5j/RLSgbY1mtRPECMSjRbqlxZmlG+mgNi0h0YNieaS86EYsIHxnPT+J682N/OE7LoHSVDTRmp6jw==}
     dev: false
 
-  /@egoist/tailwindcss-icons@1.6.0(tailwindcss@3.3.6):
-    resolution: {integrity: sha512-Y1vAmNt/Lx4RBXHZbMUg2aOHf1sw5Pds/GLZqtbQ2akcEfNbUZlqcwY7lZt1M6OYro4kRjQCvgAG3HMFV+eYUA==}
+  /@egoist/tailwindcss-icons@1.7.0(tailwindcss@3.3.6):
+    resolution: {integrity: sha512-KfZgcl8ln1y/BEzB10vyu6v5MgX79wYqgiIW0VvEZnGmaGsl91lJ6kZDS9vh76tMd/cW2MJnOlbxYcxuidwToQ==}
     peerDependencies:
       tailwindcss: '*'
     dependencies:
