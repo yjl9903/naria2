@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "vite": "^5.0.10",
-    "vitest": "^1.0.4"
+    "vitest": "^1.1.0"
   },
   "peerDependencies": {
     "@naria2/node": "workspace:*",
