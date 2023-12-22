@@ -183,8 +183,8 @@ importers:
         specifier: ^8.4.32
         version: 8.4.32
       shadcn-ui:
-        specifier: ^0.4.1
-        version: 0.4.1(typescript@5.3.3)
+        specifier: ^0.5.0
+        version: 0.5.0(typescript@5.3.3)
       tailwindcss:
         specifier: ^3.4.0
         version: 3.4.0
@@ -3903,7 +3903,7 @@ packages:
     resolution: {integrity: sha512-l0x2DvrW294C9uDCoQe1VSU4gf529FkSZ6leBl4TiqZH/e+0R7hSfHQBNut2mNygDgHwvYHfFLn6Oxb3VWj2rA==}
     engines: {node: '>=12'}
     dependencies:
-      chalk: 5.2.0
+      chalk: 5.3.0
       is-unicode-supported: 1.3.0
     dev: true
 
@@ -4284,7 +4284,7 @@ packages:
     resolution: {integrity: sha512-ERAyNnZOfqM+Ao3RAvIXkYh5joP220yf59gVe2X/cI6SiCxIdi4c9HZKZD8R6q/RDXEje1THBju6iExiSsgJaQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
-      chalk: 5.2.0
+      chalk: 5.3.0
       cli-cursor: 4.0.0
       cli-spinners: 2.9.1
       is-interactive: 2.0.0
@@ -4879,8 +4879,8 @@ packages:
   /setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  /shadcn-ui@0.4.1(typescript@5.3.3):
-    resolution: {integrity: sha512-6SMlEzoJzbkPFZ1zP01bOi90reiV8yYnBeTmqys37YJPfnNKDk8mtPq3jtoYGDLIEcmLdcI/vY12qxzxDCTKkw==}
+  /shadcn-ui@0.5.0(typescript@5.3.3):
+    resolution: {integrity: sha512-mlQmeEPtQJU5VRNjUeTLAH97yHhwcH1IRSVFJN2aKlBA1yOcip9ELTRYAH7Bj8OEiJhHT1OSpn5zlHEWxzhakg==}
     hasBin: true
     dependencies:
       '@antfu/ni': 0.21.9
