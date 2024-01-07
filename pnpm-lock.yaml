@@ -256,8 +256,8 @@ importers:
         specifier: workspace:*
         version: link:../node
       open:
-        specifier: ^10.0.2
-        version: 10.0.2
+        specifier: ^10.0.3
+        version: 10.0.3
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -286,8 +286,8 @@ importers:
         specifier: ^0.3.2
         version: 0.3.2(patch_hash=uxhpzsjpn57cx5mmqz4ya6ijh4)(uuid@9.0.1)(ws@8.16.0)
       open:
-        specifier: ^10.0.2
-        version: 10.0.2
+        specifier: ^10.0.3
+        version: 10.0.3
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -4282,8 +4282,8 @@ packages:
     dependencies:
       mimic-fn: 4.0.0
 
-  /open@10.0.2:
-    resolution: {integrity: sha512-GnYLdE+E3K8NeSE23N0g67/9q9AXRph5oTUbz6IbIgElPigEnQ2aHuqRge3y0JUr67qoc84xME5kF03fDc3fcA==}
+  /open@10.0.3:
+    resolution: {integrity: sha512-dtbI5oW7987hwC9qjJTyABldTaa19SuyJse1QboWv3b0qCcrrLNVDqBx1XgELAjh9QTVQaP/C5b1nhQebd1H2A==}
     engines: {node: '>=18'}
     dependencies:
       default-browser: 5.2.1

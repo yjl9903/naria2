@@ -39,7 +39,7 @@
     "@breadc/color": "^0.9.7",
     "@breadc/death": "^0.9.7",
     "@naria2/node": "workspace:*",
-    "open": "^10.0.2",
+    "open": "^10.0.3",
     "portfinder": "^1.0.32"
   },
   "engines": {
