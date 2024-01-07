@@ -43,7 +43,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "maria2": "^0.3.2",
+    "maria2": "^0.3.3",
     "type-fest": "^4.9.0"
   },
   "devDependencies": {
