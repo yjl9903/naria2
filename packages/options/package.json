@@ -47,7 +47,7 @@
     "type-fest": "^4.9.0"
   },
   "devDependencies": {
-    "vitest": "^1.2.0"
+    "vitest": "^1.2.1"
   },
   "engines": {
     "node": ">=v20.1.0"
