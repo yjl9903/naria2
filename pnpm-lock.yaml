@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   maria2@0.3.2:
-    hash: uxhpzsjpn57cx5mmqz4ya6ijh4
+    hash: bemyrwfa2h5oe6e27zs6fauqmq
     path: patches/maria2@0.3.2.patch
 
 importers:
@@ -223,7 +223,7 @@ importers:
         version: link:../options
       maria2:
         specifier: ^0.3.2
-        version: 0.3.2(patch_hash=uxhpzsjpn57cx5mmqz4ya6ijh4)(uuid@9.0.1)(ws@8.16.0)
+        version: 0.3.2(patch_hash=bemyrwfa2h5oe6e27zs6fauqmq)(uuid@9.0.1)(ws@8.16.0)
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
@@ -284,7 +284,7 @@ importers:
         version: 2.0.6(@types/express@4.17.21)
       maria2:
         specifier: ^0.3.2
-        version: 0.3.2(patch_hash=uxhpzsjpn57cx5mmqz4ya6ijh4)(uuid@9.0.1)(ws@8.16.0)
+        version: 0.3.2(patch_hash=bemyrwfa2h5oe6e27zs6fauqmq)(uuid@9.0.1)(ws@8.16.0)
       open:
         specifier: ^10.0.3
         version: 10.0.3
@@ -337,7 +337,7 @@ importers:
     dependencies:
       maria2:
         specifier: ^0.3.2
-        version: 0.3.2(patch_hash=uxhpzsjpn57cx5mmqz4ya6ijh4)(uuid@9.0.1)(ws@8.16.0)
+        version: 0.3.2(patch_hash=bemyrwfa2h5oe6e27zs6fauqmq)(uuid@9.0.1)(ws@8.16.0)
       type-fest:
         specifier: ^4.9.0
         version: 4.9.0
@@ -3985,7 +3985,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /maria2@0.3.2(patch_hash=uxhpzsjpn57cx5mmqz4ya6ijh4)(uuid@9.0.1)(ws@8.16.0):
+  /maria2@0.3.2(patch_hash=bemyrwfa2h5oe6e27zs6fauqmq)(uuid@9.0.1)(ws@8.16.0):
     resolution: {integrity: sha512-PspS1gxdZeRLBmelwC78dsUxM8bb7pHCairIOzfVAIPrpJw0u0dYAx7X+4Ahm+QE9p7YDZ8TuOGA4ewXcVTvTw==}
     engines: {node: '>= 14.8.0'}
     peerDependencies:

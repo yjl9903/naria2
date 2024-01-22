@@ -1,3 +1,23 @@
+diff --git a/dist/chunks/node.mjs b/dist/chunks/node.mjs
+index 27841a96dda5a8aa0aa4e56e9f06e525be612fab..5b177be663dad8fa10504ecce7672001f7425566 100644
+--- a/dist/chunks/node.mjs
++++ b/dist/chunks/node.mjs
+@@ -1,5 +1,3 @@
+-import { d as decodeMessageData } from '../shared/maria2.3df4111b.mjs';
+-
+ const randomUUID = await (async () => {
+   const nodeCrypto = await import('node:crypto');
+   if (nodeCrypto?.randomUUID != null)
+@@ -19,7 +17,8 @@ const randomUUID = await (async () => {
+           "content-length": Buffer.byteLength(json)
+         }
+       },
+-      (res) => {
++      async (res) => {
++        const { d: decodeMessageData } = await import('../shared/maria2.3df4111b.mjs');
+         res.setEncoding("utf8");
+         const chunks = [];
+         res.on("data", (chunk) => chunks.push(chunk)), res.on("end", () => onResolve(decodeMessageData(chunks)));
 diff --git a/dist/index.d.ts b/dist/index.d.ts
 index 406f30d78aef8c84f3960336052aebca39cb3b4e..5ac87d3352f431915152ee9ae62f519684804ff2 100644
 --- a/dist/index.d.ts
