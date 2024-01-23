@@ -52,7 +52,7 @@ export class Task {
   }
 
   /**
-   * Progress percent
+   * Progress percent, max: 100
    */
   public get progress() {
     if (this.status.totalLength === '0') {
@@ -62,6 +62,13 @@ export class Task {
         (10000n * BigInt(this.status.completedLength)) / BigInt(this.status.totalLength);
       return +(+status.toString() / 100.0).toFixed(2);
     }
+  }
+
+  /**
+   * Download speed measured in bytes/sec
+   */
+  public get downloadSpeed() {
+    return this.status.downloadSpeed;
   }
 
   // --- Control ---
