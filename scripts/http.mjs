@@ -29,7 +29,6 @@ await download.watch((task) => {
 });
 bar.stop();
 
-await download.updateStatus();
 console.log(`Download OK:`, download.status.completedLength);
 
 // Close client

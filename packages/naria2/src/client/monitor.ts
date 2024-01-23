@@ -181,12 +181,20 @@ export class Aria2Monitor {
         disposables.forEach((d) => d());
       };
 
-      const onError = (err: any) => {
+      const onError = async (err: any) => {
         dispose();
+        if (fn) {
+          await task.updateStatus();
+          await fn(task as T);
+        }
         rej(err);
       };
-      const onTarget = (task: Task | Torrent) => {
+      const onTarget = async (task: Task | Torrent) => {
         dispose();
+        if (fn) {
+          await task.updateStatus();
+          await fn(task as T);
+        }
         res(task);
       };
 
@@ -203,8 +211,7 @@ export class Aria2Monitor {
           }
 
           if (fn) {
-            // @ts-ignore
-            await fn(task);
+            await fn(task as T);
           }
         } catch (err) {
           onError(err);
@@ -277,15 +284,18 @@ export class Aria2Monitor {
   }
 
   private async onDownloadPause(gid: string) {
-    this.emitter.emit(`pause:${gid}`, await this.getTask(gid));
+    const task = await this.getTask(gid);
+    this.emitter.emit(`pause:${gid}`, task);
   }
 
   private async onDownloadStop(gid: string) {
-    this.emitter.emit(`stop:${gid}`, await this.getTask(gid));
+    const task = await this.getTask(gid);
+    this.emitter.emit(`stop:${gid}`, task);
   }
 
   private async onDownloadComplete(gid: string) {
-    this.emitter.emit(`complete:${gid}`, await this.getTask(gid));
+    const task = await this.getTask(gid);
+    this.emitter.emit(`complete:${gid}`, task);
   }
 
   private async onBtDownloadComplete(gid: string) {
@@ -294,7 +304,8 @@ export class Aria2Monitor {
   }
 
   private async onDownloadError(gid: string) {
-    this.emitter.emit(`error:${gid}`, await this.getTask(gid));
+    const task = await this.getTask(gid);
+    this.emitter.emit(`error:${gid}`, task);
   }
 }
 
