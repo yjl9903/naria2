@@ -102,7 +102,7 @@ const client = await createClient(
 )
 
 // Start downloading a magnet
-const torrent = await client.downloadUri('...')
+const torrent = await client.downloadTorrent('...')
 
 // Watch metadata progress
 await torrent.watch((torrent) => {

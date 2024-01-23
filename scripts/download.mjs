@@ -19,7 +19,7 @@ console.log(
 );
 
 // Start downloading a magnet
-const torrent = await client.downloadUri(magnet);
+const torrent = await client.downloadTorrent(magnet);
 
 // Watch its progress, and await for its completion
 const bar = new SingleBar({});
