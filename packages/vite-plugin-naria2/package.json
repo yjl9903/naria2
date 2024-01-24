@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@breadc/color": "^0.9.7",
-    "type-fest": "^4.10.0"
+    "type-fest": "^4.10.1"
   },
   "devDependencies": {
     "vite": "^5.0.12",
