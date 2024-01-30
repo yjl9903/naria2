@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "maria2": "^0.3.2",
-    "type-fest": "^4.10.1"
+    "type-fest": "^4.10.2"
   },
   "devDependencies": {
     "vitest": "^1.2.2"
