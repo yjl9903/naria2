@@ -28,7 +28,7 @@
     "naria2": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.49.3",
+    "react-hook-form": "^7.50.1",
     "react-router-dom": "^6.22.0",
     "sort-by": "^1.2.0",
     "tailwind-merge": "^2.2.1",
