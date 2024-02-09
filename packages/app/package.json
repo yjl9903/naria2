@@ -54,7 +54,7 @@
     "shadcn-ui": "^0.8.0",
     "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
-    "vite": "^5.0.12",
+    "vite": "^5.1.1",
     "vite-plugin-info": "^0.4.1",
     "vite-plugin-naria2": "workspace:*",
     "vite-plugin-top-level-await": "^1.4.1"
