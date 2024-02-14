@@ -141,11 +141,11 @@ importers:
         specifier: ^1.7.4
         version: 1.7.4(tailwindcss@3.4.1)
       '@iconify-json/carbon':
-        specifier: ^1.1.29
-        version: 1.1.29
+        specifier: ^1.1.30
+        version: 1.1.30
       '@iconify-json/fluent':
-        specifier: ^1.1.47
-        version: 1.1.47
+        specifier: ^1.1.48
+        version: 1.1.48
       '@iconify-json/ic':
         specifier: ^1.1.17
         version: 1.1.17
@@ -952,14 +952,14 @@ packages:
       react-hook-form: 7.50.1(react@18.2.0)
     dev: false
 
-  /@iconify-json/carbon@1.1.29:
-    resolution: {integrity: sha512-zfyvX/kPItpBEU0fV0FhMW8Ln8PJX6is/L/GX7z9OOoVWEz1k8IlbK3KoBBH6ODZ8HHKG7HQ9FZ4nNl6RDe0Lw==}
+  /@iconify-json/carbon@1.1.30:
+    resolution: {integrity: sha512-tEvEmxCO0J0t0p2NT2IvJ+iiSNqqnabygSo/S8wkeh2Guhc4tQOgl9dxvDMpy6RqwtKRTKsaROPtnRfu/bl+Tg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/fluent@1.1.47:
-    resolution: {integrity: sha512-psi0EPlxzpleQ/I4cbNEELDTII0KCiq0Fr+bkeTYo+eglo5pDnE+o6LBxpI77l87Ll+/P3faoIMujHMuC7NLeQ==}
+  /@iconify-json/fluent@1.1.48:
+    resolution: {integrity: sha512-qp2/ETNldtnNBDKi6kMHGzkqx9ChINikdo5MuaZm9MziguSmij5DAfgOAs2aNoRVHdvMVD8BKcXTeVH8Sl8u8g==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
