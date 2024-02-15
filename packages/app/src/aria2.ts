@@ -94,7 +94,7 @@ async function inferClient() {
   if (debugClient) {
     removeStartupLoading();
     return debugClient;
-  } else {
+  } else if (!location.pathname.startsWith('/connect')) {
     addStartupLoading();
 
     const search = new URLSearchParams(location.search);
