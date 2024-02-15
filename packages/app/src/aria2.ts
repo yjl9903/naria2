@@ -7,6 +7,8 @@ import { client as debugClient } from '~naria2/jsonrpc';
 import { isMagnetURI } from './utils';
 
 interface ConnectionOptions {
+  secure?: boolean;
+
   host?: string;
 
   port?: string | number;
@@ -36,7 +38,8 @@ export const useAria2 = create<Aria2State>()((set, get) => ({
   },
   connect: async (options: ConnectionOptions) => {
     try {
-      const url = `ws://${options.host ?? '127.0.0.1'}${
+      const isSecure = location.protocol === 'https:' ? true : !!options.secure;
+      const url = `${isSecure ? 'wss' : 'ws'}://${options.host ?? '127.0.0.1'}${
         options.port ? ':' + options.port : ''
       }/jsonrpc`;
       const client = await createClient(new WebSocket(url), {
@@ -93,9 +96,14 @@ async function inferClient() {
     return debugClient;
   } else {
     addStartupLoading();
+
     const search = new URLSearchParams(location.search);
     const tries = [
       {
+        secure:
+          search.get('secure') && !['off', 'no', 'false'].includes(search.get('secure')!)
+            ? true
+            : false,
         port: search.get('port'),
         secret: search.get('secret')
       }
@@ -112,20 +120,29 @@ async function inferClient() {
     }
 
     for (const opt of tries) {
-      const url = opt.port ? `ws://127.0.0.1:${opt.port}/jsonrpc` : `ws://${location.host}/jsonrpc`;
-      const client = await createClient(new WebSocket(url), {
-        secret: opt.secret ?? undefined
-      }).catch(() => undefined);
+      try {
+        const isSecure = location.protocol === 'https:' ? true : opt.secure;
+        const url = opt.port
+          ? `${isSecure ? 'wss' : 'ws'}://127.0.0.1:${opt.port}/jsonrpc`
+          : `${isSecure ? 'wss' : 'ws'}://${location.host}/jsonrpc`;
+        const client = await createClient(new WebSocket(url), {
+          secret: opt.secret ?? undefined
+        }).catch(() => undefined);
 
-      if (client && (await client.version().catch(() => undefined))) {
-        window.localStorage.setItem(
-          'naria2/connection',
-          JSON.stringify({ port: opt.port, secret: opt.secret })
-        );
-        removeStartupLoading();
-        return client;
+        if (client && (await client.version().catch(() => undefined))) {
+          window.localStorage.setItem(
+            'naria2/connection',
+            JSON.stringify({ port: opt.port, secret: opt.secret })
+          );
+          removeStartupLoading();
+          return client;
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
+
+    removeStartupLoading();
   }
 }
 
