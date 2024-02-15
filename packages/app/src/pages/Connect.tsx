@@ -17,11 +17,15 @@ import { useAria2 } from '@/aria2';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import { Switch } from '@/components/ui/switch';
+
+const isHTTPS = location.protocol === 'https:';
 
 const ConnectSchema = z.object({
   host: z.string().optional(),
   port: z.coerce.number().min(0).optional(),
-  secret: z.string().optional()
+  secret: z.string().optional(),
+  secure: z.boolean().default(isHTTPS ? true : false)
 });
 
 const getDefaultConnection = () => {
@@ -33,13 +37,15 @@ const getDefaultConnection = () => {
     return {
       host: `${location.protocol}//${location.hostname}`,
       port: +`${options?.port ?? location.port}`,
-      secret: options?.secret ?? ''
+      secret: options?.secret ?? '',
+      secure: isHTTPS ? true : false
     };
   } catch {
     return {
       host: `${location.protocol}//${location.hostname}`,
       port: +`${location.port}`,
-      secret: ''
+      secret: '',
+      secure: isHTTPS ? true : false
     };
   }
 };
@@ -138,6 +144,25 @@ export default function Connect() {
                     </FormControl>
                     <FormDescription>This is aria2 RPC auth secret.</FormDescription>
                     <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="secure"
+                render={({ field }) => (
+                  <FormItem className="">
+                    <div className="flex items-center gap-4">
+                      <FormLabel>Secure</FormLabel>
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          disabled={isHTTPS}
+                        />
+                      </FormControl>
+                    </div>
+                    <FormDescription>RPC transport will be encrypted by SSL/TLS.</FormDescription>
                   </FormItem>
                 )}
               />
