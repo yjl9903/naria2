@@ -92,8 +92,8 @@ importers:
         specifier: ^1.1.5
         version: 1.1.5(@types/react-dom@18.2.19)(@types/react@18.2.56)(react-dom@18.2.0)(react@18.2.0)
       '@tanstack/react-query':
-        specifier: ^5.21.4
-        version: 5.21.4(react@18.2.0)
+        specifier: ^5.22.2
+        version: 5.22.2(react@18.2.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -162,8 +162,8 @@ importers:
         specifier: ^1.1.9
         version: 1.1.9
       '@tanstack/react-query-devtools':
-        specifier: ^5.21.5
-        version: 5.21.5(@tanstack/react-query@5.21.4)(react@18.2.0)
+        specifier: ^5.24.0
+        version: 5.24.0(@tanstack/react-query@5.22.2)(react@18.2.0)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -2249,30 +2249,30 @@ packages:
     resolution: {integrity: sha512-myfUej5naTBWnqOCc/MdVOLVjXUXtIA+NpDrDBKJtLLg2shUjBu3cZmB/85RyitKc55+lUUyl7oRfLOvkr2hsw==}
     dev: true
 
-  /@tanstack/query-core@5.21.4:
-    resolution: {integrity: sha512-k3u4RcDAtcCurs8KVEIf52k4yUayc852v4ZQrtI8pkEii71riM9758A2WVGo5T/v4/X7b1RLON5g0aDvkoZYCA==}
+  /@tanstack/query-core@5.22.2:
+    resolution: {integrity: sha512-z3PwKFUFACMUqe1eyesCIKg3Jv1mysSrYfrEW5ww5DCDUD4zlpTKBvUDaEjsfZzL3ULrFLDM9yVUxI/fega1Qg==}
 
-  /@tanstack/query-devtools@5.21.5:
-    resolution: {integrity: sha512-A7rVpVP1GRcQBnB/GzXZfVhxmoP17J1f+RoYRu+DOV8Jp4QPIJRE/nFueEiiRPSVL7aNcNw4rTm0RmJZRI2fUA==}
+  /@tanstack/query-devtools@5.24.0:
+    resolution: {integrity: sha512-pThim455t69zrZaQKa7IRkEIK8UBTS+gHVAdNfhO72Xh4rWpMc63ovRje5/n6iw63+d6QiJzVadsJVdPoodSeQ==}
     dev: true
 
-  /@tanstack/react-query-devtools@5.21.5(@tanstack/react-query@5.21.4)(react@18.2.0):
-    resolution: {integrity: sha512-JAowcZzamveCuNJkoyhc+dJG7G0VnJLx/X0gngFs/ml5lAxMl7qUrSt62Y2xqq7mrdBErweuymB6u263zINgtQ==}
+  /@tanstack/react-query-devtools@5.24.0(@tanstack/react-query@5.22.2)(react@18.2.0):
+    resolution: {integrity: sha512-ae3TSg9hKSicLP6TZMj4hglLsLBaS8O3ex/mgHZNQ8yKCDLnVoLO1a9EqYWPzw2k+uaK5uMCKBAVbLVBLx93oA==}
     peerDependencies:
-      '@tanstack/react-query': ^5.21.4
+      '@tanstack/react-query': ^5.22.2
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-devtools': 5.21.5
-      '@tanstack/react-query': 5.21.4(react@18.2.0)
+      '@tanstack/query-devtools': 5.24.0
+      '@tanstack/react-query': 5.22.2(react@18.2.0)
       react: 18.2.0
     dev: true
 
-  /@tanstack/react-query@5.21.4(react@18.2.0):
-    resolution: {integrity: sha512-tzl4mGerfPKmJsPDWbfKol0eBEk8bsgtMZJOwnbUvvSRnYZzS9OfX9CD/dbQLr+JjIvSekWKaDBTo3oXeeFhoQ==}
+  /@tanstack/react-query@5.22.2(react@18.2.0):
+    resolution: {integrity: sha512-TaxJDRzJ8/NWRT4lY2jguKCrNI6MRN+67dELzPjNUlvqzTxGANlMp68l7aC7hG8Bd1uHNxHl7ihv7MT50i/43A==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-core': 5.21.4
+      '@tanstack/query-core': 5.22.2
       react: 18.2.0
 
   /@ts-morph/common@0.19.0:
