@@ -41,7 +41,7 @@
     "@iconify-json/carbon": "^1.1.30",
     "@iconify-json/fluent": "^1.1.48",
     "@iconify-json/ic": "^1.1.17",
-    "@iconify-json/material-symbols": "^1.1.72",
+    "@iconify-json/material-symbols": "^1.1.73",
     "@iconify-json/mdi": "^1.1.64",
     "@iconify-json/solar": "^1.1.9",
     "@tanstack/react-query-devtools": "^5.21.5",
