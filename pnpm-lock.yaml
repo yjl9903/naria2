@@ -231,8 +231,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       type-fest:
-        specifier: ^4.10.2
-        version: 4.10.2
+        specifier: ^4.14.0
+        version: 4.14.0
     devDependencies:
       '@naria2/node':
         specifier: workspace:*
@@ -298,8 +298,8 @@ importers:
         specifier: ^1.15.0
         version: 1.15.0
       type-fest:
-        specifier: ^4.10.2
-        version: 4.10.2
+        specifier: ^4.14.0
+        version: 4.14.0
       ws:
         specifier: ^8.16.0
         version: 8.16.0
@@ -342,8 +342,8 @@ importers:
         specifier: ^0.3.2
         version: 0.3.2(patch_hash=bemyrwfa2h5oe6e27zs6fauqmq)(uuid@9.0.1)(ws@8.16.0)
       type-fest:
-        specifier: ^4.10.2
-        version: 4.10.2
+        specifier: ^4.14.0
+        version: 4.14.0
     devDependencies:
       vitest:
         specifier: ^1.3.1
@@ -361,8 +361,8 @@ importers:
         specifier: workspace:*
         version: link:../naria2
       type-fest:
-        specifier: ^4.10.2
-        version: 4.10.2
+        specifier: ^4.14.0
+        version: 4.14.0
     devDependencies:
       vite:
         specifier: ^5.1.4
@@ -5327,8 +5327,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /type-fest@4.10.2:
-    resolution: {integrity: sha512-anpAG63wSpdEbLwOqH8L84urkL6PiVIov3EMmgIhhThevh9aiMQov+6Btx0wldNcvm4wV+e2/Rt1QdDwKHFbHw==}
+  /type-fest@4.14.0:
+    resolution: {integrity: sha512-on5/Cw89wwqGZQu+yWO0gGMGu8VNxsaW9SB2HE8yJjllEk7IDTwnSN1dUVldYILhYPN5HzD7WAaw2cc/jBfn0Q==}
     engines: {node: '>=16'}
     dev: false
 
