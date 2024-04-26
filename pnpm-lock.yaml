@@ -144,20 +144,20 @@ importers:
         specifier: ^1.7.4
         version: 1.7.4(tailwindcss@3.4.3)
       '@iconify-json/carbon':
-        specifier: ^1.1.30
-        version: 1.1.30
+        specifier: ^1.1.31
+        version: 1.1.31
       '@iconify-json/fluent':
-        specifier: ^1.1.48
-        version: 1.1.48
+        specifier: ^1.1.53
+        version: 1.1.53
       '@iconify-json/ic':
         specifier: ^1.1.17
         version: 1.1.17
       '@iconify-json/material-symbols':
-        specifier: ^1.1.73
-        version: 1.1.73
+        specifier: ^1.1.78
+        version: 1.1.78
       '@iconify-json/mdi':
-        specifier: ^1.1.64
-        version: 1.1.64
+        specifier: ^1.1.66
+        version: 1.1.66
       '@iconify-json/solar':
         specifier: ^1.1.9
         version: 1.1.9
@@ -700,20 +700,20 @@ packages:
     peerDependencies:
       react-hook-form: ^7.0.0
 
-  '@iconify-json/carbon@1.1.30':
-    resolution: {integrity: sha512-tEvEmxCO0J0t0p2NT2IvJ+iiSNqqnabygSo/S8wkeh2Guhc4tQOgl9dxvDMpy6RqwtKRTKsaROPtnRfu/bl+Tg==}
+  '@iconify-json/carbon@1.1.31':
+    resolution: {integrity: sha512-CAvECFfiwGyZmlcuM2JLMRDEN3VsIEZv6lml7Xf+3giQ5oXloADm0b5wiVPFZmONKM5jXERmx+E7YSvAtFJIbw==}
 
-  '@iconify-json/fluent@1.1.48':
-    resolution: {integrity: sha512-qp2/ETNldtnNBDKi6kMHGzkqx9ChINikdo5MuaZm9MziguSmij5DAfgOAs2aNoRVHdvMVD8BKcXTeVH8Sl8u8g==}
+  '@iconify-json/fluent@1.1.53':
+    resolution: {integrity: sha512-3bgfkjTw3rjtuT1fFy433k3Ws5GGsT+/4C1JSF6EzHuH6dwJ2pyiNAUP5I4ufCZH7MGQoEt9txdvRIMJK6rtIg==}
 
   '@iconify-json/ic@1.1.17':
     resolution: {integrity: sha512-EvAjZzVESmN36zlyefylePUNaU2BQ3eRKVZ6KQSQ2bG01ppoZaiFZRri74VTyvp5Mlv2yn68ux1fgCoT+etGmA==}
 
-  '@iconify-json/material-symbols@1.1.73':
-    resolution: {integrity: sha512-3ioEMQvxUR0eWg3jCxeydowS7xlqJzUHqeKJg29Z5HN15ZBYniQhHYrDCRpmFjopgwxox9OIsoonBiBSLV4EMA==}
+  '@iconify-json/material-symbols@1.1.78':
+    resolution: {integrity: sha512-WNDaCOdxIMAVer6fWYCsi7iUJM43sBIRd8bFExOifyb4RpXP1dG+Zh3MXqCX56iwaQ9Ra/a2XlFDNZfKnE4NWQ==}
 
-  '@iconify-json/mdi@1.1.64':
-    resolution: {integrity: sha512-zGeo5TjhNFAY6FmSDBLAzDO811t77r6v/mDi7CAL9w5eXqKez6bIjk8R9AL/RHIeq44ALP4Ozr4lMqFTkHr7ug==}
+  '@iconify-json/mdi@1.1.66':
+    resolution: {integrity: sha512-7KPF2RVUUWav/hXCM8Ti/smqu3cmgePJpiX9CSkldiL+80+eBRBeKlc4vPOc9jhAItlqIU1vKsbKoPP0JIfgbg==}
 
   '@iconify-json/solar@1.1.9':
     resolution: {integrity: sha512-BcWzZqA02BiQduYizqU/J4v4RNs0MkjZUGpMbejpozH8YQSt3+S/LfV6zfVRonx/2DhXTVSqiLa1abDRAZtojQ==}
@@ -3726,11 +3726,11 @@ snapshots:
     dependencies:
       react-hook-form: 7.50.1(react@18.2.0)
 
-  '@iconify-json/carbon@1.1.30':
+  '@iconify-json/carbon@1.1.31':
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/fluent@1.1.48':
+  '@iconify-json/fluent@1.1.53':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -3738,11 +3738,11 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.1.73':
+  '@iconify-json/material-symbols@1.1.78':
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/mdi@1.1.64':
+  '@iconify-json/mdi@1.1.66':
     dependencies:
       '@iconify/types': 2.0.0
 
