@@ -32,7 +32,7 @@
     "vitest": "^1.6.0",
     "ws": "^8.16.0"
   },
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.1.0",
   "engines": {
     "node": ">=v18.0.0"
   },
