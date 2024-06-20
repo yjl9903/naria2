@@ -109,6 +109,8 @@ function useResolver<T extends {}, K extends string>(
         const resolver = resolvers[k];
         const resolved = resolver.resolve(v);
         if (resolved !== undefined && resolved !== null) {
+          // TODO: check it
+          // @ts-ignore
           result[resolver.option] = resolved;
         }
       }
