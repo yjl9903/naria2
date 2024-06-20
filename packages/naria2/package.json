@@ -70,7 +70,7 @@
     "@naria2/node": "workspace:*",
     "@types/ws": "^8.5.10",
     "vitest": "^1.6.0",
-    "ws": "^8.16.0"
+    "ws": "^8.17.1"
   },
   "peerDependencies": {
     "@naria2/node": "workspace:*"
