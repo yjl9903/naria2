@@ -37,7 +37,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@egoist/tailwindcss-icons": "^1.8.0",
+    "@egoist/tailwindcss-icons": "^1.8.1",
     "@iconify-json/carbon": "^1.1.32",
     "@iconify-json/fluent": "^1.1.54",
     "@iconify-json/ic": "^1.1.17",
