@@ -231,7 +231,7 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       type-fest:
-        specifier: ^4.17.0
+        specifier: ^4.20.1
         version: 4.20.1
     devDependencies:
       '@naria2/node':
@@ -298,7 +298,7 @@ importers:
         specifier: ^1.15.0
         version: 1.15.0
       type-fest:
-        specifier: ^4.17.0
+        specifier: ^4.20.1
         version: 4.20.1
       ws:
         specifier: ^8.17.1
@@ -342,7 +342,7 @@ importers:
         specifier: 0.3.2
         version: 0.3.2(patch_hash=bemyrwfa2h5oe6e27zs6fauqmq)(uuid@9.0.1)(ws@8.17.1)
       type-fest:
-        specifier: ^4.17.0
+        specifier: ^4.20.1
         version: 4.20.1
     devDependencies:
       vitest:
@@ -361,7 +361,7 @@ importers:
         specifier: workspace:*
         version: link:../naria2
       type-fest:
-        specifier: ^4.17.0
+        specifier: ^4.20.1
         version: 4.20.1
     devDependencies:
       vite:
