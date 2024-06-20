@@ -62,8 +62,8 @@ importers:
         specifier: ^0.8.2
         version: 0.8.2
       '@hookform/resolvers':
-        specifier: ^3.3.4
-        version: 3.3.4(react-hook-form@7.50.1(react@18.3.1))
+        specifier: ^3.6.0
+        version: 3.6.0(react-hook-form@7.50.1(react@18.3.1))
       '@radix-ui/react-alert-dialog':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -837,8 +837,8 @@ packages:
   '@formkit/auto-animate@0.8.2':
     resolution: {integrity: sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==}
 
-  '@hookform/resolvers@3.3.4':
-    resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
+  '@hookform/resolvers@3.6.0':
+    resolution: {integrity: sha512-UBcpyOX3+RR+dNnqBd0lchXpoL8p4xC21XP8H6Meb8uve5Br1GCnmg0PcBoKKqPKgGu9GHQ/oygcmPrQhetwqw==}
     peerDependencies:
       react-hook-form: ^7.0.0
 
@@ -3962,7 +3962,7 @@ snapshots:
 
   '@formkit/auto-animate@0.8.2': {}
 
-  '@hookform/resolvers@3.3.4(react-hook-form@7.50.1(react@18.3.1))':
+  '@hookform/resolvers@3.6.0(react-hook-form@7.50.1(react@18.3.1))':
     dependencies:
       react-hook-form: 7.50.1(react@18.3.1)
 
