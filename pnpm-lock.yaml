@@ -259,8 +259,8 @@ importers:
         specifier: workspace:*
         version: link:../node
       open:
-        specifier: ^10.0.3
-        version: 10.0.3
+        specifier: ^10.1.0
+        version: 10.1.0
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -289,8 +289,8 @@ importers:
         specifier: ^0.3.2
         version: 0.3.2(patch_hash=bemyrwfa2h5oe6e27zs6fauqmq)(uuid@9.0.1)(ws@8.16.0)
       open:
-        specifier: ^10.0.3
-        version: 10.0.3
+        specifier: ^10.1.0
+        version: 10.1.0
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -2817,8 +2817,8 @@ packages:
     resolution: {integrity: sha512-1FlR+gjXK7X+AsAHso35MnyN5KqGwJRi/31ft6x0M194ht7S+rWAvd7PHss9xSKMzE0asv1pyIHaJYq+BbacAQ==}
     engines: {node: '>=12'}
 
-  open@10.0.3:
-    resolution: {integrity: sha512-dtbI5oW7987hwC9qjJTyABldTaa19SuyJse1QboWv3b0qCcrrLNVDqBx1XgELAjh9QTVQaP/C5b1nhQebd1H2A==}
+  open@10.1.0:
+    resolution: {integrity: sha512-mnkeQ1qP5Ue2wd+aivTD3NHd/lZ96Lu0jgf0pwktLPtx6cTZiH7tyeGRRHs0zX0rbrahXPnXlUnbeXyaBBuIaw==}
     engines: {node: '>=18'}
 
   ora@6.3.1:
@@ -5948,7 +5948,7 @@ snapshots:
     dependencies:
       mimic-fn: 4.0.0
 
-  open@10.0.3:
+  open@10.1.0:
     dependencies:
       default-browser: 5.2.1
       define-lazy-prop: 3.0.0
