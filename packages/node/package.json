@@ -63,7 +63,7 @@
     "@naria2/options": "workspace:*",
     "execa": "^8.0.1",
     "finalhandler": "^1.2.0",
-    "http-proxy-middleware": "^2.0.6",
+    "http-proxy-middleware": "^3.0.0",
     "maria2": "0.3.2",
     "open": "^10.1.0",
     "portfinder": "^1.0.32",
