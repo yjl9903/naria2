@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "maria2": "0.3.4",
-    "type-fest": "^4.21.0"
+    "type-fest": "^4.26.1"
   },
   "engines": {
     "node": ">=v18.0.0"
