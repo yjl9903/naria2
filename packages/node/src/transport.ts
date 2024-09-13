@@ -4,7 +4,7 @@ import type { PartialDeep } from 'type-fest';
 
 import { randomUUID } from 'node:crypto';
 
-import { getPort } from 'get-port-please';
+import getPort from 'get-port';
 import {
   type Socket,
   type PreconfiguredSocket,

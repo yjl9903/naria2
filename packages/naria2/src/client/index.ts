@@ -17,7 +17,10 @@ export async function createClient(
   options: ClientOptions = {}
 ) {
   const socket = await _socket;
-  const conn = await open(socket, options);
+  const conn = await open(socket, {
+    ...options,
+    onServerError() {}
+  });
 
   const client = new Aria2Client(conn);
   await client.monitor.start();
