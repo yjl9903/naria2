@@ -50,7 +50,7 @@
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "fs-extra": "^11.2.0",
     "postcss": "^8.4.45",
     "shadcn-ui": "^0.8.0",
