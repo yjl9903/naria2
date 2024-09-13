@@ -1,10 +1,12 @@
 {
   "name": "@naria2/win32-ia32",
-  "version": "0.1.0-beta.0",
+  "version": "1.37.0-beta.0",
   "description": "Cross-platform wrapper of aria2",
   "keywords": [
     "aria2",
-    "aria2c"
+    "aria2c",
+    "naria2",
+    "naria2c"
   ],
   "homepage": "https://github.com/yjl9903/naria2#readme",
   "bugs": {
