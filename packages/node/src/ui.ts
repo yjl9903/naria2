@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promises as fs } from 'node:fs';
 
-import { getPort } from 'get-port-please';
+import getPort from 'get-port';
 
 import type { ChildProcessSocket } from './transport';
 
