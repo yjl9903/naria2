@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 import { defineConfig, Plugin } from 'vite';
 
-import BuildInfo from 'vite-plugin-info';
+import BuildInfo from 'unplugin-info/vite';
 import react from '@vitejs/plugin-react-swc';
 import TopLevelAwait from 'vite-plugin-top-level-await';
 
