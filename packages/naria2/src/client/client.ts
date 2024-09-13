@@ -3,19 +3,19 @@ import {
   type Conn,
   type Socket,
   type PreconfiguredSocket,
+  type Aria2ServerVersion,
+  type Aria2ServerGlobalStat,
   open,
   close,
-  aria2,
-  type Aria2ServerVersion,
-  type Aria2ServerGlobalStat
+  aria2
 } from 'maria2';
 
 import { type Aria2InputOptions, resolveInputOptions } from '@naria2/options';
 
 import type { ClientOptions, DownloadOptions } from './types';
 
-import { Aria2Monitor } from './monitor';
 import { sleep } from './utils';
+import { Aria2Monitor } from './monitor';
 
 export class Aria2Client {
   private _conn: Conn | undefined;
