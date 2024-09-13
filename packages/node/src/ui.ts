@@ -75,7 +75,7 @@ export async function createWebUIHandler(options: Pick<WebUIOptions, 'rpc'>) {
     try {
       const url = new URL(req.url, `http://${req.headers.host}`);
       if (url.pathname === '/jsonrpc') {
-        proxyMiddleware(req as any, res as any, () => {});
+        await proxyMiddleware(req as any, res as any, () => {});
         return true;
       } else if (url.pathname === '/_/open') {
         return await handleWebUIOpenRequest(url, req, res, options);
