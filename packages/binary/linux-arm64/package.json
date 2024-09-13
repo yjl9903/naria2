@@ -4,7 +4,9 @@
   "description": "Cross-platform wrapper of aria2",
   "keywords": [
     "aria2",
-    "aria2c"
+    "aria2c",
+    "naria2",
+    "naria2c"
   ],
   "homepage": "https://github.com/yjl9903/naria2#readme",
   "bugs": {
