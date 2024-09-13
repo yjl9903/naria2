@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo run dev --parallel --filter !@naria2/app",
     "dev:app": "pnpm -C packages/app dev",
     "format": "turbo run format --parallel",
     "naria2c": "node packages/naria2c/naria2c.mjs",
