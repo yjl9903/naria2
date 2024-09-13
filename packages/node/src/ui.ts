@@ -4,9 +4,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promises as fs } from 'node:fs';
 
+import { getPort } from 'get-port-please';
+
 import type { ChildProcessSocket } from './transport';
 
 export interface WebUIOptions {
+  host?: string;
+
   port?: number;
 
   rpc: {
@@ -21,7 +25,9 @@ export async function launchWebUI(options: WebUIOptions) {
   const finalhandler = (await import('finalhandler')).default;
   const http = await import('http');
 
-  const port = options.port ?? 6801;
+  const host = options.host;
+  const port = await getPort({ host: options.host, port: options.port });
+
   const clientDir = fileURLToPath(new URL('../client', import.meta.url));
   const serve = serveStatic(clientDir, { index: ['index.html'] });
   const handler = await createWebUIHandler(options);
@@ -36,28 +42,42 @@ export async function launchWebUI(options: WebUIOptions) {
     serve(req, res, finalhandler(req, res));
   });
 
-  server.listen(port);
+  server.listen(port, options.host);
 
-  return server;
+  return {
+    server,
+    host,
+    port,
+    url: `http://${host ?? '0.0.0.0'}:${port}?port=${options.rpc.port}${
+      options.rpc.secret ? `&secret=${options.rpc.secret}` : ''
+    }`
+  };
 }
 
 export async function attachWebUI(
-  process: ChildProcessSocket,
-  options: Pick<WebUIOptions, 'port'> = {}
+  socket: ChildProcessSocket,
+  options: Pick<WebUIOptions, 'host' | 'port'> = {}
 ) {
-  const server = await launchWebUI({
-    port: options?.port ?? 6801,
+  const { server, host, port, url } = await launchWebUI({
+    host: options.host,
+    port: options.port ?? socket.getOptions().listenPort + 1,
     rpc: {
-      port: process.getOptions().listenPort,
-      secret: process.getOptions().secret
+      port: socket.getOptions().listenPort,
+      secret: socket.getOptions().secret
     }
   });
 
-  process.onClose(() => {
+  socket.onClose(() => {
     server.close();
   });
 
-  return server;
+  return {
+    socket,
+    server,
+    host,
+    port,
+    url
+  };
 }
 
 export async function createWebUIHandler(options: Pick<WebUIOptions, 'rpc'>) {

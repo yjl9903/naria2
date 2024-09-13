@@ -12,14 +12,12 @@ const magnet = `magnet:?xt=urn:btih:DWZF43GLQCL4ZNOGR4PRIJCBTANP76CG&dn=&tr=http
 // Create a aria2 child process and initialize a client
 const childprocess = await createChildProcess({ rpc: { listenPort: 6800 }, environment: 'ignore' });
 const client = await createClient(childprocess);
-await attachWebUI(childprocess, { port: 6801 });
+const { url } = await attachWebUI(childprocess, { port: 6801 });
 
-console.log(
-  'Web UI: http://127.0.0.1:6801?port=6800&secret=' + childprocess.getOptions().secret + '\n'
-);
+console.log(`Web UI: ${url}`);
 
 // Start downloading a magnet
-const torrent = await client.downloadTorrent(magnet);
+const torrent = await client.downloadUri(magnet);
 
 // Watch its progress, and await for its completion
 const bar = new SingleBar({});

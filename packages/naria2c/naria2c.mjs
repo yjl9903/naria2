@@ -131,7 +131,7 @@ try {
     childProcess.stdout.pipe(process.stdout);
     childProcess.stderr.pipe(transformStderr()).pipe(process.stderr);
     childProcess.once('spawn', async () => {
-      server = await attachWebUI(webui);
+      server = (await attachWebUI(webui)).server;
     });
 
     await childProcess;
