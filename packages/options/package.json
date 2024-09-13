@@ -46,9 +46,6 @@
     "maria2": "0.3.4",
     "type-fest": "^4.21.0"
   },
-  "devDependencies": {
-    "vitest": "^1.6.0"
-  },
   "engines": {
     "node": ">=v18.0.0"
   }
