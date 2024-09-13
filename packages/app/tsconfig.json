@@ -32,7 +32,7 @@
       ],
     },
     "types": [
-      "vite-plugin-info/client",
+      "unplugin-info/client",
       "vite-plugin-naria2/client"
     ],
   },
