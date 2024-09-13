@@ -66,7 +66,7 @@ export async function createWebUIHandler(options: Pick<WebUIOptions, 'rpc'>) {
     target: `http://127.0.0.1:${options.rpc.port}`,
     changeOrigin: false,
     ws: true,
-    logLevel: 'silent'
+    logger: undefined
   });
 
   return async (req: IncomingMessage, res: ServerResponse<IncomingMessage>) => {
