@@ -1,13 +1,7 @@
 import type { Aria2ClientGlobalOptionKey, Aria2ClientInputOptionKey } from 'maria2';
 
+import type { Prettify } from './utils';
 import type { Aria2RPCOptionsKey } from './types';
-
-// See https://twitter.com/mattpocockuk/status/1622730173446557697
-// export type Identity<T> = T;
-// type Prettify<T> = Identity<{ [K in keyof T]: T[K] }>
-type Prettify<T> = {
-  [K in keyof T]: T[K];
-} & {};
 
 export function stringifyCliOptions(
   options: Prettify<

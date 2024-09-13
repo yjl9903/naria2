@@ -1,7 +1,17 @@
-import type { PartialDeep } from 'type-fest';
 import type { ChildProcess, SpawnOptions } from 'node:child_process';
+import type { OpenOptions } from 'maria2';
+import type { PartialDeep } from 'type-fest';
 
 import { randomUUID } from 'node:crypto';
+
+import { getPortPromise } from 'portfinder';
+import {
+  type Socket,
+  type PreconfiguredSocket,
+  ReadyState,
+  Aria2RpcWebSocketUrl,
+  createWebSocket
+} from 'maria2/transport';
 
 import {
   type Aria2RPCOptions,
@@ -9,10 +19,9 @@ import {
   resolveGlobalOptions,
   isDef,
   resolveRPCOptions,
-  stringifyCliOptions
+  stringifyCliOptions,
+  Prettify
 } from '@naria2/options';
-import { getPortPromise } from 'portfinder';
-import { type Socket, type PreconfiguredSocket, createWebSocket } from 'maria2/transport';
 
 import { spawn } from './child_process';
 
@@ -53,11 +62,13 @@ export type ChildProcessOptions = {
 export type ResolvedChildProcessOptions = Omit<ChildProcessOptions, 'environment' | 'rpc'> & {
   rpc: Pick<Aria2RPCOptions, 'listenPort' | 'secret'> & Partial<Aria2RPCOptions>;
 
+  ws: OpenOptions;
+
   args: string[];
 };
 
 export class ChildProcessSocket implements PreconfiguredSocket {
-  readonly socket: Socket;
+  readonly url: Aria2RpcWebSocketUrl;
 
   readonly childProcess: ChildProcess;
 
@@ -65,10 +76,27 @@ export class ChildProcessSocket implements PreconfiguredSocket {
 
   readonly options: ResolvedChildProcessOptions;
 
-  constructor(socket: Socket, childProcess: ChildProcess, options: ResolvedChildProcessOptions) {
-    this.socket = socket;
+  socket: Socket;
+
+  constructor(
+    url: Aria2RpcWebSocketUrl,
+    childProcess: ChildProcess,
+    options: ResolvedChildProcessOptions
+  ) {
+    this.url = url;
+    this.socket = createWebSocket(url, options.ws);
     this.childProcess = childProcess;
     this.options = options;
+
+    this.socket.addEventListener(
+      'error',
+      (e: any) => {
+        if (this.socket?.readyState === ReadyState.Open) {
+          this.close(e?.code, e?.reason);
+        }
+      },
+      { once: true }
+    );
   }
 
   get readyState() {
@@ -127,7 +155,9 @@ export class ChildProcessSocket implements PreconfiguredSocket {
 }
 
 export async function createChildProcess(
-  options: Partial<ChildProcessOptions> & PartialDeep<Aria2GlobalOptions> = {}
+  options: Prettify<
+    Partial<ChildProcessOptions> & PartialDeep<Aria2GlobalOptions> & { ws?: OpenOptions }
+  > = {}
 ): Promise<ChildProcessSocket> {
   const resolvedArgs: string[] = [];
 
@@ -139,6 +169,7 @@ export async function createChildProcess(
     secret: options?.rpc?.secret ?? randomUUID()
   };
   const resolvedOptions: ResolvedChildProcessOptions = {
+    ws: options.ws ?? {},
     rpc: rpcOptions,
     args: resolvedArgs,
     spawn: { ...options.spawn, env: { ...environment, ...proxy } }
@@ -172,17 +203,11 @@ export async function createChildProcess(
     });
   });
 
-  const ws = createWebSocket(`ws://127.0.0.1:${rpcOptions.listenPort}/jsonrpc`);
-  // @ts-ignore
-  ws.addEventListener(
-    'error',
-    (e: any) => {
-      child.kill();
-    },
-    { once: true }
+  return new ChildProcessSocket(
+    `ws://127.0.0.1:${rpcOptions.listenPort}/jsonrpc`,
+    child,
+    resolvedOptions
   );
-
-  return new ChildProcessSocket(ws, child, resolvedOptions);
 }
 
 function inferEnv(environment?: ChildProcessOptions['environment']): [

@@ -15,3 +15,7 @@ export function isDef<T>(value: T | undefined | null): value is T {
     return false;
   }
 }
+
+export type Prettify<T> = {
+  [K in keyof T]: T[K];
+} & {};
