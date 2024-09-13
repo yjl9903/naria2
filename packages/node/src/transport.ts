@@ -4,7 +4,7 @@ import type { PartialDeep } from 'type-fest';
 
 import { randomUUID } from 'node:crypto';
 
-import { getPortPromise } from 'portfinder';
+import { getPort } from 'get-port-please';
 import {
   type Socket,
   type PreconfiguredSocket,
@@ -165,7 +165,7 @@ export async function createChildProcess(
 
   const rpcOptions = {
     ...options?.rpc,
-    listenPort: options?.rpc?.listenPort ?? (await getPortPromise({ port: 6800 })),
+    listenPort: options?.rpc?.listenPort ?? (await getPort({ port: 6800 })),
     secret: options?.rpc?.secret ?? randomUUID()
   };
   const resolvedOptions: ResolvedChildProcessOptions = {

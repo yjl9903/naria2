@@ -39,8 +39,8 @@
     "@breadc/color": "^0.9.7",
     "@breadc/death": "^0.9.7",
     "@naria2/node": "workspace:*",
-    "open": "^10.1.0",
-    "portfinder": "^1.0.32"
+    "get-port-please": "^3.1.2",
+    "open": "^10.1.0"
   },
   "engines": {
     "node": ">=v18.0.0"

@@ -63,10 +63,10 @@
     "@naria2/options": "workspace:*",
     "execa": "^8.0.1",
     "finalhandler": "^1.2.0",
+    "get-port-please": "^3.1.2",
     "http-proxy-middleware": "^2.0.6",
     "maria2": "0.3.4",
     "open": "^10.1.0",
-    "portfinder": "^1.0.32",
     "serve-static": "^1.15.0",
     "type-fest": "^4.21.0",
     "ws": "^8.17.1"
