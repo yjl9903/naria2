@@ -40,7 +40,7 @@ $ naria2c --ui
 ## Credits
 
 + [aria2](https://github.com/aria2/aria2): A lightweight multi-protocol & multi-source, cross platform download utility operated in command-line
-+ [@hydrati](https://github.com/hydrati) made [maria2](https://github.com/hydrati/maria2)
++ [maria2](https://github.com/hydrati/maria2): Modern & Simple RPC Library for aria2c made by [@hydrati](https://github.com/hydrati)
 + [Motrix](https://github.com/agalwood/Motrix): Build aria2 binaries for different platforms
 
 ## License

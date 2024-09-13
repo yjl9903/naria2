@@ -11,7 +11,7 @@ See [yjl9903/naria2](https://github.com/yjl9903/naria2) for more details.
 ## Credits
 
 + [aria2](https://github.com/aria2/aria2): A lightweight multi-protocol & multi-source, cross platform download utility operated in command-line
-+ [@hydrati](https://github.com/hydrati) made [maria2](https://github.com/hydrati/maria2)
++ [maria2](https://github.com/hydrati/maria2): Modern & Simple RPC Library for aria2c made by [@hydrati](https://github.com/hydrati)
 
 ## License
 
