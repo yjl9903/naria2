@@ -12,8 +12,8 @@ importers:
         specifier: workspace:*
         version: link:packages/node
       '@types/cli-progress':
-        specifier: ^3.11.5
-        version: 3.11.5
+        specifier: ^3.11.6
+        version: 3.11.6
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9
@@ -1553,8 +1553,8 @@ packages:
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
 
-  '@types/cli-progress@3.11.5':
-    resolution: {integrity: sha512-D4PbNRbviKyppS5ivBGyFO29POlySLmA2HyUFE4p5QGazAMM3CwkKWcvTl8gvElSuxRh6FPKL8XmidX873ou4g==}
+  '@types/cli-progress@3.11.6':
+    resolution: {integrity: sha512-cE3+jb9WRlu+uOSAugewNpITJDt1VF8dHOopPO4IABFc3SXYL5WE/+PTz/FCdZRRfIujiWW3n3aMbv1eIGVRWA==}
 
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
@@ -4879,7 +4879,7 @@ snapshots:
       '@types/connect': 3.4.38
       '@types/node': 20.14.9
 
-  '@types/cli-progress@3.11.5':
+  '@types/cli-progress@3.11.6':
     dependencies:
       '@types/node': 20.14.9
 
