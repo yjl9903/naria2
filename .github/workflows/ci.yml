@@ -11,6 +11,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version:
+          - 18.x
+          - 20.x
+          - 22.x
+
     steps:
       - uses: actions/checkout@v4
 
@@ -20,7 +28,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: ${{ matrix.node-version }}
           cache: pnpm
 
       - name: Install
