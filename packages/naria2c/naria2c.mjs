@@ -131,7 +131,7 @@ try {
     childProcess.stdout.pipe(process.stdout);
     childProcess.stderr.pipe(transformStderr()).pipe(process.stderr);
     childProcess.once('spawn', async () => {
-      server = (await attachWebUI(webui)).server;
+      server = (await attachWebUI(webui))?.server;
     });
 
     await childProcess;
@@ -179,7 +179,7 @@ function resolveCliArgs(args) {
   const webui = {
     enable: false,
     open: true,
-    port: 6801,
+    port: undefined,
     rpc: undefined
   };
 
@@ -263,6 +263,10 @@ function resolveCliArgs(args) {
       }
     }
 
+    if (webui.port === undefined) {
+      webui.port = (rpc.port ?? 6800) + 1;
+    }
+
     webui.rpc = rpc;
     if (missing.enable) {
       aria2.push('--enable-rpc');
@@ -288,13 +292,12 @@ async function attachWebUI(options) {
     return undefined;
   }
 
-  const { getPort } = await import('get-port-please');
   const { launchWebUI } = await import('@naria2/node/ui');
 
-  options.port = await getPort({ port: options.port ?? 6801, random: true });
   const server = await launchWebUI(options);
+  const link = server.url;
+  options.port = server.port;
 
-  const link = `http://127.0.0.1:${options.port}?port=${options.rpc.port}&secret=${options.rpc.secret}`;
   {
     const now = new Date();
     const date = `${padStart(now.getMonth() + 1)}/${padStart(now.getDate())}`;
