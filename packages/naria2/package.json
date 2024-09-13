@@ -68,8 +68,8 @@
   },
   "devDependencies": {
     "@naria2/node": "workspace:*",
-    "@types/ws": "^8.5.10",
-    "ws": "^8.17.1"
+    "@types/ws": "^8.5.12",
+    "ws": "^8.18.0"
   },
   "peerDependencies": {
     "@naria2/node": "workspace:*"
