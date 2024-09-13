@@ -1,4 +1,5 @@
 import type { PartialDeep } from 'type-fest';
+
 import {
   type Conn,
   type Socket,
@@ -9,6 +10,8 @@ import {
 } from 'maria2';
 
 import { type Aria2InputOptions, resolveInputOptions } from '@naria2/options';
+
+import { Naria2Error } from '../error';
 
 import type { ClientOptions, DownloadOptions } from './types';
 
@@ -76,10 +79,12 @@ export class Aria2Client {
       // Force shutdown when failed
       for (let i = 1; i <= 5; i++) {
         await sleep(i * 100);
-        const resp = await aria2.forceShutdown(this.conn).catch(() => undefined);
-        if (resp === 'OK') {
-          break;
-        }
+        try {
+          const resp = await aria2.forceShutdown(this.conn).catch(() => undefined);
+          if (resp === 'OK') {
+            break;
+          }
+        } catch {}
       }
     }
 
@@ -95,7 +100,7 @@ export class Aria2Client {
     const gid = await aria2
       .addTorrent(this.conn, torrent, undefined, { ...inputOptions }, ...position)
       .catch((error) => {
-        return { error };
+        return { error: new Naria2Error(error?.message, error) };
       });
     if (typeof gid !== 'string') throw gid.error;
 
@@ -112,7 +117,7 @@ export class Aria2Client {
     const gid = await aria2
       .addUri(this.conn, uris, { ...inputOptions }, ...position)
       .catch((error) => {
-        return { error };
+        return { error: new Naria2Error(error?.message, error) };
       });
     if (typeof gid !== 'string') throw gid.error;
 
@@ -126,7 +131,11 @@ export class Aria2Client {
    * The response is a struct and contains following keys.
    */
   public async getVersion(): Promise<Aria2ServerVersion> {
-    return await aria2.getVersion(this.conn);
+    try {
+      return await aria2.getVersion(this.conn);
+    } catch (error: any) {
+      throw new Naria2Error(error?.message, error);
+    }
   }
 
   /**
@@ -134,24 +143,44 @@ export class Aria2Client {
    * The response is a struct and contains the following keys. Values are strings.
    */
   public async getGlobalStat(): Promise<Aria2ServerGlobalStat> {
-    return await aria2.getGlobalStat(this.conn);
+    try {
+      return await aria2.getGlobalStat(this.conn);
+    } catch (error: any) {
+      throw new Naria2Error(error?.message, error);
+    }
   }
 
   // --- List ---
 
   public async listActive() {
-    return this.monitor.listActive();
+    try {
+      return this.monitor.listActive();
+    } catch (error: any) {
+      throw new Naria2Error(error?.message, error);
+    }
   }
 
   public async listWaiting() {
-    return this.monitor.listWaiting();
+    try {
+      return this.monitor.listWaiting();
+    } catch (error: any) {
+      throw new Naria2Error(error?.message, error);
+    }
   }
 
   public async listPaused() {
-    return this.monitor.listPaused();
+    try {
+      return this.monitor.listPaused();
+    } catch (error: any) {
+      throw new Naria2Error(error?.message, error);
+    }
   }
 
   public async listStopped() {
-    return this.monitor.listStopped();
+    try {
+      return this.monitor.listStopped();
+    } catch (error: any) {
+      throw new Naria2Error(error?.message, error);
+    }
   }
 }
