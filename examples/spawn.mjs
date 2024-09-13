@@ -4,7 +4,7 @@ import { createChildProcess } from '@naria2/node';
 async function main() {
   const socket = await createChildProcess({ spawn: { stdio: 'inherit' } });
   try {
-    await open(socket, { openTimeout: 10 * 1000 });
+    await open(socket);
     console.log('\nConnect OK');
   } catch (err) {
     console.error('Failed connecting to aria2:', err);

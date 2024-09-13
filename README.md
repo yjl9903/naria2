@@ -124,7 +124,7 @@ Due to the implementation of [aria2](https://aria2.github.io/manual/en/html/inde
 
 So that, in the above code, you should first wait for downloading metadata, and then wait for downloading the followed by task which is the torrent content itself.
 
-You can find more examples using Node.js here: [scripts/torrent.mjs](https://github.com/yjl9903/naria2/blob/main/scripts/torrent.mjs), [scripts/http.mjs](https://github.com/yjl9903/naria2/blob/main/scripts/http.mjs).
+You can find more examples using Node.js here: [examples/torrent.mjs](https://github.com/yjl9903/naria2/blob/main/examples/torrent.mjs), [examples/http.mjs](https://github.com/yjl9903/naria2/blob/main/examples/http.mjs).
 
 ## Credits
 

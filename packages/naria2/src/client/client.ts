@@ -2,10 +2,8 @@ import type { PartialDeep } from 'type-fest';
 import {
   type Conn,
   type Socket,
-  type PreconfiguredSocket,
   type Aria2ServerVersion,
   type Aria2ServerGlobalStat,
-  open,
   close,
   aria2
 } from 'maria2';

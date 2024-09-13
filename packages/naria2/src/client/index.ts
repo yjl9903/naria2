@@ -14,20 +14,10 @@ type MaybePromise<T> = T | Promise<T>;
 
 export async function createClient(
   _socket: MaybePromise<Socket | PreconfiguredSocket>,
-  _options: ClientOptions = {}
+  options: ClientOptions = {}
 ) {
   const socket = await _socket;
-  // Use preconfigured options
-  const options = {
-    ...('getOptions' in socket ? socket.getOptions() : {}),
-    ..._options
-  };
-
-  const conn = await open(socket, {
-    secret: options.secret,
-    timeout: options.timeout ?? 5000,
-    openTimeout: options.openTimeout ?? 5000
-  });
+  const conn = await open(socket, options);
 
   const client = new Aria2Client(conn);
   await client.monitor.start();
