@@ -54,10 +54,14 @@ export async function launchWebUI(options: WebUIOptions) {
   };
 }
 
+type MaybePromise<T> = T | Promise<T>;
+
 export async function attachWebUI(
-  socket: ChildProcessSocket,
+  _socket: MaybePromise<ChildProcessSocket>,
   options: Pick<WebUIOptions, 'host' | 'port'> = {}
 ) {
+  const socket = await _socket;
+
   const { server, host, port, url } = await launchWebUI({
     host: options.host,
     port: options.port ?? socket.getOptions().listenPort + 1,

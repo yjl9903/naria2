@@ -6,17 +6,12 @@ import { createChildProcess } from '@naria2/node';
 const magnet = `https://cloudflare-ipfs.com/ipfs/QmYvVLJeW2FiTPtC19WWh7fnhZeMzMmK16QcBd6ervq7TD`;
 
 // Create a aria2 child process and initialize a client
-const childprocess = await createChildProcess({
-  log: './aria2.log',
-  rpc: { listenPort: 6800 },
-  environment: 'ignore'
-});
+// Create a aria2 child process and initialize a client
+const childprocess = createChildProcess({ rpc: {}, environment: 'ignore' });
 const client = await createClient(childprocess);
-await attachWebUI(childprocess, { port: 6801 });
+const { url } = await attachWebUI(childprocess);
 
-console.log(
-  'Web UI: http://127.0.0.1:6801?port=6800&secret=' + childprocess.getOptions().secret + '\n'
-);
+console.log(`Web UI: ${url}`);
 
 // Start downloading a http
 const download = await client.downloadUri(magnet);
