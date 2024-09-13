@@ -131,7 +131,7 @@ function GlobalStat() {
   const { data, isError } = useQuery({
     queryKey: ['naria2/globalStat'],
     queryFn: async () => {
-      const resp = await client?.globalStat();
+      const resp = await client?.getGlobalStat();
       if (!resp) throw new Error('Can not get global stat');
       return resp;
     },
@@ -161,7 +161,7 @@ function Layout(props: { children: React.ReactElement }) {
   const { client } = useAria2();
   const { data } = useQuery({
     queryKey: ['naria2/version'],
-    queryFn: async () => await client?.version()
+    queryFn: async () => await client?.getVersion()
   });
 
   return (

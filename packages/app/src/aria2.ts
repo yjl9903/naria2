@@ -46,7 +46,7 @@ export const useAria2 = create<Aria2State>()((set, get) => ({
         secret: options.secret
       }).catch(() => undefined);
 
-      if (client && (await client.version())) {
+      if (client && (await client.getVersion())) {
         window.localStorage.setItem(
           'naria2/connection',
           JSON.stringify({ port: options.port, secret: options.secret })
@@ -129,7 +129,7 @@ async function inferClient() {
           secret: opt.secret ?? undefined
         }).catch(() => undefined);
 
-        if (client && (await client.version().catch(() => undefined))) {
+        if (client && (await client.getVersion().catch(() => undefined))) {
           window.localStorage.setItem(
             'naria2/connection',
             JSON.stringify({ port: opt.port, secret: opt.secret })
