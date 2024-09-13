@@ -88,22 +88,6 @@ export class Aria2Client {
     this.close();
   }
 
-  /**
-   * This method returns the version of aria2 and the list of enabled features.
-   * The response is a struct and contains following keys.
-   */
-  public async getVersion(): Promise<Aria2ServerVersion> {
-    return await aria2.getVersion(this.conn);
-  }
-
-  /**
-   * This method returns global statistics such as the overall download and upload speeds.
-   * The response is a struct and contains the following keys. Values are strings.
-   */
-  public async getGlobalStat(): Promise<Aria2ServerGlobalStat> {
-    return await aria2.getGlobalStat(this.conn);
-  }
-
   public async downloadTorrent(
     torrent: string,
     options: PartialDeep<Aria2InputOptions> & DownloadOptions = {}
@@ -137,7 +121,26 @@ export class Aria2Client {
     return this.monitor.getTask(gid);
   }
 
+  // --- Status ---
+
+  /**
+   * This method returns the version of aria2 and the list of enabled features.
+   * The response is a struct and contains following keys.
+   */
+  public async getVersion(): Promise<Aria2ServerVersion> {
+    return await aria2.getVersion(this.conn);
+  }
+
+  /**
+   * This method returns global statistics such as the overall download and upload speeds.
+   * The response is a struct and contains the following keys. Values are strings.
+   */
+  public async getGlobalStat(): Promise<Aria2ServerGlobalStat> {
+    return await aria2.getGlobalStat(this.conn);
+  }
+
   // --- List ---
+
   public async listActive() {
     return this.monitor.listActive();
   }
@@ -154,4 +157,3 @@ export class Aria2Client {
     return this.monitor.listStopped();
   }
 }
-
