@@ -64,7 +64,7 @@
     "execa": "^8.0.1",
     "finalhandler": "^1.2.0",
     "get-port-please": "^3.1.2",
-    "http-proxy-middleware": "^2.0.6",
+    "http-proxy-middleware": "^3.0.2",
     "maria2": "0.3.4",
     "open": "^10.1.0",
     "serve-static": "^1.15.0",
