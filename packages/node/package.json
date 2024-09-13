@@ -67,7 +67,7 @@
     "http-proxy-middleware": "^3.0.2",
     "maria2": "0.3.4",
     "open": "^10.1.0",
-    "serve-static": "^1.15.0",
+    "serve-static": "^1.16.2",
     "type-fest": "^4.21.0",
     "ws": "^8.17.1"
   },
