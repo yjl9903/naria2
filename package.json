@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@naria2/node": "workspace:*",
-    "@types/cli-progress": "^3.11.5",
+    "@types/cli-progress": "^3.11.6",
     "@types/node": "^20.14.9",
     "@types/ws": "^8.5.10",
     "bumpp": "latest",
