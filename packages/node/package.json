@@ -61,7 +61,7 @@
     "@breadc/color": "^0.9.7",
     "@breadc/death": "^0.9.7",
     "@naria2/options": "workspace:*",
-    "execa": "^8.0.1",
+    "execa": "^9.3.1",
     "finalhandler": "^1.2.0",
     "http-proxy-middleware": "^2.0.6",
     "maria2": "0.3.4",
