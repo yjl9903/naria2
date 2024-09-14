@@ -74,7 +74,7 @@ export class Task {
           comment:
             typeof status.bittorrent.comment === 'string'
               ? status.bittorrent.comment
-              : status.bittorrent.comment['utf-8'],
+              : status.bittorrent.comment?.['utf-8'] ?? '',
           creationDate: new Date(status.bittorrent.creationDate),
           mode: status.bittorrent.mode,
           info: {
