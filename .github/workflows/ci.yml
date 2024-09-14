@@ -10,14 +10,27 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
+        runs-on:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
         node-version:
           - 18.x
           - 20.x
           - 22.x
+        exclude:
+          - runs-on: macos-latest
+            node-version: 18.x
+          - runs-on: macos-latest
+            node-version: 20.x
+          - runs-on: windows-latest
+            node-version: 18.x
+          - runs-on: windows-latest
+            node-version: 20.x
+
+    runs-on: ${{ matrix.runs-on }}
 
     steps:
       - uses: actions/checkout@v4
