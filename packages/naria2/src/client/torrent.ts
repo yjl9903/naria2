@@ -79,9 +79,9 @@ export class Task {
           mode: status.bittorrent.mode,
           info: {
             name:
-              typeof status.bittorrent.info.name === 'string'
+              typeof status.bittorrent.info?.name === 'string'
                 ? status.bittorrent.info.name
-                : status.bittorrent.info.name?.['utf-8']
+                : status.bittorrent.info?.name?.['utf-8']
           }
         }
       : undefined;

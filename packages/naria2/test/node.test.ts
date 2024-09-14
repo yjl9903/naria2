@@ -2,8 +2,10 @@ import { describe, it, expect } from 'vitest';
 
 import { createChildProcess } from '@naria2/node';
 
-describe('spawn aria2 childprocess', () => {
-  it('should work', async () => {
+import { createClient } from '../src';
+
+describe('@naria2/node', () => {
+  it('should spawn childprocess', async () => {
     const conn = await createChildProcess({
       dir: '.',
       checkIntegrity: false,
@@ -32,5 +34,12 @@ describe('spawn aria2 childprocess', () => {
     expect(ok).toBeTruthy();
 
     conn.close();
+  });
+
+  it('should print version', async () => {
+    const client = await createClient(createChildProcess());
+    const { version } = await client.getVersion();
+    expect(['1.35.0', '1.36.0', '1.37.0'].includes(version)).toBeTruthy();
+    await client.shutdown();
   });
 });
