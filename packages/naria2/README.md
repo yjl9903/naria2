@@ -2,16 +2,17 @@
 
 [![version](https://img.shields.io/npm/v/naria2?label=naria2)](https://www.npmjs.com/package/naria2)
 [![version](https://img.shields.io/npm/v/naria2c?label=naria2c)](https://www.npmjs.com/package/naria2c)
-[![version](https://img.shields.io/npm/v/vite-plugin-naria2?label=vite-plugin-naria2)](https://www.npmjs.com/package/vite-plugin-naria2)
 [![CI](https://github.com/yjl9903/naria2/actions/workflows/ci.yml/badge.svg)](https://github.com/yjl9903/naria2/actions/workflows/ci.yml)
 
 Convenient BitTorrent Client based on the [aria2 JSON RPC Interface](https://aria2.github.io/manual/en/html/aria2c.html#rpc-interface) and [aria2c](https://aria2.github.io/manual/en/html/aria2c.html#aria2c-1) CLI application with Web UI.
 
-+ Download aria2 according to your platform
++ Download aria2 prebuilt binary according to your architecture and platform
 + Convenient BitTorrent downloading API
-+ Event bus used for watching progress, state change
++ Event bus used for watching progress, state change, error handling
 + Vite plugin which helps you develop aria2 client application
-+ Web UI for aria2c (more features is working in progress)
++ Web UI for aria2c and naria2c
+
+> Introduction blog post [构建一个易用的 aria2 客户端包和 CLI 应用](https://blog.onekuma.cn/build-a-convenient-aria2-cli) in Chinese.
 
 ![home](./assets/home.png)
 
@@ -23,7 +24,7 @@ It is used in the same way as [aria2c](https://aria2.github.io/manual/en/html/ar
 $ npm i -g naria2c
 
 $ naria2c --version
-naria2c/0.0.23
+naria2c/0.0.26
 --------------
 ...
 
@@ -39,7 +40,7 @@ $ naria2c --ui
 ...
 ```
 
-## Installation
+## Quickstart
 
 ### Browser
 
@@ -102,7 +103,7 @@ const client = await createClient(
 )
 
 // Start downloading a magnet
-const torrent = await client.downloadTorrent('...')
+const torrent = await client.downloadUri('...')
 
 // Watch metadata progress
 await torrent.watch((torrent) => {
@@ -130,7 +131,7 @@ You can find more examples using Node.js here: [examples/torrent.mjs](https://gi
 
 + [aria2](https://github.com/aria2/aria2): A lightweight multi-protocol & multi-source, cross platform download utility operated in command-line
 + [maria2](https://github.com/hydrati/maria2): Modern & Simple RPC Library for aria2c made by [@hydrati](https://github.com/hydrati)
-+ [Motrix](https://github.com/agalwood/Motrix): Build aria2 binaries for different platforms
++ [aria2-static-builds](https://git.q3aql.dev/q3aql/aria2-static-builds) and [Motrix](https://github.com/agalwood/Motrix): Build aria2 binaries for different platforms
 
 ## License
 
