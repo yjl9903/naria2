@@ -1,18 +1,16 @@
 import mitt from 'mitt';
-import { Aria2DownloadStatus, aria2, system } from 'maria2';
+import { type Aria2DownloadStatus, aria2, system } from 'maria2';
 
 import type { Aria2Client } from './client';
+import type { Aria2EventKeyPrefix } from './types';
 
-import { Task, Torrent } from './torrent';
-import { Aria2EventKeyPrefix } from './types';
+import { Task } from './torrent';
 
 interface Disposable<T = void> {
   dispose(): T;
 }
 
-type Aria2MonitorEvents = Record<`${Exclude<Aria2EventKeyPrefix, 'bt-complete'>}:${string}`, Task> &
-  Record<`bt-complete:${string}`, Torrent>;
-
+type Aria2MonitorEvents = Record<`${Aria2EventKeyPrefix}:${string}`, Task>;
 export class Aria2Monitor {
   private readonly client: Aria2Client;
 
@@ -20,7 +18,7 @@ export class Aria2Monitor {
 
   private readonly emitter = mitt<Aria2MonitorEvents & Record<`progress:${string}`, Task>>();
 
-  private readonly map: Map<string, Task> = new Map();
+  private readonly tasks: Map<string, Task> = new Map();
 
   private readonly watchingIds: Map<string, number> = new Map();
 
@@ -71,7 +69,7 @@ export class Aria2Monitor {
   }
 
   private async updateStatus(status: Aria2DownloadStatus) {
-    const freshTask = !this.map.has(status.gid);
+    const freshTask = !this.tasks.has(status.gid);
     const task = await this.getTask(status.gid);
     if (!freshTask) {
       Reflect.set(task, '_status', status);
@@ -85,44 +83,41 @@ export class Aria2Monitor {
     return await Promise.all(result.map((status) => this.updateStatus(status)));
   }
 
-  public async listWaiting() {
-    // TODO: not hard code this
-    const result = await aria2.tellWaiting(this.conn, 0, 1000);
+  public async listWaiting(offset = 0, number = 1000) {
+    const result = await aria2.tellWaiting(this.conn, offset, number);
     return await Promise.all(result.map((status) => this.updateStatus(status)));
   }
 
-  public async listPaused() {
-    // TODO: not hard code this
-    const result = await aria2.tellWaiting(this.conn, 0, 1000);
+  public async listPaused(offset = 0, number = 1000) {
+    const result = await aria2.tellWaiting(this.conn, offset, number);
     return await Promise.all(
       result.filter((s) => s.status === 'paused').map((status) => this.updateStatus(status))
     );
   }
 
-  public async listStopped() {
-    // TODO: not hard code this
-    const result = await aria2.tellStopped(this.conn, 0, 1000);
+  public async listStopped(offset = 0, number = 1000) {
+    const result = await aria2.tellStopped(this.conn, offset, number);
     return await Promise.all(
       result.filter((s) => s.status === 'paused').map((status) => this.updateStatus(status))
     );
   }
 
   public async getTask(gid: string): Promise<Task> {
-    if (this.map.has(gid)) {
-      return this.map.get(gid)!;
+    if (this.tasks.has(gid)) {
+      return this.tasks.get(gid)!;
     } else {
       const status = await aria2.tellStatus(this.conn, gid);
+
       // Concurrent
-      if (this.map.has(gid)) {
-        return this.map.get(gid)!;
+      if (this.tasks.has(gid)) {
+        return this.tasks.get(gid)!;
       }
 
       const following = status.following ? await this.getTask(status.following) : undefined;
-      const task = status.bittorrent
-        ? new Torrent(this.client, gid, following as Torrent | undefined)
-        : new Task(this.client, gid);
+      const task = new Task(this.client, gid, status.bittorrent ? following : undefined);
+      this.tasks.set(gid, task);
 
-      this.map.set(gid, task);
+      // Update private fields
       Reflect.set(task, '_status', status);
       Reflect.set(task, '_timestamp', new Date());
 
@@ -130,13 +125,14 @@ export class Aria2Monitor {
     }
   }
 
-  public async watchStatus<T extends Task = Task>(
+  public async watchStatus(
     gid: string,
-    fn?: (task: T) => void | Promise<void>,
+    fn?: ((task: Task) => void | Promise<void>) | null | undefined,
     target: `complete` | `bt-complete` = `complete`
   ): Promise<Task> {
     const checkTerminate = (task: Task) => {
       if (task.status.errorCode !== null && task.status.errorCode !== undefined) {
+        // TODO: wrap error
         throw new Error(task.status.errorMessage ?? task.status.errorCode);
       }
       if (task.status.status === 'complete') {
@@ -185,15 +181,15 @@ export class Aria2Monitor {
         dispose();
         if (fn) {
           await task.updateStatus();
-          await fn(task as T);
+          await fn(task);
         }
         rej(err);
       };
-      const onTarget = async (task: Task | Torrent) => {
+      const onTarget = async (task: Task) => {
         dispose();
+        await task.updateStatus();
         if (fn) {
-          await task.updateStatus();
-          await fn(task as T);
+          await fn(task);
         }
         res(task);
       };
@@ -211,7 +207,7 @@ export class Aria2Monitor {
           }
 
           if (fn) {
-            await fn(task as T);
+            await fn(task);
           }
         } catch (err) {
           onError(err);
@@ -263,7 +259,7 @@ export class Aria2Monitor {
         if (!status || !status.gid) continue;
         try {
           const gid = status.gid!;
-          const freshTask = !this.map.has(gid);
+          const freshTask = !this.tasks.has(gid);
           const task = await this.getTask(gid);
           if (!freshTask) {
             Reflect.set(task, '_status', status);
@@ -299,7 +295,7 @@ export class Aria2Monitor {
   }
 
   private async onBtDownloadComplete(gid: string) {
-    const task = (await this.getTask(gid)) as Torrent;
+    const task = await this.getTask(gid);
     this.emitter.emit(`bt-complete:${gid}`, task);
   }
 

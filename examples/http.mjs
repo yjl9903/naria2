@@ -6,7 +6,6 @@ import { createChildProcess } from '@naria2/node';
 const magnet = `https://cloudflare-ipfs.com/ipfs/QmYvVLJeW2FiTPtC19WWh7fnhZeMzMmK16QcBd6ervq7TD`;
 
 // Create a aria2 child process and initialize a client
-// Create a aria2 child process and initialize a client
 const childprocess = createChildProcess({ rpc: {}, environment: 'ignore' });
 const client = await createClient(childprocess);
 const { url } = await attachWebUI(childprocess);

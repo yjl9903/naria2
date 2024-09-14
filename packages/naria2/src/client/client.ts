@@ -121,7 +121,7 @@ export class Aria2Client {
       });
     if (typeof gid !== 'string') throw gid.error;
 
-    return this.monitor.getTask(gid);
+    return await this.monitor.getTask(gid);
   }
 
   // --- Status ---

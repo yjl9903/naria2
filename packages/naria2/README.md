@@ -96,36 +96,42 @@ const client = await createClient(createChildProcess())
 
 ```ts
 import { createClient } from 'naria2'
+import { createChildProcess } from '@naria2/node'
 
 // Initialize a client
-const client = await createClient(
-  new WebSocket('ws://localhost:6800/jsonrpc')
-)
+const client = await createClient(createChildProcess())
 
 // Start downloading a magnet
 const torrent = await client.downloadUri('...')
 
-// Watch metadata progress
-await torrent.watch((torrent) => {
-  console.log(`Downloading [MEATADATA]`)
-})
-// Watch torrent progress
-await torrent.watchFollowedBy((torrent) => {
-  console.log(`Downloading ${torrent.name}`)
-})
+// Wait for torrent download finished
+await torrent.watchTorrent(
+  // Watch metadata progress
+  (task) => {
+    console.log(`Downloading [MEATADATA]`)
+  },
+  // Watch torrent progress
+  (task) => {
+    console.log(`Downloading torrent`)
+  },
+  // Wait for the target event being fired
+  // 'bt-complete': downloading finished
+  // 'complete':    seeding finished
+  'bt-complete'
+)
 
 // Shutdown client
 await client.shutdown()
 ```
 
-Due to the implementation of [aria2](https://aria2.github.io/manual/en/html/index.html), the downloading progress of a magnet uri includes **two steps**:
+You can find detailed examples using Node.js here: [examples/torrent.mjs](https://github.com/yjl9903/naria2/blob/main/examples/torrent.mjs), [examples/http.mjs](https://github.com/yjl9903/naria2/blob/main/examples/http.mjs).
 
-1. Download the torrent metadata which contains only a special file named `[METADATA]`;
-2. Download the torrent content itself.
-
-So that, in the above code, you should first wait for downloading metadata, and then wait for downloading the followed by task which is the torrent content itself.
-
-You can find more examples using Node.js here: [examples/torrent.mjs](https://github.com/yjl9903/naria2/blob/main/examples/torrent.mjs), [examples/http.mjs](https://github.com/yjl9903/naria2/blob/main/examples/http.mjs).
+> Due to the implementation of [aria2](https://aria2.github.io/manual/en/html/index.html), the downloading progress of a magnet uri includes **two steps**:
+>
+> 1. Download the torrent metadata which contains a special file name with prefix `[METADATA]`;
+> 2. Download the torrent content itself.
+>
+> So that, in the above code, the first callback is to wait for downloading metadata, and then the second callback is to wait for downloading the followed by task which is the torrent content itself.
 
 ## Credits
 
@@ -135,4 +141,4 @@ You can find more examples using Node.js here: [examples/torrent.mjs](https://gi
 
 ## License
 
-MIT License © 2023 [XLor](https://github.com/yjl9903)
+MIT License © 2024 [XLor](https://github.com/yjl9903)

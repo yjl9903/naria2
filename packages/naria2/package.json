@@ -9,6 +9,8 @@
     "http",
     "websocket",
     "bittorrent",
+    "naria2",
+    "naria2c",
     "typescript"
   ],
   "homepage": "https://github.com/yjl9903/naria2#readme",

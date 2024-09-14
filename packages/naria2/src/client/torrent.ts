@@ -1,25 +1,39 @@
-import { aria2 } from 'maria2';
+import { type Aria2DownloadBitTorrentStatus, aria2 } from 'maria2';
 
 import type { Aria2Client } from './client';
 import type { Aria2EventKeyPrefix } from './types';
+
 import { sleep } from './utils';
 
-type Aria2TaskEvents = Record<Exclude<Aria2EventKeyPrefix, 'bt-complete'>, Task>;
-
-type Aria2TorrentEvents = Record<Aria2EventKeyPrefix, Torrent>;
+type Aria2TorrentEvents = Record<Aria2EventKeyPrefix, Task>;
 
 export class Task {
   protected readonly client: Aria2Client;
 
   public readonly gid: string;
 
+  public readonly following: Task | undefined;
+
+  public readonly followedBy: Task[] = [];
+
   private _timestamp: Date | undefined;
 
   private _status!: Awaited<ReturnType<(typeof aria2)['tellStatus']>>;
 
-  public constructor(client: Aria2Client, gid: string) {
+  public constructor(client: Aria2Client, gid: string, following?: Task) {
     this.client = client;
     this.gid = gid;
+    this.following = following;
+    if (following) {
+      following.followedBy.push(this);
+      this.client.monitor.on(`complete:${this.gid}`, async () => {
+        await following.updateStatus();
+      });
+    } else {
+      this.client.monitor.on(`complete:${this.gid}`, async () => {
+        await this.updateStatus();
+      });
+    }
   }
 
   private get conn() {
@@ -36,13 +50,27 @@ export class Task {
   }
 
   public async updateStatus() {
-    // Cache 500ms
-    this._status = await aria2.tellStatus(this.conn, this.gid);
+    const status = await aria2.tellStatus(this.conn, this.gid);
+    this._status = status;
     this._timestamp = new Date();
+
+    // Generate followed by tasks
+    if (Array.isArray(status.followedBy) && status.followedBy.length > 0) {
+      if (this.isMetadata && this.followedBy.length === 0) {
+        const childs = [];
+        for (const gid of status.followedBy) {
+          const child = await this.client.monitor.getTask(gid);
+          childs.push(child);
+        }
+        this.followedBy.splice(0, this.followedBy.length, ...childs);
+      }
+    }
+
     return this._status;
   }
 
-  // ---
+  // --- Information ---
+
   public get state() {
     return this.status.status;
   }
@@ -55,7 +83,9 @@ export class Task {
    * Progress percent, max: 100
    */
   public get progress() {
-    if (this.status.totalLength === '0') {
+    if (this.isMetadata) {
+      return 0;
+    } else if (this.status.totalLength === '0') {
       return 0;
     } else {
       const status =
@@ -71,131 +101,73 @@ export class Task {
     return this.status.downloadSpeed;
   }
 
+  /**
+   * Check this task is metadata
+   */
+  public get isMetadata() {
+    return (
+      this.status.files.length === 1 &&
+      !!this.status.files.find((f) => f.path.startsWith('[METADATA]'))
+    );
+  }
+
+  /**
+   * Get bittorrent information
+   */
+  public get bittorrent(): Aria2DownloadBitTorrentStatus | undefined {
+    return this.status.bittorrent;
+  }
+
   // --- Control ---
+
   public async pause(force = false) {
-    if (!force) {
-      await aria2.pause(this.conn, this.gid);
-    } else {
-      await aria2.forcePause(this.conn, this.gid);
+    try {
+      // TODO: check pause ok
+      if (!force) {
+        await aria2.pause(this.conn, this.gid);
+      } else {
+        await aria2.forcePause(this.conn, this.gid);
+      }
+      return true;
+    } catch (error) {
+      return false;
     }
   }
 
   public async unpause() {
-    await aria2.unpause(this.conn, this.gid);
+    try {
+      await aria2.unpause(this.conn, this.gid);
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 
   public async remove(force = false) {
-    if (!force) {
-      await aria2.remove(this.conn, this.gid);
-    } else {
-      await aria2.forceRemove(this.conn, this.gid);
+    try {
+      if (!force) {
+        await aria2.remove(this.conn, this.gid);
+      } else {
+        await aria2.forceRemove(this.conn, this.gid);
+      }
+      return true;
+    } catch (error) {
+      return false;
     }
   }
+
+  // TODO: transform info
+  //   public get name() {
+  //     const name = this.status?.bittorrent?.info?.name;
+  //     return (typeof name === 'string' ? name : name?.['utf-8']) ?? '[METADATA]';
+  //   }
 
   // --- Event emitter ---
-  public on<Key extends keyof Aria2TaskEvents>(
-    key: Key,
-    handler: (param: Aria2TaskEvents[Key]) => void | Promise<void>
-  ) {
-    this.client.monitor.on(`${key}:${this.gid}`, handler);
-  }
 
-  public off<Key extends keyof Aria2TaskEvents>(
-    key: Key,
-    handler?: (param: Aria2TaskEvents[Key]) => void | Promise<void>
-  ) {
-    this.client.monitor.off(`${key}:${this.gid}`, handler);
-  }
-
-  public async watch(handler: (param: Task) => void | Promise<void>) {
-    return await this.client.monitor.watchStatus(this.gid, handler, 'complete');
-  }
-
-  public async waitForCompletion(): Promise<Task> {
-    return await this.client.monitor.watchStatus(this.gid, undefined, 'complete');
-  }
-}
-
-export class Torrent extends Task {
-  private _following: Torrent | undefined;
-
-  private readonly _followedBy: Torrent[] = [];
-
-  public constructor(client: Aria2Client, gid: string, following?: Torrent) {
-    super(client, gid);
-
-    if (following) {
-      this._following = following;
-    } else {
-      this.client.monitor.on(`complete:${this.gid}`, async () => {
-        await this.updateStatus();
-      });
-    }
-  }
-
-  public get name() {
-    const name = this.status?.bittorrent?.info?.name;
-    return (typeof name === 'string' ? name : name?.['utf-8']) ?? '[METADATA]';
-  }
-
-  public get progress() {
-    if (this.isMetadata) {
-      return 0;
-    } else {
-      return super.progress;
-    }
-  }
-
-  public async updateStatus() {
-    // Cache 500ms
-    const status = await super.updateStatus();
-    if (status.followedBy && status.followedBy.length > 0) {
-      if (this._followedBy.length === 0 && this.isMetadata) {
-        await this.setFollowedBy();
-      }
-    }
-    return status;
-  }
-
-  public get followedBy(): Torrent | undefined {
-    return this._followedBy.length > 0 ? this._followedBy[0] : undefined;
-  }
-
-  private async setFollowedBy() {
-    if (this.status.followedBy) {
-      const followedBy: Torrent[] = [];
-      for (const gid of this.status.followedBy) {
-        const child = await this.client.monitor.getTask(gid);
-        if (child instanceof Torrent) {
-          followedBy.push(child);
-        }
-      }
-      if (followedBy.length === 1) {
-        this._followedBy.splice(0, this._followedBy.length, ...followedBy);
-      } else if (followedBy.length > 1) {
-        // Something went wrong?
-      }
-    }
-  }
-
-  public get following(): Torrent | undefined {
-    return this._following;
-  }
-
-  public get isMetadata() {
-    return !!this.status.files.find((f) => f.path === '[METADATA]');
-  }
-
-  public get bittorrent() {
-    return this.status.bittorrent;
-  }
-
-  // --- Event emitter ---
   public on<Key extends keyof Aria2TorrentEvents>(
     key: Key,
     handler: (param: Aria2TorrentEvents[Key]) => void | Promise<void>
   ) {
-    // @ts-expect-error
     this.client.monitor.on(`${key}:${this.gid}`, handler);
   }
 
@@ -203,36 +175,60 @@ export class Torrent extends Task {
     key: Key,
     handler?: (param: Aria2TorrentEvents[Key]) => void | Promise<void>
   ) {
-    // @ts-expect-error
     this.client.monitor.off(`${key}:${this.gid}`, handler);
   }
 
+  /**
+   * Watch task download state until complete or bt-complete
+   *
+   * @param handler Download file progress callback
+   * @param target  Watch state until target event is fired
+   * @returns       Watch state until target event is fired
+   */
   public async watch(
-    handler: (param: Torrent) => void | Promise<void>,
+    handler: (task: Task) => void | Promise<void>,
     target: `complete` | `bt-complete` = `complete`
   ) {
     return await this.client.monitor.watchStatus(this.gid, handler, target);
   }
 
-  public async watchFollowedBy(
-    handler: (param: Torrent) => void | Promise<void>,
+  /**
+   * Watch torrent download state until complete or bt-complete
+   *
+   * @param onMetadata   Download [METADATA] progress callback
+   * @param onFollowedBy Download torrent file itself progress callback
+   * @param target       Watch state until target event is fired
+   * @returns
+   */
+  public async watchTorrent(
+    onMetadata: ((task: Task) => void | Promise<void>) | null | undefined,
+    onFollowedBy: (task: Task) => void | Promise<void>,
     target: `complete` | `bt-complete` = `complete`
   ) {
     await this.updateStatus();
+
     if (this.isMetadata) {
-      await this.client.monitor.watchStatus(this.gid, undefined, 'complete');
-      while (true) {
-        if (this.followedBy) {
-          break;
-        }
+      await this.client.monitor.watchStatus(this.gid, onMetadata, 'complete');
+
+      while (this.followedBy.length === 0) {
         await this.updateStatus();
-        await sleep(1000);
+        await sleep(500);
       }
-      const task = await this.client.monitor.watchStatus(this.followedBy.gid, handler, target);
-      return task as Torrent;
+
+      const followedBy = this.followedBy[0];
+      const task = await this.client.monitor.watchStatus(followedBy.gid, onFollowedBy, target);
+      return task;
     } else {
-      throw new Error(`This is not a [METADATA] torrent`);
+      return await this.watch(onFollowedBy, target);
     }
+  }
+
+  public async complete(): Promise<Task> {
+    return this.waitForCompletion('complete');
+  }
+
+  public async btComplete(): Promise<Task> {
+    return this.waitForCompletion('bt-complete');
   }
 
   /**
@@ -246,19 +242,16 @@ export class Torrent extends Task {
    * If this is a actual data torrent, it will just wait for the download compeltion
    *
    * @param target
+   *
    * @returns
    */
-  public async waitForCompletion(
-    target: `complete` | `bt-complete` = `complete`
-  ): Promise<Torrent> {
+  public async waitForCompletion(target: `complete` | `bt-complete` = `complete`): Promise<Task> {
     await this.updateStatus();
     if (!this.isMetadata) {
-      const task = await this.client.monitor.watchStatus(this.gid, undefined, target);
-      return task as Torrent;
+      const task = await this.client.monitor.watchStatus(this.gid, undefined, 'complete');
+      return task;
     } else {
-      // Hack: pass undefined handler
-      // @ts-expect-error
-      return await this.watchFollowedBy(undefined, target);
+      return await this.watchTorrent(undefined, () => {}, target);
     }
   }
 }

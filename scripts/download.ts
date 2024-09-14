@@ -1,7 +1,3 @@
-// Commands to run this example (ensure you have built this package):
-// $ pnpm i && pnpm build
-// $ node ./scripts/download.mjs
-
 import { SingleBar } from 'cli-progress';
 import { createClient } from 'naria2';
 import { attachWebUI } from '@naria2/node/ui';
@@ -26,12 +22,12 @@ await torrent.watchTorrent(
   () => {},
   (task) => {
     bar.update(task.progress);
-  },
-  'bt-complete'
+  }
 );
 bar.stop();
 
-console.log(`Download OK:`, torrent.followedBy?.name);
+await torrent.updateStatus();
+console.log(`Download OK:`, torrent.followedBy[0]);
 
 // Close client
 await client.shutdown();
