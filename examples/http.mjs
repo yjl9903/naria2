@@ -23,7 +23,7 @@ await download.watch((task) => {
 });
 bar.stop();
 
-console.log(`Download OK:`, download.status.completedLength);
+console.log(`Download OK:`, download);
 
 // Close client
 await client.shutdown();

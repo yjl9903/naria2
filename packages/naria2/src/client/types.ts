@@ -1,3 +1,5 @@
+import type { Aria2DownloadBitTorrentMode } from 'maria2';
+
 export type Aria2EventKeyPrefix = `start` | `pause` | `stop` | `complete` | `bt-complete` | `error`;
 
 export interface ClientOptions {
@@ -35,4 +37,18 @@ export interface TorrentPiece {
   readonly length: number;
 
   readonly missing: number;
+}
+
+export interface DownloadBitTorrentStatus {
+  announceList: string[];
+
+  comment: string;
+
+  creationDate: Date;
+
+  mode: Aria2DownloadBitTorrentMode;
+
+  info: {
+    name: string;
+  };
 }

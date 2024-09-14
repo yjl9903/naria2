@@ -31,7 +31,7 @@ await torrent.watchTorrent(
 );
 bar.stop();
 
-console.log(`Download OK:`, torrent.followedBy?.name);
+console.log(`Download OK:`, torrent.followedBy?.bittorrent?.name);
 
 // Close client
 await client.shutdown();

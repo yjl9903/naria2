@@ -1,7 +1,7 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { Task, Torrent } from 'naria2';
+import { Task } from 'naria2';
 
 import { useAria2 } from '@/aria2';
 import { clsx, formatByteSize } from '@/utils';
@@ -101,7 +101,7 @@ function DownloadItem(props: { task: Task }) {
   const { client } = useAria2();
 
   const task = props.task;
-  const name = task instanceof Torrent ? task.name : task.status.files[0]?.path ?? 'unknown';
+  const name = task.bittorrent?.info.name ?? task.status.files[0]?.path ?? 'unknown';
 
   const icon = {
     active: 'i-material-symbols-play-arrow-rounded',

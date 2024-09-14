@@ -1,7 +1,7 @@
 import { type Aria2DownloadBitTorrentStatus, aria2 } from 'maria2';
 
 import type { Aria2Client } from './client';
-import type { Aria2EventKeyPrefix } from './types';
+import type { Aria2EventKeyPrefix, DownloadBitTorrentStatus } from './types';
 
 import { sleep } from './utils';
 
@@ -15,6 +15,8 @@ export class Task {
   public readonly following: Task | undefined;
 
   public readonly followedBy: Task[] = [];
+
+  private _bittorrent: DownloadBitTorrentStatus | undefined;
 
   private _timestamp: Date | undefined;
 
@@ -66,6 +68,24 @@ export class Task {
       }
     }
 
+    this._bittorrent = status.bittorrent
+      ? {
+          announceList: status.bittorrent.announceList,
+          comment:
+            typeof status.bittorrent.comment === 'string'
+              ? status.bittorrent.comment
+              : status.bittorrent.comment['utf-8'],
+          creationDate: new Date(status.bittorrent.creationDate),
+          mode: status.bittorrent.mode,
+          info: {
+            name:
+              typeof status.bittorrent.info.name === 'string'
+                ? status.bittorrent.info.name
+                : status.bittorrent.info.name['utf-8']
+          }
+        }
+      : undefined;
+
     return this._status;
   }
 
@@ -114,8 +134,8 @@ export class Task {
   /**
    * Get bittorrent information
    */
-  public get bittorrent(): Aria2DownloadBitTorrentStatus | undefined {
-    return this.status.bittorrent;
+  public get bittorrent(): DownloadBitTorrentStatus | undefined {
+    return this._bittorrent;
   }
 
   // --- Control ---
