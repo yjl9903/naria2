@@ -42,13 +42,13 @@ export interface TorrentPiece {
 export interface DownloadBitTorrentStatus {
   announceList: string[];
 
-  comment: string;
+  comment: string | undefined;
 
   creationDate: Date;
 
   mode: Aria2DownloadBitTorrentMode;
 
   info: {
-    name: string;
+    name: string | undefined;
   };
 }

@@ -74,14 +74,14 @@ export class Task {
           comment:
             typeof status.bittorrent.comment === 'string'
               ? status.bittorrent.comment
-              : status.bittorrent.comment?.['utf-8'] ?? '',
+              : status.bittorrent.comment?.['utf-8'],
           creationDate: new Date(status.bittorrent.creationDate),
           mode: status.bittorrent.mode,
           info: {
             name:
               typeof status.bittorrent.info.name === 'string'
                 ? status.bittorrent.info.name
-                : status.bittorrent.info.name['utf-8']
+                : status.bittorrent.info.name?.['utf-8']
           }
         }
       : undefined;
