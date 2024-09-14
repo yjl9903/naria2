@@ -1,6 +1,6 @@
 {
   "name": "@naria2/app",
-  "version": "0.0.26",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {

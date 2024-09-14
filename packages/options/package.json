@@ -1,6 +1,6 @@
 {
   "name": "@naria2/options",
-  "version": "0.0.26",
+  "version": "0.1.0",
   "description": "Shared aria2 options type declerations and utils for naria2",
   "keywords": [
     "aria2",

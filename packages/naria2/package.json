@@ -1,6 +1,6 @@
 {
   "name": "naria2",
-  "version": "0.0.26",
+  "version": "0.1.0",
   "description": "Convenient BitTorrent Client based on the aria2 JSON-RPC",
   "keywords": [
     "aria2",
