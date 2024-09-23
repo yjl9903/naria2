@@ -54,7 +54,7 @@
     "fs-extra": "^11.2.0",
     "postcss": "^8.4.47",
     "shadcn-ui": "^0.9.1",
-    "tailwindcss": "^3.4.12",
+    "tailwindcss": "^3.4.13",
     "tailwindcss-animate": "^1.0.7",
     "unplugin-info": "^1.1.0",
     "vite-plugin-naria2": "workspace:*",
