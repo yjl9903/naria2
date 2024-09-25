@@ -19,7 +19,7 @@
   "devDependencies": {
     "@naria2/node": "workspace:*",
     "@types/cli-progress": "^3.11.6",
-    "@types/node": "^20.16.6",
+    "@types/node": "^20.16.7",
     "@types/webtorrent": "^0.109.8",
     "@types/ws": "^8.5.12",
     "bittorrent-tracker": "^11.1.2",
