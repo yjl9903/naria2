@@ -28,7 +28,7 @@ importers:
         version: 11.1.2
       bumpp:
         specifier: latest
-        version: 9.5.2
+        version: 9.6.1
       cli-progress:
         specifier: ^3.12.0
         version: 3.12.0
@@ -151,8 +151,8 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1
       '@iconify-json/fluent':
-        specifier: ^1.2.1
-        version: 1.2.1
+        specifier: ^1.2.2
+        version: 1.2.2
       '@iconify-json/ic':
         specifier: ^1.2.0
         version: 1.2.0
@@ -952,8 +952,8 @@ packages:
   '@iconify-json/carbon@1.2.1':
     resolution: {integrity: sha512-dIMY6OOY9LnwR3kOqAtfz4phGFG+KNfESEwSL6muCprBelSlSPpRXtdqvEEO/qWhkf5AJ9hWrOV3Egi5Z2IuKA==}
 
-  '@iconify-json/fluent@1.2.1':
-    resolution: {integrity: sha512-jvKSynYz6iuYuZDwDry4BxVcDHMrr/cFN5DMi6JOdTubYEHCT+oxyyIVjjSKtX5ebnlhJIuHVI+LhC/U9HSoFQ==}
+  '@iconify-json/fluent@1.2.2':
+    resolution: {integrity: sha512-eYPjqGfTDno2VOyRWiEQkiNXb2RtjYsxfnzyEWWZYE9w35Svph4bPsZG3IXf7+D3r1mk9bYreX+h7Ywyy0L5RQ==}
 
   '@iconify-json/ic@1.2.0':
     resolution: {integrity: sha512-L4+m77xTQB08X3I+3xs1+IrvK+aNcuN/7ODu5aUPznHKLU+/8UYcsjUgNHze6vPOGPQ0AG+kCwvy91EYPXSRxw==}
@@ -1954,8 +1954,8 @@ packages:
     resolution: {integrity: sha512-4T53u4PdgsXqKaIctwF8ifXlRTTmEPJ8iEPWFdGZvcf7sbwYo6FKFEX9eNNAnzFZ7EzJAQ3CJeOtCRA4rDp7Pw==}
     engines: {node: '>=6.14.2'}
 
-  bumpp@9.5.2:
-    resolution: {integrity: sha512-L0awRXkMY4MLasVy3dyfM+2aU2Q4tyCDU45O7hxiB2SHZF8jurw3nmyifrtFJ4cI/JZIvu5ChCtf0i8yLfnohQ==}
+  bumpp@9.6.1:
+    resolution: {integrity: sha512-lQlPfyS0GrO5FaOODK+OHQxfCT+6/xWfd3Zt8dzsmzm69RWQfh5fAU9igmeZWOzK/s+4vL+gQLo3yw474ntBZw==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4715,7 +4715,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/fluent@1.2.1':
+  '@iconify-json/fluent@1.2.2':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -5761,7 +5761,7 @@ snapshots:
       node-gyp-build: 4.8.2
     optional: true
 
-  bumpp@9.5.2:
+  bumpp@9.6.1:
     dependencies:
       '@jsdevtools/ez-spawn': 3.0.4
       c12: 1.11.2
