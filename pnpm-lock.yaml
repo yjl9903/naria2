@@ -178,8 +178,8 @@ importers:
         specifier: ^18.3.0
         version: 18.3.0
       '@vitejs/plugin-react-swc':
-        specifier: ^3.7.0
-        version: 3.7.0(vite@5.4.8(@types/node@20.16.10))
+        specifier: ^3.7.1
+        version: 3.7.1(vite@5.4.8(@types/node@20.16.10))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
@@ -1746,8 +1746,8 @@ packages:
   '@types/ws@8.5.12':
     resolution: {integrity: sha512-3tPRkv1EtkDpzlgyKyI8pGsGZAGPEaXeu0DOj5DI25Ja91bdAYddYHbADRYVrZMRbfW+1l5YwXVDKohDJNQxkQ==}
 
-  '@vitejs/plugin-react-swc@3.7.0':
-    resolution: {integrity: sha512-yrknSb3Dci6svCd/qhHqhFPDSw0QtjumcqdKMoNNzmOl5lMXTTiqzjWtG4Qask2HdvvzaNgSunbQGet8/GrKdA==}
+  '@vitejs/plugin-react-swc@3.7.1':
+    resolution: {integrity: sha512-vgWOY0i1EROUK0Ctg1hwhtC3SdcDjZcdit4Ups4aPkDcB1jYhmo+RMYWY87cmXMhvtD5uf8lV89j2w16vkdSVg==}
     peerDependencies:
       vite: ^4 || ^5
 
@@ -5497,7 +5497,7 @@ snapshots:
     dependencies:
       '@types/node': 20.16.5
 
-  '@vitejs/plugin-react-swc@3.7.0(vite@5.4.8(@types/node@20.16.10))':
+  '@vitejs/plugin-react-swc@3.7.1(vite@5.4.8(@types/node@20.16.10))':
     dependencies:
       '@swc/core': 1.7.26
       vite: 5.4.8(@types/node@20.16.10)
