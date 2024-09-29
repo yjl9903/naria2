@@ -49,7 +49,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react-swc": "^3.7.0",
+    "@vitejs/plugin-react-swc": "^3.7.1",
     "autoprefixer": "^10.4.20",
     "fs-extra": "^11.2.0",
     "postcss": "^8.4.47",
