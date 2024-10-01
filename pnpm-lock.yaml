@@ -199,8 +199,8 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.13)
       unplugin-info:
-        specifier: ^1.1.0
-        version: 1.1.0(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10))
+        specifier: ^1.2.0
+        version: 1.2.0(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10))
       vite-plugin-naria2:
         specifier: workspace:*
         version: link:../vite-plugin-naria2
@@ -2539,8 +2539,8 @@ packages:
   git-up@7.0.0:
     resolution: {integrity: sha512-ONdIrbBCFusq1Oy0sC71F5azx8bVkvtZtMJAsv+a6lz5YAmbNnLD6HAB4gptHZVLPR8S2/kVN6Gab7lryq5+lQ==}
 
-  git-url-parse@14.1.0:
-    resolution: {integrity: sha512-8xg65dTxGHST3+zGpycMMFZcoTzAdZ2dOtu4vmgIfkTFnVHBxHMzBC2L1k8To7EmrSiHesT8JgPLT91VKw1B5g==}
+  git-url-parse@15.0.0:
+    resolution: {integrity: sha512-5reeBufLi+i4QD3ZFftcJs9jC26aULFLBU23FeKM/b1rI0K6ofIeAblmDVO7Ht22zTDE9+CkJ3ZVb0CgJmz3UQ==}
 
   github-from-package@0.0.0:
     resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
@@ -3995,8 +3995,8 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  unplugin-info@1.1.0:
-    resolution: {integrity: sha512-sJfczOBdpY+6tpJswBrQej0qvyAPLODe7cimnu1PCRgWHOuMnSAwaWUps1BUlBKhnWEXe7nzLjfw9fWOUM/P9Q==}
+  unplugin-info@1.2.0:
+    resolution: {integrity: sha512-ePDKvnNi9b5nm8NHpeZZeaaORgfnvEGSnfYS6ed6HKyX84prRT20oYiuTQp2neUwI6blsN4Y3SoZX7XIt+BNZQ==}
     peerDependencies:
       '@nuxt/kit': ^3
       '@nuxt/schema': ^3
@@ -6422,7 +6422,7 @@ snapshots:
       is-ssh: 1.4.0
       parse-url: 8.1.0
 
-  git-url-parse@14.1.0:
+  git-url-parse@15.0.0:
     dependencies:
       git-up: 7.0.0
 
@@ -7915,10 +7915,10 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin-info@1.1.0(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10)):
+  unplugin-info@1.2.0(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10)):
     dependencies:
       ci-info: 4.0.0
-      git-url-parse: 14.1.0
+      git-url-parse: 15.0.0
       simple-git: 3.27.0
       unplugin: 1.14.1
     optionalDependencies:
