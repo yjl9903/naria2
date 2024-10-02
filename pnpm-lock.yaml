@@ -199,8 +199,8 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.13)
       unplugin-info:
-        specifier: ^1.2.0
-        version: 1.2.0(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10))
+        specifier: ^1.2.1
+        version: 1.2.1(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10))
       vite-plugin-naria2:
         specifier: workspace:*
         version: link:../vite-plugin-naria2
@@ -3995,8 +3995,8 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  unplugin-info@1.2.0:
-    resolution: {integrity: sha512-ePDKvnNi9b5nm8NHpeZZeaaORgfnvEGSnfYS6ed6HKyX84prRT20oYiuTQp2neUwI6blsN4Y3SoZX7XIt+BNZQ==}
+  unplugin-info@1.2.1:
+    resolution: {integrity: sha512-NwssEGmXCBYnGE3i9UhhK1nva1GF8EU21mBGmGZQVOYZwmNHOs+wcwgGnHsmc1nX4PkVQTLiawaLQBeP6HJKkA==}
     peerDependencies:
       '@nuxt/kit': ^3
       '@nuxt/schema': ^3
@@ -7915,7 +7915,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin-info@1.2.0(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10)):
+  unplugin-info@1.2.1(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10)):
     dependencies:
       ci-info: 4.0.0
       git-url-parse: 15.0.0
