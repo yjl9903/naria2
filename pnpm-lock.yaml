@@ -135,8 +135,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       tailwind-merge:
-        specifier: ^2.5.2
-        version: 2.5.2
+        specifier: ^2.5.3
+        version: 2.5.3
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -2848,6 +2848,7 @@ packages:
 
   load-addon@1.0.0:
     resolution: {integrity: sha512-6XaA7xfpHW1CeQRrLFE9+9y8nDZMX3ZaoCMSo+Gp2i58dfY549SQqqb2ukAgQtAACEDJmaroHJvnL03cJ+KLvA==}
+    deprecated: Use require-addon instead
 
   load-ip-set@3.0.1:
     resolution: {integrity: sha512-ZFZt1g4Exq01SFtKjffqau+L4Qibt+51utymHHiWo8Iu/W7LYSqE7fiZ/iAZ6dIqbmeU6ICSIK02IizSScBkLQ==}
@@ -3818,8 +3819,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  tailwind-merge@2.5.2:
-    resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
+  tailwind-merge@2.5.3:
+    resolution: {integrity: sha512-d9ZolCAIzom1nf/5p4LdD5zvjmgSxY0BGgdSvmXIoMYAiPdAW/dSpP7joCDYFY7r/HkEa2qmPtkgsu0xjQeQtw==}
 
   tailwindcss-animate@1.0.7:
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
@@ -7714,7 +7715,7 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.0
 
-  tailwind-merge@2.5.2: {}
+  tailwind-merge@2.5.3: {}
 
   tailwindcss-animate@1.0.7(tailwindcss@3.4.13):
     dependencies:
