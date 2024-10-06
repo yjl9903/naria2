@@ -21,8 +21,8 @@ export interface WebUIOptions {
 }
 
 export async function launchWebUI(options: WebUIOptions) {
-  const serveStatic = (await import('serve-static')).default;
-  const finalhandler = (await import('finalhandler')).default;
+  const serveStatic = interopDefaultCompat(await import('serve-static'));
+  const finalhandler = interopDefaultCompat(await import('finalhandler'));
   const http = await import('http');
 
   const host = options.host;
@@ -126,7 +126,7 @@ export async function handleWebUIOpenRequest(
     } else {
       const dir = url.searchParams.get('dir');
       if (dir) {
-        const open = (await import('open')).default;
+        const open = interopDefaultCompat(await import('open'));
         const p = decodeURIComponent(dir);
         const stat = await fs.stat(p);
         if (stat.isDirectory()) {
@@ -144,4 +144,9 @@ export async function handleWebUIOpenRequest(
   } catch (error) {
     return false;
   }
+}
+
+function interopDefaultCompat<T>(mod: { default: T }): T {
+  // @ts-ignore
+  return mod.default ?? mod;
 }

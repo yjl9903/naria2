@@ -313,7 +313,8 @@ async function attachWebUI(options) {
   }
 
   if (options.open) {
-    const open = (await import('open')).default;
+    const _open = await import('open');
+    const open = _open.default ?? _open;
     await open(link);
   }
 
