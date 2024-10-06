@@ -201,6 +201,9 @@ importers:
       unplugin-info:
         specifier: ^1.2.1
         version: 1.2.1(esbuild@0.23.1)(rollup@4.22.5)(vite@5.4.8(@types/node@20.16.10))
+      vite:
+        specifier: ^5.4.8
+        version: 5.4.8(@types/node@20.16.10)
       vite-plugin-naria2:
         specifier: workspace:*
         version: link:../vite-plugin-naria2
