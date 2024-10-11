@@ -6,6 +6,7 @@ dist
 *.mp4
 *.mkv
 *.aria2
+*.torrent
 .turbo
 packages/node/client
 
