@@ -124,7 +124,7 @@ await torrent.watchTorrent(
 await client.shutdown()
 ```
 
-You can find detailed examples using Node.js here: [examples/torrent.mjs](https://github.com/yjl9903/naria2/blob/main/examples/torrent.mjs), [examples/http.mjs](https://github.com/yjl9903/naria2/blob/main/examples/http.mjs).
+You can find detailed examples using Node.js here: [examples/magnet.mjs](https://github.com/yjl9903/naria2/blob/main/examples/magnet.mjs), [examples/torrent.mjs](https://github.com/yjl9903/naria2/blob/main/examples/torrent.mjs), [examples/http.mjs](https://github.com/yjl9903/naria2/blob/main/examples/http.mjs).
 
 > Due to the implementation of [aria2](https://aria2.github.io/manual/en/html/index.html), the downloading progress of a magnet uri includes **two steps**:
 >

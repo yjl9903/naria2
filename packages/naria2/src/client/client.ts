@@ -13,6 +13,7 @@ import { type Aria2InputOptions, resolveInputOptions } from '@naria2/options';
 
 import { Naria2Error } from '../error';
 
+import type { MaybePromise } from './utils';
 import type { ClientOptions, DownloadOptions } from './types';
 
 import { sleep } from './utils';
@@ -92,13 +93,17 @@ export class Aria2Client {
   }
 
   public async downloadTorrent(
-    torrent: string,
+    torrent: MaybePromise<string>,
     options: PartialDeep<Aria2InputOptions> & DownloadOptions = {}
   ) {
-    const inputOptions = resolveInputOptions(options);
+    const uris = options.uris ?? [];
     const position = options.position ? [options.position] : [];
+    delete options.uris;
+    delete options.position;
+
+    const inputOptions = resolveInputOptions(options);
     const gid = await aria2
-      .addTorrent(this.conn, torrent, undefined, { ...inputOptions }, ...position)
+      .addTorrent(this.conn, await torrent, uris, { ...inputOptions }, ...position)
       .catch((error) => {
         return { error: new Naria2Error(error?.message, error) };
       });
@@ -108,10 +113,11 @@ export class Aria2Client {
   }
 
   public async downloadUri(
-    uri: string | string[],
+    uri: MaybePromise<string | string[]>,
     options: PartialDeep<Aria2InputOptions> & DownloadOptions = {}
   ) {
-    const uris = Array.isArray(uri) ? uri : [uri];
+    const _uri = await uri;
+    const uris = Array.isArray(_uri) ? _uri : [_uri];
     const inputOptions = resolveInputOptions(options);
     const position = options.position ? [options.position] : [];
     const gid = await aria2
