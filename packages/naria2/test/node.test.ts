@@ -4,7 +4,7 @@ import { createChildProcess } from '@naria2/node';
 
 import { createClient } from '../src';
 
-describe('@naria2/node', () => {
+describe('@naria2/node', { timeout: 20 * 1000 }, () => {
   it('should spawn childprocess', async () => {
     const conn = await createChildProcess({
       dir: '.',

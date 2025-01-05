@@ -326,8 +326,8 @@ function inferEnv(environment?: ChildProcessOptions['environment']): [
     ? environment === 'inherit'
       ? picked
       : environment === 'ignore'
-      ? {}
-      : { ...environment, no_proxy: environment?.no_proxy?.join(',') }
+        ? {}
+        : { ...environment, no_proxy: environment?.no_proxy?.join(',') }
     : picked;
 
   return [env, proxy];

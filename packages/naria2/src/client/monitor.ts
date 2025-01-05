@@ -252,7 +252,7 @@ export class Aria2Monitor {
             ({
               methodName: 'aria2.tellStatus',
               params: [id] as [string]
-            } as const)
+            }) as const
         )
       );
       for (const [status] of statuses) {
