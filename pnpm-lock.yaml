@@ -24,8 +24,8 @@ importers:
         specifier: ^8.5.13
         version: 8.5.13
       bittorrent-tracker:
-        specifier: ^11.1.2
-        version: 11.1.2
+        specifier: ^11.2.0
+        version: 11.2.0
       bumpp:
         specifier: latest
         version: 9.9.2
@@ -1656,9 +1656,6 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@thaunknown/simple-peer@10.0.10':
-    resolution: {integrity: sha512-RtoYQChP5clkbh+crUhv0LD/fdzgNO/Ah/SBdcSqla6xY6GK50ukNhq39H4vzAKoYqvDu01Hc+JSD9DxCdoBOw==}
-
   '@thaunknown/simple-peer@10.0.11':
     resolution: {integrity: sha512-A5MdmtZ6HUzRa4gwPOS4jG+09HvpTv2rFo4kk7Vwveo2ELm+WmbO124ZrJrQnZc2D7z2Q3AWKSitjl9OKXO88g==}
 
@@ -1922,11 +1919,6 @@ packages:
   bittorrent-protocol@4.1.16:
     resolution: {integrity: sha512-93t8h77uAyD8BGSpBo8SqxYyKBA/xgv9N8+WghnXpH2I+JmlmJmddUt8nugPRgj/LNuL1VrWJ26jhYhiVWpRaQ==}
     engines: {node: '>=12.20.0'}
-
-  bittorrent-tracker@11.1.2:
-    resolution: {integrity: sha512-mzINNIJ3FjNBcqQPKPQoxpNzzqEVfbBohwdVxblaOKGQVxagMzipCWwbxiAt+J35WC3xs1wFeCDUXpzQ3TBA+A==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
 
   bittorrent-tracker@11.2.0:
     resolution: {integrity: sha512-OldLpVVevCCgPzarDOHB7jc3Au/NApNCXyFluQM4P0B3xZgyNUZtTDrnpge6u4LV5g6pvIFahDuIdk4sP1U+Hg==}
@@ -3086,10 +3078,6 @@ packages:
     resolution: {integrity: sha512-7vbj10trelExNjFSBm5kTvZXXa7pZyKWx9RCKIyqe6I9Ev3IzGpQoqBP3a+cOdxY+pWj6VkP28n/2wWysBHD/A==}
     engines: {node: '>=10'}
 
-  node-datachannel@0.10.1:
-    resolution: {integrity: sha512-rhxb1iQgbFLY6HMt3W6Xcs8Q1k4jIMgI7KduXcYvIn2UMKYK6e/eegya2caF/+XYAqTeo1743gOr11CXvJ/DJA==}
-    engines: {node: '>=16.0.0'}
-
   node-datachannel@0.12.0:
     resolution: {integrity: sha512-pZ9FsVZpHdUKqyWynuCc9IBLkZPJMpDzpNk4YNPCizbIXHYifpYeWqSF35REHGIWi9JMCf11QzapsyQGo/Y4Ig==}
     engines: {node: '>=16.0.0'}
@@ -3791,9 +3779,6 @@ packages:
     resolution: {integrity: sha512-xhV7w8S+bUwlPTb4bAOUQhv8/cSS5offJuX8GQGq32ONF0ZtDWKfkdomM3HMRA+LhX6um/FZ0COqlwsjD53LeQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  streamx@2.20.1:
-    resolution: {integrity: sha512-uTa0mU6WUC65iUvzKH4X9hEdvSW7rbPxPtwfWiLMSj3qTdQbAiUboZTxauKfpFuGIGa1C2BYijZ7wgdUXICJhA==}
-
   streamx@2.20.2:
     resolution: {integrity: sha512-aDGDLU+j9tJcUdPGOaHmVF1u/hhI+CsGkT02V3OKlHDV7IukOI+nTWAGkiZEKCO35rWN1wIr4tS7YFr1f4qSvA==}
 
@@ -4258,10 +4243,6 @@ packages:
 
   webrtc-polyfill@1.1.10:
     resolution: {integrity: sha512-sOn0bj3/noUdzQX7rvk0jFbBurqWDGGo2ipl+WfgoOe/x3cxbGLk/ZUY+WHCISSlLaIeBumi1X3wxQZnUESExQ==}
-    engines: {node: '>=16.0.0'}
-
-  webrtc-polyfill@1.1.8:
-    resolution: {integrity: sha512-ms2rE5MEg1KXQX45sjl2QaIIevhpPogqoFz7Z1MAJYxWUuxFfI3L0SoiifrTNrWJiJiuFn/Dsf5OIGUWJFdU5g==}
     engines: {node: '>=16.0.0'}
 
   webtorrent@2.5.12:
@@ -5441,16 +5422,6 @@ snapshots:
       '@tanstack/query-core': 5.59.16
       react: 18.3.1
 
-  '@thaunknown/simple-peer@10.0.10':
-    dependencies:
-      debug: 4.3.7
-      err-code: 3.0.1
-      streamx: 2.20.1
-      uint8-util: 2.2.5
-      webrtc-polyfill: 1.1.8
-    transitivePeerDependencies:
-      - supports-color
-
   '@thaunknown/simple-peer@10.0.11':
     dependencies:
       debug: 4.4.0
@@ -5463,9 +5434,9 @@ snapshots:
 
   '@thaunknown/simple-websocket@9.1.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
       queue-microtask: 1.2.3
-      streamx: 2.20.1
+      streamx: 2.20.2
       uint8-util: 2.2.5
       ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
     transitivePeerDependencies:
@@ -5770,35 +5741,6 @@ snapshots:
       throughput: 1.0.1
       uint8-util: 2.2.5
       unordered-array-remove: 1.0.2
-    transitivePeerDependencies:
-      - supports-color
-
-  bittorrent-tracker@11.1.2:
-    dependencies:
-      '@thaunknown/simple-peer': 10.0.10
-      '@thaunknown/simple-websocket': 9.1.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)
-      bencode: 4.0.0
-      bittorrent-peerid: 1.3.6
-      chrome-dgram: 3.0.6
-      compact2string: 1.4.1
-      cross-fetch-ponyfill: 1.0.3
-      debug: 4.3.7
-      ip: 2.0.1
-      lru: 3.1.0
-      minimist: 1.2.8
-      once: 1.4.0
-      queue-microtask: 1.2.3
-      random-iterate: 1.0.1
-      run-parallel: 1.2.0
-      run-series: 1.1.9
-      socks: 2.8.3
-      string2compact: 2.0.1
-      uint8-util: 2.2.5
-      unordered-array-remove: 1.0.2
-      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
-    optionalDependencies:
-      bufferutil: 4.0.8
-      utf-8-validate: 6.0.4
     transitivePeerDependencies:
       - supports-color
 
@@ -7035,11 +6977,6 @@ snapshots:
     dependencies:
       semver: 7.6.3
 
-  node-datachannel@0.10.1:
-    dependencies:
-      node-domexception: 2.0.1
-      prebuild-install: 7.1.2
-
   node-datachannel@0.12.0:
     dependencies:
       node-domexception: 2.0.1
@@ -7764,14 +7701,6 @@ snapshots:
     dependencies:
       bl: 5.1.0
 
-  streamx@2.20.1:
-    dependencies:
-      fast-fifo: 1.3.2
-      queue-tick: 1.0.1
-      text-decoder: 1.2.0
-    optionalDependencies:
-      bare-events: 2.5.0
-
   streamx@2.20.2:
     dependencies:
       fast-fifo: 1.3.2
@@ -8259,11 +8188,6 @@ snapshots:
   webrtc-polyfill@1.1.10:
     dependencies:
       node-datachannel: 0.12.0
-      node-domexception: 1.0.0
-
-  webrtc-polyfill@1.1.8:
-    dependencies:
-      node-datachannel: 0.10.1
       node-domexception: 1.0.0
 
   webtorrent@2.5.12:
