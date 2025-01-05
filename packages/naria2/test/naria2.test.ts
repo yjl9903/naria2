@@ -25,7 +25,7 @@ beforeAll(async () => {
   const filename = `${FIXTURES_DIR}/${FILENAME}`;
   await fs.writeFile(filename, new Date().toLocaleString());
   seed = await makeSeed(filename);
-});
+}, 20 * 1000);
 
 describe('naria2', { timeout: 20 * 1000 }, () => {
   it('should download torrent', async () => {
