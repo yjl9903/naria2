@@ -53,7 +53,7 @@
     "autoprefixer": "^10.4.20",
     "fs-extra": "^11.2.0",
     "postcss": "^8.4.49",
-    "shadcn-ui": "^0.9.2",
+    "shadcn-ui": "^0.9.4",
     "tailwindcss": "^3.4.14",
     "tailwindcss-animate": "^1.0.7",
     "unplugin-info": "^1.2.1",

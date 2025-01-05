@@ -190,8 +190,8 @@ importers:
         specifier: ^8.4.49
         version: 8.4.49
       shadcn-ui:
-        specifier: ^0.9.2
-        version: 0.9.2(typescript@5.6.3)
+        specifier: ^0.9.4
+        version: 0.9.4(typescript@5.6.3)
       tailwindcss:
         specifier: ^3.4.14
         version: 3.4.14
@@ -2885,20 +2885,14 @@ packages:
   localforage@1.10.0:
     resolution: {integrity: sha512-14/H1aX7hzBBmmh7sGPd+AOMkkIrHM3Z1PAyGgZigA1H1p5O5ANnMyWzvpAETtG68/dC4pC0ncy3+PPGzXZHPg==}
 
-  lodash._reinterpolate@3.0.0:
-    resolution: {integrity: sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==}
-
   lodash.memoize@4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
 
-  lodash.template@4.5.0:
-    resolution: {integrity: sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==}
-
-  lodash.templatesettings@4.2.0:
-    resolution: {integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==}
-
   lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
+
+  lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   log-symbols@5.1.0:
     resolution: {integrity: sha512-l0x2DvrW294C9uDCoQe1VSU4gf529FkSZ6leBl4TiqZH/e+0R7hSfHQBNut2mNygDgHwvYHfFLn6Oxb3VWj2rA==}
@@ -3697,8 +3691,8 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shadcn-ui@0.9.2:
-    resolution: {integrity: sha512-tFb/rfWZvOS5fOGkR9NAtrlpcT/xw1UD9iWtj+Su4pUSpL1ihOqrHXphHyNofjdNdidi9DnJ6ZdXnoOwcud3NQ==}
+  shadcn-ui@0.9.4:
+    resolution: {integrity: sha512-75nqu4+y4mlhNXGfHPoPd1r2fgqGQgSEPzPe8TV39WRinafKHuBX2xkgoQOwu+NhiRPKV5TrRSCZ5ytGrFU1oQ==}
     hasBin: true
 
   shebang-command@2.0.0:
@@ -4354,7 +4348,7 @@ snapshots:
   '@babel/code-frame@7.25.7':
     dependencies:
       '@babel/highlight': 7.25.7
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/compat-data@7.25.8': {}
 
@@ -4371,7 +4365,7 @@ snapshots:
       '@babel/traverse': 7.25.7
       '@babel/types': 7.25.8
       convert-source-map: 2.0.0
-      debug: 4.3.7
+      debug: 4.4.0
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -4479,7 +4473,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/parser@7.25.8':
     dependencies:
@@ -4520,7 +4514,7 @@ snapshots:
       '@babel/parser': 7.25.8
       '@babel/template': 7.25.7
       '@babel/types': 7.25.8
-      debug: 4.3.7
+      debug: 4.4.0
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -4842,7 +4836,7 @@ snapshots:
 
   '@kwsites/file-exists@1.1.1':
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
 
@@ -5356,7 +5350,7 @@ snapshots:
     dependencies:
       chrome-dgram: 3.0.6
       cross-fetch-ponyfill: 1.0.3
-      debug: 4.3.7
+      debug: 4.4.0
       default-gateway: 6.0.3
       unordered-array-remove: 1.0.2
       xml2js: 0.6.2
@@ -5623,7 +5617,7 @@ snapshots:
 
   agent-base@7.1.1:
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
 
@@ -5718,7 +5712,7 @@ snapshots:
   bittorrent-dht@11.0.8:
     dependencies:
       bencode: 4.0.0
-      debug: 4.3.7
+      debug: 4.4.0
       k-bucket: 5.1.0
       k-rpc: 5.1.0
       last-one-wins: 1.0.4
@@ -5731,7 +5725,7 @@ snapshots:
   bittorrent-lsd@2.0.0:
     dependencies:
       chrome-dgram: 3.0.6
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
 
@@ -5741,7 +5735,7 @@ snapshots:
     dependencies:
       bencode: 4.0.0
       bitfield: 4.2.0
-      debug: 4.3.7
+      debug: 4.4.0
       rc4: 0.1.5
       streamx: 2.17.0
       throughput: 1.0.1
@@ -6597,7 +6591,7 @@ snapshots:
   https-proxy-agent@6.2.1:
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
 
@@ -6801,24 +6795,15 @@ snapshots:
     dependencies:
       lie: 3.1.1
 
-  lodash._reinterpolate@3.0.0: {}
-
   lodash.memoize@4.1.2: {}
-
-  lodash.template@4.5.0:
-    dependencies:
-      lodash._reinterpolate: 3.0.0
-      lodash.templatesettings: 4.2.0
-
-  lodash.templatesettings@4.2.0:
-    dependencies:
-      lodash._reinterpolate: 3.0.0
 
   lodash.uniq@4.5.0: {}
 
+  lodash@4.17.21: {}
+
   log-symbols@5.1.0:
     dependencies:
-      chalk: 5.2.0
+      chalk: 5.3.0
       is-unicode-supported: 1.3.0
 
   loose-envify@1.4.0:
@@ -6839,7 +6824,7 @@ snapshots:
 
   lt_donthave@2.0.3:
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
       unordered-array-remove: 1.0.2
     transitivePeerDependencies:
       - supports-color
@@ -7075,7 +7060,7 @@ snapshots:
 
   ora@6.3.1:
     dependencies:
-      chalk: 5.2.0
+      chalk: 5.3.0
       cli-cursor: 4.0.0
       cli-spinners: 2.9.2
       is-interactive: 2.0.0
@@ -7612,7 +7597,7 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shadcn-ui@0.9.2(typescript@5.6.3):
+  shadcn-ui@0.9.4(typescript@5.6.3):
     dependencies:
       '@antfu/ni': 0.21.12
       '@babel/core': 7.25.8
@@ -7626,7 +7611,7 @@ snapshots:
       fast-glob: 3.3.2
       fs-extra: 11.2.0
       https-proxy-agent: 6.2.1
-      lodash.template: 4.5.0
+      lodash: 4.17.21
       node-fetch: 3.3.2
       ora: 6.3.1
       prompts: 2.4.2
@@ -7790,7 +7775,7 @@ snapshots:
       css-tree: 2.3.1
       css-what: 6.1.0
       csso: 5.0.5
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   tailwind-merge@2.5.4: {}
 
@@ -7907,7 +7892,7 @@ snapshots:
       bittorrent-dht: 11.0.8
       bittorrent-lsd: 2.0.0
       bittorrent-tracker: 11.1.2
-      debug: 4.3.7
+      debug: 4.4.0
       run-parallel: 1.2.0
     transitivePeerDependencies:
       - supports-color
@@ -8079,7 +8064,7 @@ snapshots:
     dependencies:
       bencode: 4.0.0
       bitfield: 4.2.0
-      debug: 4.3.7
+      debug: 4.4.0
       uint8-util: 2.2.5
     transitivePeerDependencies:
       - supports-color
@@ -8113,7 +8098,7 @@ snapshots:
   vite-node@2.1.3(@types/node@20.16.12):
     dependencies:
       cac: 6.7.14
-      debug: 4.3.7
+      debug: 4.4.0
       pathe: 1.1.2
       vite: 5.4.9(@types/node@20.16.12)
     transitivePeerDependencies:
