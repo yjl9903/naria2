@@ -57,7 +57,6 @@
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "unplugin-info": "^1.2.1",
-    "vite": "^5.4.11",
     "vite-plugin-naria2": "workspace:*",
     "vite-plugin-top-level-await": "^1.4.4"
   }
