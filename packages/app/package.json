@@ -47,7 +47,7 @@
     "@iconify-json/solar": "^1.2.2",
     "@tanstack/react-query-devtools": "^5.64.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/react": "^19.0.6",
+    "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "autoprefixer": "^10.4.20",
