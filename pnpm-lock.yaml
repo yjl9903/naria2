@@ -15,8 +15,8 @@ importers:
         specifier: ^3.11.6
         version: 3.11.6
       '@types/node':
-        specifier: ^22.10.6
-        version: 22.10.6
+        specifier: ^22.10.7
+        version: 22.10.7
       '@types/webtorrent':
         specifier: ^0.110.0
         version: 0.110.0
@@ -49,10 +49,10 @@ importers:
         version: 3.3.1(typescript@5.7.3)
       vite:
         specifier: ^6.0.7
-        version: 6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0)
+        version: 6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0)
       vitest:
         specifier: ^2.1.8
-        version: 2.1.8(@types/node@22.10.6)
+        version: 2.1.8(@types/node@22.10.7)
       webtorrent:
         specifier: ^2.5.12
         version: 2.5.12(bare-buffer@3.0.1)
@@ -179,7 +179,7 @@ importers:
         version: 19.0.3(@types/react@19.0.7)
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.2
-        version: 3.7.2(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0))
+        version: 3.7.2(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.1)
@@ -200,13 +200,13 @@ importers:
         version: 1.0.7(tailwindcss@3.4.17)
       unplugin-info:
         specifier: ^1.2.1
-        version: 1.2.1(esbuild@0.24.2)(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0))
+        version: 1.2.1(esbuild@0.24.2)(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0))
       vite-plugin-naria2:
         specifier: workspace:*
         version: link:../vite-plugin-naria2
       vite-plugin-top-level-await:
         specifier: ^1.4.4
-        version: 1.4.4(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0))
+        version: 1.4.4(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0))
 
   packages/binary/darwin-arm64: {}
 
@@ -351,7 +351,7 @@ importers:
     devDependencies:
       vite:
         specifier: ^6.0.7
-        version: 6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0)
+        version: 6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0)
 
 packages:
 
@@ -1578,8 +1578,8 @@ packages:
   '@types/node@22.10.5':
     resolution: {integrity: sha512-F8Q+SeGimwOo86fiovQh8qiXfFEh2/ocYv7tU5pJ3EXMSSxk1Joj5wefpFK2fHTf/N6HKGSxIDBT9f3gCxXPkQ==}
 
-  '@types/node@22.10.6':
-    resolution: {integrity: sha512-qNiuwC4ZDAUNcY47xgaSuS92cjf8JbSUoaKS77bmLG1rU7MlATVSiw/IlrjtIyyskXBZ8KkNfjK/P5na7rgXbQ==}
+  '@types/node@22.10.7':
+    resolution: {integrity: sha512-V09KvXxFiutGp6B7XkpaDXlNadZxrzajcY50EuoLIpQ6WWYCSvf19lVIazzfIzQvhUN2HjX12spLojTnhuKlGg==}
 
   '@types/parse-torrent-file@4.0.6':
     resolution: {integrity: sha512-SxqVth0Iv0WuEkqWS5MaY4S4Tlyi+QHkElQREvsUPw2xHcPgKyQ2dkJRRv5vAxmLzH+tnMdOj1Nws/wsenbzUw==}
@@ -5162,11 +5162,11 @@ snapshots:
 
   '@types/bittorrent-protocol@3.1.6':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/cli-progress@3.11.6':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/cookie@0.6.0': {}
 
@@ -5185,15 +5185,15 @@ snapshots:
 
   '@types/http-proxy@1.17.15':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/magnet-uri@5.1.5':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/mime@1.3.5': {}
 
@@ -5201,18 +5201,18 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  '@types/node@22.10.6':
+  '@types/node@22.10.7':
     dependencies:
       undici-types: 6.20.0
 
   '@types/parse-torrent-file@4.0.6':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/parse-torrent@5.8.7':
     dependencies:
       '@types/magnet-uri': 5.1.5
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       '@types/parse-torrent-file': 4.0.6
 
   '@types/react-dom@19.0.3(@types/react@19.0.7)':
@@ -5228,7 +5228,7 @@ snapshots:
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/serve-static@1.15.7':
     dependencies:
@@ -5238,12 +5238,12 @@ snapshots:
 
   '@types/simple-peer@9.11.8':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/webtorrent@0.110.0':
     dependencies:
       '@types/bittorrent-protocol': 3.1.6
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       '@types/parse-torrent': 5.8.7
       '@types/simple-peer': 9.11.8
 
@@ -5251,10 +5251,10 @@ snapshots:
     dependencies:
       '@types/node': 22.10.5
 
-  '@vitejs/plugin-react-swc@3.7.2(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0))':
+  '@vitejs/plugin-react-swc@3.7.2(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0))':
     dependencies:
       '@swc/core': 1.10.7
-      vite: 6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0)
+      vite: 6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@swc/helpers'
 
@@ -5265,13 +5265,13 @@ snapshots:
       chai: 5.1.2
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.8(vite@5.4.11(@types/node@22.10.6))':
+  '@vitest/mocker@2.1.8(vite@5.4.11(@types/node@22.10.7))':
     dependencies:
       '@vitest/spy': 2.1.8
       estree-walker: 3.0.3
       magic-string: 0.30.17
     optionalDependencies:
-      vite: 5.4.11(@types/node@22.10.6)
+      vite: 5.4.11(@types/node@22.10.7)
 
   '@vitest/pretty-format@2.1.8':
     dependencies:
@@ -7595,7 +7595,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin-info@1.2.1(esbuild@0.24.2)(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0)):
+  unplugin-info@1.2.1(esbuild@0.24.2)(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0)):
     dependencies:
       ci-info: 4.1.0
       git-url-parse: 15.0.0
@@ -7604,7 +7604,7 @@ snapshots:
     optionalDependencies:
       esbuild: 0.24.2
       rollup: 4.30.1
-      vite: 6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0)
+      vite: 6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -7682,13 +7682,13 @@ snapshots:
 
   uuid@9.0.1: {}
 
-  vite-node@2.1.8(@types/node@22.10.6):
+  vite-node@2.1.8(@types/node@22.10.7):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       es-module-lexer: 1.6.0
       pathe: 1.1.2
-      vite: 5.4.11(@types/node@22.10.6)
+      vite: 5.4.11(@types/node@22.10.7)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -7700,40 +7700,40 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-top-level-await@1.4.4(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0)):
+  vite-plugin-top-level-await@1.4.4(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0)):
     dependencies:
       '@rollup/plugin-virtual': 3.0.2(rollup@4.30.1)
       '@swc/core': 1.10.7
       uuid: 10.0.0
-      vite: 6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0)
+      vite: 6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@swc/helpers'
       - rollup
 
-  vite@5.4.11(@types/node@22.10.6):
+  vite@5.4.11(@types/node@22.10.7):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.1
       rollup: 4.30.1
     optionalDependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       fsevents: 2.3.3
 
-  vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(yaml@2.7.0):
+  vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0):
     dependencies:
       esbuild: 0.24.2
       postcss: 8.5.1
       rollup: 4.30.1
     optionalDependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       fsevents: 2.3.3
       jiti: 2.4.2
       yaml: 2.7.0
 
-  vitest@2.1.8(@types/node@22.10.6):
+  vitest@2.1.8(@types/node@22.10.7):
     dependencies:
       '@vitest/expect': 2.1.8
-      '@vitest/mocker': 2.1.8(vite@5.4.11(@types/node@22.10.6))
+      '@vitest/mocker': 2.1.8(vite@5.4.11(@types/node@22.10.7))
       '@vitest/pretty-format': 2.1.8
       '@vitest/runner': 2.1.8
       '@vitest/snapshot': 2.1.8
@@ -7749,11 +7749,11 @@ snapshots:
       tinyexec: 0.3.2
       tinypool: 1.0.2
       tinyrainbow: 1.2.0
-      vite: 5.4.11(@types/node@22.10.6)
-      vite-node: 2.1.8(@types/node@22.10.6)
+      vite: 5.4.11(@types/node@22.10.7)
+      vite-node: 2.1.8(@types/node@22.10.7)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
     transitivePeerDependencies:
       - less
       - lightningcss
