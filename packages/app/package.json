@@ -25,7 +25,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "localforage": "^1.10.0",
-    "lucide-react": "^0.471.1",
+    "lucide-react": "^0.473.0",
     "match-sorter": "^8.0.0",
     "naria2": "workspace:*",
     "react": "^19.0.0",
