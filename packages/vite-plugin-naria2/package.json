@@ -54,7 +54,7 @@
     "type-fest": "^4.32.0"
   },
   "devDependencies": {
-    "vite": "^6.0.7"
+    "vite": "^6.0.9"
   },
   "peerDependencies": {
     "@naria2/node": "workspace:*",
