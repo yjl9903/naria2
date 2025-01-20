@@ -22,7 +22,7 @@
     "@types/node": "^22.10.7",
     "@types/webtorrent": "^0.110.0",
     "@types/ws": "^8.5.13",
-    "bittorrent-tracker": "^11.2.0",
+    "bittorrent-tracker": "^11.2.1",
     "bumpp": "latest",
     "cli-progress": "^3.12.0",
     "execa": "^9.5.2",

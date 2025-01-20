@@ -24,8 +24,8 @@ importers:
         specifier: ^8.5.13
         version: 8.5.13
       bittorrent-tracker:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.2.1
+        version: 11.2.1
       bumpp:
         specifier: latest
         version: 9.10.1
@@ -1648,8 +1648,8 @@ packages:
     resolution: {integrity: sha512-93t8h77uAyD8BGSpBo8SqxYyKBA/xgv9N8+WghnXpH2I+JmlmJmddUt8nugPRgj/LNuL1VrWJ26jhYhiVWpRaQ==}
     engines: {node: '>=12.20.0'}
 
-  bittorrent-tracker@11.2.0:
-    resolution: {integrity: sha512-OldLpVVevCCgPzarDOHB7jc3Au/NApNCXyFluQM4P0B3xZgyNUZtTDrnpge6u4LV5g6pvIFahDuIdk4sP1U+Hg==}
+  bittorrent-tracker@11.2.1:
+    resolution: {integrity: sha512-SffBgHzNrhn+HBwdRD2st+TYJOs2LhF3ljJFPCYGv592LpGtPxw41UZHTUeY5muWnQl+wopcU8qXM9UEk2WKrA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
 
@@ -5190,7 +5190,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  bittorrent-tracker@11.2.0:
+  bittorrent-tracker@11.2.1:
     dependencies:
       '@thaunknown/simple-peer': 10.0.11
       '@thaunknown/simple-websocket': 9.1.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
@@ -7212,7 +7212,7 @@ snapshots:
     dependencies:
       bittorrent-dht: 11.0.9
       bittorrent-lsd: 2.0.0
-      bittorrent-tracker: 11.2.0
+      bittorrent-tracker: 11.2.1
       debug: 4.4.0
       run-parallel: 1.2.0
     transitivePeerDependencies:
