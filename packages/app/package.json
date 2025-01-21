@@ -40,10 +40,10 @@
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.8.2",
     "@iconify-json/carbon": "^1.2.5",
-    "@iconify-json/fluent": "^1.2.11",
+    "@iconify-json/fluent": "^1.2.12",
     "@iconify-json/ic": "^1.2.2",
     "@iconify-json/material-symbols": "^1.2.12",
-    "@iconify-json/mdi": "^1.2.2",
+    "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/solar": "^1.2.2",
     "@tanstack/react-query-devtools": "^5.64.1",
     "@types/fs-extra": "^11.0.4",
