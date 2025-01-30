@@ -28,7 +28,7 @@ importers:
         version: 11.2.1
       bumpp:
         specifier: latest
-        version: 9.10.2
+        version: 10.0.1
       cli-progress:
         specifier: ^3.12.0
         version: 3.12.0
@@ -157,8 +157,8 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       '@iconify-json/material-symbols':
-        specifier: ^1.2.13
-        version: 1.2.13
+        specifier: ^1.2.14
+        version: 1.2.14
       '@iconify-json/mdi':
         specifier: ^1.2.3
         version: 1.2.3
@@ -681,8 +681,8 @@ packages:
   '@iconify-json/ic@1.2.2':
     resolution: {integrity: sha512-QmjwS3lYiOmVWgTCEOTFyGODaR/+689+ajep/VsrCcsUN0Gdle5PmIcibDsdmRyrOsW/E77G41UUijdbjQUofw==}
 
-  '@iconify-json/material-symbols@1.2.13':
-    resolution: {integrity: sha512-7sVem5paCT87e1Hvk9tA2CHcmTSCwlJj6UlhouyNfgAqoC0W/Yj2vA9NFOdjviHgvoHT9kDCEfKxT5tpEMH6qA==}
+  '@iconify-json/material-symbols@1.2.14':
+    resolution: {integrity: sha512-S0AAFFQPVr8Dkrprspz/otNjxdD3rJRXDGZjbO8a8zn8ZR5mO8jAF81lVoTfUWxPH6SCtH2lK1JQGXHGPxld7g==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -1687,9 +1687,9 @@ packages:
     resolution: {integrity: sha512-WDtdLmJvAuNNPzByAYpRo2rF1Mmradw6gvWsQKf63476DDXmomT9zUiGypLcG4ibIM67vhAj8jJRdbmEws2Aqw==}
     engines: {node: '>=6.14.2'}
 
-  bumpp@9.10.2:
-    resolution: {integrity: sha512-QX1JdswFLLVgrA+I/t+926/jsuJ92BTKKxGvMYC6fg+1lFpCl9RbILQJg0thc5UirIjQ6/jY1Sj+b4tz3evA5g==}
-    engines: {node: '>=10'}
+  bumpp@10.0.1:
+    resolution: {integrity: sha512-TBCR4FjNiubf+t6QFncNHJzCDwcz6SM2PPt/UoIGwGoe5ZTbSqu37nNJFlxBngWCUb1rYbf43ocNT1pPaNu5CQ==}
+    engines: {node: '>=18'}
     hasBin: true
 
   bundle-name@4.1.0:
@@ -4235,7 +4235,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.13':
+  '@iconify-json/material-symbols@1.2.14':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -5265,7 +5265,7 @@ snapshots:
       node-gyp-build: 4.8.4
     optional: true
 
-  bumpp@9.10.2:
+  bumpp@10.0.1:
     dependencies:
       c12: 2.0.1
       cac: 6.7.14
