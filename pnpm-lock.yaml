@@ -145,8 +145,8 @@ importers:
         version: 5.0.3(@types/react@19.0.8)(react@19.0.0)
     devDependencies:
       '@egoist/tailwindcss-icons':
-        specifier: ^1.8.2
-        version: 1.8.2(tailwindcss@3.4.17)
+        specifier: ^1.9.0
+        version: 1.9.0(tailwindcss@3.4.17)
       '@iconify-json/carbon':
         specifier: ^1.2.5
         version: 1.2.5
@@ -494,8 +494,8 @@ packages:
   '@breadc/death@0.9.7':
     resolution: {integrity: sha512-eIWHb5Hrnd5j/RLSgbY1mtRPECMSjRbqlxZmlG+mgNi0h0YNieaS86EYsIHxnPT+J682N/OE7LoHSVDTRmp6jw==}
 
-  '@egoist/tailwindcss-icons@1.8.2':
-    resolution: {integrity: sha512-A0+/387Qg+rZgGRNlV9chwyikaPq9HALJYMwVspbqdbeA+TNEwUajM38pyaUqASArhubZUnFOgRALsdWYXn+rg==}
+  '@egoist/tailwindcss-icons@1.9.0':
+    resolution: {integrity: sha512-xWA9cUy6hzlK7Y6TaoRIcwmilSXiTJ8rbXcEdf9uht7yzDgw/yIgF4rThIQMrpD2Y2v4od51+r2y6Z7GStanDQ==}
     peerDependencies:
       tailwindcss: '*'
 
@@ -4121,7 +4121,7 @@ snapshots:
 
   '@breadc/death@0.9.7': {}
 
-  '@egoist/tailwindcss-icons@1.8.2(tailwindcss@3.4.17)':
+  '@egoist/tailwindcss-icons@1.9.0(tailwindcss@3.4.17)':
     dependencies:
       '@iconify/utils': 2.2.1
       tailwindcss: 3.4.17
