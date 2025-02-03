@@ -298,6 +298,13 @@ importers:
       ws:
         specifier: ^8.18.0
         version: 8.18.0(bufferutil@4.0.9)(utf-8-validate@6.0.5)
+    devDependencies:
+      '@types/finalhandler':
+        specifier: ^1.2.3
+        version: 1.2.3
+      '@types/serve-static':
+        specifier: ^1.15.7
+        version: 1.15.7
     optionalDependencies:
       '@naria2/darwin-arm64':
         specifier: workspace:*
@@ -317,13 +324,6 @@ importers:
       '@naria2/win32-x64':
         specifier: workspace:*
         version: link:../binary/win32-x64
-    devDependencies:
-      '@types/finalhandler':
-        specifier: ^1.2.3
-        version: 1.2.3
-      '@types/serve-static':
-        specifier: ^1.15.7
-        version: 1.15.7
 
   packages/options:
     dependencies:
