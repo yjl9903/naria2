@@ -54,8 +54,8 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4(@types/node@22.13.0)(jiti@2.4.2)(yaml@2.7.0)
       webtorrent:
-        specifier: ^2.5.17
-        version: 2.5.17(bare-buffer@3.0.1)
+        specifier: ^2.5.18
+        version: 2.5.18(bare-buffer@3.0.1)
       ws:
         specifier: ^8.18.0
         version: 8.18.0(bufferutil@4.0.9)(utf-8-validate@6.0.5)
@@ -3852,8 +3852,8 @@ packages:
     resolution: {integrity: sha512-sOn0bj3/noUdzQX7rvk0jFbBurqWDGGo2ipl+WfgoOe/x3cxbGLk/ZUY+WHCISSlLaIeBumi1X3wxQZnUESExQ==}
     engines: {node: '>=16.0.0'}
 
-  webtorrent@2.5.17:
-    resolution: {integrity: sha512-0YKibmeq4rq9CqGF5PopZVjyrXS7IW6M/kQ4pRo5DiFoco7OQm9Hyh+0SGGJSfkDBgCurXPnId84rvaoi3u3hw==}
+  webtorrent@2.5.18:
+    resolution: {integrity: sha512-mnJzGUy9cuTM/eiA0Lo0ktMiV1c3bL/L8Sb2GzHXVRydGA/hdbipWgqHtXOspAM4fNsQ10AGtHZhtZ2U639fTg==}
     engines: {node: '>=16'}
 
   which-runtime@1.2.1:
@@ -7510,7 +7510,7 @@ snapshots:
       node-datachannel: 0.12.0
       node-domexception: 1.0.0
 
-  webtorrent@2.5.17(bare-buffer@3.0.1):
+  webtorrent@2.5.18(bare-buffer@3.0.1):
     dependencies:
       '@silentbot1/nat-api': 0.4.7
       '@thaunknown/simple-peer': 10.0.11
