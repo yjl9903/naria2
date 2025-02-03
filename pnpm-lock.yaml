@@ -226,8 +226,8 @@ importers:
         specifier: workspace:*
         version: link:../options
       maria2:
-        specifier: ^0.3.4
-        version: 0.3.4(bufferutil@4.0.9)(utf-8-validate@6.0.5)
+        specifier: ^0.4.0
+        version: 0.4.0
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
@@ -284,8 +284,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       maria2:
-        specifier: 0.3.4
-        version: 0.3.4(bufferutil@4.0.9)(utf-8-validate@6.0.5)
+        specifier: 0.4.0
+        version: 0.4.0
       open:
         specifier: ^10.1.0
         version: 10.1.0
@@ -328,8 +328,8 @@ importers:
   packages/options:
     dependencies:
       maria2:
-        specifier: 0.3.4
-        version: 0.3.4(bufferutil@4.0.9)(utf-8-validate@6.0.5)
+        specifier: 0.4.0
+        version: 0.4.0
       type-fest:
         specifier: ^4.33.0
         version: 4.33.0
@@ -2580,9 +2580,9 @@ packages:
     resolution: {integrity: sha512-z/+dB2NQsXaDuxVBjoPLpZT8ePaacUmoontoFheRBl++nALHYs4qV9MmhTur9e4SaMbkCR/uPX43UMzEOoeyaw==}
     engines: {node: '>=12.20.0'}
 
-  maria2@0.3.4:
-    resolution: {integrity: sha512-WASjXUx0+ViKQ6gpb8f2/59r+TNHlzB4+x2ke2VPe6FAF47xniDAwCIGW9JcfkYYd1OB618tTYlu6Oh6HXhSdg==}
-    engines: {node: '>= 14.8.0'}
+  maria2@0.4.0:
+    resolution: {integrity: sha512-jQ9yezKDaSeiy7SZRA8zMAYkFyfx3yoeB/lhcOSQsoGf4YyVaPDopP+dEU6HWNJwK2Oo/rmgqTb5Na1gJcLtrg==}
+    engines: {node: '>= 22.5.0'}
 
   match-sorter@8.0.0:
     resolution: {integrity: sha512-bGJ6Zb+OhzXe+ptP5d80OLVx7AkqfRbtGEh30vNSfjNwllu+hHI+tcbMIT/fbkx/FKN1PmKuDb65+Oofg+XUxw==}
@@ -3754,10 +3754,6 @@ packages:
 
   uuid@10.0.0:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
-    hasBin: true
-
-  uuid@9.0.1:
-    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
 
   vite-node@3.0.5:
@@ -6190,13 +6186,7 @@ snapshots:
       bep53-range: 2.0.0
       uint8-util: 2.2.5
 
-  maria2@0.3.4(bufferutil@4.0.9)(utf-8-validate@6.0.5):
-    dependencies:
-      uuid: 9.0.1
-      ws: 8.18.0(bufferutil@4.0.9)(utf-8-validate@6.0.5)
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
+  maria2@0.4.0: {}
 
   match-sorter@8.0.0:
     dependencies:
@@ -7414,8 +7404,6 @@ snapshots:
     optional: true
 
   uuid@10.0.0: {}
-
-  uuid@9.0.1: {}
 
   vite-node@3.0.5(@types/node@22.13.0)(jiti@2.4.2)(yaml@2.7.0):
     dependencies:

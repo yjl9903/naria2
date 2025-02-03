@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@naria2/options": "workspace:*",
-    "maria2": "^0.3.4",
+    "maria2": "^0.4.0",
     "mitt": "^3.0.1",
     "type-fest": "^4.33.0"
   },

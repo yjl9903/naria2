@@ -44,7 +44,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "maria2": "0.3.4",
+    "maria2": "0.4.0",
     "type-fest": "^4.33.0"
   },
   "engines": {
