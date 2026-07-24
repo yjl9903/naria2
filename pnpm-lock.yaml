@@ -18,8 +18,8 @@ importers:
         specifier: ^22.13.0
         version: 22.13.0
       '@types/webtorrent':
-        specifier: ^0.110.0
-        version: 0.110.0
+        specifier: ^0.110.1
+        version: 0.110.1
       '@types/ws':
         specifier: ^8.5.14
         version: 8.5.14
@@ -1472,8 +1472,8 @@ packages:
   '@types/simple-peer@9.11.8':
     resolution: {integrity: sha512-rvqefdp2rvIA6wiomMgKWd2UZNPe6LM2EV5AuY3CPQJF+8TbdrL5TjYdMf0VAjGczzlkH4l1NjDkihwbj3Xodw==}
 
-  '@types/webtorrent@0.110.0':
-    resolution: {integrity: sha512-f2Moh9KWdHqYT1N5hxbaCw213SyYyyHhxOoxJI4c53nwAiq4JCytpySV8cM5FC9oPOE7Y/4nPYbnreJNl9lJRA==}
+  '@types/webtorrent@0.110.1':
+    resolution: {integrity: sha512-fyW/LbaphpGWXdmmuXuerUb+dba/VlWAunMI7MLk44wbA27yIeSHZGuprf4FvXm9M9iqnLu1fmiPlMitg5nhJQ==}
 
   '@types/ws@8.5.14':
     resolution: {integrity: sha512-bd/YFLW+URhBzMXurx7lWByOu+xzU9+kb3RboOteXYDfW+tr+JZa99OyNmPINEGB/ahzKrEuc8rcv4gnpJmxTw==}
@@ -4960,7 +4960,7 @@ snapshots:
     dependencies:
       '@types/node': 22.13.0
 
-  '@types/webtorrent@0.110.0':
+  '@types/webtorrent@0.110.1':
     dependencies:
       '@types/bittorrent-protocol': 3.1.6
       '@types/node': 22.13.0
