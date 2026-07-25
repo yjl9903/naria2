@@ -187,7 +187,7 @@ importers:
         specifier: ^11.4.0
         version: 11.4.0
       postcss:
-        specifier: ^8.5.22
+        specifier: ^8.5.23
         version: 8.5.23
       shadcn-ui:
         specifier: ^0.9.5
