@@ -35,7 +35,7 @@
     "webtorrent": "^2.5.18",
     "ws": "^8.18.0"
   },
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@11.25.0",
   "engines": {
     "node": ">=v18.0.0"
   }
