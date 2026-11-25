@@ -281,8 +281,8 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0
       http-proxy-middleware:
-        specifier: ^3.0.3
-        version: 3.0.3
+        specifier: ^3.0.11
+        version: 3.0.11
       maria2:
         specifier: 0.3.4
         version: 0.3.4(bufferutil@4.0.9)(utf-8-validate@6.0.5)
@@ -2152,9 +2152,9 @@ packages:
   http-parser-js@0.4.13:
     resolution: {integrity: sha512-u8u5ZaG0Tr/VvHlucK2ufMuOp4/5bvwgneXle+y228K5rMbJOlVjThONcaAw3ikAy8b2OO9RfEucdMHFz3UWMA==}
 
-  http-proxy-middleware@3.0.3:
-    resolution: {integrity: sha512-usY0HG5nyDUwtqpiZdETNbmKtw3QQ1jwYFZ9wi5iHzX2BcILwQKtYDJPo7XHTsu5Z0B2Hj3W9NNnbd+AjFWjqg==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+  http-proxy-middleware@3.0.11:
+    resolution: {integrity: sha512-juBSCfRpbRp+Ql4DbukzTx+beBdB8nQvVej1AhvznEIMTjX/O+ReCpyb1AJtob8NCHxD5KDBkLKS2QXl2vo11A==}
+    engines: {node: ^14.18.0 || ^16.10.0 || >=18.0.0}
 
   http-proxy@1.18.1:
     resolution: {integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==}
@@ -5443,7 +5443,7 @@ snapshots:
 
   http-parser-js@0.4.13: {}
 
-  http-proxy-middleware@3.0.3:
+  http-proxy-middleware@3.0.11:
     dependencies:
       '@types/http-proxy': 1.17.15
       debug: 4.4.0
